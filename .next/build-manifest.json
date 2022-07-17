@@ -30,10 +30,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/form-layouts": [
+    "/account-settings": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/form-layouts.js"
+      "static/chunks/pages/account-settings.js"
     ]
   },
   "ampFirstPages": []

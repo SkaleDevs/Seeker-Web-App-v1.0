@@ -45,7 +45,7 @@ class CenterActivity : AppCompatActivity() {
             }
         }
         val toggle = ActionBarDrawerToggle(this,mDrawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
-        toggle.drawerArrowDrawable.color = getColor(R.color.hamburg_item)
+        toggle.drawerArrowDrawable.color = getColor(R.color.black)
         toggle.syncState()
     }
     fun setThemeDark():Int{
@@ -53,7 +53,7 @@ class CenterActivity : AppCompatActivity() {
         this.theme.apply{
             resolveAttribute(R.attr.hamburg_tint,typedTheme,true)
         }
-        return typedTheme.data
+        return typedTheme.resourceId
     }
     override fun onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {

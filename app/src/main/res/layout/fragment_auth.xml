@@ -76,6 +76,7 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:cornerRadius="14dp"
             android:text="@string/seeker" />
 
         <com.google.android.material.button.MaterialButton
@@ -90,6 +91,7 @@
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:cornerRadius="14dp"
             android:text="@string/provider" />
     </com.google.android.material.button.MaterialButtonToggleGroup>
 

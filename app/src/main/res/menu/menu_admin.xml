@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/dashboard_item_2"
+            android:icon="@drawable/ic_home"
+            android:title="@string/dashboard"/>
+        <item android:id="@+id/account_item_2"
+            android:icon="@drawable/ic_person"
+            android:title="@string/account"/>
+    </group>
+    <item android:title="@string/pages">
+        <menu>
+            <item android:id="@+id/verified_item"
+                android:icon="@drawable/ic_verified"
+                android:title="@string/verified"/>
+            <item android:id="@+id/Unclassified_item"
+                android:icon="@drawable/ic_unidentified"
+                android:title="@string/s_u_s"/>
+            <item android:id="@+id/revaluation_item"
+                android:icon="@drawable/ic_recycled"
+                android:title="@string/revaluation"/>
+
+        </menu>
+    </item>
+</menu>

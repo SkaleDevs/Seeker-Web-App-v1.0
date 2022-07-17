@@ -7,7 +7,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.sihdemo.databinding.ActivityCenterBinding
+import com.google.android.material.navigation.NavigationView
 
 class CenterActivity : AppCompatActivity() {
     lateinit private var mBinding: ActivityCenterBinding
@@ -31,6 +34,14 @@ class CenterActivity : AppCompatActivity() {
                 2-> inflateMenu(R.menu.menu_admin)
                 3->inflateMenu(R.menu.menu_stake)
             }
+            setNavigationItemSelectedListener {
+                when(it.itemId){
+                    R.id.account_item->{inflateFragment(AccountFragment::class.java)}
+                    R.id.account_item_2->{inflateFragment(AccountFragment2::class.java)}
+                    R.id.dashboard_item->{inflateFragment(DashboardFragment::class.java)}
+                }
+                true
+            }
         }
         val toggle = ActionBarDrawerToggle(this,mDrawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
         mDrawer.addDrawerListener(toggle)
@@ -42,6 +53,11 @@ class CenterActivity : AppCompatActivity() {
             mDrawer.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
+        }
+    }
+    fun <T: Fragment> inflateFragment(className:Class<T>, args:Bundle?=null){
+        supportFragmentManager.commit{
+            replace(R.id.container,className,args)
         }
     }
 }

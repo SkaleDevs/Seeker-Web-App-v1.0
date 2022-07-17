@@ -44,7 +44,7 @@ class CenterActivity : AppCompatActivity() {
             }
         }
         val toggle = ActionBarDrawerToggle(this,mDrawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
-        toggle.drawerArrowDrawable.color = resources.getColor(android.R.color.primary_text_dark)
+        toggle.drawerArrowDrawable.color = resources.getColor(R.attr.hamburg_tint)
         mDrawer.addDrawerListener(toggle)
         toggle.syncState()
     }

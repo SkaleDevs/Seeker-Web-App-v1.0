@@ -2,6 +2,7 @@ package com.example.sihdemo
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
@@ -44,11 +45,16 @@ class CenterActivity : AppCompatActivity() {
             }
         }
         val toggle = ActionBarDrawerToggle(this,mDrawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
-        toggle.drawerArrowDrawable.color = resources.getColor(R.attr.hamburg_tint)
-        mDrawer.addDrawerListener(toggle)
+        toggle.drawerArrowDrawable.color = getColor(R.color.hamburg_item)
         toggle.syncState()
     }
-
+    fun setThemeDark():Int{
+        val typedTheme = TypedValue()
+        this.theme.apply{
+            resolveAttribute(R.attr.hamburg_tint,typedTheme,true)
+        }
+        return typedTheme.data
+    }
     override fun onBackPressed() {
         if (mDrawer.isDrawerOpen(GravityCompat.START)) {
             mDrawer.closeDrawer(GravityCompat.START)

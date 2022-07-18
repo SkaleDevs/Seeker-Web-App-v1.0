@@ -45,7 +45,7 @@ class CenterActivity : AppCompatActivity() {
             }
         }
         val toggle = ActionBarDrawerToggle(this,mDrawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close)
-        toggle.drawerArrowDrawable.color = getColor(R.color.black)
+        mDrawer.addDrawerListener(toggle)
         toggle.syncState()
     }
     fun setThemeDark():Int{

@@ -1,0 +1,109 @@
+import mongoose from 'mongoose';
+
+const instituteSchema = new mongoose.Schema({
+  headName:{
+    type:String,
+    required:true
+  },
+  gender:{
+     type:String,
+     required:true
+  },
+  designation:{
+    type:String,
+    required:true
+  },
+  email:{
+    type:String,
+    required:true
+  },
+  phNo:{
+    type:Number,
+    required:true
+  },
+  district:{
+    type:String,
+    required:true
+  },
+  clgName:{
+    type:String,
+    required:true
+  },
+  location:{
+    type:String,
+    required:true // rural vs urban
+  },
+  collegeType:{
+    type:String,
+    required:true
+  },
+  manageType:{
+    type:String,
+    required:true
+  },
+  accrNo:{
+    type:String,
+    required:true
+  },
+  courseOffered:{
+    type:Array,
+    required:true
+  },
+  affilUnivState:{
+    type:String,
+    required:true
+  },
+  affilUnivName:{
+    type:String,
+    required:true
+  },
+  earlierAffil:{
+    type:String,
+    required:true
+  },
+  firstAdmYear:{
+    type:Number,
+    required:true
+  },
+  admCompleted:{
+    type:String,
+    required:true
+  },
+  proof:{
+    type:String,
+    required:true
+  },
+  addrCorres:{
+    type:String,
+    required:true
+  },
+  cityCorres:{
+     type:String,
+     required:true
+  },
+  stateCorres:{
+     type:String,
+     required:true
+  },
+  districtCorres:{
+    type:String,
+    required:true
+  },
+  pinCode:{
+    type:Number,
+    required:true
+  },
+  verified:{
+    type:String,
+    required:true
+  },
+  banned:{
+    type:String,
+    required:true
+  }
+
+});
+
+let Institute= mongoose.model('Institute', instituteSchema);
+
+export default Institute;

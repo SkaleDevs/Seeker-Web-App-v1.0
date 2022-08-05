@@ -84,6 +84,34 @@ const seekerSchema = new mongoose.Schema({
    resume:{
     type:String,
     required:true
+   },
+   ifscCode:{
+    type:String,
+    required:true
+   },
+   banker:{
+    type:String,
+    required:true
+   },
+   bankBranch:{
+    type:String,
+    required:true
+   },
+   accountType:{
+    type:String,
+    required:true
+   },
+   accountNo:{
+    type:String,
+    required:true
+   },
+   verified:{
+    type:String,
+    required:true
+   },
+   banned:{
+    type:String,
+    required:true
    }
 
 });

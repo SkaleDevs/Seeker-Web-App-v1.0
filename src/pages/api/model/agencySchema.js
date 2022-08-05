@@ -13,7 +13,7 @@ const agencySchema = new mongoose.Schema({
     type:String,
     required:true
  },
- typeOrg:{
+ typeOrganisation:{
     type:String,
     required:true
  },
@@ -25,7 +25,7 @@ const agencySchema = new mongoose.Schema({
     type:String,
     required:true
  },
- addr:{
+ address:{
     type:String,
     required:true
  },
@@ -65,7 +65,7 @@ const agencySchema = new mongoose.Schema({
     type:String,
     required:true
  },
- bankAccNo:{
+ bankAccountNo:{
     type:String,
     required:true
  },

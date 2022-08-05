@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const instituteSchema = new mongoose.Schema({
+    // Institute Representative's detail
   headName:{
     type:String,
     required:true
@@ -21,6 +22,8 @@ const instituteSchema = new mongoose.Schema({
     type:Number,
     required:true
   },
+  //.....
+  // College Details
   district:{
     type:String,
     required:true
@@ -37,11 +40,13 @@ const instituteSchema = new mongoose.Schema({
     type:String,
     required:true
   },
-  manageType:{
+  //....
+  //Management Style
+  managementType:{
     type:String,
     required:true
   },
-  accrNo:{
+  accrediationNo:{
     type:String,
     required:true
   },
@@ -49,54 +54,70 @@ const instituteSchema = new mongoose.Schema({
     type:Array,
     required:true
   },
-  affilUnivState:{
+  // AISHE/ITI(NCVT) Code or DISE Code.
+  aishecode:{
     type:String,
     required:true
   },
-  affilUnivName:{
+  //proof of that code
+  aishefile:{
     type:String,
     required:true
   },
-  earlierAffil:{
+  affiliatedUniversityState:{
     type:String,
     required:true
   },
-  firstAdmYear:{
+  affiliatedUniversityName:{
+    type:String,
+    required:true
+  },
+  earlierAffiliation:{
+    type:String,
+    required:true
+  },
+  //when did the first admission ever take place
+  firstAdmissionYear:{
     type:Number,
     required:true
   },
-  admCompleted:{
-    type:String,
+  //has any admission ever completed
+  admissionCompleted:{
+    type:String,     //yes or no
     required:true
   },
+  //any file that proves the existence of college
   proof:{
     type:String,
     required:true
   },
-  addrCorres:{
+  // Correspondence details
+  addressCorrespondence:{
     type:String,
     required:true
   },
-  cityCorres:{
+  cityCorrespondence:{
      type:String,
      required:true
   },
-  stateCorres:{
+  stateCorrespondence:{
      type:String,
      required:true
   },
-  districtCorres:{
+  districtCorrespondence:{
     type:String,
     required:true
   },
-  pinCode:{
+  pincodeCorrespondence:{
     type:Number,
     required:true
   },
+  // if has been verified by the moderator or not
   verified:{
     type:String,
     required:true
   },
+  //if has been banned or not
   banned:{
     type:String,
     required:true

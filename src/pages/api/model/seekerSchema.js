@@ -45,7 +45,7 @@ const seekerSchema = new mongoose.Schema({
     type:String,
     required:true
    },
-   eduQual:{
+   educationQualification:{
     type:String,
     required:true
    },

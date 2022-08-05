@@ -1,0 +1,93 @@
+import mongoose from 'mongoose';
+
+const seekerSchema = new mongoose.Schema({
+   email:{
+    type:String,
+    required:true
+   },
+   phNo:{
+    type:Number,
+    required:true
+   },
+   firstName:{
+    type:String,
+    required:true
+   },
+   middleName:{
+    type:String,
+    required:false
+   },
+   lastName:{
+    type:String,
+    required:true
+   },
+   guardianFirstName:{
+    type:String,
+    required:true
+   },
+   guardianMiddleName:{
+    type:String,
+    required:false
+   },
+   guardianLastName:{
+    type:String,
+    required:true
+   },
+   dateOfBirth:{
+    type:Date,
+    required:true
+   },
+   category:{
+    type:String,
+    required:true
+   },
+   sex:{
+    type:String,
+    required:true
+   },
+   eduQual:{
+    type:String,
+    required:true
+   },
+   marks:{
+    type:Number,
+    required:true
+   },
+   income:{
+    type:Number,
+    required:true
+   },
+   panNo:{
+    type:Number,
+    required:false
+   },
+   state:{
+    type:String,
+    required:true
+   },
+   address:{
+    type:String,
+    required:true
+   },
+   locality:{
+    type:String,
+    required:true
+   },
+   town:{
+    type:String,
+    required:true
+   },
+   pincode:{
+    type:Number,
+    required:true
+   },
+   resume:{
+    type:String,
+    required:true
+   }
+
+});
+
+let Seeker= mongoose.model('Seeker', seekerSchema);
+
+export default Seeker;

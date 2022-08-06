@@ -11,6 +11,9 @@ import { CacheProvider } from '@emotion/react'
 // ** Config Imports
 import themeConfig from 'src/configs/themeConfig'
 
+//** session imports
+import { SessionProvider } from "next-auth/react"
+
 // ** Component Imports
 import UserLayout from 'src/layouts/UserLayout'
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
@@ -27,13 +30,12 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 // ** Global css styles
 import '../../styles/globals.css'
 
-//**  Connect to MondoDB
-import Connection from '../utils/database';
 
 // const username = process.env.DB_USERNAME;
 // const password = process.env.DB_PASSWORD;
 
- Connection("","");
+ 
+
 const clientSideEmotionCache = createEmotionCache()
 
 // ** Pace Loader
@@ -51,12 +53,13 @@ if (themeConfig.routingLoader) {
 
 // ** Configure JSS & ClassName
 const App = props => {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  const { Component, emotionCache = clientSideEmotionCache, pageProps ,session} = props
 
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
 
   return (
+    <SessionProvider session={session}>
     <CacheProvider value={emotionCache}>
       <Head>
         <title> Seeker | One Nation One Funding Platform </title>
@@ -76,6 +79,7 @@ const App = props => {
         </SettingsConsumer>
       </SettingsProvider>
     </CacheProvider>
+    </SessionProvider>
   )
 }
 

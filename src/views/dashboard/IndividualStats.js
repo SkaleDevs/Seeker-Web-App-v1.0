@@ -14,33 +14,32 @@ import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 import CellphoneLink from 'mdi-material-ui/CellphoneLink'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
-import CheckCircleIcon from 'mdi-material-ui/CheckCircle';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const salesData = [
-  {
-    stats: '20',
-    title: 'Applied',
-    color: 'primary',
-    icon: <FontAwesomeIcon icon="fa-light fa-file" sx={{ fontSize: '1.75rem' }} />
-  },
   {
     stats: '10',
     title: 'Approved',
     color: 'primary',
-    icon: <FontAwesomeIcon icon="fa-solid fa-circle-check"  sx={{ fontSize: '1.75rem' }} />
+    icon: <CheckCircleIcon sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '5',
-    title: 'Pending',
+    stats: '12.5k',
+    title: 'Customers',
     color: 'success',
-    icon: <FontAwesomeIcon icon="fa-light fa-xmark" sx={{ fontSize: '1.75rem' }} />
+    icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '5',
-    color: 'Rejected',
+    stats: '1.54k',
+    color: 'warning',
     title: 'Products',
-    icon: <FontAwesomeIcon icon="fa-light fa-pause"  sx={{ fontSize: '1.75rem' }} />
+    icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
+  },
+  {
+    stats: '$88k',
+    color: 'info',
+    title: 'Revenue',
+    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   }
 ]
 

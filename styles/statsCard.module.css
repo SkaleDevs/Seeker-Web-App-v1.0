@@ -1,7 +1,7 @@
 .neum {
-  border-radius: 10px;
-  margin: 0.5rem;
-  background: #f4f4f5;
-  box-shadow:   5px 5px 10px #d7d7d7,
-  -5px -5px 26px #e9e9e9;
+  -webkit-border-radius: 30px;
+  border-radius: 30px;
+  background: #ffffff;
+  -webkit-box-shadow: 12px 12px 43px #d9d9d9, -12px -12px 43px #ffffff;
+  box-shadow: 12px 12px 43px #d9d9d9, -12px -12px 43px #ffffff;
 }

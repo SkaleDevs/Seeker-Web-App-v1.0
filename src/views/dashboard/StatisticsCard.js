@@ -16,31 +16,43 @@ import CellphoneLink from 'mdi-material-ui/CellphoneLink'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
 import CheckCircleIcon from 'mdi-material-ui/CheckCircle';
 
+// ** FA Icons Imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFile, faCircleCheck, faPause, faXmark  } from '@fortawesome/free-solid-svg-icons'
+
+// Icon Declarations
+
+const applicationIcon = <FontAwesomeIcon icon={faFile} size='lg' />
+const approvedIcon = <FontAwesomeIcon icon={faCircleCheck} size='lg' />
+const pendingIcon = <FontAwesomeIcon icon= { faPause } size='lg' />
+const rejectedIcon = <FontAwesomeIcon icon= { faXmark } size='lg' />
+
+//sales data
 
 const salesData = [
   {
     stats: '20',
     title: 'Applied',
-    color: 'primary',
-    icon: <FontAwesomeIcon icon="fa-light fa-file" sx={{ fontSize: '1.75rem' }} />
+    color: 'info',
+    icon: applicationIcon,
   },
   {
     stats: '10',
     title: 'Approved',
-    color: 'primary',
-    icon: <FontAwesomeIcon icon="fa-solid fa-circle-check"  sx={{ fontSize: '1.75rem' }} />
+    color: 'success',
+    icon: approvedIcon
   },
   {
     stats: '5',
     title: 'Pending',
-    color: 'success',
-    icon: <FontAwesomeIcon icon="fa-light fa-xmark" sx={{ fontSize: '1.75rem' }} />
+    color: 'warning',
+    icon: pendingIcon
   },
   {
     stats: '5',
-    color: 'Rejected',
-    title: 'Products',
-    icon: <FontAwesomeIcon icon="fa-light fa-pause"  sx={{ fontSize: '1.75rem' }} />
+    color: 'error',
+    title: 'Rejected',
+    icon: rejectedIcon
   }
 ]
 

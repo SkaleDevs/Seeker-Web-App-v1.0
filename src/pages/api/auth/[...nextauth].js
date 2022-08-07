@@ -58,6 +58,9 @@ export default NextAuth({
     })
     // ...add more providers here
   ],
+  // pages:{
+  //   signIn:'/api/auth/signin',
+  // }
 })
 
 const signInUser = async ({password,user}) => {

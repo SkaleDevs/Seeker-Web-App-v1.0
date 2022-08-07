@@ -1,3 +1,6 @@
+//CSS imports
+import classes from '../../../styles/statsCard.module.css';
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -57,15 +60,19 @@ const salesData = [
 ]
 
 const renderStats = () => {
+  // Cards
+
   return salesData.map((item, index) => (
     <Grid item xs={12} sm={3} key={index}>
-      <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
+      <div className = { classes.neum } key = { index }>
+      <Box key={index} sx={{ display: 'flex', alignItems: 'center', paddingY: '0.5rem'}}>
         <Avatar
           variant='rounded'
           sx={{
-            mr: 3,
-            width: 44,
-            height: 44,
+            mr: 5,
+            ml: -3,
+            width: 50,
+            height: 50,
             boxShadow: 3,
             color: 'common.white',
             backgroundColor: `${item.color}.main`
@@ -74,10 +81,11 @@ const renderStats = () => {
           {item.icon}
         </Avatar>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant='caption'>{item.title}</Typography>
+          <Typography variant='body'>{item.title}</Typography>
           <Typography variant='h6'>{item.stats}</Typography>
         </Box>
       </Box>
+    </div>
     </Grid>
   ))
 }
@@ -109,7 +117,7 @@ const StatisticsCard = () => {
         }}
       />
       <CardContent sx={{ pt: theme => `${theme.spacing(3)} !important` }}>
-        <Grid container spacing={[5, 0]}>
+        <Grid container spacing={[5, 12]}>
           {renderStats()}
         </Grid>
       </CardContent>

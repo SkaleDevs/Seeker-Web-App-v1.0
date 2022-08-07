@@ -4,7 +4,9 @@ import GoogleProvider from "next-auth/providers/google";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
 import connectDB from "./lib/connectDB";
+import verifyPassword from "./lib/hashed";
 import CredentialsProvider from "next-auth/providers/credentials";
+import instituteuser from "../model/instituteUserSchema";
 connectDB();
 
 
@@ -39,15 +41,18 @@ export default NextAuth({
     CredentialsProvider({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      
-      credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+         credentials: {
+        aishecode: { label: "Aishecode", type: "text", placeholder: "jsmith" },
         password: {  label: "Password", type: "password" }
       },
-      async authorize(credentials, req) {
-        const email= credentials.email;
+
+      
+      async authorize(credentials) {
+        const aishecode= credentials.aishecode;
         const password= credentials.password;
-        const user=await Institute.findOne({email:email});
+        console.log("1");
+        const user=await instituteuser.find({aishecode:aishecode});
+        console.log(user);
         if(!user){
           throw new Error("Institute not found");
         }
@@ -55,6 +60,7 @@ export default NextAuth({
           return signInUser({password,user})
         }
       }
+
     })
     // ...add more providers here
   ],

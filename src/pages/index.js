@@ -26,10 +26,16 @@ const Dashboard = () => {
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
-        <Grid item xs={12} md={12}>
+        <Grid item xs={12}>
           <StatisticsCard />
         </Grid>
-        {/* <Grid item xs={12} md={6} lg={4}>
+
+        {/* Graph */}
+
+        <Grid item xs={12}>
+          
+        </Grid>
+        {/* <Grid item xs={12}>
           <WeeklyOverview />
         </Grid> */}
         {/* <Grid item xs={12} md={6} lg={4}>
@@ -38,17 +44,17 @@ const Dashboard = () => {
         <Grid item xs={12}>
           <Grid container spacing={12}>
             <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
+              {/* <CardStatisticsVerticalComponent
                 stats='$25.6k'
                 icon={<Poll />}
                 color='success'
                 trendNumber='+42%'
                 title='Total Profit'
                 subtitle='Weekly Profit'
-              />
+              /> */}
             </Grid>
             <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
+              {/* <CardStatisticsVerticalComponent
                 stats='$78'
                 title='Refunds'
                 trend='negative'
@@ -56,20 +62,20 @@ const Dashboard = () => {
                 trendNumber='-15%'
                 subtitle='Past Month'
                 icon={<CurrencyUsd />}
-              />
+              /> */}
             </Grid>
             <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
+              {/* <CardStatisticsVerticalComponent
                 stats='862'
                 trend='negative'
                 trendNumber='-18%'
                 title='New Project'
                 subtitle='Yearly Project'
                 icon={<BriefcaseVariantOutline />}
-              />
+              /> */}
             </Grid>
             <Grid item xs={6}>
-              <CardStatisticsVerticalComponent
+              {/* <CardStatisticsVerticalComponent
                 stats='15'
                 color='warning'
                 trend='negative'
@@ -77,14 +83,14 @@ const Dashboard = () => {
                 subtitle='Last Week'
                 title='Sales Queries'
                 icon={<HelpCircleOutline />}
-              />
+              /> */}
             </Grid>
           </Grid>
         </Grid>
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}>
           <SalesByCountries />
-        </Grid>
-        <Grid item xs={12} md={6}>
+        </Grid> */}
+        <Grid item xs={12}>
           <DepositWithdraw />
         </Grid>
         <Grid item xs={12}>

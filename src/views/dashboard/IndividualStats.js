@@ -1,6 +1,3 @@
-//CSS imports
-import classes from '../../../styles/statsCard.module.css';
-
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -17,62 +14,45 @@ import CurrencyUsd from 'mdi-material-ui/CurrencyUsd'
 import DotsVertical from 'mdi-material-ui/DotsVertical'
 import CellphoneLink from 'mdi-material-ui/CellphoneLink'
 import AccountOutline from 'mdi-material-ui/AccountOutline'
-import CheckCircleIcon from 'mdi-material-ui/CheckCircle';
-
-// ** FA Icons Imports
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFile, faCircleCheck, faPause, faXmark  } from '@fortawesome/free-solid-svg-icons'
-
-// Icon Declarations
-
-const applicationIcon = <FontAwesomeIcon icon={faFile} size='lg' />
-const approvedIcon = <FontAwesomeIcon icon={faCircleCheck} size='lg' />
-const pendingIcon = <FontAwesomeIcon icon= { faPause } size='lg' />
-const rejectedIcon = <FontAwesomeIcon icon= { faXmark } size='lg' />
-
-//sales data
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 const salesData = [
   {
-    stats: '20',
-    title: 'Applied',
-    color: 'info',
-    icon: applicationIcon,
-  },
-  {
     stats: '10',
     title: 'Approved',
+    color: 'primary',
+    icon: <CheckCircleIcon sx={{ fontSize: '1.75rem' }} />
+  },
+  {
+    stats: '12.5k',
+    title: 'Customers',
     color: 'success',
-    icon: approvedIcon
+    icon: <AccountOutline sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '5',
-    title: 'Pending',
+    stats: '1.54k',
     color: 'warning',
-    icon: pendingIcon
+    title: 'Products',
+    icon: <CellphoneLink sx={{ fontSize: '1.75rem' }} />
   },
   {
-    stats: '5',
-    color: 'error',
-    title: 'Rejected',
-    icon: rejectedIcon
+    stats: '$88k',
+    color: 'info',
+    title: 'Revenue',
+    icon: <CurrencyUsd sx={{ fontSize: '1.75rem' }} />
   }
 ]
 
 const renderStats = () => {
-  // Cards
-
   return salesData.map((item, index) => (
     <Grid item xs={12} sm={3} key={index}>
-      <div className = { classes.neum } key = { index }>
-      <Box key={index} sx={{ display: 'flex', alignItems: 'center', paddingY: '0.5rem'}}>
+      <Box key={index} sx={{ display: 'flex', alignItems: 'center' }}>
         <Avatar
           variant='rounded'
           sx={{
-            mr: 5,
-            ml: -3,
-            width: 50,
-            height: 50,
+            mr: 3,
+            width: 44,
+            height: 44,
             boxShadow: 3,
             color: 'common.white',
             backgroundColor: `${item.color}.main`
@@ -81,11 +61,10 @@ const renderStats = () => {
           {item.icon}
         </Avatar>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant='body'>{item.title}</Typography>
+          <Typography variant='caption'>{item.title}</Typography>
           <Typography variant='h6'>{item.stats}</Typography>
         </Box>
       </Box>
-    </div>
     </Grid>
   ))
 }
@@ -117,7 +96,7 @@ const StatisticsCard = () => {
         }}
       />
       <CardContent sx={{ pt: theme => `${theme.spacing(3)} !important` }}>
-        <Grid container spacing={[5, 12]}>
+        <Grid container spacing={[5, 0]}>
           {renderStats()}
         </Grid>
       </CardContent>

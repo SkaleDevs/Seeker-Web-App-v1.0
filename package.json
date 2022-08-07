@@ -40,7 +40,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next export",
-    "lint": "eslint --fix \"src/**/*.{js,jsx}\"",
+    "lint": "next lint",
     "format": "prettier --write \"src/**/*.{js,jsx}\""
   },
   "dependencies": {

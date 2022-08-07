@@ -398,6 +398,32 @@
     "minimatch" "^3.0.4"
     "strip-json-comments" "^3.1.1"
 
+"@fortawesome/fontawesome-common-types@6.1.2":
+  "integrity" "sha512-wBaAPGz1Awxg05e0PBRkDRuTsy4B3dpBm+zreTTyd9TH4uUM27cAL4xWyWR0rLJCrRwzVsQ4hF3FvM6rqydKPA=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.1.2.tgz"
+  "version" "6.1.2"
+
+"@fortawesome/fontawesome-svg-core@^6.1.2", "@fortawesome/fontawesome-svg-core@~1 || ~6":
+  "integrity" "sha512-853G/Htp0BOdXnPoeCPTjFrVwyrJHpe8MhjB/DYE9XjwhnNDfuBCd3aKc2YUYbEfHEcBws4UAA0kA9dymZKGjA=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.1.2.tgz"
+  "version" "6.1.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "6.1.2"
+
+"@fortawesome/free-solid-svg-icons@^6.1.2":
+  "integrity" "sha512-lTgZz+cMpzjkHmCwOG3E1ilUZrnINYdqMmrkv30EC3XbRsGlbIOL8H9LaNp5SV4g0pNJDfQ4EdTWWaMvdwyLiQ=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.1.2.tgz"
+  "version" "6.1.2"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "6.1.2"
+
+"@fortawesome/react-fontawesome@^0.2.0":
+  "integrity" "sha512-uHg75Rb/XORTtVt7OS9WoK8uM276Ufi7gCzshVWkUJbHhh3svsUUeqXerrM96Wm7fRiDzfKRwSoahhMIkGAYHw=="
+  "resolved" "https://registry.npmjs.org/@fortawesome/react-fontawesome/-/react-fontawesome-0.2.0.tgz"
+  "version" "0.2.0"
+  dependencies:
+    "prop-types" "^15.8.1"
+
 "@hapi/accept@5.0.2":
   "integrity" "sha512-CmzBx/bXUR8451fnZRuZAJRlzgm0Jgu5dltTX/bszmR2lheb9BpyN47Q1RbaGTsvFzn0PXAEs+lXDKfshccYZw=="
   "resolved" "https://registry.npmjs.org/@hapi/accept/-/accept-5.0.2.tgz"
@@ -799,13 +825,6 @@
   "integrity" "sha512-yXbYeFy+jUuYd3/CDcg2NkIYE991XYX/bje7LmjJigUciaeO1JR4XxXgCIV1/Zc/dRuFEyw1L0pbA+qynJkW5Q=="
   "resolved" "https://registry.npmjs.org/acorn/-/acorn-8.5.0.tgz"
   "version" "8.5.0"
-
-"agent-base@6":
-  "integrity" "sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ=="
-  "resolved" "https://registry.npmjs.org/agent-base/-/agent-base-6.0.2.tgz"
-  "version" "6.0.2"
-  dependencies:
-    "debug" "4"
 
 "ajv@^6.10.0", "ajv@^6.12.4":
   "integrity" "sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g=="
@@ -3425,7 +3444,7 @@
     "react-onclickoutside" "^6.12.0"
     "react-popper" "^2.2.5"
 
-"react-dom@^15.5.x || ^16.x || ^17.x", "react-dom@^16.9.0 || ^17", "react-dom@^17.0.0", "react-dom@^17.0.2", "react-dom@^17.0.2 || ^18", "react-dom@^17.0.2 || ^18.0.0", "react-dom@>=16.3.3", "react-dom@>=16.6.0", "react-dom@17.0.2":
+"react-dom@^15.5.x || ^16.x || ^17.x", "react-dom@^16.9.0 || ^17", "react-dom@^17.0.0", "react-dom@^17.0.2", "react-dom@^17.0.2 || ^18.0.0", "react-dom@>=16.3.3", "react-dom@>=16.6.0", "react-dom@17.0.2":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -3490,7 +3509,7 @@
     "loose-envify" "^1.4.0"
     "prop-types" "^15.6.2"
 
-"react@^15.5.x || ^16.x || ^17.x", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.9.0 || ^17", "react@^17.0.0", "react@^17.0.2", "react@^17.0.2 || ^18", "react@^17.0.2 || ^18.0.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=0.13", "react@>=16.3.3", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
+"react@^15.5.x || ^16.x || ^17.x", "react@^16.8.0 || ^17", "react@^16.8.0 || ^17.0.0", "react@^16.9.0 || ^17", "react@^17.0.0", "react@^17.0.2", "react@^17.0.2 || ^18.0.0", "react@>= 16.8.0 || 17.x.x || 18.x.x", "react@>=0.13", "react@>=16.3.3", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"

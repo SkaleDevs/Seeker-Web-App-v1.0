@@ -2,7 +2,9 @@ import mongoose from 'mongoose';
 const {ObjectId}=mongoose.Schema.Types;
 
 const applyNowInstituteSchema = new mongoose.Schema({
-    
+    name:{
+        
+    }
  
 });
 

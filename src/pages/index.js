@@ -94,7 +94,7 @@ const Dashboard = () => {
           <DepositWithdraw />
         </Grid>
         <Grid item xs={12}>
-          <Table />
+          {/* <Table /> */}
         </Grid>
       </Grid>
     </ApexChartWrapper>

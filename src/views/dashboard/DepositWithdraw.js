@@ -8,11 +8,6 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import MuiDivider from "@mui/material/Divider";
 
-
-
-
-
-
 const depositData = [
   {
     logoWidth: 28,

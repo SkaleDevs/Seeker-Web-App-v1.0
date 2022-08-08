@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
-
+const {ObjectId}=mongoose.Schema.Types;
 const agencySchema = new mongoose.Schema({
+   agencyId:{
+         type:ObjectId,
+         ref:'agencyuser'
+   },
  typeEnitity:{
     type:String,
     required:true
@@ -99,6 +103,6 @@ const agencySchema = new mongoose.Schema({
  }
 });
 
-let Agency= mongoose.model('Agency', agencySchema);
 
+let Agency= mongoose.models.Agency || mongoose.model('Agency', agencySchema);
 export default Agency;

@@ -38,6 +38,6 @@ extraDetailFile:{
 }
 });
 
-let Scheme= mongoose.model('Scheme', agencySchemeSchema);
 
+let Scheme= mongoose.models.Scheme || mongoose.model('Scheme',agencySchemeSchema);
 export default Scheme;

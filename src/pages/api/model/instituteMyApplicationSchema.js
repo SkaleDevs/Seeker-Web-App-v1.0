@@ -21,6 +21,6 @@ const instituteFormSchema = new mongoose.Schema({
   
 });
 
-let InstituteForm= mongoose.model('InstituteForm', instituteFormSchema);
 
+let InstituteForm= mongoose.models.InstituteForm || mongoose.model('InstituteForm', instituteFormSchema);
 export default InstituteForm;

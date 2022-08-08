@@ -125,6 +125,7 @@ const instituteSchema = new mongoose.Schema({
 
 });
 
-let Institute= mongoose.model('Institute', instituteSchema);
+
+let Institute= mongoose.models.Institute || mongoose.model('Institute', instituteSchema);
 
 export default Institute;

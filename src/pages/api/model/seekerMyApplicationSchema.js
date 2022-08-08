@@ -21,6 +21,6 @@ const seekerFormSchema = new mongoose.Schema({
   
 });
 
-let SeekerForm= mongoose.model('SeekerForm', seekerFormSchema);
 
+let SeekerForm= mongoose.models.SeekerForm || mongoose.model('SeekerForm', seekerFormSchema);
 export default SeekerForm;

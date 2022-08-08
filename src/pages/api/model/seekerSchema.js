@@ -131,6 +131,6 @@ const seekerSchema = new mongoose.Schema({
 
 });
 
-let Seeker= mongoose.model('Seeker', seekerSchema);
 
+let Seeker= mongoose.models.Seeker || mongoose.model('Seeker', seekerSchema);
 export default Seeker;

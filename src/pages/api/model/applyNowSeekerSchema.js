@@ -141,6 +141,6 @@ const applyNowSeekerSchema = new mongoose.Schema({
 
 });
 
-let ApplySeeker= mongoose.model('ApplySeeker', applyNowSeekerSchema);
 
+let ApplySeeker= mongoose.models.ApplySeeker || mongoose.model('ApplySeeker', applyNowSeekerSchema);
 export default ApplySeeker;

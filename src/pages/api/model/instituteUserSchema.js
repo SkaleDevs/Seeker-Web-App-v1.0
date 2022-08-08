@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-
+//import autoIncrement from 'mongoose-auto-increment';
 const instituteUserSchema = new mongoose.Schema({
 
   aishecode:{
@@ -14,6 +14,6 @@ const instituteUserSchema = new mongoose.Schema({
 
 });
 
-let instituteuser= mongoose.model('instituteuser', instituteUserSchema);
 
+let instituteuser= mongoose.models.instituteuser || mongoose.model('instituteuser', instituteUserSchema);
 export default instituteuser;

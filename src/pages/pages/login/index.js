@@ -228,7 +228,7 @@ const LoginPage = () => {
                 </IconButton>
               </Link>
               <Link href='/' passHref>
-                <IconButton component='a' onClick={()=>signIn("email",{email:"harshme78@gmail.com"},{ callbackUrl: '/' })}>
+                <IconButton component='a' onClick={()=>signIn("email",{email:"shreyanushka02@gmail.com",role:"seeker"},{ callbackUrl: '/' })}>
                   <Github
                     sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : theme.palette.grey[300]) }}
                   />

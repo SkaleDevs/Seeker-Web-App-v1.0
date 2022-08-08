@@ -1,5 +1,5 @@
 import Bank from '../model/seekerBankSchema';
-import SeekerForm from '../model/seekerFormSchema.js';
+import SeekerForm from '../model/seekerMyApplicationSchema.js';
 import Seeker from '../model/seekerSchema';
 
 export const getMyForms = async (request, response) => {

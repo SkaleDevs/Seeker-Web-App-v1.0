@@ -12,7 +12,7 @@ connectDB();
 
 export default NextAuth({
   adapter: MongoDBAdapter(clientPromise),
-
+  
   
   // Configure one or more authentication providers
   providers: [
@@ -42,7 +42,7 @@ export default NextAuth({
       // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
          credentials: {
-        aishecode: { label: "Aishecode", type: "text", placeholder: "jsmith" },
+        aishecode: { label: "Aishecode", type: "text" },
         password: {  label: "Password", type: "password" }
       },
 

@@ -1,6 +1,7 @@
 // ** MUI Imports
 import { styled, useTheme } from '@mui/material/styles'
 import MuiSwipeableDrawer from '@mui/material/SwipeableDrawer'
+import Card from '@mui/material/Card'
 
 const SwipeableDrawer = styled(MuiSwipeableDrawer)({
   overflowX: 'hidden',
@@ -45,6 +46,7 @@ const Drawer = props => {
   }
 
   return (
+    <Card elevation={1}>
     <SwipeableDrawer
       className='layout-vertical-nav'
       variant={hidden ? 'temporary' : 'permanent'}
@@ -60,6 +62,7 @@ const Drawer = props => {
     >
       {children}
     </SwipeableDrawer>
+    </Card>
   )
 }
 

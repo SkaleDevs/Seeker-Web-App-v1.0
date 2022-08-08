@@ -16,4 +16,5 @@ const instituteUserSchema = new mongoose.Schema({
 
 
 let instituteuser= mongoose.models.instituteuser || mongoose.model('instituteuser', instituteUserSchema);
+
 export default instituteuser;

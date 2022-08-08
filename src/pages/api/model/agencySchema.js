@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
-const {ObjectId}=mongoose.Schema.Types;
+
 const agencySchema = new mongoose.Schema({
-   agencyId:{
-         type:ObjectId,
-         ref:'agencyuser'
-   },
+  email:{
+   type:String,
+   required:true
+  },
  typeEnitity:{
     type:String,
     required:true

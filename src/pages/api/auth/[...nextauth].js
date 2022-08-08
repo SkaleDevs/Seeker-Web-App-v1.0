@@ -7,6 +7,8 @@ import connectDB from "./lib/connectDB";
 import verifyPassword from "./lib/hashed";
 import CredentialsProvider from "next-auth/providers/credentials";
 import instituteuser from "../model/instituteUserSchema";
+import user from "../model/userSchema";
+import mongoose from "mongoose";
 connectDB();
 
 
@@ -48,16 +50,18 @@ export default NextAuth({
 
       
       async authorize(credentials) {
+        
         const aishecode= credentials.aishecode;
         const password= credentials.password;
         console.log("1");
-        const user=await instituteuser.find({aishecode:aishecode});
-        console.log(user);
-        if(!user){
+        const myuser=await instituteuser.find({aishecode:aishecode});
+        console.log(myuser);
+        if(!myuser){
           throw new Error("Institute not found");
         }
-        if (user){
-          return signInUser({password,user})
+        if (myuser){
+          return myuser;
+          //return signInUser({password,myuser})
         }
       }
 
@@ -69,13 +73,15 @@ export default NextAuth({
   // }
 })
 
-const signInUser = async ({password,user}) => {
-  if(!user.password){
+const signInUser = async ({password,myuser}) => {
+  const ans=await user.find({email:"shreyanushka02@gmail.com"});
+  console.log(ans);
+  if(!myuser.password){
     throw new Error("Please enter the password");}
-    const isMatch=bcrypt.compare(password,user.password);
+    const isMatch=bcrypt.compare(password,myuser.password);
     if(!isMatch){
       throw new Error("Incorrect password");
     }
-   return user;
+   return myuser;
   
 }

@@ -44,32 +44,24 @@ const data = [
 
 const TotalEarning = () => {
   return (
-    <Card>
+    <Card sx={{ height: '19.5rem', overflow: 'auto' }}>
       <CardHeader
-        title='Total Earning'
+        title='Scheduled Events'
         titleTypographyProps={{ sx: { lineHeight: '1.6 !important', letterSpacing: '0.15px !important' } }}
-        action={
-          <IconButton size='small' aria-label='settings' className='card-more-options' sx={{ color: 'text.secondary' }}>
-            <DotsVertical />
-          </IconButton>
-        }
       />
       <CardContent sx={{ pt: theme => `${theme.spacing(2.25)} !important` }}>
         <Box sx={{ mb: 1.5, display: 'flex', alignItems: 'center' }}>
-          <Typography variant='h4' sx={{ fontWeight: 600, fontSize: '2.125rem !important' }}>
-            $24,895
-          </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', color: 'success.main' }}>
-            <MenuUp sx={{ fontSize: '1.875rem', verticalAlign: 'middle' }} />
-            <Typography variant='body2' sx={{ fontWeight: 600, color: 'success.main' }}>
+            {/* <MenuUp sx={{ fontSize: '1.875rem', verticalAlign: 'middle' }} /> */}
+            {/* <Typography variant='body2' sx={{ fontWeight: 600, color: 'success.main' }}>
               10%
-            </Typography>
+            </Typography> */}
           </Box>
         </Box>
 
-        <Typography component='p' variant='caption' sx={{ mb: 10 }}>
+        {/* <Typography component='p' variant='caption' sx={{ mb: 10 }}>
           Compared to $84,325 last year
-        </Typography>
+        </Typography> */}
 
         {data.map((item, index) => {
           return (
@@ -81,7 +73,7 @@ const TotalEarning = () => {
                 ...(index !== data.length - 1 ? { mb: 8.5 } : {})
               }}
             >
-              <Avatar
+              <Avatar 
                 variant='rounded'
                 sx={{
                   mr: 3,
@@ -112,7 +104,7 @@ const TotalEarning = () => {
                   <Typography variant='body2' sx={{ mb: 2, fontWeight: 600, color: 'text.primary' }}>
                     {item.amount}
                   </Typography>
-                  <LinearProgress color={item.color} value={item.progress} variant='determinate' />
+                  {/* <LinearProgress color={item.color} value={item.progress} variant='determinate' /> */}
                 </Box>
               </Box>
             </Box>

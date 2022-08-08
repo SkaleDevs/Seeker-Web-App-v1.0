@@ -33,15 +33,15 @@ const Dashboard = () => {
 
         {/* Graph */}
 
-        <Grid item xs={12} md={4} mt={10}>
+        <Grid item xs={12} md={4} mt={10} >
           <IndividStatsChart />
         </Grid>
         {/* <Grid item xs={12}>
           <WeeklyOverview />
         </Grid> */}
-        {/* <Grid item xs={12} md={6} lg={4}>
+        <Grid item xs={12} md={8} mt={10}>
           <TotalEarning />
-        </Grid> */}
+        </Grid>
         <Grid item xs={12}>
           <Grid container>
             <Grid item xs={6}>

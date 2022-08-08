@@ -19,6 +19,7 @@ import Trophy from 'src/views/dashboard/Trophy'
 import TotalEarning from 'src/views/dashboard/TotalEarning'
 import StatisticsCard from 'src/views/dashboard/StatisticsCard'
 import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
+import IndividStatsChart from 'src/views/dashboard/IndividStatsChart'
 import DepositWithdraw from 'src/views/dashboard/DepositWithdraw'
 import SalesByCountries from 'src/views/dashboard/SalesByCountries'
 
@@ -32,8 +33,8 @@ const Dashboard = () => {
 
         {/* Graph */}
 
-        <Grid item xs={12}>
-          
+        <Grid item xs={12} md={4} mt={10}>
+          <IndividStatsChart />
         </Grid>
         {/* <Grid item xs={12}>
           <WeeklyOverview />
@@ -42,7 +43,7 @@ const Dashboard = () => {
           <TotalEarning />
         </Grid> */}
         <Grid item xs={12}>
-          <Grid container spacing={12}>
+          <Grid container>
             <Grid item xs={6}>
               {/* <CardStatisticsVerticalComponent
                 stats='$25.6k'

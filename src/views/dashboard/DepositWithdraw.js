@@ -2,6 +2,7 @@
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { styled } from "@mui/material/styles";
+import Chip from '@mui/material/Chip'
 import CardHeader from "@mui/material/CardHeader";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
@@ -11,7 +12,7 @@ const depositData = [
   {
     logoWidth: 28,
     logoHeight: 29,
-    amount: "+$4,650",
+    status: 'approved',
     subtitle: "Sell UI Kit",
     title: "Gumroad Account",
     logo: "/images/logos/gumroad.png",
@@ -19,7 +20,7 @@ const depositData = [
   {
     logoWidth: 38,
     logoHeight: 38,
-    amount: "+$92,705",
+    status: 'pending',
     title: "Mastercard",
     subtitle: "Wallet deposit",
     logo: "/images/logos/mastercard-label.png",
@@ -27,7 +28,7 @@ const depositData = [
   {
     logoWidth: 20,
     logoHeight: 28,
-    amount: "+$957",
+    status: 'rejected',
     title: "Stripe Account",
     subtitle: "iOS Application",
     logo: "/images/logos/stripe.png",
@@ -35,7 +36,7 @@ const depositData = [
   {
     logoWidth: 34,
     logoHeight: 32,
-    amount: "+$6,837",
+    status: 'approved',
     title: "American Bank",
     subtitle: "Bank Transfer",
     logo: "/images/logos/american-bank.png",
@@ -43,7 +44,7 @@ const depositData = [
   {
     logoWidth: 33,
     logoHeight: 22,
-    amount: "+$446",
+    status: 'pending',
     title: "Bank Account",
     subtitle: "Wallet deposit",
     logo: "/images/logos/citi-bank.png",
@@ -92,6 +93,12 @@ const withdrawData = [
     subtitle: "Choosing a Cloud Platform",
   },
 ];
+const statusObj = {
+  approved: { color: 'success' },
+  rejected: { color: 'error' },
+  pending: { color: 'warning' }
+  
+}
 
 // Styled Divider component
 const Divider = styled(MuiDivider)(({ theme }) => ({
@@ -181,7 +188,17 @@ const DepositWithdraw = () => {
                     variant="subtitle2"
                     sx={{ fontWeight: 600, color: "success.main" }}
                   >
-                    {item.amount}
+                     <Chip
+                    label={item.status}
+                    color={statusObj[item.status].color}
+                    sx={{
+                      height: 24,
+                      fontSize: '0.75rem',
+                      textTransform: 'capitalize',
+                      '& .MuiChip-label': { fontWeight: 500 }
+                    }}
+                  />
+                    
                   </Typography>
                 </Box>
               </Box>

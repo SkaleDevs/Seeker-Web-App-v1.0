@@ -47,7 +47,7 @@ const Drawer = (props) => {
   };
 
   return (
-    <Paper elevation={4}>
+    <Paper elevation={2}>
       <SwipeableDrawer
         className="layout-vertical-nav"
         variant={hidden ? "temporary" : "permanent"}

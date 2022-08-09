@@ -3,6 +3,7 @@ import Seeker from '../model/seekerSchema';
 import connectDB from '../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 connectDB();
+sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 export default async function handler(req,res){
   let data=await Seeker.findOne({email:req.body.email});
   data.verified="Yes";

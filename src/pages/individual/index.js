@@ -5,9 +5,10 @@ import Grid from "@mui/material/Grid";
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Demo Components Imports
-import TotalEarning from "src/views/dashboard/TotalEarning";
 import IndividualStats from "src/views/dashboard/individual/IndividualStats";
 import IndividStatsChart from "src/views/dashboard/IndividStatsChart";
+import ScheduledInterviews from "src/views/dashboard/individual/ScheduledInterviews";
+import AppsAndSchemes from "src/views/dashboard/individual/AppsAndSchemes";
 import DepositWithdraw from "src/views/dashboard/DepositWithdraw";
 
 const Home = () => {
@@ -25,12 +26,12 @@ const Home = () => {
         </Grid>
 
         {/* /Graph */}
-        
+
         <Grid item xs={12} md={8} mt={10}>
-          <TotalEarning />
+          <ScheduledInterviews />
         </Grid>
         <Grid item xs={12}>
-          <DepositWithdraw />
+          <AppsAndSchemes />
         </Grid>
         <Grid item xs={12}>
           {/* <Table /> */}

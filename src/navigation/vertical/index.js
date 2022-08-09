@@ -52,6 +52,14 @@ const navigation = () => {
         icon: CalendarClock,
         path: "/scheduled-interviews",
       },
+      {
+        sectionTitle: "Funding Schemes",
+      },
+      {
+        title: "All Funding Schemes",
+        icon: FormSelect,
+        path: "/funding-schemes",
+      },
 
       // **-----------------------------/Individual Navs------------------------------**
     ];

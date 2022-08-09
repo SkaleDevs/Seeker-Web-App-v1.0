@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import MuiDivider from "@mui/material/Divider";
 
-const depositData = [
+const applications = [
   {
     logoWidth: 28,
     logoHeight: 29,
@@ -52,7 +52,7 @@ const depositData = [
   },
 ];
 
-const withdrawData = [
+const schemes = [
   {
     logoWidth: 29,
     logoHeight: 30,
@@ -112,7 +112,7 @@ const Divider = styled(MuiDivider)(({ theme }) => ({
   },
 }));
 
-const DepositWithdraw = () => {
+const AppsAndSchemes = () => {
   return (
     <Card
       sx={{
@@ -139,14 +139,14 @@ const DepositWithdraw = () => {
           }}
         />
         <CardContent sx={{ pb: (theme) => `${theme.spacing(5.5)} !important` }}>
-          {depositData.map((item, index) => {
+          {applications.map((item, index) => {
             return (
               <Box
                 key={item.title}
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  mb: index !== depositData.length - 1 ? 6 : 0,
+                  mb: index !== applications.length - 1 ? 6 : 0,
                 }}
               >
                 <Box
@@ -228,14 +228,14 @@ const DepositWithdraw = () => {
           }}
         />
         <CardContent sx={{ pb: (theme) => `${theme.spacing(5.5)} !important` }}>
-          {withdrawData.map((item, index) => {
+          {schemes.map((item, index) => {
             return (
               <Box
                 key={item.title}
                 sx={{
                   display: "flex",
                   alignItems: "center",
-                  mb: index !== depositData.length - 1 ? 6 : 0,
+                  mb: index !== applications.length - 1 ? 6 : 0,
                 }}
               >
                 <Box
@@ -290,4 +290,4 @@ const DepositWithdraw = () => {
   );
 };
 
-export default DepositWithdraw;
+export default AppsAndSchemes;

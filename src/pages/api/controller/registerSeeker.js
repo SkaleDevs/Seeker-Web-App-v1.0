@@ -1,7 +1,7 @@
 import Seeker from '../model/seekerSchema';
 import connectDB from '../auth/lib/connectDB';
 import user from '../model/userSchema';
-import bannedUser from '../model/bannedUserSchema';
+
 connectDB();
 export default async function handler(req,res){
    
@@ -10,19 +10,12 @@ export default async function handler(req,res){
         return res.send("A user with this email id already exists");
     }
     console.log(req.body.aadharNo)
-    let check2=await user.find({special:req.body.aadharNo});
+    let check2=await user.findOne({special:req.body.aadharNo});
     console.log(check2);
-    if(check2 && check2.special==req.body.aadharNo){
+    if(check2 ){
         return res.send("A account with this aadhar no. already exists")
         }
-    // let check3=await bannedUser.findOne({email:req.body.email});
-    // if(check3){
-    //     return res.send("You are banned from using this service");
-    // }
-    // let check4=await bannedUser.findOne({special:req.body.aadharNo});  
-    // if(check4){
-    //     return res.send("You are banned from using this service");
-    // }
+    
     const details=new Seeker({
            email:req.body.email,
            phNo:req.body.phNo,

@@ -3,9 +3,12 @@ import {
   FormSelect,
   HomeOutline,
   AccountCogOutline,
+  ViewList,
   Table,
-  FormDropdown,
+  PlaylistPlus,
+  FormatListBulleted,
   CalendarClock,
+  PlaylistCheck,
 } from "mdi-material-ui";
 
 const role = "individual"; // to be updated using session data
@@ -24,25 +27,25 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings",
+        path: "/individual/account-settings",
       },
       {
         sectionTitle: "Applications",
       },
       {
-        title: "All Applications",
-        icon: FormSelect,
-        path: "/applications",
+        title: "Funding Schemes",
+        icon: FormatListBulleted,
+        path: "/individual/applications",
       },
       {
         title: "Applied",
-        icon: FormDropdown,
-        path: "/applied-applications",
+        icon: PlaylistPlus,
+        path: "/individual/applied-applications",
       },
       {
         title: "Shortlisted",
-        icon: Table,
-        path: "/shortlisted-applications",
+        icon: PlaylistCheck,
+        path: "/individual/shortlisted-applications",
       },
       {
         sectionTitle: "Schedule",
@@ -50,15 +53,7 @@ const navigation = () => {
       {
         title: "Scheduled Interviews",
         icon: CalendarClock,
-        path: "/scheduled-interviews",
-      },
-      {
-        sectionTitle: "Funding Schemes",
-      },
-      {
-        title: "All Funding Schemes",
-        icon: FormSelect,
-        path: "/funding-schemes",
+        path: "/individual/scheduled-interviews",
       },
 
       // **-----------------------------/Individual Navs------------------------------**

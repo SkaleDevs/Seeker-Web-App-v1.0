@@ -21,6 +21,14 @@ const seekerSchema = new mongoose.Schema({
       type:String,
       required:true
      },
+     aadharNo:{
+      type:String,
+      required:true
+     },
+     aadharFile:{
+      type:String,
+      required:true
+     },
      guardianFirstName:{
       type:String,
       required:true

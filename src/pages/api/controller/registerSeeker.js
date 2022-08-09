@@ -1,18 +1,36 @@
 import Seeker from '../model/seekerSchema';
 import connectDB from '../auth/lib/connectDB';
+import user from '../model/userSchema';
+import bannedUser from '../model/bannedUserSchema';
 connectDB();
 export default async function handler(req,res){
-
-    let data =  await Seeker.findOneAndUpdate({email:req.body.email},req.body);
-    if(data){
-        return res.send(data);
+   
+    let check1=  await user.findOne({email:req.body.email});
+    if(check1){
+        return res.send("A user with this email id already exists");
     }
+    console.log(req.body.aadharNo)
+    let check2=await user.find({special:req.body.aadharNo});
+    console.log(check2);
+    if(check2 && check2.special==req.body.aadharNo){
+        return res.send("A account with this aadhar no. already exists")
+        }
+    // let check3=await bannedUser.findOne({email:req.body.email});
+    // if(check3){
+    //     return res.send("You are banned from using this service");
+    // }
+    // let check4=await bannedUser.findOne({special:req.body.aadharNo});  
+    // if(check4){
+    //     return res.send("You are banned from using this service");
+    // }
     const details=new Seeker({
            email:req.body.email,
            phNo:req.body.phNo,
            firstName:req.body.firstName,
            middleName:req.body.middleName,
            lastName:req.body.lastName,
+           aadharNo:req.body.aadharNo,
+           aadharFile:req.body.aadharFile,
            guardianFirstName:req.body.guardianFirstName,
            guardianMiddleName:req.body.guardianMiddleName,
            guardianLastName:req.body.guardianLastName,

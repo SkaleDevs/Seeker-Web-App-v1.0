@@ -35,6 +35,10 @@ documentsRequired:{
 extraDetailFile:{
    type:String,
    required:false
+},
+noOfApplications:{
+   type:Number,
+   required:true
 }
 });
 

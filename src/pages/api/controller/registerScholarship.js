@@ -14,7 +14,7 @@ export default async function handler(req,res){
         deadline:req.body.deadline,
         maxAmount:req.body.maxAmount,
         extraDetailFile:req.body.extraDetailFile,
-          
+        noOfApplications:0,
     })
     details.save()
     res.send(details)

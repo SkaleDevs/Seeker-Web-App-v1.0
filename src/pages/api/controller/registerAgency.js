@@ -1,10 +1,25 @@
 import Agency from '../model/agencySchema';
 import connectDB from '../auth/lib/connectDB';
+import user from '../model/userSchema';
+import bannedUser from '../model/bannedUserSchema';
 connectDB();
 export default async function handler(req,res){
-    let data =  await Agency.findOneAndUpdate({email:req.body.email},req.body);
-    if(data){
-        return res.send(data);
+    
+    let check1=  await user.findOne({email:req.body.email});
+    if(check1){
+        return res.send("A user with this email id already exists");
+    }
+    let check2=await user.findOne({special:req.body.panNo});
+    if(check2){
+        return res.send("A account with this pan no. already exists")
+        }
+    let check3=await bannedUser.findOne({email:req.body.email});
+    if(check3){
+        return res.send("You are banned from using this service");
+    }
+    let check4=await bannedUser.findOne({special:req.body.panNo});  
+    if(check4){
+        return res.send("You are banned from using this service");
     }
     const details=new Agency({
     email:req.body.email,

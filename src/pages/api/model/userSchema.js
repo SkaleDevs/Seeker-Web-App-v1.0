@@ -8,7 +8,11 @@ const UserSchema = new mongoose.Schema({
   },
   role:{
     type:String,
-    required:true
+    required:false
+  },
+  special:{
+    type:String,
+    required:false
   }
 
 });

@@ -8,8 +8,8 @@ const applyNowSeekerSchema = new mongoose.Schema({
         ref:'Scheme'
        },
        seekerID:{
-        type:String,
-        required:true
+        type:ObjectId,
+        ref:'Seeker'
        },
        email:{
         type:String,

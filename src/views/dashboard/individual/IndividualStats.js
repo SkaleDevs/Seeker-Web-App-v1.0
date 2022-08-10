@@ -52,7 +52,7 @@ const renderStats = () => {
   // Cards
 
   return salesData.map((item, index) => (
-    <Grid item xs={12} sm={3} key={index}>
+    <Grid item xs={12} md={3} key={index}>
       <div className = { classes.neum } key = { index }>
       <Box key={index} sx={{ display: 'flex', alignItems: 'center', paddingY: '1rem'}}>
         <Avatar

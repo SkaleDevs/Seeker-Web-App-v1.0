@@ -183,7 +183,7 @@ const Schemes = () => {
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-                <Dropdown authority="MHRD">
+                <Dropdown authority="Ministry of Minority Affairs">
                   <div
                     className="ag-theme-alpine"
                     style={{

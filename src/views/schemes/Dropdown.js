@@ -14,7 +14,7 @@ export default function Dropdown(props) {
         >
           <Typography color="white">{props.authority}</Typography>
         </AccordionSummary>
-        <AccordionDetails>{props.children}</AccordionDetails>
+        <AccordionDetails sx={{overflow: {xs: 'auto' }}}>{props.children}</AccordionDetails>
       </Accordion>
     </>
   );

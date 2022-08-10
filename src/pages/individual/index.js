@@ -9,7 +9,6 @@ import IndividualStats from "src/views/dashboard/individual/IndividualStats";
 import IndividStatsChart from "src/views/dashboard/IndividStatsChart";
 import ScheduledInterviews from "src/views/dashboard/individual/ScheduledInterviews";
 import AppsAndSchemes from "src/views/dashboard/individual/AppsAndSchemes";
-import DepositWithdraw from "src/views/dashboard/DepositWithdraw";
 
 const Home = () => {
   return (

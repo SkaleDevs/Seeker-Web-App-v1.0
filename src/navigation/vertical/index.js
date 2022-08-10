@@ -27,7 +27,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/individual/account-settings",
+        path: "/account-settings",
       },
       {
         sectionTitle: "Applications",
@@ -35,17 +35,17 @@ const navigation = () => {
       {
         title: "Funding Schemes",
         icon: FormatListBulleted,
-        path: "/individual/applications",
+        path: "/individual/fundingSchemes",
       },
       {
         title: "Applied",
         icon: PlaylistPlus,
-        path: "/individual/applied-applications",
+        path: "/individual/applied",
       },
       {
         title: "Shortlisted",
         icon: PlaylistCheck,
-        path: "/individual/shortlisted-applications",
+        path: "/individual/shortlisted",
       },
       {
         sectionTitle: "Schedule",
@@ -53,117 +53,117 @@ const navigation = () => {
       {
         title: "Scheduled Interviews",
         icon: CalendarClock,
-        path: "/individual/scheduled-interviews",
+        path: "/individual/scheduledInterviews",
       },
 
       // **-----------------------------/Individual Navs------------------------------**
     ];
   } else if (role === "hei") {
     return [
-      // {
-      //   title: 'Login',
-      //   icon: Login,
-      //   path: '/pages/login',
-      //   openInNewTab: true
-      // },
-      // {
-      //   title: 'Register',
-      //   icon: AccountPlusOutline,
-      //   path: '/pages/register',
-      //   openInNewTab: true
-      // },
-      // {
-      //   title: 'Error',
-      //   icon: AlertCircleOutline,
-      //   path: '/pages/error',
-      //   openInNewTab: true
-      // },
-      // {
-      //   sectionTitle: 'User Interface'
-      // },
-      // {
-      //   title: 'Typography',
-      //   icon: FormatLetterCase,
-      //   path: '/typography'
-      // },
-      // {
-      //   title: 'Icons',
-      //   path: '/icons',
-      //   icon: GoogleCirclesExtended
-      // },
-      // {
-      //   title: 'Cards',
-      //   icon: CreditCardOutline,
-      //   path: '/cards'
-      // },
-      // {
-      //   title: 'Tables',
-      //   icon: Table,
-      //   path: '/tables'
-      // },
-      // {
-      //   icon: CubeOutline,
-      //   title: 'Form Layouts',
-      //   path: '/form-layouts'
-      // }
+      {
+        title: 'Login',
+        icon: Login,
+        path: '/pages/login',
+        openInNewTab: true
+      },
+      {
+        title: 'Register',
+        icon: AccountPlusOutline,
+        path: '/pages/register',
+        openInNewTab: true
+      },
+      {
+        title: 'Error',
+        icon: AlertCircleOutline,
+        path: '/pages/error',
+        openInNewTab: true
+      },
+      {
+        sectionTitle: 'User Interface'
+      },
+      {
+        title: 'Typography',
+        icon: FormatLetterCase,
+        path: '/typography'
+      },
+      {
+        title: 'Icons',
+        path: '/icons',
+        icon: GoogleCirclesExtended
+      },
+      {
+        title: 'Cards',
+        icon: CreditCardOutline,
+        path: '/cards'
+      },
+      {
+        title: 'Tables',
+        icon: Table,
+        path: '/tables'
+      },
+      {
+        icon: CubeOutline,
+        title: 'Form Layouts',
+        path: '/form-layouts'
+      }
     ];
   } else if (role === "funding_agency") {
     return [
-      // {
-      //   title: 'Login',
-      //   icon: Login,
-      //   path: '/pages/login',
-      //   openInNewTab: true
-      // },
-      // {
-      //   title: 'Register',
-      //   icon: AccountPlusOutline,
-      //   path: '/pages/register',
-      //   openInNewTab: true
-      // },
-      // {
-      //   title: 'Error',
-      //   icon: AlertCircleOutline,
-      //   path: '/pages/error',
-      //   openInNewTab: true
-      // },
-      // {
-      //   sectionTitle: 'User Interface'
-      // },
-      // {
-      //   title: 'Typography',
-      //   icon: FormatLetterCase,
-      //   path: '/typography'
-      // },
-      // {
-      //   title: 'Icons',
-      //   path: '/icons',
-      //   icon: GoogleCirclesExtended
-      // },
-      // {
-      //   title: 'Cards',
-      //   icon: CreditCardOutline,
-      //   path: '/cards'
-      // },
-      // {
-      //   title: 'Tables',
-      //   icon: Table,
-      //   path: '/tables'
-      // },
-      // {
-      //   icon: CubeOutline,
-      //   title: 'Form Layouts',
-      //   path: '/form-layouts'
-      // }
+      {
+        title: 'Login',
+        icon: Login,
+        path: '/pages/login',
+        openInNewTab: true
+      },
+      {
+        title: 'Register',
+        icon: AccountPlusOutline,
+        path: '/pages/register',
+        openInNewTab: true
+      },
+      {
+        title: 'Error',
+        icon: AlertCircleOutline,
+        path: '/pages/error',
+        openInNewTab: true
+      },
+      {
+        sectionTitle: 'User Interface'
+      },
+      {
+        title: 'Typography',
+        icon: FormatLetterCase,
+        path: '/typography'
+      },
+      {
+        title: 'Icons',
+        path: '/icons',
+        icon: GoogleCirclesExtended
+      },
+      {
+        title: 'Cards',
+        icon: CreditCardOutline,
+        path: '/cards'
+      },
+      {
+        title: 'Tables',
+        icon: Table,
+        path: '/tables'
+      },
+      {
+        icon: CubeOutline,
+        title: 'Form Layouts',
+        path: '/form-layouts'
+      }
     ];
   } else {
     return [
-      // {
-      //   title: 'Login',
-      //   icon: Login,
-      //   path: '/pages/login',
-      //   openInNewTab: true
-      // },
+      {
+        title: 'Login',
+        icon: Login,
+        path: '/pages/login',
+        openInNewTab: true
+      },
     ];
   }
 };

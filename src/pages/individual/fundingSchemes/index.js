@@ -19,6 +19,10 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
+// ** Custom Components Imports
+
+import Dropdown from "src/views/schemes/Dropdown"; 
+
 const Schemes = () => {
   // const [rowData, setRowData] = useState();
 
@@ -107,18 +111,18 @@ const Schemes = () => {
     {
       field: "schemeName",
       headerName: "Scheme Name",
-      width: 300,
+      width: 250,
     },
     { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 300 },
     {
       field: "schemeDefectiveApplicationVerification",
       headerName: "Defective Application Verification Date",
-      width: 350,
+      width: 300,
     },
     {
       field: "instituteVerificationDuration",
       headerName: "Institute Verification",
-      width: 200,
+      width: 250,
     },
   ]);
 
@@ -152,9 +156,10 @@ const Schemes = () => {
       <Grid item xs={12}>
         <Card>
           <CardHeader title="Funding Schemes" />
-          <CardContent sx={{ width: '100%' }}>
+          <CardContent sx={{ width: "100%" }}>
             <Typography variant="caption">
-              ( Click on the column header to sort, hover over the column header to see the filter options )
+              ( Click on the column header to sort, hover over the column header
+              to see the filter options )
             </Typography>
             <TabContext value={value}>
               <Box
@@ -166,32 +171,39 @@ const Schemes = () => {
                   borderColor: "divider",
                 }}
               >
-                <TabList value={value} onChange={handleChange} variant= "scrollable" allowScrollButtonsMobile>
+                <TabList
+                  value={value}
+                  onChange={handleChange}
+                  variant="scrollable"
+                  allowScrollButtonsMobile
+                >
                   <Tab label="Central Schemes" value="0" />
                   <Tab label="UGC/AICTE Schemes" value="1" />
                   <Tab label="State Schemes" value="2" />
                 </TabList>
               </Box>
-              <TabPanel value="0" sx={{ overflow: 'auto', width: '100%' }}>
-                <div
-                  className="ag-theme-alpine"
-                  style={{
-                    width: "72rem",
-                    height: "35rem",
-                    marginTop: "1rem",
-                    overflow: "auto",
-                  }}
-                >
-                  <AgGridReact
-                    rowData={rowData} // Row Data for Rows
-                    columnDefs={columnDefs} // Column Defs for Columns
-                    defaultColDef={defaultColDef} // Default Column Properties
-                    animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-                    rowSelection="multiple" // Options - allows click selection of rows
-                    pagination={true} 
-                    paginationPageSize={10} // Pagination Page Size
-                  />
-                </div>
+              <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
+                <Dropdown authority="MHRD">
+                  <div
+                    className="ag-theme-alpine"
+                    style={{
+                      width: "69.8rem",
+                      height: "35rem",
+                      marginTop: "1rem",
+                      overflow: "auto",
+                    }}
+                  >
+                    <AgGridReact
+                      rowData={rowData} // Row Data for Rows
+                      columnDefs={columnDefs} // Column Defs for Columns
+                      defaultColDef={defaultColDef} // Default Column Properties
+                      animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                      rowSelection="multiple" // Options - allows click selection of rows
+                      pagination={true}
+                      paginationPageSize={10} // Pagination Page Size
+                    />
+                  </div>
+                </Dropdown>
               </TabPanel>
               <TabPanel value="1">Panel 2</TabPanel>
               <TabPanel value="2">Panel 3</TabPanel>

@@ -83,6 +83,24 @@ const Schemes = () => {
       schemeDefectiveApplicationVerification: "Duration 10",
       instituteVerificationDuration: "Verfiication Duration 10",
     },
+    {
+      schemeName: "Scheme 11",
+      schemeEndDate: "End Date 11",
+      schemeDefectiveApplicationVerification: "Duration 11",
+      instituteVerificationDuration: "Verfiication Duration 11",
+    },
+    {
+      schemeName: "Scheme 12",
+      schemeEndDate: "End Date 12",
+      schemeDefectiveApplicationVerification: "Duration 12",
+      instituteVerificationDuration: "Verfiication Duration 12",
+    },
+    {
+      schemeName: "Scheme 13",
+      schemeEndDate: "End Date 13",
+      schemeDefectiveApplicationVerification: "Duration 13",
+      instituteVerificationDuration: "Verfiication Duration 13",
+    },
   ];
 
   const [columnDefs, setColumnDefs] = useState([
@@ -91,7 +109,7 @@ const Schemes = () => {
       headerName: "Scheme Name",
       width: 300,
     },
-    { field: "schemeEndDate", headerName: "Scheme Closing Date" },
+    { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 300 },
     {
       field: "schemeDefectiveApplicationVerification",
       headerName: "Defective Application Verification Date",
@@ -100,6 +118,7 @@ const Schemes = () => {
     {
       field: "instituteVerificationDuration",
       headerName: "Institute Verification",
+      width: 200,
     },
   ]);
 
@@ -133,10 +152,9 @@ const Schemes = () => {
       <Grid item xs={12}>
         <Card>
           <CardHeader title="Funding Schemes" />
-          <CardContent>
-            <Typography>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-              sagittis pellentesque lacus eleifend lacinia...
+          <CardContent sx={{ width: '100%' }}>
+            <Typography variant="caption">
+              ( Click on the column header to sort, hover over the column header to see the filter options )
             </Typography>
             <TabContext value={value}>
               <Box
@@ -148,18 +166,18 @@ const Schemes = () => {
                   borderColor: "divider",
                 }}
               >
-                <TabList value={value} onChange={handleChange}>
+                <TabList value={value} onChange={handleChange} variant= "scrollable" allowScrollButtonsMobile>
                   <Tab label="Central Schemes" value="0" />
                   <Tab label="UGC/AICTE Schemes" value="1" />
                   <Tab label="State Schemes" value="2" />
                 </TabList>
               </Box>
-              <TabPanel value="0">
+              <TabPanel value="0" sx={{ overflow: 'auto', width: '100%' }}>
                 <div
                   className="ag-theme-alpine"
                   style={{
-                    width: "66.01rem",
-                    height: "29rem",
+                    width: "72rem",
+                    height: "35rem",
                     marginTop: "1rem",
                     overflow: "auto",
                   }}
@@ -170,6 +188,8 @@ const Schemes = () => {
                     defaultColDef={defaultColDef} // Default Column Properties
                     animateRows={true} // Optional - set to 'true' to have rows animate when sorted
                     rowSelection="multiple" // Options - allows click selection of rows
+                    pagination={true} 
+                    paginationPageSize={10} // Pagination Page Size
                   />
                 </div>
               </TabPanel>

@@ -9,12 +9,13 @@ export default async function handler(req,res){
     if(check1){
         return res.send("A user with this email id already exists");
     }
+    console.log(check1)
     console.log(req.body.aadharNo)
-    let check2=await user.find({special:req.body.aadharNo});
+    let check2=await user.findOne({special:req.body.aadharNo});
     console.log(check2);
-    if(check2 && check2.special==req.body.aadharNo){
+    if(check2 ){
         return res.send("A account with this aadhar no. already exists")
-        }
+    }
     // let check3=await bannedUser.findOne({email:req.body.email});
     // if(check3){
     //     return res.send("You are banned from using this service");

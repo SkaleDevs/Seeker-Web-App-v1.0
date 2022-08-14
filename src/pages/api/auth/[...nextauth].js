@@ -32,7 +32,7 @@ export default NextAuth({
     })
   ],
     session:{
-      jwt:true,
+      strategy:true,
     },
     jwt:{
       secret:process.env.JWT_SECRET,
@@ -47,23 +47,6 @@ export default NextAuth({
        
       //  return true
       // },
-     
-      async session({session, token,user}) {
-        if(token?.accessToken) {
-          session.accessToken = token.accessToken
-        }
-        // if (token?.roles) {
-          //   session.user.roles = token.roles
-          // }
-          const Email=user.email;
-            const data =  await users.find({email:Email})// will use props orso depending on the client side toupdate the role
-
-            console.log(data);
-            console.log("aa");
-          session.user.roles = "admin";
-          console.log(session);
-        return session
-      },
       async jwt({token, user, account, profile, isNewUser}) {
         console.log("HELLO");
         if (account?.accessToken) {
@@ -77,17 +60,27 @@ export default NextAuth({
         console.log(account);
         console.log(profile);
         return token
+      },
+      async session({session, token,user}) {
+        if(token?.accessToken) {
+          session.accessToken = token.accessToken
+        }
+        // if (token?.roles) {
+          //   session.user.roles = token.roles
+          // }
+          const Email=user.email;
+            const data =  await users.find({email:Email})// will use props orso depending on the client side toupdate the role
+            console.log("token");
+            console.log(token);
+            console.log(data);
+            console.log("aa");
+          session.user.role = "admin";
+          console.log(session);
+        return session
       }
+      
   
-      // async session({ session, user}) {
-      //   return session;
-      // },
-      // async jwt(token,user){
-      //   if(user){
-      //     token.id=user.id;
-      //   }
-      //   return token;
-      // },
+     
 
       // //just commented redirect because it depends on the frontend will alter accordingly
       // async redirect({ url, baseUrl }) {

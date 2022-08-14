@@ -1,5 +1,5 @@
-import ApplySeeker from '../model/applyNowSeekerSchema';
-import connectDB from '../auth/lib/connectDB';
+import ApplySeeker from '../../model/applyNowSeekerSchema';
+import connectDB from '../../auth/lib/connectDB';
 connectDB();
 export default async function handler(req,res){
     let data =  await ApplySeeker.findOneAndUpdate({email:req.body.email, scholarshipID:req.body.scholarshipID,

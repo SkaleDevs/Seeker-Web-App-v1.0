@@ -1,6 +1,6 @@
-import users from '../model/userSchema';
-import Agency from '../model/agencySchema';
-import connectDB from '../auth/lib/connectDB';
+import users from '../../model/userSchema';
+import Agency from '../../model/agencySchema';
+import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 import {getSession} from 'next-auth/react';
 connectDB();
@@ -18,6 +18,7 @@ export default async function handler(req,res){
   let userss=new users({
     email:req.body.email,
     role:"Agency",
+    banned:"No"
   })
   userss.save().then(()=>{
     const msg = {

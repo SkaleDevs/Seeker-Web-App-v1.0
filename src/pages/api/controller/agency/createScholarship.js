@@ -1,5 +1,5 @@
-import Agency from '../model/agencySchema';
-import connectDB from '../auth/lib/connectDB';
+import Scheme from '../../models/Scheme';
+import connectDB from '../../auth/lib/connectDB';
 
 connectDB();
 export default async function handler(req,res){

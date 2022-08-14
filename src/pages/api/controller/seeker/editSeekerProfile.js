@@ -1,5 +1,5 @@
-import Seeker from '../model/seekerSchema';
-import connectDB from '../auth/lib/connectDB';
+import Seeker from '../../model/seekerSchema';
+import connectDB from '../../auth/lib/connectDB';
 
 connectDB();
 export default async function handler(req,res){

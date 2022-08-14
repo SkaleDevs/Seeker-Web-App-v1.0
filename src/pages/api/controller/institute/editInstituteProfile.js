@@ -1,5 +1,5 @@
-import Institute from '../model/instituteSchema';
-import connectDB from '../auth/lib/connectDB';
+import Institute from '../../model/instituteSchema';
+import connectDB from '../../auth/lib/connectDB';
 
 connectDB();
 export default async function handler(req,res){

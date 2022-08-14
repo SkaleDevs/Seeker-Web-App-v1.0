@@ -1,6 +1,6 @@
-import users from '../model/userSchema';
-import Institute from '../model/instituteSchema';
-import connectDB from '../auth/lib/connectDB';
+import users from '../../model/userSchema';
+import Institute from '../../model/instituteSchema';
+import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);

@@ -1,5 +1,5 @@
-import users from '../model/userSchema';
-import connectDB from '../auth/lib/connectDB';
+import users from '../../model/userSchema';
+import connectDB from '../../auth/lib/connectDB';
 connectDB();
 //does even the work of rejecting the verification stuff for agency account
 

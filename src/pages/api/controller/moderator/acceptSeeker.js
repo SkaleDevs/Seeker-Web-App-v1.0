@@ -1,6 +1,6 @@
-import users from '../model/userSchema';
-import Seeker from '../model/seekerSchema';
-import connectDB from '../auth/lib/connectDB';
+import users from '../../model/userSchema';
+import Seeker from '../../model/seekerSchema';
+import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
@@ -11,6 +11,7 @@ export default async function handler(req,res){
   let userss=new users({
     email:req.body.email,
     role:"Seeker",
+    banned:"No",
   })
   userss.save().then(()=>{
     const msg = {

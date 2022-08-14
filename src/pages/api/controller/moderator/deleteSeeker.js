@@ -1,6 +1,6 @@
-import users from '../model/userSchema';
-import Seeker from '../model/seekerSchema';
-import connectDB from '../auth/lib/connectDB';
+import users from '../../model/userSchema';
+import Seeker from '../../model/seekerSchema';
+import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);

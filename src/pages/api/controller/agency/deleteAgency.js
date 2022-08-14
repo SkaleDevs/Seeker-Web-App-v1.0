@@ -1,6 +1,6 @@
-import users from '../model/userSchema';
-import Agency from '../model/agencySchema';
-import connectDB from '../auth/lib/connectDB';
+import users from '../../model/userSchema';
+import Agency from '../../model/agencySchema';
+import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 connectDB();
 //does even the work of rejecting the verification stuff for agency account

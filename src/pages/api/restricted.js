@@ -2,6 +2,7 @@ import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from "./api/auth/[...nextauth]"
 
 export default async (req, res) => {
+  console.log(authOptions)
   const session = await unstable_getServerSession(req, res, authOptions)
     console.log(session)
   if (session) {

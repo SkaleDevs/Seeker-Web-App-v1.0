@@ -1,4 +1,4 @@
-import user from '../model/userSchema';
+import users from '../model/userSchema';
 import Seeker from '../model/seekerSchema';
 import connectDB from '../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
@@ -8,11 +8,11 @@ export default async function handler(req,res){
   let data=await Seeker.findOne({email:req.body.email});
   data.verified="Yes";
   data.save();
-  let users=new user({
+  let userss=new users({
     email:req.body.email,
     role:"Seeker",
   })
-  users.save().then(()=>{
+  userss.save().then(()=>{
     const msg = {
         to: req.body.email, // Change to your recipient
         from: 'harshme78@gmail.com', // Change to your verified sender

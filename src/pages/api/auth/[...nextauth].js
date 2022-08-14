@@ -5,6 +5,9 @@ import clientPromise from "./lib/mongodb";
 import connectDB from "./lib/connectDB";
 import users from "../model/userSchema";
 
+
+
+
 //import {getSession,useSession} from "next-auth/client";
 
 connectDB();
@@ -35,6 +38,7 @@ export default NextAuth({
       secret:process.env.JWT_SECRET,
     },
     callbacks:{
+
       // async signIn({  email }) {
       // let find=await users.findOne({email:email,banned:"Yes"});
       //  if(find){
@@ -98,4 +102,10 @@ export default NextAuth({
        
       // }
     }
+
+
+   
+
 })
+
+

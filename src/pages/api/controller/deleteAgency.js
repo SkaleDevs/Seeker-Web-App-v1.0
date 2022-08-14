@@ -1,4 +1,4 @@
-import user from '../model/userSchema';
+import users from '../model/userSchema';
 import Agency from '../model/agencySchema';
 import connectDB from '../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
@@ -7,7 +7,7 @@ connectDB();
 
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 export default async function handler(req,res){
-   let data=await user.findOneAndDelete({email:req.body.email,role:"Agency"});
+   let data=await users.findOneAndDelete({email:req.body.email,role:"Agency"});
    let das= await Agency.findOneAndDelete({email:req.body.email})
    .then(()=>{
     const msg = {

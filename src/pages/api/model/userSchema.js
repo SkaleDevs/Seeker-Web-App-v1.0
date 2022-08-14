@@ -13,10 +13,14 @@ const UserSchema = new mongoose.Schema({
   special:{
     type:String,
     required:false
+  },
+  banned:{
+    type:String,
+    required:true
   }
 
 });
 
 
-let user= mongoose.models.user || mongoose.model('user', UserSchema);
-export default user;
+let users= mongoose.models.user || mongoose.model('user', UserSchema);
+export default users;

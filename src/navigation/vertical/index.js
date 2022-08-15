@@ -1,9 +1,7 @@
 // ** Icon imports
 import {
-  FormSelect,
   HomeOutline,
   AccountCogOutline,
-  ViewList,
   Table,
   PlaylistPlus,
   FormatListBulleted,

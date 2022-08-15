@@ -53,30 +53,33 @@ const renderStats = () => {
 
   return salesData.map((item, index) => (
     <Grid item xs={12} md={3} key={index}>
-      <div className = { classes.neum } key = { index }>
-      <Box key={index} sx={{ display: 'flex', alignItems: 'center', paddingY: '1rem'}}>
-        <Avatar
-          variant='rounded'
-          sx={{
-            mr: 10,
-            ml: -3,
-            width: 65,
-            height: 65,
-            boxShadow: 3,
-            color: 'common.white',
-            backgroundColor: `${item.color}.main`
-          }}
+      <div className={classes.neum} key={index}>
+        <Box
+          key={index}
+          sx={{ display: "flex", alignItems: "center", paddingY: "1rem" }}
         >
-          {item.icon}
-        </Avatar>
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-          <Typography variant='body1'>{item.title}</Typography>
-          <Typography variant='h6'>{item.stats}</Typography>
+          <Avatar
+            variant="rounded"
+            sx={{
+              mr: 10,
+              ml: -3,
+              width: 65,
+              height: 65,
+              boxShadow: 3,
+              color: "common.white",
+              backgroundColor: `${item.color}.main`,
+            }}
+          >
+            {item.icon}
+          </Avatar>
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Typography variant="body1">{item.title}</Typography>
+            <Typography variant="h6">{item.stats}</Typography>
+          </Box>
         </Box>
-      </Box>
-    </div>
+      </div>
     </Grid>
-  ))
+  ));
 }
 
 const StatisticsCard = () => {

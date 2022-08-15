@@ -2,10 +2,15 @@ import users from '../../model/userSchema';
 import Institute from '../../model/instituteSchema';
 import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
+import {getSession} from 'next-auth/react';
 connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 //does even the work of rejecting the verification stuff for institute account
 export default async function handler(req,res){
+  const session = await getSession({req})
+  if (!session || session.user.role!=="moderator") {
+  return res.status(401).json({error: 'Unauthorized'})
+  }
    let data=await users.findOneAndDelete({email:req.body.email,role:"Institute"});
    
        let das= await Institute.findOneAndDelete({email:req.body.email}).then(()=>{

@@ -8,10 +8,10 @@ connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 export default async function handler(req,res){
 
-  // const session=await getSession({req});
-  //  if(!session || session.role!="Agency"){
-  //    res.status(401).send("Unauthorized access");
-  //  }
+  const session = await getSession({req})
+  if (!session || session.user.role!=="moderator") {
+  return res.status(401).json({error: 'Unauthorized'})
+  }
   let data=await Agency.findOne({email:req.body.email});
   data.verified="Yes";
   data.save();

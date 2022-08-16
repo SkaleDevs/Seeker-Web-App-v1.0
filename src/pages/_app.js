@@ -11,6 +11,9 @@ import { CacheProvider } from '@emotion/react'
 // ** Config Imports
 import themeConfig from 'src/configs/themeConfig'
 
+//** session imports
+import { SessionProvider } from "next-auth/react"
+
 // ** Component Imports
 import UserLayout from 'src/layouts/UserLayout'
 import ThemeComponent from 'src/@core/theme/ThemeComponent'
@@ -26,6 +29,16 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 
 // ** Global css styles
 import '../../styles/globals.css'
+
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./authConfig";
+
+
+// const username = process.env.DB_USERNAME;
+// const password = process.env.DB_PASSWORD;
+
+ 
 
 const clientSideEmotionCache = createEmotionCache()
 
@@ -44,12 +57,15 @@ if (themeConfig.routingLoader) {
 
 // ** Configure JSS & ClassName
 const App = props => {
-  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props
+  const { Component, emotionCache = clientSideEmotionCache, pageProps ,session} = props
 
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
-
+  const msalInstance = new PublicClientApplication(msalConfig);
   return (
+    <MsalProvider instance={msalInstance}>
+
+    <SessionProvider session={session}>
     <CacheProvider value={emotionCache}>
       <Head>
         <title> Seeker | One Nation One Funding Platform </title>
@@ -69,6 +85,8 @@ const App = props => {
         </SettingsConsumer>
       </SettingsProvider>
     </CacheProvider>
+    </SessionProvider>
+    </MsalProvider>
   )
 }
 

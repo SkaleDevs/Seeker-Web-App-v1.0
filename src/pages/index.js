@@ -22,8 +22,23 @@ import WeeklyOverview from 'src/views/dashboard/WeeklyOverview'
 import IndividStatsChart from 'src/views/dashboard/IndividStatsChart'
 import DepositWithdraw from 'src/views/dashboard/DepositWithdraw'
 import SalesByCountries from 'src/views/dashboard/SalesByCountries'
+import { useSession ,getSession} from "next-auth/react"
+import { useEffect } from 'react'
+
 
 const Dashboard = () => {
+
+  // const {session, loading} = useSession();
+  useEffect(() => {
+    const fetch = async () => {
+      console.log(await getSession());
+    }
+    fetch();
+    // console.log(session);
+  },[])
+
+  // console.log(loading);
+  // console.log(session);
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>

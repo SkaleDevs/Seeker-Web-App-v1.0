@@ -13,7 +13,7 @@ const role = "individual"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
-      // **-----------------------------Individual Navs------------------------------**
+      // **-----------------------------Individual Navs-------------------------------**
       {
         sectionTitle: "Home",
       },

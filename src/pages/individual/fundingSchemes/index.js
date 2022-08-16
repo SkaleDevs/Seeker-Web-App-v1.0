@@ -38,8 +38,14 @@ const Schemes = () => {
   //     View
   //   </Button>
   // );
-  const viewButton = p => (
-    <Button variant="contained" color="success" size="small" startIcon={<FontAwesomeIcon icon={faEye} size='xs' />} href={`/schemes/${p.data.id}`}>
+  const viewButton = (p) => (
+    <Button
+      variant="contained"
+      color="success"
+      size="small"
+      startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
+      href={`/schemes/${p.data.id}`}
+    >
       View
     </Button>
   );
@@ -50,7 +56,7 @@ const Schemes = () => {
       schemeEndDate: "End Date 1",
       schemeDefectiveApplicationVerification: "Duration 1",
       applicantVerification: "Verfiication Duration 1",
-      viewApplication: "Button",
+      viewApplication: "Button", //pass the id of the application to the view application page
     },
     {
       schemeName: "Scheme 2",

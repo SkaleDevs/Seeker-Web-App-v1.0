@@ -10,7 +10,11 @@ import {
   Typography,
   Box,
   Tab,
+  Button,
 } from "@mui/material";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 // ** AG Grid Imports
 import { AgGridReact } from "ag-grid-react";
@@ -20,6 +24,11 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 const Schemes = () => {
   // const [rowData, setRowData] = useState();
+  const viewButton = p => (
+    <Button variant="contained" color="success" size="small" startIcon={<FontAwesomeIcon icon={faEye} size='xs' />} href={`/schemes/${p.data.id}`}>
+      View
+    </Button>
+  );
 
   const rowData = [
     {
@@ -28,6 +37,8 @@ const Schemes = () => {
       applicationStatus: "Pennding",
       schemeEndDate: "End Date 1",
       schemeDefectiveApplicationVerification: "Duration 1",
+      viewApplication: "Button", //pass the id of the application to the view application page
+
     },
     {
       schemeName: "Scheme 2",
@@ -35,6 +46,7 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 2",
       schemeDefectiveApplicationVerification: "Duration 2",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 3",
@@ -42,6 +54,7 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 3",
       schemeDefectiveApplicationVerification: "Duration 3",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 4",
@@ -49,6 +62,7 @@ const Schemes = () => {
       applicationStatus: "Pennding",
       schemeEndDate: "End Date 4",
       schemeDefectiveApplicationVerification: "Duration 4",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 5",
@@ -56,6 +70,7 @@ const Schemes = () => {
       applicationStatus: "Pending",
       schemeEndDate: "End Date 5",
       schemeDefectiveApplicationVerification: "Duration 5",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 6",
@@ -63,6 +78,7 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 6",
       schemeDefectiveApplicationVerification: "Duration 6",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 7",
@@ -70,6 +86,7 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 7",
       schemeDefectiveApplicationVerification: "Duration 7",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 8",
@@ -77,6 +94,7 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 8",
       schemeDefectiveApplicationVerification: "Duration 8",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 9",
@@ -84,6 +102,7 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 9",
       schemeDefectiveApplicationVerification: "Duration 9",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 10",
@@ -91,6 +110,7 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 10",
       schemeDefectiveApplicationVerification: "Duration 10",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 11",
@@ -98,6 +118,7 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 11",
       schemeDefectiveApplicationVerification: "Duration 11",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 12",
@@ -105,6 +126,7 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 12",
       schemeDefectiveApplicationVerification: "Duration 12",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 13",
@@ -112,6 +134,7 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 13",
       schemeDefectiveApplicationVerification: "Duration 13",
+      viewApplication: "Button",
     },
   ];
 
@@ -139,6 +162,8 @@ const Schemes = () => {
       headerName: "Defective Application Verification Date",
       width: 310,
     },
+    { field: "viewApplication", headerName: "View Application", width: 180, cellRenderer: viewButton },
+
   ]);
 
   // ** For Tabs
@@ -201,7 +226,7 @@ const Schemes = () => {
                 <div
                   className="ag-theme-alpine"
                   style={{
-                    width: "82rem",
+                    width: "72rem",
                     height: "35rem",
                     marginTop: "1rem",
                     overflow: "auto",

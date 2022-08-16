@@ -11,7 +11,6 @@ import {
   Box,
   Tab,
   Button,
-  Link,
 } from "@mui/material";
 
 // ** AG Grid Imports
@@ -40,9 +39,8 @@ const Schemes = () => {
   //   </Button>
   // );
   const viewButton = p => (
-    <Button variant="contained" color="success" size="small" startIcon={<FontAwesomeIcon icon={faEye} size='xs' />}>
-      {/* <Link href={`/schemes/${p.data.id}`} color= 'inherit'>View</Link> */}
-      <Link href='www.google.com' color= 'inherit'>View</Link>
+    <Button variant="contained" color="success" size="small" startIcon={<FontAwesomeIcon icon={faEye} size='xs' />} href={`/schemes/${p.data.id}`}>
+      View
     </Button>
   );
 
@@ -221,7 +219,7 @@ const Schemes = () => {
                   <div
                     className="ag-theme-alpine"
                     style={{
-                      width: "80.5rem",
+                      width: "69.8rem",
                       height: "35rem",
                       marginTop: "1rem",
                       overflow: "auto",

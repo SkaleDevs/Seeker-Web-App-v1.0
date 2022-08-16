@@ -21,7 +21,7 @@ import { styled, useTheme } from '@mui/material/styles'
 import MuiCard from '@mui/material/Card'
 import InputAdornment from '@mui/material/InputAdornment'
 import MuiFormControlLabel from '@mui/material/FormControlLabel'
-import axios from 'axios'
+
 // ** Icons Imports
 import Google from 'mdi-material-ui/Google'
 import Github from 'mdi-material-ui/Github'
@@ -38,9 +38,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
-import { signIn } from 'next-auth/react'
-import { Login } from 'mdi-material-ui'
-const url = 'http://localhost:3000';
+
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
@@ -65,7 +63,7 @@ const LoginPage = () => {
     password: '',
     showPassword: false
   })
-  const [email,setemail] = useState("")
+
   // ** Hook
   const theme = useTheme()
   const router = useRouter()
@@ -82,15 +80,6 @@ const LoginPage = () => {
     event.preventDefault()
   }
 
-  const login=async()=>{
-    let data  = await axios.post( `${url}/api/controller/checkUser`,{email:email,role:"Seeker"});
-    console.log(data)
-    if(data=="No"){
-      return alert("You can't login")
-    }
-    
-    signIn("email",{email:email},{ callbackUrl: '/' })
-  }
   return (
     <Box className='content-center'>
       <Card sx={{ zIndex: 1 }}>
@@ -175,9 +164,9 @@ const LoginPage = () => {
             <Typography variant='body2'>Please sign-in to your account and start the adventure</Typography>
           </Box>
           <form noValidate autoComplete='off' onSubmit={e => e.preventDefault()}>
-            <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }}  onChange={(e) =>setemail( e.target.value,)}value={email} />
+            <TextField autoFocus fullWidth id='email' label='Email' sx={{ marginBottom: 4 }} />
             <FormControl fullWidth>
-              {/* <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
+              <InputLabel htmlFor='auth-login-password'>Password</InputLabel>
               <OutlinedInput
                 label='Password'
                 value={values.password}
@@ -194,24 +183,24 @@ const LoginPage = () => {
                     >
                       {values.showPassword ? <EyeOutline /> : <EyeOffOutline />}
                     </IconButton>
-                  </InputAdornment> */}
-                {/* }
-              /> */}
+                  </InputAdornment>
+                }
+              />
             </FormControl>
             <Box
               sx={{ mb: 4, display: 'flex', alignItems: 'center', flexWrap: 'wrap', justifyContent: 'space-between' }}
             >
               <FormControlLabel control={<Checkbox />} label='Remember Me' />
-              {/* <Link passHref href='/'>
+              <Link passHref href='/'>
                 <LinkStyled onClick={e => e.preventDefault()}>Forgot Password?</LinkStyled>
-              </Link> */}
+              </Link>
             </Box>
             <Button
               fullWidth
               size='large'
               variant='contained'
               sx={{ marginBottom: 7 }}
-              onClick={ ()=>login()}
+              onClick={() => router.push('/')}
             >
               Login
             </Button>
@@ -238,7 +227,7 @@ const LoginPage = () => {
                 </IconButton>
               </Link>
               <Link href='/' passHref>
-                <IconButton component='a' onClick={()=>login()}>
+                <IconButton component='a' onClick={e => e.preventDefault()}>
                   <Github
                     sx={{ color: theme => (theme.palette.mode === 'light' ? '#272727' : theme.palette.grey[300]) }}
                   />

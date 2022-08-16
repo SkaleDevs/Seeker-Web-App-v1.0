@@ -12,7 +12,8 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrations from 'src/views/pages/misc/FooterIllustrations'
-
+import { getSession } from 'next-auth/react'
+import {useEffect} from 'react'
 // ** Styled Components
 const BoxWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
@@ -35,6 +36,14 @@ const Img = styled('img')(({ theme }) => ({
 }))
 
 const Error401 = () => {
+
+  useEffect(() => {
+    const fetch = async () => {
+      console.log(await getSession());
+    }
+    fetch();
+    // console.log(session);
+  },[])
   return (
     <Box className='content-center'>
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>

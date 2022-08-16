@@ -17,6 +17,10 @@ const UserSchema = new mongoose.Schema({
   banned:{
     type:String,
     required:true
+  },
+  notif:{
+    type:Array,
+    required:false
   }
 
 });

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useMsal } from "@azure/msal-react";
-import { loginRequest } from "./authConfig";
+import { loginRequest } from "../../authConfig";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createEvents } from "./graph";
+import { createEvents } from "../../graph";
 import { useIsAuthenticated } from "@azure/msal-react";
 
 import {

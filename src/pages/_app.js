@@ -30,6 +30,10 @@ import 'react-perfect-scrollbar/dist/css/styles.css'
 // ** Global css styles
 import '../../styles/globals.css'
 
+import { PublicClientApplication } from "@azure/msal-browser";
+import { MsalProvider } from "@azure/msal-react";
+import { msalConfig } from "./authConfig";
+
 
 // const username = process.env.DB_USERNAME;
 // const password = process.env.DB_PASSWORD;
@@ -57,8 +61,10 @@ const App = props => {
 
   // Variables
   const getLayout = Component.getLayout ?? (page => <UserLayout>{page}</UserLayout>)
-
+  const msalInstance = new PublicClientApplication(msalConfig);
   return (
+    <MsalProvider instance={msalInstance}>
+
     <SessionProvider session={session}>
     <CacheProvider value={emotionCache}>
       <Head>
@@ -80,6 +86,7 @@ const App = props => {
       </SettingsProvider>
     </CacheProvider>
     </SessionProvider>
+    </MsalProvider>
   )
 }
 

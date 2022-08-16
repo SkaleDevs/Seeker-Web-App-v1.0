@@ -55,10 +55,10 @@ export default NextAuth({
         if (user?.roles) {
           token.roles = user.roles
         }
-        console.log(token);
-        console.log(user);
-        console.log(account);
-        console.log(profile);
+        // console.log(token);
+        // console.log(user);
+        // console.log(account);
+        // console.log(profile);
         return token
       },
       async session({session, token,user}) {
@@ -72,10 +72,13 @@ export default NextAuth({
             const data =  await users.find({email:Email})// will use props orso depending on the client side toupdate the role
             console.log("token");
             console.log(token);
+            console.log("data");
             console.log(data);
-            console.log("aa");
-          session.user.role = "seeker";
+            console.log("session:");
+          session.user.role = data[0].role;
           console.log(session);
+          // session.user.role = "admin";
+          // console.log(session);
         return session
       }
       

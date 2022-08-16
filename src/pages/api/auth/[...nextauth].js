@@ -74,7 +74,7 @@ export default NextAuth({
             console.log(token);
             console.log(data);
             console.log("aa");
-          session.user.role = "admin";
+          session.user.role = "seeker";
           console.log(session);
         return session
       }

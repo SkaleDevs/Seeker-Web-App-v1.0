@@ -28,7 +28,6 @@ const Schemes = () => {
       applicationStatus: "Pennding",
       schemeEndDate: "End Date 1",
       schemeDefectiveApplicationVerification: "Duration 1",
-      instituteVerificationDuration: "Verfiication Duration 1",
     },
     {
       schemeName: "Scheme 2",
@@ -36,7 +35,6 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 2",
       schemeDefectiveApplicationVerification: "Duration 2",
-      instituteVerificationDuration: "Verfiication Duration 2",
     },
     {
       schemeName: "Scheme 3",
@@ -44,7 +42,6 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 3",
       schemeDefectiveApplicationVerification: "Duration 3",
-      instituteVerificationDuration: "Verfiication Duration 3",
     },
     {
       schemeName: "Scheme 4",
@@ -52,7 +49,6 @@ const Schemes = () => {
       applicationStatus: "Pennding",
       schemeEndDate: "End Date 4",
       schemeDefectiveApplicationVerification: "Duration 4",
-      instituteVerificationDuration: "Verfiication Duration 4",
     },
     {
       schemeName: "Scheme 5",
@@ -60,7 +56,6 @@ const Schemes = () => {
       applicationStatus: "Pending",
       schemeEndDate: "End Date 5",
       schemeDefectiveApplicationVerification: "Duration 5",
-      instituteVerificationDuration: "Verfiication Duration 5",
     },
     {
       schemeName: "Scheme 6",
@@ -68,7 +63,6 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 6",
       schemeDefectiveApplicationVerification: "Duration 6",
-      instituteVerificationDuration: "Verfiication Duration 6",
     },
     {
       schemeName: "Scheme 7",
@@ -76,7 +70,6 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 7",
       schemeDefectiveApplicationVerification: "Duration 7",
-      instituteVerificationDuration: "Verfiication Duration 7",
     },
     {
       schemeName: "Scheme 8",
@@ -84,7 +77,6 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 8",
       schemeDefectiveApplicationVerification: "Duration 8",
-      instituteVerificationDuration: "Verfiication Duration 8",
     },
     {
       schemeName: "Scheme 9",
@@ -92,7 +84,6 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 9",
       schemeDefectiveApplicationVerification: "Duration 9",
-      instituteVerificationDuration: "Verfiication Duration 9",
     },
     {
       schemeName: "Scheme 10",
@@ -100,7 +91,6 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 10",
       schemeDefectiveApplicationVerification: "Duration 10",
-      instituteVerificationDuration: "Verfiication Duration 10",
     },
     {
       schemeName: "Scheme 11",
@@ -108,7 +98,6 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 11",
       schemeDefectiveApplicationVerification: "Duration 11",
-      instituteVerificationDuration: "Verfiication Duration 11",
     },
     {
       schemeName: "Scheme 12",
@@ -116,7 +105,6 @@ const Schemes = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 12",
       schemeDefectiveApplicationVerification: "Duration 12",
-      instituteVerificationDuration: "Verfiication Duration 12",
     },
     {
       schemeName: "Scheme 13",
@@ -124,7 +112,6 @@ const Schemes = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 13",
       schemeDefectiveApplicationVerification: "Duration 13",
-      instituteVerificationDuration: "Verfiication Duration 13",
     },
   ];
 
@@ -146,16 +133,11 @@ const Schemes = () => {
       width: 200,
     },
     //----------------------------------------------------------------------------------------------------------------------
-    { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 300 },
+    { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 250 },
     {
       field: "schemeDefectiveApplicationVerification",
       headerName: "Defective Application Verification Date",
-      width: 300,
-    },
-    {
-      field: "instituteVerificationDuration",
-      headerName: "Institute Verification",
-      width: 300,
+      width: 310,
     },
   ]);
 
@@ -219,7 +201,7 @@ const Schemes = () => {
                 <div
                   className="ag-theme-alpine"
                   style={{
-                    width: "72rem",
+                    width: "82rem",
                     height: "35rem",
                     marginTop: "1rem",
                     overflow: "auto",

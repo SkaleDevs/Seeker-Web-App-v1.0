@@ -1,4 +1,4 @@
-import Scheme from '../../models/Scheme';
+import Scheme from '../../model/Scheme';
 import connectDB from '../../auth/lib/connectDB';
 import {getSession} from 'next-auth/react';
 connectDB();

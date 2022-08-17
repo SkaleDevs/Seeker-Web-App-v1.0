@@ -24,14 +24,8 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 const Schemes = () => {
   // const [rowData, setRowData] = useState();
-  const viewButton = (p) => (
-    <Button
-      variant="contained"
-      color="success"
-      size="small"
-      startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
-    >
+  const viewButton = p => (
+    <Button variant="contained" color="success" size="small" startIcon={<FontAwesomeIcon icon={faEye} size='xs' />} href={`/schemes/${p.data.id}`}>
       View
     </Button>
   );
@@ -44,6 +38,7 @@ const Schemes = () => {
       schemeEndDate: "End Date 1",
       schemeDefectiveApplicationVerification: "Duration 1",
       viewApplication: "Button", //pass the id of the application to the view application page
+
     },
     {
       schemeName: "Scheme 2",
@@ -167,12 +162,8 @@ const Schemes = () => {
       headerName: "Defective Application Verification Date",
       width: 300,
     },
-    {
-      field: "viewApplication",
-      headerName: "View Application",
-      width: 180,
-      cellRenderer: viewButton,
-    },
+    { field: "viewApplication", headerName: "View Application", width: 170, cellRenderer: viewButton },
+
   ]);
 
   // ** For Tabs

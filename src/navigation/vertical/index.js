@@ -11,7 +11,7 @@ import {
 
 import WebIcon from '@mui/icons-material/Web';
 
-const role = "funding_agency"; // to be updated using session data
+const role = "individual"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [

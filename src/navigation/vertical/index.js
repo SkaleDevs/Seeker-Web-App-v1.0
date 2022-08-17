@@ -9,7 +9,9 @@ import {
   PlaylistCheck,
 } from "mdi-material-ui";
 
-const role = "individual"; // to be updated using session data
+import WebIcon from '@mui/icons-material/Web';
+
+const role = "funding_agency"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
@@ -108,51 +110,48 @@ const navigation = () => {
   } else if (role === "funding_agency") {
     return [
       {
-        title: 'Login',
-        icon: Login,
-        path: '/pages/login',
-        openInNewTab: true
+        sectionTitle: "Home",
       },
       {
-        title: 'Register',
-        icon: AccountPlusOutline,
-        path: '/pages/register',
-        openInNewTab: true
+        title: "Dashboard",
+        icon: HomeOutline,
+        path: "/individual",
       },
       {
-        title: 'Error',
-        icon: AlertCircleOutline,
-        path: '/pages/error',
-        openInNewTab: true
+        title: "Account Settings",
+        icon: AccountCogOutline,
+        path: "/account-settings",
       },
       {
-        sectionTitle: 'User Interface'
+        sectionTitle: "Schemes",
       },
       {
-        title: 'Typography',
-        icon: FormatLetterCase,
-        path: '/typography'
+        title: "All Schemes",
+        icon: FormatListBulleted,
+        path: "/individual/fundingSchemes",
       },
       {
-        title: 'Icons',
-        path: '/icons',
-        icon: GoogleCirclesExtended
+        title: "Create Scheme",
+        icon: PlaylistPlus,
+        path: "/individual/applied",
       },
       {
-        title: 'Cards',
-        icon: CreditCardOutline,
-        path: '/cards'
+        sectionTitle: "Applications",
       },
       {
-        title: 'Tables',
-        icon: Table,
-        path: '/tables'
+        title: "View Applications",
+        icon: WebIcon,
+        path: "/individual/scheduledInterviews",
       },
       {
-        icon: CubeOutline,
-        title: 'Form Layouts',
-        path: '/form-layouts'
-      }
+        sectionTitle: "Schedule",
+      },
+      {
+        title: "Scheduled Interviews",
+        icon: CalendarClock,
+        path: "/individual/scheduledInterviews",
+      },
+      
     ];
   } else {
     return [

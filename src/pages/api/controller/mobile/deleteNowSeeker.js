@@ -1,6 +1,5 @@
 import ApplySeeker from '../../model/applyNowSeekerSchema';
 import connectDB from '../../auth/lib/connectDB';
-import {getSession} from 'next-auth/react';
 import cookie from 'cookie';
 
 connectDB();

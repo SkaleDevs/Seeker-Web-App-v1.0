@@ -1,0 +1,32 @@
+import jwt from "jsonwebtoken"
+import cookie from "cookie"
+
+
+export default async function handler(req, res) {
+    
+    try{if(!req.headers.authorization){
+        return res.send("jwt undefineds")
+    }
+   
+    // console.log(decoded);
+    // console.log(req.headers);
+    const cookies  = req.headers.cookie;
+    // console.log(cookies);
+    var parsed =  cookie.parse(req?.headers.cookie || "");
+    console.log(parsed.token);
+    var {token} = jwt.verify(token, 'secret');
+    var decoded = jwt.verify(token, 'secret');
+        if(decoded.role!=="seeker"){
+            return res.status(401).json({error: 'Unauthorized'});
+        }
+
+    
+    const responseData = {
+        message: "Hello, GFG Learner"
+    }
+    return res.send(responseData);
+}   
+    catch(err){
+        res.send(err);   
+    }
+}

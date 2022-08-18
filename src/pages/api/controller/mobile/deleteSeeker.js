@@ -3,7 +3,6 @@ import Seeker from '../../model/seekerSchema';
 import connectDB from '../../auth/lib/connectDB';
 import sgMail from '@sendgrid/mail';
 import cookie from 'cookie';
-import {getSession} from 'next-auth/react';
 connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 export default async function handler(req,res){

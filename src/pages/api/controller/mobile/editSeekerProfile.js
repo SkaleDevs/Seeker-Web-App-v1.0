@@ -1,6 +1,5 @@
 import Seeker from '../../model/seekerSchema';
 import connectDB from '../../auth/lib/connectDB';
-import {getSession} from 'next-auth/react';
 import cookie from 'cookie';
 connectDB();
 export default async function handler(req,res){

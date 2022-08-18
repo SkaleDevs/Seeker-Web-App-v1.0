@@ -65,7 +65,7 @@ const LoginPage = () => {
     console.log("user role:", session.user.role)
     const role = session.user.role;
 
-    signIn("email", {email:inputEmail}, {redirect: `/${role}`});
+    signIn("email", {email:inputEmail}, {redirect: `/funding_agency`});
   }
 
   const theme = useTheme()

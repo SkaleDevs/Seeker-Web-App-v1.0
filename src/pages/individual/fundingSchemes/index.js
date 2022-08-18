@@ -9,8 +9,8 @@ import {
   Grid,
   Typography,
   Box,
-  Tabs,
   Tab,
+  Button,
 } from "@mui/material";
 
 // ** AG Grid Imports
@@ -21,89 +21,116 @@ import { TabContext, TabList, TabPanel } from "@mui/lab";
 
 // ** Custom Components Imports
 
-import Dropdown from "src/views/schemes/Dropdown"; 
+import Dropdown from "src/views/schemes/Dropdown";
 
-const Schemes = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
+const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();
+  const viewButton = (p) => (
+    <Button
+      variant="contained"
+      color="success"
+      size="small"
+      startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
+      href={`/schemes/${p.data.id}`}
+    >
+      View
+    </Button>
+  );
 
   const rowData = [
     {
-      schemeName: "Scheme 1",
+      schemeName: "PG Indira Gandhi Scholarship for Single Girl Child",
       schemeEndDate: "End Date 1",
       schemeDefectiveApplicationVerification: "Duration 1",
-      instituteVerificationDuration: "Verfiication Duration 1",
+      applicantVerification: "Verfiication Duration 1",
+      viewApplication: "Button", //pass the id of the application to the view application page
     },
     {
       schemeName: "Scheme 2",
       schemeEndDate: "End Date 2",
       schemeDefectiveApplicationVerification: "Duration 2",
-      instituteVerificationDuration: "Verfiication Duration 2",
+      applicantVerification: "Verfiication Duration 2",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 3",
       schemeEndDate: "End Date 3",
       schemeDefectiveApplicationVerification: "Duration 3",
-      instituteVerificationDuration: "Verfiication Duration 3",
+      applicantVerification: "Verfiication Duration 3",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 4",
       schemeEndDate: "End Date 4",
       schemeDefectiveApplicationVerification: "Duration 4",
-      instituteVerificationDuration: "Verfiication Duration 4",
+      applicantVerification: "Verfiication Duration 4",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 5",
       schemeEndDate: "End Date 5",
       schemeDefectiveApplicationVerification: "Duration 5",
-      instituteVerificationDuration: "Verfiication Duration 5",
+      applicantVerification: "Verfiication Duration 5",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 6",
       schemeEndDate: "End Date 6",
       schemeDefectiveApplicationVerification: "Duration 6",
-      instituteVerificationDuration: "Verfiication Duration 6",
+      applicantVerification: "Verfiication Duration 6",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 7",
       schemeEndDate: "End Date 7",
       schemeDefectiveApplicationVerification: "Duration 7",
-      instituteVerificationDuration: "Verfiication Duration 7",
+      applicantVerification: "Verfiication Duration 7",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 8",
       schemeEndDate: "End Date 8",
       schemeDefectiveApplicationVerification: "Duration 8",
-      instituteVerificationDuration: "Verfiication Duration 8",
+      applicantVerification: "Verfiication Duration 8",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 9",
       schemeEndDate: "End Date 9",
       schemeDefectiveApplicationVerification: "Duration 9",
-      instituteVerificationDuration: "Verfiication Duration 9",
+      applicantVerification: "Verfiication Duration 9",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 10",
       schemeEndDate: "End Date 10",
       schemeDefectiveApplicationVerification: "Duration 10",
-      instituteVerificationDuration: "Verfiication Duration 10",
+      applicantVerification: "Verfiication Duration 10",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 11",
       schemeEndDate: "End Date 11",
       schemeDefectiveApplicationVerification: "Duration 11",
-      instituteVerificationDuration: "Verfiication Duration 11",
+      applicantVerification: "Verfiication Duration 11",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 12",
       schemeEndDate: "End Date 12",
       schemeDefectiveApplicationVerification: "Duration 12",
-      instituteVerificationDuration: "Verfiication Duration 12",
+      applicantVerification: "Verfiication Duration 12",
+      viewApplication: "Button",
     },
     {
       schemeName: "Scheme 13",
       schemeEndDate: "End Date 13",
       schemeDefectiveApplicationVerification: "Duration 13",
-      instituteVerificationDuration: "Verfiication Duration 13",
+      applicantVerification: "Verfiication Duration 13",
+      viewApplication: "Button",
     },
   ];
 
@@ -111,19 +138,20 @@ const Schemes = () => {
     {
       field: "schemeName",
       headerName: "Scheme Name",
-      width: 250,
+      width: 300,
     },
-    { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 300 },
+    { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 200 },
     {
       field: "schemeDefectiveApplicationVerification",
       headerName: "Defective Application Verification Date",
-      width: 300,
+      width: 310,
     },
     {
-      field: "instituteVerificationDuration",
-      headerName: "Institute Verification",
+      field: "applicantVerification",
+      headerName: "Applicant Verification",
       width: 250,
     },
+    { field: "viewApplication", headerName: "View Application", width: 170, cellRenderer: viewButton },
   ]);
 
   // ** For Tabs
@@ -205,8 +233,52 @@ const Schemes = () => {
                   </div>
                 </Dropdown>
               </TabPanel>
-              <TabPanel value="1">Panel 2</TabPanel>
-              <TabPanel value="2">Panel 3</TabPanel>
+              <TabPanel value="1">
+              <Dropdown authority="University Grants Commission - MHRD">
+                  <div
+                    className="ag-theme-alpine"
+                    style={{
+                      width: "69.8rem",
+                      height: "35rem",
+                      marginTop: "1rem",
+                      overflow: "auto",
+                    }}
+                  >
+                    <AgGridReact
+                      rowData={rowData} // Row Data for Rows
+                      columnDefs={columnDefs} // Column Defs for Columns
+                      defaultColDef={defaultColDef} // Default Column Properties
+                      animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                      rowSelection="multiple" // Options - allows click selection of rows
+                      pagination={true}
+                      paginationPageSize={10} // Pagination Page Size
+                    />
+                  </div>
+                </Dropdown>
+              </TabPanel>
+              <TabPanel value="2">
+              <Dropdown authority="Karnataka">
+                  <div
+                    className="ag-theme-alpine"
+                    style={{
+                      width: "69.8rem",
+                      height: "35rem",
+                      marginTop: "1rem",
+                      overflow: "auto",
+                    }}
+                  >
+                    <AgGridReact
+                      rowData={rowData} // Row Data for Rows
+                      columnDefs={columnDefs} // Column Defs for Columns
+                      defaultColDef={defaultColDef} // Default Column Properties
+                      animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                      rowSelection="multiple" // Options - allows click selection of rows
+                      pagination={true}
+                      paginationPageSize={10} // Pagination Page Size
+                    />
+                  </div>
+                </Dropdown>
+              </TabPanel>
             </TabContext>
           </CardContent>
         </Card>
@@ -215,4 +287,4 @@ const Schemes = () => {
   );
 };
 
-export default Schemes;
+export default FundingSchemes;

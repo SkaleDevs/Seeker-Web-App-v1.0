@@ -6,6 +6,7 @@ import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import axios from 'axios'
 
 // ** Layout Import
 import BlankLayout from 'src/@core/layouts/BlankLayout'
@@ -37,13 +38,6 @@ const Img = styled('img')(({ theme }) => ({
 
 const Error401 = () => {
 
-  useEffect(() => {
-    const fetch = async () => {
-      console.log(await getSession());
-    }
-    fetch();
-    // console.log(session);
-  },[])
   return (
     <Box className='content-center'>
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>

@@ -3,11 +3,10 @@ import Grid from "@mui/material/Grid";
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
-import AppsAndSchemes from "src/views/dashboard/hei/AppsAndSchemes"
-import HeiStats from "src/views/dashboard/hei/HeiStats"
-import IndividStatsChart from "src/views/dashboard/IndividStatsChart";
+import AppsAndSchemes from "src/views/dashboard/hei/AppsAndSchemes";
+import HeiStats from "src/views/dashboard/hei/HeiStats";
+import HeiStatsChart from "src/views/dashboard/hei/HeiStatGraph";
 import ScheduledInterviews from "src/views/dashboard/hei/ScheduledInterviews";
-
 
 const Home_hei = () => {
   return (
@@ -20,7 +19,7 @@ const Home_hei = () => {
         {/* Graph */}
 
         <Grid item xs={12} md={4} mt={10}>
-          <IndividStatsChart />
+          <HeiStatsChart />
         </Grid>
 
         {/* /Graph */}
@@ -37,6 +36,6 @@ const Home_hei = () => {
       </Grid>
     </ApexChartWrapper>
   );
-}
+};
 
-export default Home_hei
+export default Home_hei;

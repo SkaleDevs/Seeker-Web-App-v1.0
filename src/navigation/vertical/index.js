@@ -28,7 +28,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings",
+        path: "/individual/accountSettings",
       },
       {
         sectionTitle: "Applications",
@@ -72,7 +72,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings", // to be updated
+        path: "/hei/accountSettings", // to be updated
       },
       {
         sectionTitle: "Applications",
@@ -159,7 +159,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings", // to be updated
+        path: "/moderato/accountSettings", // to be updated
       },
       {
         sectionTitle: "Registration Applications",

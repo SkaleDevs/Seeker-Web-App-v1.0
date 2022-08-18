@@ -22,26 +22,26 @@ const chartData = [
   },
   {
     name: "Accepted",
-    value: 10
+    value: 10,
   },
   {
     name: "Rejected",
-    value: 5
+    value: 5,
   },
   {
     name: "Pending",
-    value: 5
-  }
+    value: 5,
+  },
 ];
 
-const InvidStatsChart = () => {
+const HeiStatsChart = () => {
   // ** Hook
   const theme = useTheme();
 
   const options = {
     chart: {
       parentHeightOffset: 0,
-      toolbar: { show: false },
+      toolbar: { show: true },
     },
     plotOptions: {
       bar: {
@@ -67,12 +67,7 @@ const InvidStatsChart = () => {
       },
     },
     dataLabels: { enabled: false },
-    colors: [
-      "#3AB4F2",
-      "#7DCE13",
-      "#FFC54D",
-      "#EB4747",
-    ],
+    colors: ["#3AB4F2", "#7DCE13", "#FFC54D", "#EB4747"],
     states: {
       hover: {
         filter: { type: "none" },
@@ -148,4 +143,4 @@ const InvidStatsChart = () => {
   );
 };
 
-export default InvidStatsChart;
+export default HeiStatsChart;

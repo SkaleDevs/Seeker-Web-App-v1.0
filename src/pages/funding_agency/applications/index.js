@@ -41,7 +41,7 @@ const AllApplications = () => {
   const viewButton = (p) => (
     <Button
       variant="contained"
-      color="success"
+      color="secondary"
       size="small"
       startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       href={`/schemes/${p.data.id}`}
@@ -86,6 +86,18 @@ const AllApplications = () => {
     </Button>
   );
 
+  const meetButton = (p) => (
+    <Button
+      variant="contained"
+      color="primary"
+      size="small"
+      // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
+      href={`/schemes/${p.data.id}`}
+    >
+      Meet
+    </Button>
+  );
+
   const rowData = [
     {
       applicantName: "Rahul Gandhi",
@@ -94,6 +106,7 @@ const AllApplications = () => {
       accept: "Button",
       reject: "Button",
       amend: "Button",
+      scheduleMeeting: "Button",
     },
   ];
 
@@ -101,18 +114,18 @@ const AllApplications = () => {
     {
       field: "applicantName",
       headerName: "Applicant Name",
-      width: 280,
+      width: 230,
     },
     {
       field: "viewApplication",
       headerName: "View Application",
-      width: 230,
+      width: 170,
       cellRenderer: viewButton,
     },
     {
       field: "otherDocs",
       headerName: "Other Documents",
-      width: 230,
+      width: 170,
       cellRenderer: viewButton,
     },
     {
@@ -132,6 +145,12 @@ const AllApplications = () => {
       headerName: "",
       width: 125,
       cellRenderer: amendButton,
+    },
+    {
+      field: "",
+      headerName: "Schedule Meeting",
+      width: 170,
+      cellRenderer: meetButton,
     },
   ]);
 
@@ -159,10 +178,10 @@ const AllApplications = () => {
         <Card>
           <CardHeader title="Applications" />
           <CardContent sx={{ width: "100%" }}>
-            <Typography variant="caption">
+            {/* <Typography variant="caption">
               ( Click on the column header to sort, hover over the column header
               to see the filter options )
-            </Typography>
+            </Typography> */}
             <TabContext value={value}>
               <Box
                 sx={{

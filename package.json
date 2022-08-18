@@ -71,6 +71,7 @@
     "clsx": "^1.1.1",
     "cookie": "^0.5.0",
     "eslint-plugin-react": "^7.29.4",
+    "jsonwebtoken": "^8.5.1",
     "mdi-material-ui": "^7.1.0",
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.1",

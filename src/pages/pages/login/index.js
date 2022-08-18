@@ -54,8 +54,8 @@ const LoginPage = () => {
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
-    let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
+//     let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
     console.log("frontend:",checkData)
     
     if(checkData.data=="No"){

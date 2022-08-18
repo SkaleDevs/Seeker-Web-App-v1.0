@@ -52,13 +52,15 @@ const LoginPage = () => {
   const emailRef = useRef();
 
   const loginHandler = async (e) => {
+    let role = null;
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
     // let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
     // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
     let checkData = await axios({
       method: 'post',
-      url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
+      // url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
+      url: 'http://localhost:3000/api/controller/checkUser',
       data: {
         email: inputEmail
       },
@@ -75,12 +77,23 @@ const LoginPage = () => {
       return router.push('/pages/register');
     }
 
-    console.log("user role:", session.user.role)
-    console.log("auth:", status)
-    // const role = session.user.role;
+    // Extracting role according to the frontend
 
-    // signIn("email", {email:inputEmail,callbackUrl: `http://localhost:3000/${checkData.data.role}`});
-    signIn("email", {email:inputEmail,callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${checkData.data.role}`});
+    if(checkData.data.role === "agency"){
+      role = "funding_agency";
+    }
+    else if(checkData.data.role === "seeker"){
+      role = "individual";
+    }
+    else if(checkData.data.role === "institute"){
+      role = "hei";
+    }
+    else if(checkData.data.role === "moderator"){
+      role = "moderator";
+    }
+      
+    signIn("email", {email:inputEmail,callbackUrl: `http://localhost:3000/${role}`});
+    // signIn("email", {email:inputEmail,callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${checkData.data.role}`});
   }
 
   const theme = useTheme()

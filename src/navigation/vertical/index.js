@@ -2,7 +2,6 @@
 import {
   HomeOutline,
   AccountCogOutline,
-  Table,
   PlaylistPlus,
   FormatListBulleted,
   CalendarClock,

@@ -5,7 +5,7 @@ connectDB();
 
 export default async function handler(req,res){
    let data=await users.findOne({email:req.body.email});
-   console.log(data)
+   console.log("checkUser:",data)
    if(data){
     return res.send("Yes")
    }

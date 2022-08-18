@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-const index = () => {
-  return (
-    <div>index</div>
-  )
-}
+const CreateScheme = () => {
+  return <div>CreateScheme</div>;
+};
 
-export default index
+export default CreateScheme;

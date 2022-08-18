@@ -10,8 +10,9 @@ import {
 } from "mdi-material-ui";
 
 import WebIcon from "@mui/icons-material/Web";
+import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 
-const role = "funding_agency"; // to be updated using session data
+const role = "individual"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
@@ -71,7 +72,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings",
+        path: "/account-settings", // to be updated
       },
       {
         sectionTitle: "Applications",
@@ -113,7 +114,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings",
+        path: "/account-settings", // to be updated
       },
       {
         sectionTitle: "Schemes",
@@ -121,7 +122,7 @@ const navigation = () => {
       {
         title: "All Schemes",
         icon: FormatListBulleted,
-        path: "/funding_agency/fundingScheme",
+        path: "/funding_agency/fundingSchemes",
       },
       {
         title: "Create Scheme",
@@ -134,7 +135,7 @@ const navigation = () => {
       {
         title: "View Applications",
         icon: WebIcon,
-        path: "/funding_agency/viewApplications",
+        path: "/funding_agency/applications",
       },
       {
         sectionTitle: "Schedule",
@@ -145,13 +146,41 @@ const navigation = () => {
         path: "/funding_agency/scheduledInterviews",
       },
     ];
-  } else {
+  } else if (role === "moderator") {
     return [
       {
-        title: "Login",
-        icon: Login,
-        path: "/pages/login",
-        openInNewTab: true,
+        sectionTitle: "Home",
+      },
+      {
+        title: "Dashboard",
+        icon: HomeOutline,
+        path: "/moderator",
+      },
+      {
+        title: "Account Settings",
+        icon: AccountCogOutline,
+        path: "/account-settings", // to be updated
+      },
+      {
+        sectionTitle: "Registration Applications",
+      },
+      {
+        title: "View Applications",
+        icon: WebIcon,
+        path: "/moderator/registrationApplications", // to be updated
+      },
+      {
+        sectionTitle: "Moderation",
+      },
+      {
+        title: "Add Moderator",
+        icon: PersonAddOutlined,
+        path: "/moderator/addModerator", // to be updated
+      },
+      {
+        title: "All Users",
+        icon: PeopleOutline,
+        path: "/moderator/allUsers", // to be updated
       },
     ];
   }

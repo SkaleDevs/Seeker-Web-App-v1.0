@@ -26,18 +26,8 @@ import Dropdown from "src/views/schemes/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-const Schemes = () => {
+const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();
-  // const viewButton = (
-  //   <Button
-  //     variant="contained"
-  //     color="primary"
-  //     size="small"
-  //     startIcon={<FontAwesomeIcon icon={faEye} />}
-  //   >
-  //     View
-  //   </Button>
-  // );
   const viewButton = (p) => (
     <Button
       variant="contained"
@@ -297,4 +287,4 @@ const Schemes = () => {
   );
 };
 
-export default Schemes;
+export default FundingSchemes;

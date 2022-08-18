@@ -10,8 +10,9 @@ import {
 } from "mdi-material-ui";
 
 import WebIcon from "@mui/icons-material/Web";
+import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 
-const role = "funding_agency"; // to be updated using session data
+const role = "moderator"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
@@ -148,10 +149,38 @@ const navigation = () => {
   } else if (role === "moderator") {
     return [
       {
-        title: "Login",
-        icon: Login,
-        path: "/pages/login",
-        openInNewTab: true,
+        sectionTitle: "Home",
+      },
+      {
+        title: "Dashboard",
+        icon: HomeOutline,
+        path: "/moderator",
+      },
+      {
+        title: "Account Settings",
+        icon: AccountCogOutline,
+        path: "/account-settings", // to be updated
+      },
+      {
+        sectionTitle: "Registration Applications",
+      },
+      {
+        title: "View Applications",
+        icon: WebIcon,
+        path: "/moderator/registrationApplications",  // to be updated
+      },
+      {
+        sectionTitle: "Moderation",
+      },
+      {
+        title: "Add Moderator",
+        icon: PersonAddOutlined,
+        path: "/moderator/addModerator", // to be updated
+      },
+      {
+        title: "All Users",
+        icon: PeopleOutline,
+        path: "/moderator/allUsers", // to be updated
       },
     ];
   }

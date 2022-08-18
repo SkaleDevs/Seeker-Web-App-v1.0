@@ -22,7 +22,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
-const Schemes = () => {
+const ScheduledInterviews = () => {
   // const [rowData, setRowData] = useState();
   const viewButton = (p) => (
     <Button
@@ -210,4 +210,4 @@ const Schemes = () => {
   );
 };
 
-export default Schemes;
+export default ScheduledInterviews;

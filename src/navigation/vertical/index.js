@@ -12,7 +12,7 @@ import {
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 
-const role = "moderator"; // to be updated using session data
+const role = "individual"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [

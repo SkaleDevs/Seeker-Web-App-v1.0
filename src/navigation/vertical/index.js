@@ -9,9 +9,9 @@ import {
   PlaylistCheck,
 } from "mdi-material-ui";
 
-import WebIcon from '@mui/icons-material/Web';
+import WebIcon from "@mui/icons-material/Web";
 
-const role = "hei"; // to be updated using session data
+const role = "funding_agency"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
@@ -108,12 +108,12 @@ const navigation = () => {
       {
         title: "Dashboard",
         icon: HomeOutline,
-        path: "/individual",
+        path: "/funding_agency",
       },
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings",
+        path: "/account-settings", // to be updated
       },
       {
         sectionTitle: "Schemes",
@@ -121,12 +121,12 @@ const navigation = () => {
       {
         title: "All Schemes",
         icon: FormatListBulleted,
-        path: "/individual/fundingSchemes",
+        path: "/funding_agency/fundingSchemes",
       },
       {
         title: "Create Scheme",
         icon: PlaylistPlus,
-        path: "/individual/applied",
+        path: "/funding_agency/createScheme",
       },
       {
         sectionTitle: "Applications",
@@ -134,7 +134,7 @@ const navigation = () => {
       {
         title: "View Applications",
         icon: WebIcon,
-        path: "/individual/scheduledInterviews",
+        path: "/funding_agency/applications",
       },
       {
         sectionTitle: "Schedule",
@@ -142,17 +142,16 @@ const navigation = () => {
       {
         title: "Scheduled Interviews",
         icon: CalendarClock,
-        path: "/individual/scheduledInterviews",
+        path: "/funding_agency/scheduledInterviews",
       },
-      
     ];
-  } else {
+  } else if (role === "moderator") {
     return [
       {
-        title: 'Login',
+        title: "Login",
         icon: Login,
-        path: '/pages/login',
-        openInNewTab: true
+        path: "/pages/login",
+        openInNewTab: true,
       },
     ];
   }

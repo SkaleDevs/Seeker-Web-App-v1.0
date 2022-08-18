@@ -47,25 +47,40 @@ const LinkStyled = styled('a')(({ theme }) => ({
 }))
 
 const LoginPage = () => {
-  const {data : session} = useSession();
+  // const {data : session, status} = useSession();
 
   const emailRef = useRef();
 
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
-//     let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    // let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    let checkData = await axios({
+      method: 'post',
+      url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
+      data: {
+        email: inputEmail
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      }
+    });
+
     console.log("frontend:",checkData)
     
     if(checkData.data=="No"){
-      return alert("User not found")
+      alert("User not found");
+      return router.push('/pages/register');
     }
 
     console.log("user role:", session.user.role)
-    const role = session.user.role;
+    console.log("auth:", status)
+    // const role = session.user.role;
 
-    signIn("email", {email:inputEmail}, {redirect: `/funding_agency`});
+    // signIn("email", {email:inputEmail,callbackUrl: `http://localhost:3000/${checkData.data.role}`});
+    signIn("email", {email:inputEmail,callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${checkData.data.role}`});
   }
 
   const theme = useTheme()

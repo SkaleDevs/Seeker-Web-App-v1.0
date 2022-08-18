@@ -12,7 +12,7 @@ import {
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 
-const role = "individual"; // to be updated using session data
+const role = "funding_agency"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
@@ -114,7 +114,7 @@ const navigation = () => {
       {
         title: "Account Settings",
         icon: AccountCogOutline,
-        path: "/account-settings", // to be updated
+        path: "/funding_agency/accountSettings", // to be updated
       },
       {
         sectionTitle: "Schemes",

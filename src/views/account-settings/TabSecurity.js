@@ -163,7 +163,7 @@ const TabSecurity = () => {
             <img width={183} alt='avatar' height={256} src='/images/pages/pose-m-1.png' />
           </Grid>
         </Grid>
-      </CardContent>
+      </CardContent>  
 
       <Divider sx={{ margin: 0 }} />
 

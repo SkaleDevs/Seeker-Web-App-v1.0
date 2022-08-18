@@ -15,12 +15,14 @@ import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import Chip from "@mui/material/Chip";
 
 // ** Third Party Imports
 import DatePicker from "react-datepicker";
 
 // ** Styled Components
 import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
+import Divider from "@mui/material/Divider";
 
 const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
@@ -31,22 +33,25 @@ const TabInfo = () => {
   const [date, setDate] = useState(null);
 
   return (
+
+
+
+
+
+    //form validation needs to be done
+
+
+
+
+
+
     <CardContent>
       <form>
         <Grid container spacing={7}>
-          {/* <Grid item xs={12} sx={{ marginTop: 4.8 }}>
-            <TextField
-              fullWidth
-              multiline
-              label='Bio'
-              minRows={2}
-              placeholder='Bio'
-              defaultValue='The name’s John Deo. I am a tireless seeker of knowledge, occasional purveyor of wisdom and also, coincidentally, a graphic designer. Algolia helps businesses across industries quickly create relevant 😎, scalable 😀, and lightning 😍 fast search and discovery experiences.'
-            />
-          </Grid> */}
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              required
               label="First Name"
               placeholder="John Doe"
               defaultValue="John"
@@ -64,6 +69,7 @@ const TabInfo = () => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              required
               label="Last Name"
               placeholder="John Doe"
               // inputProps={{ readOnly: true }}
@@ -72,6 +78,7 @@ const TabInfo = () => {
           <Grid item xs={12} sm={6}>
             <DatePickerWrapper>
               <DatePicker
+              required
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
@@ -153,15 +160,12 @@ const TabInfo = () => {
                 Category
               </InputLabel>
               <Select
-                
+                required
                 defaultValue={["General"]}
                 id="account-settings-single-select"
                 labelId="account-settings-single-select-label"
                 input={
-                  <OutlinedInput
-                    label="Category"
-                    id="select-single-language"
-                  />
+                  <OutlinedInput label="Category" id="select-single-language" />
                 }
               >
                 <MenuItem value="General">General</MenuItem>
@@ -197,8 +201,6 @@ const TabInfo = () => {
               fullWidth
               label="Guardian's First Name"
               placeholder="John Doe"
-              // defaultValue="John"
-              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -217,7 +219,65 @@ const TabInfo = () => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-           <Grid item xs={12} sm={3}>
+          <Grid item xs={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="Address" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <TextField
+              fullWidth
+              label="State"
+              placeholder="New Delhi"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              label="Address"
+              placeholder="B.H. Area"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <TextField
+              fullWidth
+              label="Locality"
+              placeholder="Kadma"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <TextField
+              fullWidth
+              label="Town"
+              placeholder="New Delhi"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={2}>
+            <TextField
+              fullWidth
+              label="Pincode"
+              placeholder="560004"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="Academics" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              label="Highest Qualification Marks"
+              placeholder="99.9% or 9.9 CGPA"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               label="Intermediate (XII) Marks"
@@ -240,7 +300,6 @@ const TabInfo = () => {
                 Highest Qualification
               </InputLabel>
               <Select
-                
                 defaultValue={["Intermediate"]}
                 id="account-settings-single-select"
                 labelId="account-settings-single-select-label"
@@ -255,15 +314,69 @@ const TabInfo = () => {
                 <MenuItem value="Intermediate(XII)">Intermediate</MenuItem>
                 <MenuItem value="Undergraduate">Undergraduate</MenuItem>
                 <MenuItem value="Postgraduate">Postgraduate</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="Finance" />
+            </Divider>
+          </Grid>
 
+          <Grid item xs={12} sm={3}>
+            <FormControl fullWidth>
+              <InputLabel id="form-layouts-separator-single-select-label">
+                Income
+              </InputLabel>
+              <Select
+                defaultValue={["Intermediate"]}
+                id="account-settings-single-select"
+                labelId="account-settings-single-select-label"
+                input={
+                  <OutlinedInput
+                    label="Highest Qualifications"
+                    id="select-multiple-language"
+                  />
+                }
+              >
+                <MenuItem value="Upto Rs 3.5 LPA">Upto Rs 3.5 LPA</MenuItem>
+                <MenuItem value="Rs 3.5 LPA - Rs 7.5 LPA">
+                  Rs 3.5 LPA - Rs 7.5 LPA
+                </MenuItem>
+                <MenuItem value="Above Rs 7.5 LPA">Above Rs 7.5 LPA</MenuItem>
               </Select>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="High Qualification Marks"
-              placeholder="99.9% or 9.9 CGPA"
+              label="IFSC Code"
+              placeholder="Jayanagar, Bengaluru"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              label="Bank Name"
+              placeholder="Kotak Mahindra Bank"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              label="Account Number"
+              placeholder="xxxxxxxxxxxxxxxx"
+              inputProps={{ maxLength: 16 }}
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              label="Bank Branch Name"
+              placeholder="Jayanagar, Bengaluru"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -273,14 +386,7 @@ const TabInfo = () => {
             <Button variant="contained" sx={{ marginRight: 3.5 }}>
               Save Changes
             </Button>
-            <Button
-              type="reset"
-              variant="outlined"
-              color="secondary"
-              onClick={() => setDate(null)}
-            >
-              Reset
-            </Button>
+          
           </Grid>
         </Grid>
       </form>

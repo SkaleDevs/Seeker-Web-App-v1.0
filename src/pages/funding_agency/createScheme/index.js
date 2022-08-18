@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const CreateScheme = () => {
-  return (
-    <div>CreateScheme</div>
-  )
-}
+  return <div>CreateScheme</div>;
+};
 
-export default CreateScheme
+export default CreateScheme;

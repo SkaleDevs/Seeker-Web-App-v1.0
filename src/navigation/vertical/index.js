@@ -9,7 +9,7 @@ import {
   PlaylistCheck,
 } from "mdi-material-ui";
 
-import WebIcon from '@mui/icons-material/Web';
+import WebIcon from "@mui/icons-material/Web";
 
 const role = "funding_agency"; // to be updated using session data
 const navigation = () => {
@@ -61,51 +61,44 @@ const navigation = () => {
   } else if (role === "hei") {
     return [
       {
-        title: 'Login',
-        icon: Login,
-        path: '/pages/login',
-        openInNewTab: true
+        sectionTitle: "Home",
       },
       {
-        title: 'Register',
-        icon: AccountPlusOutline,
-        path: '/pages/register',
-        openInNewTab: true
+        title: "Dashboard",
+        icon: HomeOutline,
+        path: "/hei",
       },
       {
-        title: 'Error',
-        icon: AlertCircleOutline,
-        path: '/pages/error',
-        openInNewTab: true
+        title: "Account Settings",
+        icon: AccountCogOutline,
+        path: "/account-settings",
       },
       {
-        sectionTitle: 'User Interface'
+        sectionTitle: "Applications",
       },
       {
-        title: 'Typography',
-        icon: FormatLetterCase,
-        path: '/typography'
+        title: "Funding Schemes",
+        icon: FormatListBulleted,
+        path: "/hei/fundingSchemes",
       },
       {
-        title: 'Icons',
-        path: '/icons',
-        icon: GoogleCirclesExtended
+        title: "Applied",
+        icon: PlaylistPlus,
+        path: "/hei/applied",
       },
       {
-        title: 'Cards',
-        icon: CreditCardOutline,
-        path: '/cards'
+        title: "Shortlisted",
+        icon: PlaylistCheck,
+        path: "/hei/shortlisted",
       },
       {
-        title: 'Tables',
-        icon: Table,
-        path: '/tables'
+        sectionTitle: "Schedule",
       },
       {
-        icon: CubeOutline,
-        title: 'Form Layouts',
-        path: '/form-layouts'
-      }
+        title: "Scheduled Interviews",
+        icon: CalendarClock,
+        path: "/hei/scheduledInterviews",
+      },
     ];
   } else if (role === "funding_agency") {
     return [
@@ -115,7 +108,7 @@ const navigation = () => {
       {
         title: "Dashboard",
         icon: HomeOutline,
-        path: "/individual",
+        path: "/funding_agency",
       },
       {
         title: "Account Settings",
@@ -128,12 +121,12 @@ const navigation = () => {
       {
         title: "All Schemes",
         icon: FormatListBulleted,
-        path: "/individual/fundingSchemes",
+        path: "/funding_agency/fundingScheme",
       },
       {
         title: "Create Scheme",
         icon: PlaylistPlus,
-        path: "/individual/applied",
+        path: "/funding_agency/createScheme",
       },
       {
         sectionTitle: "Applications",
@@ -141,7 +134,7 @@ const navigation = () => {
       {
         title: "View Applications",
         icon: WebIcon,
-        path: "/individual/scheduledInterviews",
+        path: "/funding_agency/viewApplications",
       },
       {
         sectionTitle: "Schedule",
@@ -149,17 +142,16 @@ const navigation = () => {
       {
         title: "Scheduled Interviews",
         icon: CalendarClock,
-        path: "/individual/scheduledInterviews",
+        path: "/funding_agency/scheduledInterviews",
       },
-      
     ];
   } else {
     return [
       {
-        title: 'Login',
+        title: "Login",
         icon: Login,
-        path: '/pages/login',
-        openInNewTab: true
+        path: "/pages/login",
+        openInNewTab: true,
       },
     ];
   }

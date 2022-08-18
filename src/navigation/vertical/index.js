@@ -11,7 +11,7 @@ import {
 
 import WebIcon from '@mui/icons-material/Web';
 
-const role = "individual"; // to be updated using session data
+const role = "hei"; // to be updated using session data
 const navigation = () => {
   if (role === "individual") {
     return [
@@ -61,51 +61,44 @@ const navigation = () => {
   } else if (role === "hei") {
     return [
       {
-        title: 'Login',
-        icon: Login,
-        path: '/pages/login',
-        openInNewTab: true
+        sectionTitle: "Home",
       },
       {
-        title: 'Register',
-        icon: AccountPlusOutline,
-        path: '/pages/register',
-        openInNewTab: true
+        title: "Dashboard",
+        icon: HomeOutline,
+        path: "/hei",
       },
       {
-        title: 'Error',
-        icon: AlertCircleOutline,
-        path: '/pages/error',
-        openInNewTab: true
+        title: "Account Settings",
+        icon: AccountCogOutline,
+        path: "/account-settings", // to be updated
       },
       {
-        sectionTitle: 'User Interface'
+        sectionTitle: "Applications",
       },
       {
-        title: 'Typography',
-        icon: FormatLetterCase,
-        path: '/typography'
+        title: "Funding Schemes",
+        icon: FormatListBulleted,
+        path: "/hei/fundingSchemes",
       },
       {
-        title: 'Icons',
-        path: '/icons',
-        icon: GoogleCirclesExtended
+        title: "Applied",
+        icon: PlaylistPlus,
+        path: "/hei/applied",
       },
       {
-        title: 'Cards',
-        icon: CreditCardOutline,
-        path: '/cards'
+        title: "Shortlisted",
+        icon: PlaylistCheck,
+        path: "/hei/shortlisted",
       },
       {
-        title: 'Tables',
-        icon: Table,
-        path: '/tables'
+        sectionTitle: "Schedule",
       },
       {
-        icon: CubeOutline,
-        title: 'Form Layouts',
-        path: '/form-layouts'
-      }
+        title: "Scheduled Interviews",
+        icon: CalendarClock,
+        path: "/hei/scheduledInterviews",
+      },
     ];
   } else if (role === "funding_agency") {
     return [

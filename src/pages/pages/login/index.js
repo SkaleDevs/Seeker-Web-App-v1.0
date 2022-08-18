@@ -34,6 +34,7 @@ import BlankLayout from 'src/@core/layouts/BlankLayout'
 
 // ** Demo Imports
 import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
+import head from 'next/head'
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up('sm')]: { width: '28rem' }
@@ -46,23 +47,25 @@ const LinkStyled = styled('a')(({ theme }) => ({
 }))
 
 const LoginPage = () => {
-
-  
+  const {data : session} = useSession();
 
   const emailRef = useRef();
 
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
-    // let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/individual/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
     console.log("frontend:",checkData)
     
     if(checkData.data=="No"){
       return alert("User not found")
     }
 
-    // signIn("email", {email:inputEmail});
+    console.log("user role:", session.user.role)
+    const role = session.user.role;
+
+    signIn("email", {email:inputEmail}, {redirect: `/${role}`});
   }
 
   const theme = useTheme()

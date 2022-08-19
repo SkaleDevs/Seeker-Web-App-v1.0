@@ -49,11 +49,11 @@ const LoginPage = () => {
   if (session && session.user) {
     if (session.user.role === "agency") {
       role = "funding_agency";
-    } else if (checkData.data.role === "seeker") {
+    } else if (session.user.role === "seeker") {
       role = "individual";
-    } else if (checkData.data.role === "institute") {
+    } else if (session.user.role === "institute") {
       role = "hei";
-    } else if (checkData.data.role === "moderator") {
+    } else if (session.user.role === "moderator") {
       role = "moderator";
     }
     return router.push(`/${role}`);

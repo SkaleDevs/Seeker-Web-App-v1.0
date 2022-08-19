@@ -8,12 +8,31 @@ import {
   CalendarClock,
   PlaylistCheck,
 } from "mdi-material-ui";
+import { useEffect } from "react";
+import {getSession} from "next-auth/react"
 
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 
 const role = "funding_agency"; // to be updated using session data
 const navigation = () => {
+
+
+  useEffect(() => {
+    const fetch = async()=>{
+      const  data =await getSession();
+      console.log(data.role);
+      console.log(data);
+    }
+    fetch();
+
+
+  },[])
+
+  // console.log(data);
+
+
+
   if (role === "individual") {
     return [
       // **-----------------------------Individual Navs-------------------------------**

@@ -187,7 +187,7 @@ const UserLayout = ({ children }) => {
         {
           title: "Account Settings",
           icon: AccountCogOutline,
-          path: "/moderato/accountSettings", // to be updated
+          path: "/moderator/accountSettings", // to be updated
         },
         {
           sectionTitle: "Registration Applications",

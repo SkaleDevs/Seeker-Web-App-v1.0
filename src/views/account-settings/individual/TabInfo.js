@@ -54,8 +54,8 @@ const TabInfo = () => {
               fullWidth
               required
               label="First Name"
-              placeholder="John Doe"
-              defaultValue="John"
+              placeholder="Seeker's First Name"
+              // defaultValue="John"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -63,7 +63,7 @@ const TabInfo = () => {
             <TextField
               fullWidth
               label="Middle Name"
-              placeholder="John Doe"
+              placeholder="Middle Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -72,7 +72,7 @@ const TabInfo = () => {
               fullWidth
               required
               label="Last Name"
-              placeholder="John Doe"
+              placeholder="Last Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -201,14 +201,14 @@ const TabInfo = () => {
             <TextField
               fullWidth
               label="Guardian's First Name"
-              placeholder="John Doe"
+              placeholder="Guardian's First Name"
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               label="Middle Name"
-              placeholder="John Doe"
+              placeholder="Middle Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -216,7 +216,7 @@ const TabInfo = () => {
             <TextField
               fullWidth
               label="Last Name"
-              placeholder="John Doe"
+              placeholder="Last Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>

@@ -2,7 +2,6 @@
 import {
   HomeOutline,
   AccountCogOutline,
-  Table,
   PlaylistPlus,
   FormatListBulleted,
   CalendarClock,
@@ -12,8 +11,10 @@ import {
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 
-const role = "funding_agency"; // to be updated using session data
-const navigation = () => {
+const role = "individual"; // to be updated using session data
+const Navigation = () => {
+  // const role = session.user.role;
+  // console.log("session:",session);
   if (role === "individual") {
     return [
       // **-----------------------------Individual Navs-------------------------------**
@@ -186,4 +187,4 @@ const navigation = () => {
   }
 };
 
-export default navigation;
+export default Navigation;

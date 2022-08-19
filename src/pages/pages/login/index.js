@@ -1,75 +1,109 @@
 // ** React Imports
-import { useState, useRef } from 'react'
+import { useRef } from "react";
 
 // ** Next Imports
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 // ** NExt-Auth Imports
-import { useSession, signIn, signOut } from 'next-auth/react'
+import { useSession, signIn } from "next-auth/react";
 
 // ** MUI Components
-import Box from '@mui/material/Box'
-import Button from '@mui/material/Button'
-import Divider from '@mui/material/Divider'
-import Checkbox from '@mui/material/Checkbox'
-import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel'
-import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import CardContent from '@mui/material/CardContent'
-import FormControl from '@mui/material/FormControl'
-import OutlinedInput from '@mui/material/OutlinedInput'
-import { styled, useTheme } from '@mui/material/styles'
-import MuiCard from '@mui/material/Card'
-import InputAdornment from '@mui/material/InputAdornment'
-import MuiFormControlLabel from '@mui/material/FormControlLabel'
-import axios from 'axios'
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
+import CardContent from "@mui/material/CardContent";
+import { styled, useTheme } from "@mui/material/styles";
+import MuiCard from "@mui/material/Card";
+import axios from "axios";
 
 // ** Configs
-import themeConfig from 'src/configs/themeConfig'
+import themeConfig from "src/configs/themeConfig";
 
 // ** Layout Import
-import BlankLayout from 'src/@core/layouts/BlankLayout'
+import BlankLayout from "src/@core/layouts/BlankLayout";
 
 // ** Demo Imports
-import FooterIllustrationsV1 from 'src/views/pages/auth/FooterIllustration'
-import head from 'next/head'
+import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
+import head from "next/head";
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
-  [theme.breakpoints.up('sm')]: { width: '28rem' }
-}))
+  [theme.breakpoints.up("sm")]: { width: "28rem" },
+}));
 
-const LinkStyled = styled('a')(({ theme }) => ({
-  fontSize: '0.875rem',
-  textDecoration: 'none',
-  color: theme.palette.primary.main
-}))
+const LinkStyled = styled("a")(({ theme }) => ({
+  fontSize: "0.875rem",
+  textDecoration: "none",
+  color: theme.palette.primary.main,
+}));
 
 const LoginPage = () => {
-  const {data : session} = useSession();
-
+  const { data: session, status } = useSession();
   const emailRef = useRef();
+  const theme = useTheme();
+  const router = useRouter();
 
+  // Extracting role according to the frontend
+
+  if (session && session.user) {
+    if (session.user.role === "agency") {
+      role = "funding_agency";
+    } else if (session.user.role === "seeker") {
+      role = "individual";
+    } else if (session.user.role === "institute") {
+      role = "hei";
+    } else if (session.user.role === "moderator") {
+      role = "moderator";
+    }
+    return router.push(`/${role}`);
+  }
+
+  let role = null;
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
-//     let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    console.log("frontend:",checkData)
-    
-    if(checkData.data=="No"){
-      return alert("User not found")
+    // let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
+    let checkData = await axios({
+      method: "post",
+      url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
+      // url: "http://localhost:3000/api/controller/checkUser",
+      data: {
+        email: inputEmail,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    if (checkData.data == "No") {
+      alert("User not found");
+      return router.push("/pages/register");
     }
 
-    console.log("user role:", session.user.role)
-    const role = session.user.role;
+    // Extracting role according to the frontend
 
-    signIn("email", {email:inputEmail}, {redirect: `/funding_agency`});
-  }
+    if (checkData.data.role === "agency") {
+      role = "funding_agency";
+    } else if (checkData.data.role === "seeker") {
+      role = "individual";
+    } else if (checkData.data.role === "institute") {
+      role = "hei";
+    } else if (checkData.data.role === "moderator") {
+      role = "moderator";
+    }
+    // signIn("email", {
+    //   email: inputEmail,
+    //   callbackUrl: `http://localhost:3000/${role}`,
+    // });
+    signIn("email", {
+      email: inputEmail,
+      callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+    });
+  };
 
-  const theme = useTheme()
-  const router = useRouter()
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
@@ -189,7 +223,7 @@ const LoginPage = () => {
               size="large"
               variant="contained"
               sx={{ marginBottom: 7 }}
-              onClick= {loginHandler}
+              onClick={loginHandler}
             >
               Login
             </Button>
@@ -216,7 +250,7 @@ const LoginPage = () => {
       <FooterIllustrationsV1 />
     </Box>
   );
-}
-LoginPage.getLayout = page => <BlankLayout>{page}</BlankLayout>
+};
+LoginPage.getLayout = (page) => <BlankLayout>{page}</BlankLayout>;
 
-export default LoginPage
+export default LoginPage;

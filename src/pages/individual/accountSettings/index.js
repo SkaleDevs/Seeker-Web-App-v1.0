@@ -18,6 +18,7 @@ import InformationOutline from "mdi-material-ui/InformationOutline";
 import TabInfo from "src/views/account-settings/individual/TabInfo";
 import TabAccount from "src/views/account-settings/individual/TabAccount";
 import TabSecurity from "src/views/account-settings/individual/TabSecurity";
+import {useSession} from 'next-auth/react';
 
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";

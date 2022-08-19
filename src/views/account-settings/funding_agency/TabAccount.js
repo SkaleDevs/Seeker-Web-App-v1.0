@@ -143,7 +143,7 @@ const TabAccount = () => {
             <TextField
               fullWidth
               label="Entity Type"
-              placeholder="Private Limited Company"
+              placeholder="Education Fund Provider"
               inputProps={{ readOnly: true }}
             />
           </Grid>

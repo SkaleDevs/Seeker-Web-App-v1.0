@@ -47,19 +47,10 @@ const LoginPage = () => {
   // Extracting role according to the frontend
 
   if (session && session.user) {
-    if (session.user.role === "agency") {
-      role = "funding_agency";
-    } else if (session.user.role === "seeker") {
-      role = "individual";
-    } else if (session.user.role === "institute") {
-      role = "hei";
-    } else if (session.user.role === "moderator") {
-      role = "moderator";
-    }
+    const role = session.user.role;
     return router.push(`/${role}`);
   }
 
-  let role = null;
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
@@ -78,22 +69,15 @@ const LoginPage = () => {
       },
     });
 
+    console.log(checkData);
+
     if (checkData.data == "No") {
       alert("User not found");
       return router.push("/pages/register");
     }
 
-    // Extracting role according to the frontend
-
-    if (checkData.data.role === "agency") {
-      role = "funding_agency";
-    } else if (checkData.data.role === "seeker") {
-      role = "individual";
-    } else if (checkData.data.role === "institute") {
-      role = "hei";
-    } else if (checkData.data.role === "moderator") {
-      role = "moderator";
-    }
+    const role = checkData.data.role;
+    
     // signIn("email", {
     //   email: inputEmail,
     //   callbackUrl: `http://localhost:3000/${role}`,

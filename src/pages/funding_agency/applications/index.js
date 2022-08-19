@@ -26,6 +26,8 @@ import Dropdown from "src/views/schemes/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+import CreateMeeting from "../../../views/modal/CreateMeeting";
+
 const AllApplications = () => {
   // const [rowData, setRowData] = useState();
   // const viewButton = (
@@ -92,9 +94,8 @@ const AllApplications = () => {
       color="primary"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
     >
-      Meet
+      <CreateMeeting />
     </Button>
   );
 

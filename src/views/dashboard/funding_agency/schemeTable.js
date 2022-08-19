@@ -12,22 +12,21 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData("About Scheme", 40),
+  createData("Total Applications", 305),
   createData("Starting Date", 237),
   createData("Ending Date ", 262),
-  createData("Total Applications", 305),
 ];
 
 const schemeTable = () => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
+        {/* <TableHead>
           <TableRow>
             <TableCell></TableCell>
             <TableCell align="right"></TableCell>
           </TableRow>
-        </TableHead>
+        </TableHead> */}
         <TableBody>
           {rows.map((row) => (
             <TableRow

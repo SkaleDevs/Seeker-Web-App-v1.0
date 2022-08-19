@@ -39,6 +39,7 @@ const TabInfo = () => {
 
 
     //form validation needs to be done
+    //AADHAAR AND PAN FILES TAB FOR UPLOAD NEEDS TO BE ADDED (MARKSHEETS TOO)
 
 
 
@@ -53,8 +54,8 @@ const TabInfo = () => {
               fullWidth
               required
               label="First Name"
-              placeholder="John Doe"
-              defaultValue="John"
+              placeholder="Seeker's First Name"
+              // defaultValue="John"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -62,7 +63,7 @@ const TabInfo = () => {
             <TextField
               fullWidth
               label="Middle Name"
-              placeholder="John Doe"
+              placeholder="Middle Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -71,7 +72,7 @@ const TabInfo = () => {
               fullWidth
               required
               label="Last Name"
-              placeholder="John Doe"
+              placeholder="Last Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -200,14 +201,14 @@ const TabInfo = () => {
             <TextField
               fullWidth
               label="Guardian's First Name"
-              placeholder="John Doe"
+              placeholder="Guardian's First Name"
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               label="Middle Name"
-              placeholder="John Doe"
+              placeholder="Middle Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -215,7 +216,7 @@ const TabInfo = () => {
             <TextField
               fullWidth
               label="Last Name"
-              placeholder="John Doe"
+              placeholder="Last Name"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -334,8 +335,8 @@ const TabInfo = () => {
                 labelId="account-settings-single-select-label"
                 input={
                   <OutlinedInput
-                    label="Highest Qualifications"
-                    id="select-multiple-language"
+                    label="Income"
+                    id="select-single-language"
                   />
                 }
               >

@@ -13,10 +13,215 @@ import VerticalAppBarContent from './components/vertical/AppBarContent'
 
 // ** Hook Import
 import { useSettings } from 'src/@core/hooks/useSettings'
+import { useSession } from 'next-auth/react'
+
+// ** Routes Import
+// ** Icon imports
+import {
+  HomeOutline,
+  AccountCogOutline,
+  PlaylistPlus,
+  FormatListBulleted,
+  CalendarClock,
+  PlaylistCheck,
+} from "mdi-material-ui";
+
+import WebIcon from "@mui/icons-material/Web";
+import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
+
+
 
 const UserLayout = ({ children }) => {
   // ** Hooks
   const { settings, saveSettings } = useSettings()
+  const {data: session} = useSession();
+  // const [role, setRole] = useState();
+  let role = null;
+
+  const navigation = () =>{
+    if (session) {
+      if (session.user.role === "agency") {
+        role="funding_agency";
+      } else if (session.user.role === "seeker") {
+        role="individual";
+      } else if (session.user.role === "institute") {
+        role="hei";
+      } else if (session.user.role === "moderator") {
+        role="moderator";
+      }
+    }
+
+    if (role === "individual") {
+      return [
+        // **-----------------------------Individual Navs-------------------------------**
+        {
+          sectionTitle: "Home",
+        },
+        {
+          title: "Dashboard",
+          icon: HomeOutline,
+          path: "/individual",
+        },
+        {
+          title: "Account Settings",
+          icon: AccountCogOutline,
+          path: "/individual/accountSettings",
+        },
+        {
+          sectionTitle: "Applications",
+        },
+        {
+          title: "Funding Schemes",
+          icon: FormatListBulleted,
+          path: "/individual/fundingSchemes",
+        },
+        {
+          title: "Applied",
+          icon: PlaylistPlus,
+          path: "/individual/applied",
+        },
+        {
+          title: "Shortlisted",
+          icon: PlaylistCheck,
+          path: "/individual/shortlisted",
+        },
+        {
+          sectionTitle: "Schedule",
+        },
+        {
+          title: "Scheduled Interviews",
+          icon: CalendarClock,
+          path: "/individual/scheduledInterviews",
+        },
+
+        // **-----------------------------/Individual Navs------------------------------**
+      ];
+    } else if (role === "hei") {
+      return [
+        {
+          sectionTitle: "Home",
+        },
+        {
+          title: "Dashboard",
+          icon: HomeOutline,
+          path: "/hei",
+        },
+        {
+          title: "Account Settings",
+          icon: AccountCogOutline,
+          path: "/hei/accountSettings", // to be updated
+        },
+        {
+          sectionTitle: "Applications",
+        },
+        {
+          title: "Funding Schemes",
+          icon: FormatListBulleted,
+          path: "/hei/fundingSchemes",
+        },
+        {
+          title: "Applied",
+          icon: PlaylistPlus,
+          path: "/hei/applied",
+        },
+        {
+          title: "Shortlisted",
+          icon: PlaylistCheck,
+          path: "/hei/shortlisted",
+        },
+        {
+          sectionTitle: "Schedule",
+        },
+        {
+          title: "Scheduled Interviews",
+          icon: CalendarClock,
+          path: "/hei/scheduledInterviews",
+        },
+      ];
+    } else if (role === "funding_agency") {
+      return [
+        {
+          sectionTitle: "Home",
+        },
+        {
+          title: "Dashboard",
+          icon: HomeOutline,
+          path: "/funding_agency",
+        },
+        {
+          title: "Account Settings",
+          icon: AccountCogOutline,
+          path: "/funding_agency/accountSettings", // to be updated
+        },
+        {
+          sectionTitle: "Schemes",
+        },
+        {
+          title: "All Schemes",
+          icon: FormatListBulleted,
+          path: "/funding_agency/fundingSchemes",
+        },
+        {
+          title: "Create Scheme",
+          icon: PlaylistPlus,
+          path: "/funding_agency/createScheme",
+        },
+        {
+          sectionTitle: "Applications",
+        },
+        {
+          title: "View Applications",
+          icon: WebIcon,
+          path: "/funding_agency/applications",
+        },
+        {
+          sectionTitle: "Schedule",
+        },
+        {
+          title: "Scheduled Interviews",
+          icon: CalendarClock,
+          path: "/funding_agency/scheduledInterviews",
+        },
+      ];
+    } else if (role === "moderator") {
+      return [
+        {
+          sectionTitle: "Home",
+        },
+        {
+          title: "Dashboard",
+          icon: HomeOutline,
+          path: "/moderator",
+        },
+        {
+          title: "Account Settings",
+          icon: AccountCogOutline,
+          path: "/moderato/accountSettings", // to be updated
+        },
+        {
+          sectionTitle: "Registration Applications",
+        },
+        {
+          title: "View Applications",
+          icon: WebIcon,
+          path: "/moderator/registrationApplications", // to be updated
+        },
+        {
+          sectionTitle: "Moderation",
+        },
+        {
+          title: "Add Moderator",
+          icon: PersonAddOutlined,
+          path: "/moderator/addModerator", // to be updated
+        },
+        {
+          title: "All Users",
+          icon: PeopleOutline,
+          path: "/moderator/allUsers", // to be updated
+        },
+      ];
+    }
+  }
 
   /**
    *  The below variable will hide the current layout menu at given screen size.
@@ -33,7 +238,7 @@ const UserLayout = ({ children }) => {
       hidden={hidden}
       settings={settings}
       saveSettings={saveSettings}
-      verticalNavItems={VerticalNavItems()} // Navigation Items
+      verticalNavItems={navigation()} // Navigation Items
       verticalAppBarContent={(
         props // AppBar Content
       ) => (

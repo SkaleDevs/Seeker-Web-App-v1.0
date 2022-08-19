@@ -4,6 +4,8 @@ import { useState, Fragment } from 'react'
 // ** Next Import
 import { useRouter } from 'next/router'
 
+import { useSession, signIn, signOut } from 'next-auth/react'
+
 // ** MUI Imports
 import Box from '@mui/material/Box'
 import Menu from '@mui/material/Menu'
@@ -144,7 +146,8 @@ const UserDropdown = () => {
           </Box>
         </MenuItem>
         <Divider />
-        <MenuItem sx={{ py: 2 }} onClick={() => handleDropdownClose('/pages/login')}>
+        {/* <MenuItem sx={{ py: 2 }} onClick={() => signOut({callbackUrl: 'http://localhost:3000/'})}> */}
+        <MenuItem sx={{ py: 2 }} onClick={() => signOut({callbackUrl: 'https://seeker-web-app-v1-0.vercel.app/'})}>
           <LogoutVariant sx={{ marginRight: 2, fontSize: '1.375rem', color: 'text.secondary' }} />
           Logout
         </MenuItem>

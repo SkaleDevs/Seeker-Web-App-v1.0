@@ -13,7 +13,7 @@ import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
 import { useSession } from "next-auth/react";
 import { getSession } from "next-auth/react";
 
-const role = "funding_agency"; // to be updated using session data
+const role = "individual"; // to be updated using session data
 const Navigation = () => {
   // const role = session.user.role;
   // console.log("session:",session);

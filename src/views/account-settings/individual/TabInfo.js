@@ -39,6 +39,7 @@ const TabInfo = () => {
 
 
     //form validation needs to be done
+    //AADHAAR AND PAN FILES TAB FOR UPLOAD NEEDS TO BE ADDED (MARKSHEETS TOO)
 
 
 
@@ -334,8 +335,8 @@ const TabInfo = () => {
                 labelId="account-settings-single-select-label"
                 input={
                   <OutlinedInput
-                    label="Highest Qualifications"
-                    id="select-multiple-language"
+                    label="Income"
+                    id="select-single-language"
                   />
                 }
               >

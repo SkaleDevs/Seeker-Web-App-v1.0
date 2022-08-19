@@ -37,18 +37,9 @@ const UserLayout = ({ children }) => {
   const {data: session} = useSession();
   // const [role, setRole] = useState();
   let role = null;
-
   const navigation = () =>{
-    if (session) {
-      if (session.user.role === "agency") {
-        role="funding_agency";
-      } else if (session.user.role === "seeker") {
-        role="individual";
-      } else if (session.user.role === "institute") {
-        role="hei";
-      } else if (session.user.role === "moderator") {
-        role="moderator";
-      }
+    if(session){
+      role = session.user.role;
     }
 
     if (role === "individual") {

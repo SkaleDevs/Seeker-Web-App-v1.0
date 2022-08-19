@@ -10,9 +10,13 @@ import {
 
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
+import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 const role = "funding_agency"; // to be updated using session data
-const navigation = () => {
+const Navigation = () => {
+  // const role = session.user.role;
+  // console.log("session:",session);
   if (role === "individual") {
     return [
       // **-----------------------------Individual Navs-------------------------------**
@@ -185,4 +189,4 @@ const navigation = () => {
   }
 };
 
-export default navigation;
+export default Navigation;

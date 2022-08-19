@@ -5,6 +5,10 @@ const agencySchema = new mongoose.Schema({
    type:String,
    required:true
   },
+  phoneno:{
+    type:number,
+    required:true
+  },
  typeEnitity:{
     type:String,
     required:true

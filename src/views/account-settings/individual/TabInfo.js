@@ -35,9 +35,10 @@ const TabInfo = ({session}) => {
   const [user, setUser] = useState({});
   useEffect(() => {
 
-    const fetch= () =>{
+    const fetch= async () =>{
       await axios.get(`https://localhost:3000/api/controller/seeker/getSeekerInfo`,{email:session.email}).then((res) => {
         setUser(res.data);
+        console.log(res.data);
         
       }).catch((err) => {
         console.log(err);
@@ -90,18 +91,32 @@ const TabInfo = ({session}) => {
   
 
 
-   useEffect(async() => {
-    await axios.get(`https://ifsc.razorpay.com/${data.ifscCode}`).then((res) => {
-      console.log(res.data);
-      setdata({ ...data, [banker]: res.data.bank });
-      setdata({ ...data, [bankBranch]: res.data.branch });
-    }).catch((err) => {
-      console.log(err);
-    })}, [data.ifscCode]);
+  //  useEffect(() => {
+    const fetch = async(e)=>{
+      console.log(e.target.value);
+      await axios.get(`https://ifsc.razorpay.com/${e.target.value}`).then((res) => {
+        console.log(res.data.BANK);
+       // setdata({ ...data, [e.target.name]: e.target.value });
+       // setdata({ ...data, banker: res?.data?.BANK });
 
+        setdata({ ...data, bankBranch: res?.data?.BRANCH ,banker: res?.data?.BANK, [e.target.name]: e.target.value});
+        console.log(data)
+        console.log(data.banker)
+      }).catch((err) => {
+        console.log(err);
+      })
+      
+    }
+
+    // fetch();
+    // }, [data.ifscCode]);
+
+
+      
     const handlechange = (e) => {
+      
       setdata({ ...data, [e.target.name]: e.target.value });
-      // console.log(data);
+      console.log(data);
     };
   
   return (
@@ -471,7 +486,7 @@ const TabInfo = ({session}) => {
               fullWidth
               label="IFSC Code"
               placeholder="Jayanagar, Bengaluru"
-              onChange={(e) => handlechange(e)}
+              onChange={(e) => fetch(e)}
               name="ifscCode"
               // inputProps={{ readOnly: true }}
             />

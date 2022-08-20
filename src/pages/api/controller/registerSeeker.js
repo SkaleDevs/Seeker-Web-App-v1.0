@@ -12,22 +12,11 @@ export default async function handler(req,res){
     console.log(check1)
     console.log(req.body.aadharNo)
 
-    let check2=await user.findOne({special:req.body.aadharNo});
+    let check2=await users.findOne({special:req.body.aadharNo});
     console.log(check2);
     if(check2 ){
         return res.send("A account with this aadhar no. already exists")
     }
-    // let check3=await bannedUser.findOne({email:req.body.email});
-    // if(check3){
-    //     return res.send("You are banned from using this service");
-    // }
-    // let check4=await bannedUser.findOne({special:req.body.aadharNo});  
-    // if(check4){
-    //     return res.send("You are banned from using this service");
-    // }
-
-    
-
     const details=new Seeker({
            email:req.body.email,
            phNo:req.body.phNo,

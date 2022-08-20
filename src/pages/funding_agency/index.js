@@ -20,13 +20,13 @@ const Home_agency = () => {
 
         {/* Graph */}
 
-        <Grid item xs={12} md={4} mt={10}>
+        <Grid item xs={12} md={6} mt={10}>
           <FundingAgencyStatsChart />
         </Grid>
 
         {/* /Graph */}
 
-        <Grid item xs={12} md={8} mt={10}>
+        <Grid item xs={12} md={6} mt={10}>
           <ScheduledInterviews />
         </Grid>
         <Grid item xs={12}>

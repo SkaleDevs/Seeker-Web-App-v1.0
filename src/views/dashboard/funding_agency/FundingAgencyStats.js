@@ -24,9 +24,15 @@ const rejectedIcon = <FontAwesomeIcon icon= { faXmark } size='lg' />
 const salesData = [
   {
     stats: '20',
-    title: 'Provided',
+    title: 'Schemes',
     color: 'info',
     icon: applicationIcon,
+  },
+  {
+    stats: '10',
+    title: 'Funded',
+    color: 'success',
+    icon: approvedIcon
   },
   {
     stats: '10',
@@ -35,16 +41,10 @@ const salesData = [
     icon: approvedIcon
   },
   {
-    stats: '5',
-    title: 'Views',
+    stats: 'Rs. 3 Lacs',
+    title: 'Amount Funded',
     color: 'warning',
     icon: pendingIcon
-  },
-  {
-    stats: '5',
-    color: 'error',
-    title: 'Rejected',
-    icon: rejectedIcon
   }
 ]
 
@@ -52,7 +52,7 @@ const renderStats = () => {
   // Cards
 
   return salesData.map((item, index) => (
-    <Grid item xs={12} md={3} key={index}>
+    <Grid item xs={12} md={3} key={index} >
       <div className={classes.neum} key={index}>
         <Box
           key={index}

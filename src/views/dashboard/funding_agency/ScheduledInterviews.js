@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 // ** MUI Imports
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
@@ -6,10 +6,23 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import CardHeader from "@mui/material/CardHeader";
 import CardContent from "@mui/material/CardContent";
+import { Button } from "@mui/material";
+import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
 // ** Icons Imports
 // import MenuUp from "mdi-material-ui/MenuUp";
 // import DotsVertical from "mdi-material-ui/DotsVertical";
+const viewButton = (p) => (
+  <Button
+    variant="contained"
+    color="secondary"
+    size="small"
+    startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
+    href={`/schemes/${p.data.id}`}
+  >
+    View
+  </Button>
+);
 
 const data = [
   {
@@ -37,6 +50,7 @@ const data = [
     color: "secondary",
     amount: "$1,245.80",
     subtitle: "HTML & Angular",
+    cellRenderer: viewButton,
     imgSrc: "/images/cards/logo-aviato.png",
   },
 ];
@@ -116,7 +130,9 @@ const ScheduledInterviews = () => {
                     variant="body2"
                     sx={{ mb: 2, fontWeight: 600, color: "text.primary" }}
                   >
-                    {item.amount}
+                    <Button variant="contained" endIcon={<RemoveRedEyeIcon />}>
+                      View
+                    </Button>
                   </Typography>
                 </Box>
               </Box>

@@ -40,7 +40,7 @@ const UserLayout = ({ children }) => {
 
   const navigation = () =>{
     if (session) {
-     role = session.user.role;
+      role=session.user.role;
     }
 
     if (role === "individual") {

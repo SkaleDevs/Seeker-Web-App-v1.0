@@ -86,7 +86,9 @@ const LoginPage = () => {
     // } else if (checkData.data.role === "moderator") {
     //   role = "moderator";
     // }
-    role  = checkData.data.role;
+    if(session){
+      role=session.user.role;
+    }
     signIn("email", {
       email: inputEmail,
       callbackUrl: `http://localhost:3000/${role}`,

@@ -7,8 +7,20 @@ import AppsAndSchemes from "src/views/dashboard/hei/AppsAndSchemes";
 import HeiStats from "src/views/dashboard/hei/HeiStats";
 import HeiStatsChart from "src/views/dashboard/hei/HeiStatGraph";
 import ScheduledInterviews from "src/views/dashboard/hei/ScheduledInterviews";
+import {getSession} from 'next-auth/react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+const Home_hei = ({sess}) => {
+  
+  const rtr = useRouter();
+  if (sess?.status=="loading") return <div>Loading...</div>;
+  useEffect(() => {
+    if(sess?.user?.role!=="individual") {
+      rtr.push(`/${sess?.user?.role}`);
+      
+    }
 
-const Home_hei = () => {
+  },[sess])
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
@@ -39,3 +51,12 @@ const Home_hei = () => {
 };
 
 export default Home_hei;
+
+export async function getServerSideProps(context) {
+  const sess= await getSession(context);
+  return {
+    props: {
+        sess:sess
+    },
+  };
+}

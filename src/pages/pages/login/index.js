@@ -45,21 +45,13 @@ const LoginPage = () => {
   const router = useRouter();
 
   // Extracting role according to the frontend
-
-  if (session && session.user) {
-    if (session.user.role === "agency") {
-      role = "funding_agency";
-    } else if (session.user.role === "seeker") {
-      role = "individual";
-    } else if (session.user.role === "institute") {
-      role = "hei";
-    } else if (session.user.role === "moderator") {
-      role = "moderator";
-    }
-    return router.push(`/${role}`);
+  let role = null;
+  if(session){
+    role = session.user.role;
   }
 
-  let role = null;
+  
+
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
@@ -67,8 +59,8 @@ const LoginPage = () => {
     // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
     let checkData = await axios({
       method: "post",
-      url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
-      // url: "http://localhost:3000/api/controller/checkUser",
+      // url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
+      url: "http://localhost:3000/api/controller/checkUser",
       data: {
         email: inputEmail,
       },
@@ -85,23 +77,24 @@ const LoginPage = () => {
 
     // Extracting role according to the frontend
 
-    if (checkData.data.role === "agency") {
-      role = "funding_agency";
-    } else if (checkData.data.role === "seeker") {
-      role = "individual";
-    } else if (checkData.data.role === "institute") {
-      role = "hei";
-    } else if (checkData.data.role === "moderator") {
-      role = "moderator";
-    }
-    // signIn("email", {
-    //   email: inputEmail,
-    //   callbackUrl: `http://localhost:3000/${role}`,
-    // });
+    // if (checkData.data.role === "agency") {
+    //   role = "funding_agency";
+    // } else if (checkData.data.role === "seeker") {
+    //   role = "individual";
+    // } else if (checkData.data.role === "institute") {
+    //   role = "hei";
+    // } else if (checkData.data.role === "moderator") {
+    //   role = "moderator";
+    // }
+    role  = checkData.data.role;
     signIn("email", {
       email: inputEmail,
-      callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+      callbackUrl: `http://localhost:3000/${role}`,
     });
+    // signIn("email", {
+    //   email: inputEmail,
+    //   callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+    // });
   };
 
   return (

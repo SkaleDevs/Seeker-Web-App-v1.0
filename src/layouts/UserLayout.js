@@ -40,15 +40,7 @@ const UserLayout = ({ children }) => {
 
   const navigation = () =>{
     if (session) {
-      if (session.user.role === "agency") {
-        role="funding_agency";
-      } else if (session.user.role === "seeker") {
-        role="individual";
-      } else if (session.user.role === "institute") {
-        role="hei";
-      } else if (session.user.role === "moderator") {
-        role="moderator";
-      }
+     role = session.user.role;
     }
 
     if (role === "individual") {

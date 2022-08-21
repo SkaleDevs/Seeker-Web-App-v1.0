@@ -8,14 +8,14 @@ const Home_agency = ({sess}) => {
 
   const rtr = useRouter();
  
-  if (sess?.status=="loading") return <div>Loading...</div>;
   useEffect(() => {
     if(sess?.user?.role!=="agency") {
       rtr.push(`/${sess?.user?.role}`);
       
     }
-
   },[sess])
+    
+  if (sess?.status=="loading") return <div>Loading...</div>;
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>

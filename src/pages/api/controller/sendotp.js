@@ -9,7 +9,9 @@ export default async function handler(req,res){
     if (!session || session.user.role!=="individual") {
     return res.status(401).json({error: 'Unauthorized'})
     }
-    let otp=Math.floor(Math.random() * 10000) + 1;
+    // let otp=Math.floor(Math.random() * 10000) + 1;
+    let otp=Math.floor(Math.random() * (10000 - 1000)) + 1000;
+
     console.log(otp)
     let time=Date.now();
     time=time+180;

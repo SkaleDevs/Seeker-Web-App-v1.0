@@ -38,6 +38,10 @@ const applyNowInstituteSchema = new mongoose.Schema({
         type:ObjectId,
         ref:'Institute'
     },
+    scholarshipID:{
+        type:ObjectId,
+        ref:'Scheme'
+    },
     proposal:{
         type:String,
         required:true

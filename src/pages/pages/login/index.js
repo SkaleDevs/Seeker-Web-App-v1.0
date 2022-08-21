@@ -81,6 +81,10 @@ const LoginPage = () => {
       email: inputEmail,
       callbackUrl: `http://localhost:3000/${role}` || `https://seeker-web-app-v1-0.vercel.app/${role}`,
     });
+    // signIn("email", {
+    //   email: inputEmail,
+    //   callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+    // });
   };
 
   return (

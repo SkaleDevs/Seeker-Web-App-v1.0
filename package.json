@@ -64,6 +64,7 @@
     "ag-grid-community": "^28.1.0",
     "ag-grid-react": "^28.1.0",
     "apexcharts-clevision": "3.28.5",
+    "aws-sdk": "^2.1199.0",
     "axios": "^0.27.2",
     "babel-eslint": "^10.1.0",
     "bcrypt": "^5.0.1",
@@ -87,7 +88,8 @@
     "react-dom": "17.0.2",
     "react-perfect-scrollbar": "^1.5.8",
     "react-popper": "^2.2.5",
-    "react-toastify": "^9.0.8"
+    "react-toastify": "^9.0.8",
+    "twilio": "^3.80.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

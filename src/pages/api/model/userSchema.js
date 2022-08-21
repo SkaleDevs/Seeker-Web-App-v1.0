@@ -21,6 +21,14 @@ const UserSchema = new mongoose.Schema({
   notif:{
     type:Array,
     required:false
+  },
+  otp:{
+    type:Number,
+    required:false,
+  },
+  expire:{
+    type:Number,
+    required:false,
   }
 
 });

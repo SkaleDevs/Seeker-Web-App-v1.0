@@ -212,11 +212,11 @@ const AppsAndSchemes = () => {
 
       <Box sx={{ width: "100%" }}>
         <CardHeader
-          title="Top Schemes"
+          // title="Top Schemes"
           sx={{
             pt: 5.5,
             alignItems: "center",
-            "& .MuiCardHeader-action": { mt: 0.6 },
+            "& .MuiCardHeader-action": { mt: 2 },
           }}
           action={<Typography variant="caption">View All</Typography>}
           titleTypographyProps={{

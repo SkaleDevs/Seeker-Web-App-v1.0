@@ -47,56 +47,43 @@ const LoginPage = () => {
   // Extracting role according to the frontend
 
   if (session && session.user) {
-    if (session.user.role === "agency") {
-      role = "funding_agency";
-    } else if (session.user.role === "seeker") {
-      role = "individual";
-    } else if (session.user.role === "institute") {
-      role = "hei";
-    } else if (session.user.role === "moderator") {
-      role = "moderator";
-    }
+    const role = session.user.role;
     return router.push(`/${role}`);
   }
 
-  let role = null;
   const loginHandler = async (e) => {
     // e.preventDefault();
     const inputEmail = emailRef.current.value;
-    let checkData  = await axios.post( `http://localhost:3000/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    // let checkData  = await axios.post( `https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser`, {email:inputEmail}); //change url before push
-    // let checkData = await axios({
-    //   method: "post",
-    //   url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
-    //   // url: "http://localhost:3000/api/controller/checkUser",
-    //   data: {
-    //     email: inputEmail,
-    //   },
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // });
+
+    let checkData = await axios({
+      method: "post",
+      // url: 'https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser',
+      url:
+        "http://localhost:3000/api/controller/checkUser" ||
+        "https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser",
+      data: {
+        email: inputEmail,
+      },
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    console.log(checkData);
 
     if (checkData.data == "No") {
       alert("User not found");
       return router.push("/pages/register");
     }
 
-    // Extracting role according to the frontend
+    const role = checkData.data.role;
 
-    if (checkData.data.role === "agency") {
-      role = "funding_agency";
-    } else if (checkData.data.role === "seeker") {
-      role = "individual";
-    } else if (checkData.data.role === "institute") {
-      role = "hei";
-    } else if (checkData.data.role === "moderator") {
-      role = "moderator";
-    }
     signIn("email", {
       email: inputEmail,
-      callbackUrl: `http://localhost:3000/${role}`,
+      callbackUrl:
+        `http://localhost:3000/${role}` ||
+        `https://seeker-web-app-v1-0.vercel.app/${role}`,
     });
     // signIn("email", {
     //   email: inputEmail,

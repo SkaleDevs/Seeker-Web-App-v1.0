@@ -17,12 +17,12 @@ import IconButton from "@mui/material/IconButton";
 import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
-import TextareaAutosize from '@mui/material/TextareaAutosize';
-
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 
 // ** Icons Imports
 import Close from "mdi-material-ui/Close";
-import { OutlinedInput } from "@mui/material";
+import { Divider, OutlinedInput } from "@mui/material";
+import Chip from "@mui/material/Chip";
 
 const ImgStyled = styled("img")(({ theme }) => ({
   width: 120,
@@ -92,22 +92,39 @@ const TabAccount = () => {
                   Reset
                 </ResetButtonStyled>
                 <Typography variant="body2" sx={{ marginTop: 5 }}>
-                  Agency
+                  Institute
                 </Typography>
               </Box>
             </Box>
           </Grid>
           {/* for each field fetch the details from the info tab  */}
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+            <Chip label="Institute Representative's Details" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Name"
-              placeholder="Agency's Name"
+              label="Representative's Name"
+              placeholder=" Name"
               // defaultValue="John"
               inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              height="100"
+              type="number"
+              label="Designation"
+              placeholder="Dean of Academics"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+
+          <Grid item xs={12} sm={5}>
             <TextField
               fullWidth
               type="email"
@@ -117,7 +134,7 @@ const TabAccount = () => {
               inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               height="100"
@@ -128,89 +145,257 @@ const TabAccount = () => {
               inputProps={{ readOnly: true }}
             />
           </Grid>
+
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Gender"
+              placeholder="MALE"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
           <Grid item xs={12} sm={12}>
-            <TextField
-              fullWidth
-              multiline
-              rows={2}
-              label="Description"
-              placeholder="A Funding Agency is any external organization, public or private, which undertakes a contractual agreement with the University to sponsor research or an entrepreneurial activity."
-              // defaultValue=""
-              inputProps={{ readOnly: true }}
-            />
+            <Divider variant="middle" textAlign="left">
+            <Chip label="College Detalis" />
+            </Divider>
           </Grid>
-          <Grid item xs={12} sm={4}>  
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Entity Type"
-              placeholder="Private Limited Company"
+              height="100"
+              label="College Name"
+              placeholder="Bangalore Institute of Technology"
+              // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Organisation Type"
-              placeholder="TISS"
-              // defaultValue="John"
+              height="100"
+              label="College Type"
+              placeholder="Semi-Private"
+              // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Trust Type"
-              placeholder="Living"
-              // defaultValue="John"
+              height="100"
+              label="Location"
+              placeholder="Urban"
+              // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
           </Grid>
-         
-
-          
-
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              type="string"
+              height="100"
+              label="District"
+              placeholder="Bengaluru"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+            <Chip label="Management Style" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Management Type"
+              placeholder="Project Management"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Accreditation Number"
+              placeholder="Regional Accrediation"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Course Offered"
+              placeholder="B.Sc."
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="AISHE/ITI(NCNT) Code or DISE Code"
+              placeholder="C-1340"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Affiliated University State"
+              placeholder="UGC"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Affiliated University Name"
+              placeholder="UGC"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Earlier Affiliation"
+              placeholder="UGC"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="First Admission Year"
+              placeholder="2001"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Admission Completed"
+              placeholder="Yes"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+            <Chip label="College Detalis" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="College Name"
+              placeholder="Bangalore Institute of Technology"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="College Type"
+              placeholder="Semi-Private"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Location"
+              placeholder="Urban"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              height="100"
+              label="District"
+              placeholder="Bengaluru"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+            <Chip label="Correspondence Address" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
               label="Address"
-              placeholder="Bengakuru, Karnataka, India."
-              // defaultValue="Bengakuru, Karnataka, India."
+              placeholder="V.V. Puram, Bengaluru."
+              // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
           </Grid>
-
-          {/* <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel>Role</InputLabel>
-              <Select label="Role" defaultValue="admin">
-                <MenuItem value="admin">Admin</MenuItem>
-                <MenuItem value="author">Author</MenuItem>
-                <MenuItem value="editor">Editor</MenuItem>
-                <MenuItem value="maintainer">Maintainer</MenuItem>
-                <MenuItem value="subscriber">Subscriber</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid> */}
-          {/* <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel>Status</InputLabel>
-              <Select label="Status" defaultValue="active">
-                <MenuItem value="active">Active</MenuItem>
-                <MenuItem value="inactive">Inactive</MenuItem>
-                <MenuItem value="pending">Pending</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid> */}
-          {/* <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Company"
-              placeholder="ABC Pvt. Ltd."
-              defaultValue="ABC Pvt. Ltd."
+              height="100"
+              label="City"
+              placeholder="Bengaluru"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
             />
-          </Grid> */}
-
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="State"
+              placeholder="Karnataka"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="District"
+              placeholder="Bengaluru Urban"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Pincode"
+              placeholder="56004"
+              // defaultValue="7438748373"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
           {openAlert ? (
             <Grid item xs={12} sx={{ mb: 3 }}>
               <Alert

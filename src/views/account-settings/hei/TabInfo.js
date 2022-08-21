@@ -33,293 +33,335 @@ const TabInfo = () => {
   const [date, setDate] = useState(null);
 
   return (
-
-
-
-
-
     //form validation needs to be done
     //pan card upload file tab needs to be added (along with entity logo & identity proof file)
-
-
-
-
-
 
     <CardContent>
       <form>
         <Grid container spacing={7}>
+          \
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="Institute Representative's Details" />
+            </Divider>
+          </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              required
-              label="Name"
-              placeholder="Agency's Name"
+              label="Representative's Name"
+              placeholder=" Name"
               // defaultValue="John"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
-              required
+              fullWidth
+              height="100"
+              type="number"
+              label="Designation"
+              placeholder="Dean of Academics"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={5}>
+            <TextField
               fullWidth
               type="email"
               label="Email"
               placeholder="johnDoe@example.com"
-
+              // defaultValue="johnDoe@example.com"
               // inputProps={{ readOnly: true }}
             />
-            </Grid>
-            <Grid item xs={12} sm={3}>
+          </Grid>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              required
+              height="100"
               type="number"
               label="Phone"
-              placeholder="+91 1231231234"
+              placeholder="1234567890"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              fullWidth
-              // required
-              label="Url"
-              placeholder="www.example.com"
-            />
+          <Grid item xs={12} sm={6}>
+            <FormControl>
+              <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
+              <RadioGroup
+                row
+                defaultValue="male"
+                aria-label="gender"
+                name="account-settings-info-radio"
+              >
+                <FormControlLabel
+                  value="male"
+                  label="Male"
+                  control={<Radio />}
+                />
+                <FormControlLabel
+                  value="female"
+                  label="Female"
+                  control={<Radio />}
+                />
+                  <FormControlLabel
+                  value="Rather not say"
+                  label="Rather not say"
+                  control={<Radio />}
+                />
+                <FormControlLabel
+                  value="other"
+                  label="Other"
+                  control={<Radio />}
+                />
+              </RadioGroup>
+            </FormControl>
           </Grid>
-         
           <Grid item xs={12} sm={12}>
-            <TextField
-              fullWidth
-              multiline
-              rows={2}
-              label="Description"
-              placeholder="A Funding Agency is any external organization, public or private, which undertakes a contractual agreement with the University to sponsor research or an entrepreneurial activity."
-              // defaultValue=""
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          
-          <Grid item xs={12} sm={4}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Entity Type
-              </InputLabel>
-              <Select
-                required
-                // defaultValue={["Private Limited Company"]}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput
-                    label="Entity Type"
-                    id="select-single-language"
-                  />
-                }
-              >
-                <MenuItem value="Private Limited Company">
-                  Private Limited Company
-                </MenuItem>
-                <MenuItem value="Public Company">Public Company</MenuItem>
-                <MenuItem value=" Sole Proprietorship">
-                  {" "}
-                  Sole Proprietorship{" "}
-                </MenuItem>
-                <MenuItem value=" One Person Company">
-                  {" "}
-                  One Person Company{" "}
-                </MenuItem>
-                <MenuItem value=" Partnership"> Partnership </MenuItem>
-                <MenuItem value=" Limited Liability Partnership (LLP)">
-                  {" "}
-                  Limited Liability Partnership (LLP){" "}
-                </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Organisation Type
-              </InputLabel>
-              <Select
-                required
-                // defaultValue={["TISS"]}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput
-                    label="Organisation Type"
-                    id="select-single-language"
-                  />
-                }
-              >
-                <MenuItem value="TISS">TISS</MenuItem>
-                <MenuItem value="TISS">TISS</MenuItem>
-                <MenuItem value="TISS">TISS</MenuItem>
-                <MenuItem value="TISS">TISS</MenuItem>
-               
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Trust Type
-              </InputLabel>
-              <Select
-                required
-                // defaultValue={["TISS"]}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput
-                    label="Trust Type"
-                    id="select-single-language"
-                  />
-                }
-              >
-                <MenuItem value="Living">Living</MenuItem>
-                <MenuItem value="Testamentary">Testamentary</MenuItem>
-                <MenuItem value="Revocable">Revocable</MenuItem>
-                <MenuItem value="Irrevocable">Irrevocable</MenuItem>
-               
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              fullWidth
-              required
-              label="Trust Name"
-              placeholder="Trust's Name"
-              // defaultValue="John"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              required
-              label="Registration Number"
-              placeholder="Registration number"
-              // defaultValue="John"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
-              <Chip label="Address" />
+              <Chip label="College Detalis" />
             </Divider>
           </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="College Name"
+              placeholder="Bangalore Institute of Technology"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="College Type"
+              placeholder="Semi-Private"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Location"
+              placeholder="Urban"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              multiline
-              rows={1}
+              height="100"
+              label="District"
+              placeholder="Bengaluru"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="Management Style" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Management Type"
+              placeholder="Project Management"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Accreditation Number"
+              placeholder="Regional Accrediation"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Course Offered"
+              placeholder="B.Sc."
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="AISHE/ITI(NCNT) Code or DISE Code"
+              placeholder="C-1340"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Affiliated University State"
+              placeholder="UGC"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Affiliated University Name"
+              placeholder="UGC"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Earlier Affiliation"
+              placeholder="UGC"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="First Admission Year"
+              placeholder="2001"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Admission Completed"
+              placeholder="Yes"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="College Detalis" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="College Name"
+              placeholder="Bangalore Institute of Technology"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="College Type"
+              placeholder="Semi-Private"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
+              label="Location"
+              placeholder="Urban"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              height="100"
+              label="District"
+              placeholder="Bengaluru"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={12}>
+            <Divider variant="middle" textAlign="left">
+              <Chip label="Correspondence Address" />
+            </Divider>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
               label="Address"
-              placeholder="B.H. Area"
+              placeholder="V.V. Puram, Bengaluru."
+              // defaultValue="7438748373"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              height="100"
+              label="City"
+              placeholder="Bengaluru"
+              // defaultValue="7438748373"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              height="100"
               label="State"
-              placeholder="New Delhi"
+              placeholder="Karnataka"
+              // defaultValue="7438748373"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Locality"
-              placeholder="Kadma"
+              height="100"
+              label="District"
+              placeholder="Bengaluru Urban"
+              // defaultValue="7438748373"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Town"
-              placeholder="New Delhi"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              fullWidth
+              height="100"
               label="Pincode"
-              placeholder="560004"
+              placeholder="56004"
+              // defaultValue="7438748373"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-         
-         
-                
-          <Grid item xs={12}>
-            <Divider variant="middle" textAlign="left">
-              <Chip label="Finance" />
-            </Divider>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              required
-              fullWidth
-              label="Pan Card"
-              placeholder="AAAAA1234A"
-              inputProps={{ maxLength: 10 }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              label="Name as per Bank"
-              placeholder="Account name as per bank"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              label="IFSC Code"
-              placeholder="AAAAA0XXXXXX"
-              inputProps={{ maxLength: 10 }}
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              label="Bank Name"
-              placeholder="Kotak Mahindra Bank"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              label="Account Number"
-              placeholder="xxxxxxxxxxxxxxxx"
-              inputProps={{ maxLength: 16 }}
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              label="Bank Branch Name"
-              placeholder="Jayanagar, Bengaluru"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          
-
           <Grid item xs={12}>
             <Button variant="contained" sx={{ marginRight: 3.5 }}>
               Save Changes
             </Button>
-          
           </Grid>
         </Grid>
       </form>

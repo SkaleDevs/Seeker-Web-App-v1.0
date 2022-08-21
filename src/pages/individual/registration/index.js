@@ -39,7 +39,7 @@ const TabName = styled("span")(({ theme }) => ({
   },
 }));
 
-const register = () => {
+const Register = () => {
   // ** State
   const [value, setValue] = useState("info");
 
@@ -75,4 +75,4 @@ const register = () => {
   );
 };
 
-export default register;
+export default Register;

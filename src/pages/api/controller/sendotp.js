@@ -1,7 +1,7 @@
 import users from '../model/userSchema';
 import {getSession} from 'next-auth/react';
 const accountSid = process.env.ACCOUNT_SID;
-const authToken = process.env.AUTH_TOKEN;
+const authToken = process.env.AUTH_TOKEN; 
 
 
 export default async function handler(req,res){

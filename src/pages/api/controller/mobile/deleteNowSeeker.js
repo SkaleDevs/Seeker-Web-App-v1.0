@@ -16,6 +16,6 @@ export default async function handler(req,res){
    let details=await ApplySeeker.findOneAndDelete({email:req.body.email, seekerID:req.body.seekerID});
     res.send(details)
     } catch (error) {
-       res.status(401).send(error);
+       res.status(500).send(error);
     }
 }

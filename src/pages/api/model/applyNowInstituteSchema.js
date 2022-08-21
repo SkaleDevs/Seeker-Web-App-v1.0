@@ -34,13 +34,13 @@ const applyNowInstituteSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    regNo:{
+    instituteID:{
         type:ObjectId,
         ref:'Institute'
     },
-    scholarshipID:{
+    agencyID:{
         type:ObjectId,
-        ref:'Scheme'
+        ref:'Agency'
     },
     proposal:{
         type:String,

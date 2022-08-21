@@ -1,118 +1,76 @@
 // ** React Imports
 import { useState } from "react";
-// ** MUI Imports
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-import TabContext from "@mui/lab/TabContext";
-import { styled } from "@mui/material/styles";
-import MuiTab from "@mui/material/Tab";
 
-// ** Icons Imports
-import AccountOutline from "mdi-material-ui/AccountOutline";
-import LockOpenOutline from "mdi-material-ui/LockOpenOutline";
-import InformationOutline from "mdi-material-ui/InformationOutline";
+import Grid from "@mui/material/Grid";
 
-// ** Demo Tabs Imports
-import TabInfo from "src/views/account-settings/individual/TabInfo";
-import TabAccount from "src/views/account-settings/individual/TabAccount";
-import TabSecurity from "src/views/account-settings/individual/TabSecurity";
+// ** Styled Component Import
+import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
+
+// ** Demo Components Imports
+import IndividualStats from "src/views/dashboard/individual/IndividualStats";
+import IndividStatsChart from "src/views/dashboard/individual/IndividualStatGraph";
+import ScheduledInterviews from "src/views/dashboard/individual/ScheduledInterviews";
+import AppsAndSchemes from "src/views/dashboard/individual/AppsAndSchemes";
+
+
+
 import {getSession} from 'next-auth/react';
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
 
-const Tab = styled(MuiTab)(({ theme }) => ({
-  [theme.breakpoints.down("md")]: {
-    minWidth: 100,
-  },
-  [theme.breakpoints.down("sm")]: {
-    minWidth: 67,
-  },
-}));
 
-const TabName = styled("span")(({ theme }) => ({
-  lineHeight: 1.71,
-  fontSize: "0.875rem",
-  marginLeft: theme.spacing(2.4),
-  [theme.breakpoints.down("md")]: {
-    display: "none",
-  },
-}));
 
-const AccountSettings = ({sess}) => {
+
+const Home = ({sess}) => {
 
   const rtr = useRouter();
-  if (sess?.status=="loading") return <div>Loading...</div>;
   useEffect(() => {
     if(sess?.user?.role!=="individual") {
       rtr.push(`/${sess?.user?.role}`);
       
     }
-
+    
   },[sess])
   // ** State
   const [value, setValue] = useState("account");
-
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  if (sess?.status=="loading") return <div>Loading...</div>;
+  
 
   return (
-    <Card>
-      <TabContext value={value}>
-        <TabList
-          onChange={handleChange}
-          aria-label="account-settings tabs"
-          sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-        >
-          <Tab
-            value="account"
-            label={
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <AccountOutline />
-                <TabName>Account</TabName>
-              </Box>
-            }
-          />
-          <Tab
-            value="security"
-            label={
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <LockOpenOutline />
-                <TabName>Security</TabName>
-              </Box>
-            }
-          />
-          <Tab
-            value="info"
-            label={
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <InformationOutline />
-                <TabName>Info</TabName>
-              </Box>
-            }
-          />
-        </TabList>
+    <ApexChartWrapper>
+      <Grid container spacing={6}>
+        <Grid item xs={12}>
+          <IndividualStats />
+        </Grid>
 
-        <TabPanel sx={{ p: 0 }} value="account">
-          <TabAccount />
-        </TabPanel>
-        <TabPanel sx={{ p: 0 }} value="security">
-          <TabSecurity />
-        </TabPanel>
-        <TabPanel sx={{ p: 0 }} value="info">
-          <TabInfo session={sess} />
-        </TabPanel>
-      </TabContext>
-    </Card>
+        {/* Graph */}
+
+        <Grid item xs={12} md={4} mt={10}>
+          <IndividStatsChart />
+        </Grid>
+
+        {/* /Graph */}
+
+        <Grid item xs={12} md={8} mt={10}>
+          <ScheduledInterviews />
+        </Grid>
+        <Grid item xs={12}>
+          <AppsAndSchemes />
+        </Grid>
+        <Grid item xs={12}>
+          {/* <Table /> */}
+        </Grid>
+      </Grid>
+    </ApexChartWrapper>
   );
 };
 
-export default AccountSettings;
-
+export default Home;
 export async function getServerSideProps(context) {
   const sess= await getSession(context);
   return {

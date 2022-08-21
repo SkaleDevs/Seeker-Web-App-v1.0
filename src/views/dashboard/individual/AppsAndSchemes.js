@@ -123,7 +123,7 @@ const AppsAndSchemes = () => {
     >
       <Box sx={{ width: "100%" }}>
         <CardHeader
-          title="Recent Applicatoins"
+          title="Recent Applications"
           sx={{
             pt: 5.5,
             alignItems: "center",

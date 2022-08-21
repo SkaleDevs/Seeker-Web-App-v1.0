@@ -99,7 +99,7 @@ const FundingAgencyStatsChart = () => {
   return (
     <Card>
       <CardHeader
-        title="Scholarship Application Statistics"
+        title="Applicant Statistics"
         titleTypographyProps={{
           sx: {
             lineHeight: "2rem !important",
@@ -123,10 +123,10 @@ const FundingAgencyStatsChart = () => {
               //   { x: "Rejected", y: 5 },
               // ],
               data: [
-                { x: "Applied", y: 20 },
-                { x: "Accepted", y: 10 },
-                { x: "Pending", y: 5 },
-                { x: "Rejected", y: 5 },
+                { x: "Scheme A", y: 20 },
+                { x: "Scheme B", y: 10 },
+                { x: "Scheme C", y: 5 },
+                { x: "Scheme D", y: 5 },
               ],
               name: "Number of Applications",
             },

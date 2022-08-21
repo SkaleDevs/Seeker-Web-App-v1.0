@@ -51,8 +51,10 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
     color: theme.palette.text.secondary,
   },
 }));
+let BUCKET_URL= "https://253762017528.signin.aws.amazon.com/console"
 
 const IndivRegistration = () => {
+  console.log("Bucket", BUCKET_URL);
   const theme = useTheme();
   // ** States-----------------------------------------------------------------------------------------------------------
   const [date, setDate] = useState(null);
@@ -146,7 +148,7 @@ const IndivRegistration = () => {
       },
     });
 
-    setuploadAadharFile(process.env.BUCKET_URL + aadharFile?.name);
+    setuploadAadharFile(BUCKET_URL + aadharFile?.name);
     setAadharFile(null);
   };
   const uploadpan = async () => {
@@ -165,7 +167,7 @@ const IndivRegistration = () => {
       },
     });
 
-    setuploadPanFile(process.env.BUCKET_URL + panFile?.name);
+    setuploadPanFile(BUCKET_URL + panFile?.name);
     setPanFile(null);
   };
   const uploadhighestqual = async () => {
@@ -184,7 +186,7 @@ const IndivRegistration = () => {
       },
     });
 
-    setuploadhighestQualFile(process.env.BUCKET_URL + highestQualFile?.name);
+    setuploadhighestQualFile(BUCKET_URL + highestQualFile?.name);
     sethighestQualFile(null);
   };
   const uploadmark12 = async () => {
@@ -203,7 +205,7 @@ const IndivRegistration = () => {
       },
     });
 
-    setuploadmark12File(process.env.BUCKET_URL + mark12File?.name);
+    setuploadmark12File(BUCKET_URL + mark12File?.name);
     setmark12File(null);
   };
   const uploadmark10 = async () => {
@@ -222,15 +224,17 @@ const IndivRegistration = () => {
       },
     });
 
-    setuploadmark10File(process.env.BUCKET_URL + mark10File?.name);
+    setuploadmark10File(BUCKET_URL + mark10File?.name);
     setmark10File(null);
   };
   const upload = async () => {
+
     uploadaadhar();
     uploadpan();
     uploadhighestqual();
     uploadmark12();
     uploadmark10();
+    console.log(uploadaadharFile, uploadpanFile, uploadhighestQualFile, uploadmark12File, uploadmark10File);
     let { data } = await axios.post("/api/controller/registerSeeker", {
       email: emailRef?.current?.value,
       phNo: phoneRef?.current?.value,
@@ -450,7 +454,6 @@ const IndivRegistration = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
-            required
             label="Middle Name"
             placeholder="Middle Name"
             inputRef={guardianmiddlenameRef}

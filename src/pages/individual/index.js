@@ -10,7 +10,24 @@ import IndividStatsChart from "src/views/dashboard/individual/IndividualStatGrap
 import ScheduledInterviews from "src/views/dashboard/individual/ScheduledInterviews";
 import AppsAndSchemes from "src/views/dashboard/individual/AppsAndSchemes";
 
-const Home = () => {
+import {useEffect} from "react";
+import {useRouter} from "next/router";
+import {getSession} from "next-auth/react";
+const Home = ({sess}) => {
+  const rtr = useRouter();
+ 
+  useEffect(() => {
+    if(sess?.user?.role!=="individual") {
+      rtr.push(`/${sess?.user?.role}`);
+      
+    }
+
+  },[])
+  if (sess?.status=="loading")
+  {
+     return <div>Loading...</div>;
+    }
+  
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>
@@ -41,3 +58,11 @@ const Home = () => {
 };
 
 export default Home;
+export async function getServerSideProps(context) {
+  const sess= await getSession(context);
+  return {
+    props: {
+        sess:sess
+    },
+  };
+}

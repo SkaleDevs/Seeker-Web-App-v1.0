@@ -45,16 +45,18 @@ const TabName = styled("span")(({ theme }) => ({
 const AccountSettings = ({sess}) => {
 
   const rtr = useRouter();
-  if (sess?.status=="loading") return <div>Loading...</div>;
   useEffect(() => {
     if(sess?.user?.role!=="individual") {
       rtr.push(`/${sess?.user?.role}`);
       
     }
 
-  },[sess])
-  // ** State
+  },[])
   const [value, setValue] = useState("account");
+  if (sess?.status=="loading") return <div>Loading...</div>;
+ 
+  // ** State
+  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

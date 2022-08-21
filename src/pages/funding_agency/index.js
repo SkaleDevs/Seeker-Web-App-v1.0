@@ -1,21 +1,24 @@
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
-
+import {getSession} from "next-auth/react";
+import {useRouter} from "next/router";
+import { useEffect } from "react";
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 const Home_agency = ({sess}) => {
 
   const rtr = useRouter();
- 
-  if (sess?.status=="loading") return <div>Loading...</div>;
   useEffect(() => {
     if(sess?.user?.role!=="agency") {
       rtr.push(`/${sess?.user?.role}`);
       
     }
 
-  },[sess])
+  },[])
+  if (sess?.status=="loading") {return <div>Loading...</div>;}
+
+  
   return (
     <ApexChartWrapper>
       <Grid container spacing={6}>

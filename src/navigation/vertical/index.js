@@ -7,6 +7,8 @@ import {
   CalendarClock,
   PlaylistCheck,
 } from "mdi-material-ui";
+import { useEffect } from "react";
+import {getSession} from "next-auth/react"
 
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";

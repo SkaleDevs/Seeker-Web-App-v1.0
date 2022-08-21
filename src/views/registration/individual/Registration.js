@@ -252,7 +252,7 @@ const IndivRegistration = () => {
       highestQualification: highestQualification,
       highestQualificationmarks: highestQualRef?.current?.value,
       highestQualificationFile: uploadhighestQualFile,
-      income: financeIncome,
+      income: income,
       panNo: panNoRef?.current?.value,
       panFile: uploadpanFile,
       state: stateRef?.current?.value,
@@ -682,6 +682,7 @@ const IndivRegistration = () => {
         variant="contained"
         sx={{ marginBottom: 7 }}
         disabled={signUpAllowed ? false : true}
+        onClick={upload}
       >
         Sign up
       </Button>

@@ -34,9 +34,13 @@ const applyNowInstituteSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    regNo:{
+    instituteID:{
         type:ObjectId,
         ref:'Institute'
+    },
+    agencyID:{
+        type:ObjectId,
+        ref:'Agency'
     },
     proposal:{
         type:String,

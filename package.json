@@ -72,6 +72,7 @@
     "cookie": "^0.5.0",
     "dotenv": "^16.0.1",
     "eslint-plugin-react": "^7.29.4",
+    "formik": "^2.2.9",
     "jsonwebtoken": "^8.5.1",
     "mdi-material-ui": "^7.1.0",
     "mongodb": "^4.8.1",

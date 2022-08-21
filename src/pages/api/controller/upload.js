@@ -1,9 +1,9 @@
 import S3 from "aws-sdk/clients/s3";
 
 const s3 = new S3({
-  region: "eu-central-1",
-  accessKeyId: process.env.ACCESS_KEY,
-  secretAccessKey: process.env.SECRET_KEY,
+  region: "us-east-1",
+  accessKeyId: process.env.S3_ACCESS_KEY,
+  secretAccessKey: process.env.S3_SECRET_KEY,
   signatureVersion: "v4",
 });
 

@@ -38,7 +38,6 @@ import DatePicker from "react-datepicker";
 // ** Styled Components Imports
 import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
 
-
 const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
@@ -60,38 +59,17 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 
 const IndivRegistration = () => {
   const theme = useTheme();
-  // ** States
+  // ** States-----------------------------------------------------------------------------------------------------------
   const [date, setDate] = useState(null);
   const [category, setCategory] = useState("general");
   const [gender, setGender] = useState("male");
-  const [language, setLanguage] = useState("english");
   const [highestQualification, setHighestQualification] =
     useState("intermediate");
   const [income, setIncome] = useState("3.5lpa");
 
-  // ** Stepper States
-  const [activeStep, setActiveStep] = React.useState(0);
-  const [completed, setCompleted] = React.useState({});
-
-  // ** Stepper Functions
-  const totalSteps = () => {
-    return steps.length;
-  };
-
-  const completedSteps = () => {
-    return Object.keys(completed).length;
-  };
-
-  const isLastStep = () => {
-    return activeStep === totalSteps() - 1;
-  };
-
-  const allStepsCompleted = () => {
-    return completedSteps() === totalSteps();
-  };
-
+ // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
-
+  // ** ---------------------------------------------------------------------------------------------------------------
   return (
     <>
       <Grid container spacing={3}>
@@ -230,24 +208,6 @@ const IndivRegistration = () => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <FormControl fullWidth>
-            <InputLabel id="form-layouts-separator-multiple-select-label">
-              Language*
-            </InputLabel>
-            <Select
-              id="account-settings-multiple-select"
-              labelId="account-settings-multiple-select-label"
-              label="Language"
-              required
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <MenuItem value="english">English</MenuItem>
-              <MenuItem value="hindi">Hindi</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
             <Chip label="Guardian's Information" />
@@ -341,7 +301,7 @@ const IndivRegistration = () => {
             fullWidth
             required
             type="file"
-            helperText="Upload marks card of your highest qualification"
+            helperText="Upload marks card of your highest qualification*"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -357,7 +317,7 @@ const IndivRegistration = () => {
             fullWidth
             required
             type="file"
-            helperText="Upload your Intermediate (XII) marks card"
+            helperText="Upload your Intermediate (XII) marks card*"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -373,7 +333,7 @@ const IndivRegistration = () => {
             fullWidth
             required
             type="file"
-            helperText="Upload your Matriculation (X) marks card"
+            helperText="Upload your Matriculation (X) marks card*"
           />
         </Grid>
 

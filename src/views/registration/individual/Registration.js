@@ -4,11 +4,10 @@ import { useState, Fragment, forwardRef, useRef } from "react";
 // ** Next Imports
 import Link from "next/link";
 
-// ** Stepper Imports
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepButton from "@mui/material/StepButton";
-import StepContent from "@mui/material/StepContent";
+// ** Date Picker Imports
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 // ** MUI Components
 import Box from "@mui/material/Box";
@@ -31,12 +30,6 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard from "@mui/material/Card";
 import MuiFormControlLabel from "@mui/material/FormControlLabel";
-
-// ** Third Party Imports
-import DatePicker from "react-datepicker";
-
-// ** Styled Components Imports
-import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
 
 const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
@@ -67,7 +60,7 @@ const IndivRegistration = () => {
     useState("intermediate");
   const [income, setIncome] = useState("3.5lpa");
 
- // **--------------------------------------------------------------------------------------------------------------
+  // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
   // ** ---------------------------------------------------------------------------------------------------------------
   return (
@@ -98,18 +91,16 @@ const IndivRegistration = () => {
           />
         </Grid>
         <Grid item xs={12} sm={4}>
-          <DatePickerWrapper>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
-              required
-              selected={date}
-              showYearDropdown
-              showMonthDropdown
-              id="account-settings-date"
-              placeholderText="MM-DD-YYYY"
-              customInput={<CustomInput />}
-              onChange={(date) => setDate(date)}
+              label="Birth Date*"
+              value={date}
+              onChange={(newDate) => {
+                setDate(newDate);
+              }}
+              renderInput={(params) => <TextField {...params} />}
             />
-          </DatePickerWrapper>
+          </LocalizationProvider>
         </Grid>
         <Grid item xs={12}>
           <FormControl required>

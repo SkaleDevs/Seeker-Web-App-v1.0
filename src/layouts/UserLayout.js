@@ -38,8 +38,8 @@ const UserLayout = ({ children }) => {
   // const [role, setRole] = useState();
   let role = null;
   const navigation = () =>{
-    if(session){
-      role = session.user.role;
+    if (session) {
+      role=session.user.role;
     }
 
     if (role === "individual") {

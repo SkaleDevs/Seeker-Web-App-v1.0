@@ -6,10 +6,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 // ** Stepper Imports
-import Stepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepButton from '@mui/material/StepButton';
-import StepContent from '@mui/material/StepContent';
+import Stepper from "@mui/material/Stepper";
+import Step from "@mui/material/Step";
+import StepButton from "@mui/material/StepButton";
+import StepContent from "@mui/material/StepContent";
 
 // ** MUI Components
 import Box from "@mui/material/Box";
@@ -88,9 +88,9 @@ const RegisterPage = () => {
 
   return (
     <Box className="content-center">
-      <Card sx={{ zIndex: 1 }}>
+      <Card sx={{ zIndex: 1, height: { sm: "55rem" } }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} sm={6} sx={{ background: "#AFB4FF"}}>
+          <Grid item xs={12} sm={6} sx={{ background: "#AFB4FF" }}>
             <CardContent sx={{ display: { xs: "none", sm: "block" } }}>
               <Image src={SignUp} alt="sign up svg" />
             </CardContent>
@@ -201,7 +201,7 @@ const RegisterPage = () => {
                   One platform to access all the scholarships
                 </Typography>
               </Box>
-                
+
               {/* Form */}
 
               <form
@@ -209,7 +209,11 @@ const RegisterPage = () => {
                 autoComplete="off"
                 onSubmit={(e) => e.preventDefault()}
               >
-                <IndivRegistration />
+                <Box
+                  sx={{ height: { xs: "auto", sm: "45rem" }, overflow: "scroll" }}
+                >
+                  <IndivRegistration />
+                </Box>
               </form>
             </CardContent>
           </Grid>

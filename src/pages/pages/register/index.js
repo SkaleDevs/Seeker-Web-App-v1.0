@@ -7,39 +7,17 @@ import Image from "next/image";
 
 // ** MUI Components
 import Box from "@mui/material/Box";
-import Radio from "@mui/material/Radio";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import FormLabel from "@mui/material/FormLabel";
-import RadioGroup from "@mui/material/RadioGroup";
-import Chip from "@mui/material/Chip";
-
-import Button from "@mui/material/Button";
-import Divider from "@mui/material/Divider";
-import Checkbox from "@mui/material/Checkbox";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import InputLabel from "@mui/material/InputLabel";
-import IconButton from "@mui/material/IconButton";
 import CardContent from "@mui/material/CardContent";
-import FormControl from "@mui/material/FormControl";
-import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard from "@mui/material/Card";
-import InputAdornment from "@mui/material/InputAdornment";
-import MuiFormControlLabel from "@mui/material/FormControlLabel";
-
-// ** Third Party Imports
-import DatePicker from "react-datepicker";
 
 // ** SVG Imports
 import SignUp from "public/signUp.svg";
 
-// ** Styled Components Imports
-import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
-
-// ** Icons Imports
 // ** Configs
 import themeConfig from "src/configs/themeConfig";
 
@@ -55,30 +33,20 @@ const Card = styled(MuiCard)(({ theme }) => ({
   [theme.breakpoints.up("sm")]: { width: "75rem" },
 }));
 
-const CustomInput = forwardRef((props, ref) => {
-  return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
-});
-
 const LinkStyled = styled("a")(({ theme }) => ({
   fontSize: "0.875rem",
   textDecoration: "none",
   color: theme.palette.primary.main,
 }));
 
-const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
-  marginTop: theme.spacing(1.5),
-  marginBottom: theme.spacing(4),
-  "& .MuiFormControlLabel-label": {
-    fontSize: "0.875rem",
-    color: theme.palette.text.secondary,
-  },
-}));
-
 const RegisterPage = () => {
   // ** States
-  // ** Refs
-  // ** Hooks
+  const [role, setRole] = useState("individual");
   const theme = useTheme();
+
+  const handleChange = (event, newrole) => {
+    setRole(newrole);
+  };
 
   return (
     <Box className="content-center">
@@ -191,8 +159,8 @@ const RegisterPage = () => {
                 >
                   Sign Up
                 </Typography>
-                <Typography variant="body2">
-                  One platform to access all the scholarships
+                <Typography variant="body1">
+                  One platform to access all the scholarships.
                 </Typography>
               </Box>
 
@@ -203,12 +171,74 @@ const RegisterPage = () => {
                 autoComplete="off"
                 onSubmit={(e) => e.preventDefault()}
               >
-                <Box
-                  sx={{ height: { xs: "auto", sm: "45rem" }, overflow: "scroll" }}
+                <ToggleButtonGroup
+                  color="primary"
+                  value={role}
+                  exclusive
+                  onChange={handleChange}
+                  sx={{ height: "50px", marginBottom: "1.5rem" }}
+                  aria-label="Platform"
                 >
-                  <IndivRegistration />
+                  <ToggleButton
+                    value="individual"
+                    sx={{ width: { sm: "8rem" } }}
+                  >
+                    Individual
+                  </ToggleButton>
+                  <ToggleButton value="hei" sx={{ width: { sm: "8rem" } }}>
+                    HEI
+                  </ToggleButton>
+                  <ToggleButton
+                    value="fundingAgency"
+                    sx={{ width: { sm: "8rem" } }}
+                  >
+                    Funding Agency
+                  </ToggleButton>
+                  <ToggleButton
+                    value="moderator"
+                    sx={{ width: { sm: "8rem" } }}
+                  >
+                    Moderator
+                  </ToggleButton>
+                </ToggleButtonGroup>
+                <Box
+                  sx={{
+                    height: { xs: "auto", sm: "35rem" },
+                    overflow: "scroll",
+                  }}
+                >
+                  {role === "individual" && <IndivRegistration />}
+                  {role === "hei" && (
+                    // <IndivRegistration />
+                    <span>HEI</span>
+                  )}
+                  {role === "fundingAgency" && (
+                    // <FundingAgencyRegistration />
+                    <span>Funding Agency</span>
+                  )}
+                  {role === "moderator" && (
+                    // <ModeratorRegistration />
+                    <span>Moderator</span>
+                  )}
                 </Box>
               </form>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  flexWrap: "wrap",
+                  justifyContent: "center",
+                }}
+              >
+                <Typography variant="body1" sx={{ marginRight: 2 }}>
+                  Already have an account?
+                </Typography>
+                <Typography variant="body1">
+                  <Link passHref href="/pages/login">
+                    <LinkStyled>Sign in instead</LinkStyled>
+                  </Link>
+                </Typography>
+              </Box>
             </CardContent>
           </Grid>
         </Grid>

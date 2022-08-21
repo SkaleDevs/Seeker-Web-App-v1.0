@@ -1,6 +1,8 @@
 // ** React Imports
-import { useState, Fragment, forwardRef, useRef } from "react";
+import { useState, Fragment, forwardRef, useRef, useEffect } from "react";
 
+// ** Axios Imports
+import axios from "axios";
 // ** Next Imports
 import Link from "next/link";
 
@@ -59,10 +61,195 @@ const IndivRegistration = () => {
   const [highestQualification, setHighestQualification] =
     useState("intermediate");
   const [income, setIncome] = useState("3.5lpa");
+  const [aadharFile, setAadharFile] = useState(null);
+  const [panFile, setPanFile] = useState(null);
+  const [language, setLanguage] = useState("english");
+  const [highestQualFile, sethighestQualFile] = useState(null);
+  const [mark12File, setmark12File] = useState(null);
+  const [mark10File, setmark10File] = useState(null);
+  const [uploadaadharFile, setuploadAadharFile] = useState(null);
+  const [uploadpanFile, setuploadPanFile] = useState(null);
+  const [uploadhighestQualFile, setuploadhighestQualFile] = useState(null);
+  const [uploadmark12File, setuploadmark12File] = useState(null);
+  const [uploadmark10File, setuploadmark10File] = useState(null);
+  const [ifsc, setifsc] = useState(null);
 
   // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
+  const firstnameRef = useRef();
+  const middlenameRef = useRef();
+  const lastnameRef = useRef();
+  const emailRef = useRef();
+  const phoneRef = useRef();
+  const aadharNoRef = useRef();
+  const panNoRef = useRef();
+  const guardianfirstnameRef = useRef();
+  const guardianmiddlenameRef = useRef();
+  const guardianlastnameRef = useRef();
+  const stateRef = useRef();
+  const addressRef = useRef();
+  const localityRef = useRef();
+  const cityRef = useRef();
+  const pincodeRef = useRef();
+  const highestQualRef = useRef();
+  const mark12Ref = useRef();
+  const mark10Ref = useRef();
+  const bankNameRef = useRef();
+  const accNoRef = useRef();
+  const bankBranchRef = useRef();
   // ** ---------------------------------------------------------------------------------------------------------------
+
+  // ** API Calls-------------------------------------------------------------------------------------------------------
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(`https://ifsc.razorpay.com/${ifsc}`);
+      console.log(res.data);
+      bankNameRef.current.value = res.data.BANK;
+      bankBranchRef.current.value = res.data.BRANCH;
+    };
+    fetchData();
+  }, [ifsc]);
+  // ** ---------------------------------------------------------------------------------------------------------------
+
+  // ** Submission handling--------------------------------------------------------------------------------------------
+  const uploadaadhar = async () => {
+    let { data } = await axios.post("/api/controller/upload", {
+      name: aadharFile?.name,
+      type: aadharFile?.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, aadharFile, {
+      headers: {
+        "Content-type": aadharFile?.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setuploadAadharFile(process.env.BUCKET_URL + aadharFile?.name);
+    setAadharFile(null);
+  };
+  const uploadpan = async () => {
+    let { data } = await axios.post("/api/controller/upload", {
+      name: panFile?.name,
+      type: panFile?.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, panFile, {
+      headers: {
+        "Content-type": panFile?.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setuploadPanFile(process.env.BUCKET_URL + panFile?.name);
+    setPanFile(null);
+  };
+  const uploadhighestqual = async () => {
+    let { data } = await axios.post("/api/controller/upload", {
+      name: highestQualFile?.name,
+      type: highestQualFile?.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, highestQualFile, {
+      headers: {
+        "Content-type": highestQualFile?.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setuploadhighestQualFile(process.env.BUCKET_URL + highestQualFile?.name);
+    sethighestQualFile(null);
+  };
+  const uploadmark12 = async () => {
+    let { data } = await axios.post("/api/controller/upload", {
+      name: mark12File?.name,
+      type: mark12File?.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, mark12File, {
+      headers: {
+        "Content-type": mark12File?.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setuploadmark12File(process.env.BUCKET_URL + mark12File?.name);
+    setmark12File(null);
+  };
+  const uploadmark10 = async () => {
+    let { data } = await axios.post("/api/controller/upload", {
+      name: mark10File?.name,
+      type: mark10File?.type,
+    });
+
+    console.log(data);
+
+    const url = data.url;
+    let { data: newData } = await axios.put(url, mark10File, {
+      headers: {
+        "Content-type": mark10File?.type,
+        "Access-Control-Allow-Origin": "*",
+      },
+    });
+
+    setuploadmark10File(process.env.BUCKET_URL + mark10File?.name);
+    setmark10File(null);
+  };
+  const upload = async () => {
+    uploadaadhar();
+    uploadpan();
+    uploadhighestqual();
+    uploadmark12();
+    uploadmark10();
+    let { data } = await axios.post("/api/controller/registerSeeker", {
+      email: emailRef?.current?.value,
+      phNo: phoneRef?.current?.value,
+      firstName: firstnameRef?.current?.value,
+      middleName: middlenameRef?.current?.value,
+      lastName: lastnameRef?.current?.value,
+      aadharNo: aadharNoRef?.current?.value,
+      aadharFile: uploadaadharFile,
+      guardianFirstName: guardianfirstnameRef?.current?.value,
+      guardianMiddleName: guardianmiddlenameRef?.current?.value,
+      guardianLastName: guardianlastnameRef?.current?.value,
+      dateOfBirth: date,
+      category: category,
+      sex: gender,
+      marks12: mark12Ref?.current?.value,
+      marks12File: uploadmark12File,
+      marks10: mark10Ref?.current?.value,
+      marks10File: uploadmark10File,
+      highestQualification: highestQualification,
+      highestQualificationmarks: highestQualRef?.current?.value,
+      highestQualificationFile: uploadhighestQualFile,
+      income: financeIncome,
+      panNo: panNoRef?.current?.value,
+      panFile: uploadpanFile,
+      state: stateRef?.current?.value,
+      address: addressRef?.current?.value,
+      locality: localityRef?.current?.value,
+      pincode: pincodeRef?.current?.value,
+      ifscCode: ifsc,
+      banker: bankNameRef?.current?.value,
+      bankBranch: bankBranchRef?.current?.value,
+      accountNo: accNoRef?.current?.value,
+    });
+
+    window.alert(data.message);
+  };
+
   return (
     <>
       <Grid container spacing={3}>
@@ -77,10 +264,16 @@ const IndivRegistration = () => {
             required
             label="First Name"
             placeholder="First Name"
+            inputRef={firstnameRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField fullWidth label="Middle Name" placeholder="Middle Name" />
+          <TextField
+            fullWidth
+            label="Middle Name"
+            placeholder="Middle Name"
+            inputRef={middlenameRef}
+          />
         </Grid>
         <Grid item xs={12} sm={8}>
           <TextField
@@ -88,6 +281,7 @@ const IndivRegistration = () => {
             required
             label="Last Name"
             placeholder="Last Name"
+            inputRef={lastnameRef}
           />
         </Grid>
         <Grid item xs={12} sm={4}>
@@ -134,6 +328,7 @@ const IndivRegistration = () => {
             type="number"
             label="Phone"
             placeholder="+91 1231231234"
+            inputRef={phoneRef}
           />
         </Grid>
         <Grid item xs={12}>
@@ -143,8 +338,7 @@ const IndivRegistration = () => {
             type="email"
             label="Email"
             placeholder="johnDoe@example.com"
-
-            // inputProps={{ readOnly: true }}
+            inputRef={emailRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -155,6 +349,7 @@ const IndivRegistration = () => {
             label="Aadhaar Number"
             placeholder="xxxx-xxxx-xxxx"
             inputProps={{ maxLength: 12 }}
+            inputRef={aadharNoRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -163,6 +358,7 @@ const IndivRegistration = () => {
             type="file"
             fullWidth
             helperText="Upload your Aadhaar Card*"
+            onChange={(e) => setAadharFile(e.target.files[0])}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -172,6 +368,7 @@ const IndivRegistration = () => {
             label="Pan Card"
             placeholder="AAAAA1234A"
             inputProps={{ maxLength: 10 }}
+            inputRef={panNoRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -180,6 +377,7 @@ const IndivRegistration = () => {
             type="file"
             fullWidth
             helperText="Upload your Pan Card*"
+            onChange={(e) => setPanFile(e.target.files[0])}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -199,6 +397,24 @@ const IndivRegistration = () => {
             </Select>
           </FormControl>
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <FormControl fullWidth>
+            <InputLabel id="form-layouts-separator-multiple-select-label">
+              Language*
+            </InputLabel>
+            <Select
+              id="account-settings-multiple-select"
+              labelId="account-settings-multiple-select-label"
+              label="Language"
+              required
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+            >
+              <MenuItem value="english">English</MenuItem>
+              <MenuItem value="hindi">Hindi</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
             <Chip label="Guardian's Information" />
@@ -210,6 +426,7 @@ const IndivRegistration = () => {
             required
             label="First Name"
             placeholder="First Name"
+            inputRef={guardianfirstnameRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -218,6 +435,7 @@ const IndivRegistration = () => {
             required
             label="Middle Name"
             placeholder="Middle Name"
+            inputRef={guardianmiddlenameRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -226,6 +444,7 @@ const IndivRegistration = () => {
             required
             label="Last Name"
             placeholder="Last Name"
+            inputRef={guardianlastnameRef}
           />
         </Grid>
         <Grid item xs={12}>
@@ -234,7 +453,13 @@ const IndivRegistration = () => {
           </Divider>
         </Grid>
         <Grid item xs={12} sm={4}>
-          <TextField fullWidth required label="State" placeholder="New Delhi" />
+          <TextField
+            fullWidth
+            required
+            label="State"
+            placeholder="New Delhi"
+            inputRef={stateRef}
+          />
         </Grid>
         <Grid item xs={12} sm={8}>
           <TextField
@@ -243,16 +468,32 @@ const IndivRegistration = () => {
             required
             label="Address"
             placeholder="B.H. Area"
+            inputRef={addressRef}
           />
         </Grid>
         <Grid item xs={12} sm={3}>
-          <TextField fullWidth label="Locality" placeholder="Kadma" />
+          <TextField
+            fullWidth
+            label="Locality"
+            placeholder="Kadma"
+            inputRef={localityRef}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField fullWidth label="City" placeholder="New Delhi" />
+          <TextField
+            fullWidth
+            label="City"
+            placeholder="New Delhi"
+            inputRef={cityRef}
+          />
         </Grid>
         <Grid item xs={12} sm={3}>
-          <TextField fullWidth label="Pincode" placeholder="560004" />
+          <TextField
+            fullWidth
+            label="Pincode"
+            placeholder="560004"
+            inputRef={pincodeRef}
+          />
         </Grid>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
@@ -285,6 +526,7 @@ const IndivRegistration = () => {
             required
             label="Highest Qualification Marks"
             placeholder="99.9% or 9.9 CGPA"
+            inputRef={highestQualRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -293,6 +535,7 @@ const IndivRegistration = () => {
             required
             type="file"
             helperText="Upload marks card of your highest qualification*"
+            onChange={(e) => sethighestQualFile(e.target.files[0])}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -301,6 +544,7 @@ const IndivRegistration = () => {
             required
             label="Intermediate (XII) Marks"
             placeholder="99.9% or 9.9 CGPA"
+            inputRef={mark12Ref}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -309,6 +553,7 @@ const IndivRegistration = () => {
             required
             type="file"
             helperText="Upload your Intermediate (XII) marks card*"
+            onChange={(e) => setmark12File(e.target.files[0])}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -317,6 +562,7 @@ const IndivRegistration = () => {
             required
             label="Matriculation (X) Marks"
             placeholder="99.9% or 9.9 CGPA"
+            inputRef={mark10Ref}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -325,6 +571,7 @@ const IndivRegistration = () => {
             required
             type="file"
             helperText="Upload your Matriculation (X) marks card*"
+            onChange={(e) => setmark10File(e.target.files[0])}
           />
         </Grid>
 
@@ -359,13 +606,15 @@ const IndivRegistration = () => {
             fullWidth
             label="IFSC Code"
             placeholder="Jayanagar, Bengaluru"
+            onChange={(e) => setifsc(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
-            label="Bank Name"
+            helperText="Bank Name"
             placeholder="Kotak Mahindra Bank"
+            inputRef={bankNameRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -374,13 +623,15 @@ const IndivRegistration = () => {
             label="Account Number"
             placeholder="xxxxxxxxxxxxxxxx"
             inputProps={{ maxLength: 16 }}
+            inputRef={accNoRef}
           />
         </Grid>
         <Grid item xs={12} sm={12}>
           <TextField
             fullWidth
-            label="Bank Branch Name"
+            helperText="Branch Name"
             placeholder="Jayanagar, Bengaluru"
+            inputRef={bankBranchRef}
             // inputProps={{ readOnly: true }}
           />
         </Grid>

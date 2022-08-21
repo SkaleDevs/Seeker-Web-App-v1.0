@@ -27,6 +27,7 @@ import BlankLayout from "src/@core/layouts/BlankLayout";
 // ** Demo Imports
 import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
 import IndivRegistration from "src/views/registration/individual/Registration";
+import HeiRegistration from "src/views/registration/hei/Registration";
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -210,7 +211,7 @@ const RegisterPage = () => {
                   {role === "individual" && <IndivRegistration />}
                   {role === "hei" && (
                     // <IndivRegistration />
-                    <span>HEI</span>
+                    <HeiRegistration />
                   )}
                   {role === "fundingAgency" && (
                     // <FundingAgencyRegistration />

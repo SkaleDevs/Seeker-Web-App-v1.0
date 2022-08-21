@@ -73,6 +73,8 @@ const IndivRegistration = () => {
   const [uploadmark12File, setuploadmark12File] = useState(null);
   const [uploadmark10File, setuploadmark10File] = useState(null);
   const [ifsc, setifsc] = useState(null);
+  const [pincode, setPincode] = useState(null);
+  const [signUpAllowed, setSignUpAllowed] = useState(false);
 
   // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
@@ -90,7 +92,7 @@ const IndivRegistration = () => {
   const addressRef = useRef();
   const localityRef = useRef();
   const cityRef = useRef();
-  const pincodeRef = useRef();
+  // const pincodeRef = useRef();
   const highestQualRef = useRef();
   const mark12Ref = useRef();
   const mark10Ref = useRef();
@@ -109,6 +111,22 @@ const IndivRegistration = () => {
     };
     fetchData();
   }, [ifsc]);
+
+  useEffect(() => {
+    if (pincode?.length === 6) {
+      const fetchData = async () => {
+        const res = await axios.get(
+          `https://api.postalpincode.in/pincode/${pincode}`
+        );
+        console.log(res.data[0].PostOffice[0].Name);
+        stateRef.current.value = res.data[0].PostOffice[0].State;
+        cityRef.current.value = res.data[0].PostOffice[0].District;
+        localityRef.current.value = res.data[0].PostOffice[0].Name;
+      };
+      fetchData();
+    }
+  }, [pincode]);
+
   // ** ---------------------------------------------------------------------------------------------------------------
 
   // ** Submission handling--------------------------------------------------------------------------------------------
@@ -240,7 +258,7 @@ const IndivRegistration = () => {
       state: stateRef?.current?.value,
       address: addressRef?.current?.value,
       locality: localityRef?.current?.value,
-      pincode: pincodeRef?.current?.value,
+      pincode: pincode,
       ifscCode: ifsc,
       banker: bankNameRef?.current?.value,
       bankBranch: bankBranchRef?.current?.value,
@@ -452,13 +470,14 @@ const IndivRegistration = () => {
             <Chip label="Address" />
           </Divider>
         </Grid>
+
         <Grid item xs={12} sm={4}>
           <TextField
             fullWidth
             required
-            label="State"
-            placeholder="New Delhi"
-            inputRef={stateRef}
+            label="Pincode"
+            placeholder="560004"
+            onChange={(e) => setPincode(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={8}>
@@ -471,18 +490,19 @@ const IndivRegistration = () => {
             inputRef={addressRef}
           />
         </Grid>
-        <Grid item xs={12} sm={3}>
+        <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
-            label="Locality"
+            helperText="Locality"
             placeholder="Kadma"
             inputRef={localityRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={3}>
           <TextField
             fullWidth
-            label="City"
+            required
+            helperText="City"
             placeholder="New Delhi"
             inputRef={cityRef}
           />
@@ -490,9 +510,10 @@ const IndivRegistration = () => {
         <Grid item xs={12} sm={3}>
           <TextField
             fullWidth
-            label="Pincode"
-            placeholder="560004"
-            inputRef={pincodeRef}
+            required
+            helperText="State"
+            placeholder="New Delhi"
+            inputRef={stateRef}
           />
         </Grid>
         <Grid item xs={12}>
@@ -577,7 +598,7 @@ const IndivRegistration = () => {
 
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="Finance ( Optional )" />
+            <Chip label="Finance" />
           </Divider>
         </Grid>
 
@@ -589,6 +610,7 @@ const IndivRegistration = () => {
             <Select
               id="account-settings-single-select"
               labelId="account-settings-single-select-label"
+              required
               value={income}
               onChange={(e) => setIncome(e.target.value)}
               input={
@@ -604,6 +626,7 @@ const IndivRegistration = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
+            required
             label="IFSC Code"
             placeholder="Jayanagar, Bengaluru"
             onChange={(e) => setifsc(e.target.value)}
@@ -612,6 +635,7 @@ const IndivRegistration = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
+            required
             helperText="Bank Name"
             placeholder="Kotak Mahindra Bank"
             inputRef={bankNameRef}
@@ -620,6 +644,7 @@ const IndivRegistration = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
+            required
             label="Account Number"
             placeholder="xxxxxxxxxxxxxxxx"
             inputProps={{ maxLength: 16 }}
@@ -629,6 +654,7 @@ const IndivRegistration = () => {
         <Grid item xs={12} sm={12}>
           <TextField
             fullWidth
+            required
             helperText="Branch Name"
             placeholder="Jayanagar, Bengaluru"
             inputRef={bankBranchRef}
@@ -637,7 +663,7 @@ const IndivRegistration = () => {
         </Grid>
       </Grid>
       <FormControlLabel
-        control={<Checkbox />}
+        control={<Checkbox onClick={() => setSignUpAllowed(true)} />}
         label={
           <Fragment>
             <span>I agree to </span>
@@ -655,6 +681,7 @@ const IndivRegistration = () => {
         type="submit"
         variant="contained"
         sx={{ marginBottom: 7 }}
+        disabled={signUpAllowed ? false : true}
       >
         Sign up
       </Button>

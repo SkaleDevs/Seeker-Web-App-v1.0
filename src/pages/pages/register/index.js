@@ -214,7 +214,7 @@ const RegisterPage = () => {
                 <Grid container spacing={3}>
                   <Grid item xs={12}>
                     <Divider variant="middle" textAlign="left">
-                      <Chip label="Guardian's Information" />
+                      <Chip label="Personal Information" />
                     </Divider>
                   </Grid>
                   <Grid item xs={12} sm={6}>

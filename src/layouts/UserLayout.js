@@ -37,7 +37,6 @@ const UserLayout = ({ children }) => {
   const {data: session} = useSession();
   // const [role, setRole] = useState();
   let role = null;
-
   const navigation = () =>{
     if (session) {
       role=session.user.role;
@@ -188,7 +187,7 @@ const UserLayout = ({ children }) => {
         {
           title: "Account Settings",
           icon: AccountCogOutline,
-          path: "/moderato/accountSettings", // to be updated
+          path: "/moderator/accountSettings", // to be updated
         },
         {
           sectionTitle: "Registration Applications",

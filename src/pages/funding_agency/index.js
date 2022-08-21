@@ -1,4 +1,3 @@
-
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
 
@@ -6,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import {getSession} from "next-auth/react";
 import {useRouter} from "next/router";
 import { useEffect } from "react";
+
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
@@ -65,3 +65,4 @@ export async function getServerSideProps(context) {
     },
   };
 }
+

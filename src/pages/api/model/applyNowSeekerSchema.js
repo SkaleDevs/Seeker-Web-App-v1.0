@@ -11,6 +11,10 @@ const applyNowSeekerSchema = new mongoose.Schema({
         type:ObjectId,
         ref:'Seeker'
        },
+       scholarshipID:{
+        type:ObjectId,
+        ref:'Scholarship'
+       },
        email:{
         type:String,
         required:true
@@ -133,6 +137,28 @@ const applyNowSeekerSchema = new mongoose.Schema({
        proposal:{
         type:String,
         required:true
+       },
+       status:{
+        type:String,
+        required:false
+        //applied, rejected, accepted, amended
+       },
+        meetingDate:{
+          type:String,
+          required:false
+        },
+        meetingStartTime:{
+          type:String,
+          required:false
+        },
+        meetingEndTime:{
+          type:String,
+          required:false
+        },
+       schedledMeeting:{
+        type:String,
+        required:false
+        //meetlink
        },
        othersFile:{
         type:Array,

@@ -2,6 +2,10 @@ import mongoose from 'mongoose';
 
 // when agency wants to register a new scholarship
 const agencySchemeSchema = new mongoose.Schema({
+   agencyEmail:{
+         type:String,
+         required:true
+   },
  name:{
     type:String,
     required:true
@@ -9,6 +13,10 @@ const agencySchemeSchema = new mongoose.Schema({
  schemeType:{
     type:String,
     required:true
+ },
+ schemeOrganisationType:{
+      type:String,
+      required:true
  },
  agencyDescription:{
    type:String,
@@ -20,11 +28,11 @@ const agencySchemeSchema = new mongoose.Schema({
    required:true
  },
 deadline:{
-   type:Date,
+   type:String,
    required:true
 },
 maxAmount:{
-   type:Number,
+   type:String,
    required:true
 },
 documentsRequired:{

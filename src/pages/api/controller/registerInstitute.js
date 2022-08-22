@@ -4,13 +4,14 @@ import users from '../model/userSchema';
 
 connectDB();
 export default async function handler(req,res){
+    try{
     let check1=  await users.findOne({email:req.body.email});
     if(check1){
-        return res.send("A user with this email id already exists");
+        return res.send({message:"A user with this email id already exists"});
     }
     let check2=await users.findOne({special:req.body.aishecode});
     if(check2){
-        return res.send("A account with this aishe code already exists")
+        return res.send({message:"A account with this aishe code already exists"})
         }
   
     const details=new Institute({
@@ -44,5 +45,15 @@ export default async function handler(req,res){
           
     })
     details.save()
-    res.send(details)
+    const use=new users({
+        email:req.body.email,
+        role:req.body.role,
+        special:req.body.aishecode,
+    })
+    use.save()
+    res.send({ message: "Successfully registered" })
+}
+catch(err){
+    res.send({message:err})
+}
 }

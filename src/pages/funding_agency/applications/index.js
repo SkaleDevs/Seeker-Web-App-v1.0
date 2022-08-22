@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-
+import axios from 'axios'
 // ** MUI Imports
 import {
   Card,
@@ -40,6 +40,64 @@ const AllApplications = () => {
   //     View
   //   </Button>
   // );
+
+//all variables
+let allScholarships;
+let allSeekerApplications;
+let allInstituteApplications;
+
+//access all my scholarships
+const scholarship=async()=>{
+  allScholarships=await axios.get(`/api/agency/getScholarship`);
+}
+
+//access applications within that scholarships
+// const seekerapplications=async({id})=>{
+//   allSeekerApplications=await axios.post(`/api/agency/getSeekerApplication`,{scholarshipID:id});
+// }
+// const insituteapplications=async({id})=>{
+//  allInstituteApplications= await axios.post(`/api/agency/getInstituteApplication`,{scholarshipID:id});
+// }
+
+
+
+//update status
+  const accept=async({type,id})=>{
+    await axios.post(`/api/agency/updateStatus`,{type:type,status:"accept",id:id}).then(data=>{
+      if(data){
+        window.alert("Accepted")
+      }
+    }).catch(err=>{
+      window.alert("Error")
+    })
+  }
+  const reject=async({type,id})=>{
+    await axios.post(`/api/agency/updateStatus`,{type:type,status:"reject",id:id}).then(data=>{
+      if(data){
+        window.alert("Rejected")
+      }
+    }).catch(err=>{
+      window.alert("Error")
+    })
+  }
+  const amend=async({type,id})=>{
+   await axios.post(`/api/agency/updateStatus`,{type:type,status:"amend",id:id}).then(data=>{
+      if(data){
+        window.alert("Amended")
+      }
+    }).catch(err=>{
+      window.alert("Error")
+    })
+  }
+
+  //useEffect
+  useEffect(()=>{
+    // scholarship();
+    // seekerapplications();
+    // insituteapplications();
+  },[])
+
+
   const viewButton = (p) => (
     <Button
       variant="contained"
@@ -58,7 +116,8 @@ const AllApplications = () => {
       color="success"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
+      //href={`/schemes/${p.data.id}`}
+      onClick={accept}
     >
       Accept
     </Button>
@@ -70,7 +129,8 @@ const AllApplications = () => {
       color="error"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
+      //href={`/schemes/${p.data.id}`}
+      onClick={reject}
     >
       Reject
     </Button>
@@ -82,7 +142,8 @@ const AllApplications = () => {
       color="warning"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
+     // href={`/schemes/${p.data.id}`}
+      onClick={amend}
     >
       Amend
     </Button>
@@ -104,7 +165,7 @@ const AllApplications = () => {
       applicantName: "Rahul Gandhi",
       viewApplication: "Button",
       viewDocs: "Button",
-      accept: "Button",
+      accept: acceptButton("text"),
       reject: "Button",
       amend: "Button",
       scheduleMeeting: "Button",
@@ -200,13 +261,14 @@ const AllApplications = () => {
                   variant="scrollable"
                   allowScrollButtonsMobile
                 >
-                  <Tab label="Active" value="0" />
-                  <Tab label="Past" value="1" />
+                  <Tab label="Student" value="0" />
+                  <Tab label="Institute" value="1" />
                   {/* <Tab label="State Schemes" value="2" /> */}
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-                <Dropdown authority="PG Indira Gandhi Scholarship for Single Girl Child">
+             { allScholarships?.map(item=>{
+               allScholarships.schemeType==="individual" && (<Dropdown authority={item.name}> {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -226,10 +288,12 @@ const AllApplications = () => {
                       paginationPageSize={10} // Pagination Page Size
                     />
                   </div>
-                </Dropdown>
+                </Dropdown>)})}
               </TabPanel>
               <TabPanel value="1">
-                <Dropdown authority="University Grants Commission - MHRD">
+              { allScholarships?.map(item=>{
+               allScholarships.schemeType==="hei" && (
+                <Dropdown authority={item.name}>
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -249,7 +313,7 @@ const AllApplications = () => {
                       paginationPageSize={10} // Pagination Page Size
                     />
                   </div>
-                </Dropdown>
+                </Dropdown>)})}
               </TabPanel>
             </TabContext>
           </CardContent>

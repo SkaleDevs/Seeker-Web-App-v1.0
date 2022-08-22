@@ -5,6 +5,7 @@ import users from '../model/userSchema';
 connectDB();
 export default async function handler(req,res){
     
+    try{
     let check1=  await users.findOne({email:req.body.email});
     if(check1){
         return res.send("A user with this email id already exists");
@@ -42,5 +43,15 @@ export default async function handler(req,res){
     banned:"No"
     })
     details.save()
-    res.send(details)
+    const use=new users({
+        email:req.body.email,
+        role:req.body.role,
+        special:req.body.panNo,
+    })
+    use.save()
+    res.send({ message: "Successfully registered" })
+}
+catch(err){
+    res.send({message:err})
+}
 }

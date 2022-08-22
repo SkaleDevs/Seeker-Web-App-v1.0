@@ -167,6 +167,7 @@ const AllApplications = () => {
 
   const defaultColDef = useMemo(
     () => ({
+      resizable: true,
       sortable: true,
       filter: true,
     }),

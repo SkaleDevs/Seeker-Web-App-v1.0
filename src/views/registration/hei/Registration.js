@@ -281,7 +281,7 @@ const HeiRegistration = () => {
             <Chip label="College Representative Information" />
           </Divider>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -306,20 +306,9 @@ const HeiRegistration = () => {
             placeholder="Last Name"
             inputRef={lastnameRef}
           />
-        </Grid>
-        {/* <Grid item xs={12} sm={4}>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="Birth Date*"
-              value={date}
-              onChange={(newDate) => {
-                setDate(newDate);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
         </Grid> */}
-        <Grid item xs={12}>
+       
+        {/* <Grid item xs={12}>
           <FormControl required>
             <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
             <RadioGroup
@@ -372,7 +361,7 @@ const HeiRegistration = () => {
             placeholder="johnDoe@example.com"
             inputRef={emailRef}
           />
-        </Grid>
+        </Grid> */}
         
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
@@ -425,7 +414,7 @@ const HeiRegistration = () => {
             inputRef={stateRef}
           />
         </Grid>
-        <Grid item xs={12}>
+        {/* <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
             <Chip label="College Details" />
           </Divider>
@@ -467,7 +456,7 @@ const HeiRegistration = () => {
             placeholder="Management Type"
             inputRef={managementTypeRef}
           />
-        </Grid>
+        </Grid> */}
         {/* <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
@@ -477,7 +466,7 @@ const HeiRegistration = () => {
             onChange={(e) => sethighestQualFile(e.target.files[0])}
           />
         </Grid> */}
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -500,7 +489,7 @@ const HeiRegistration = () => {
               />
             )}
           />
-        </Grid>
+        </Grid> */}
         
         <Grid item xs={12} sm={6}>
           <TextField

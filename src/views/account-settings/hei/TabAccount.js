@@ -106,8 +106,8 @@ const TabAccount = () => {
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Representative's Name"
-              placeholder=" Name"
+              helperText="Representative's Name"
+              //placeholder=" Name"
               // defaultValue="John"
               inputProps={{ readOnly: true }}
             />
@@ -117,8 +117,8 @@ const TabAccount = () => {
               fullWidth
               height="100"
               type="number"
-              label="Designation"
-              placeholder="Dean of Academics"
+              helperText="Designation"
+              //placeholder="Dean of Academics"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -128,8 +128,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               type="email"
-              label="Email"
-              placeholder="johnDoe@example.com"
+              helperText="Email"
+             // placeholder="johnDoe@example.com"
               // defaultValue="johnDoe@example.com"
               inputProps={{ readOnly: true }}
             />
@@ -139,8 +139,8 @@ const TabAccount = () => {
               fullWidth
               height="100"
               type="number"
-              label="Phone"
-              placeholder="1234567890"
+              helperText="Phone"
+              //placeholder="1234567890"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -150,8 +150,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Gender"
-              placeholder="MALE"
+              helperText="Gender"
+              //placeholder="MALE"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -165,8 +165,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="College Name"
-              placeholder="Bangalore Institute of Technology"
+              helperText="College Name"
+              //placeholder="Bangalore Institute of Technology"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -175,8 +175,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="College Type"
-              placeholder="Semi-Private"
+              helperText="College Type"
+              //placeholder="Semi-Private"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -185,8 +185,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Location"
-              placeholder="Urban"
+              helperText="Location"
+              //placeholder="Urban"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -195,8 +195,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="District"
-              placeholder="Bengaluru"
+              helperText="District"
+              //placeholder="Bengaluru"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -210,8 +210,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Management Type"
-              placeholder="Project Management"
+              helperText="Management Type"
+              //placeholder="Project Management"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -220,8 +220,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Accreditation Number"
-              placeholder="Regional Accrediation"
+              helperText="Accreditation Number"
+              //placeholder="Regional Accrediation"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -230,8 +230,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Course Offered"
-              placeholder="B.Sc."
+              helperText="Course Offered"
+              //placeholder="B.Sc."
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -240,8 +240,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="AISHE/ITI(NCNT) Code or DISE Code"
-              placeholder="C-1340"
+              helperText="AISHE/ITI(NCNT) Code or DISE Code"
+              //placeholder="C-1340"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -250,8 +250,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Affiliated University State"
-              placeholder="UGC"
+              helperText="Affiliated University State"
+              ////placeholder="UGC"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -260,8 +260,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Affiliated University Name"
-              placeholder="UGC"
+              helperText="Affiliated University Name"
+              //placeholder="UGC"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -270,8 +270,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Earlier Affiliation"
-              placeholder="UGC"
+              helperText="Earlier Affiliation"
+              //placeholder="UGC"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -280,8 +280,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="First Admission Year"
-              placeholder="2001"
+              helperText="First Admission Year"
+             // placeholder="2001"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -290,8 +290,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Admission Completed"
-              placeholder="Yes"
+              helperText="Admission Completed"
+             // placeholder="Yes"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -305,8 +305,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="College Name"
-              placeholder="Bangalore Institute of Technology"
+              helperText="College Name"
+             // placeholder="Bangalore Institute of Technology"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -315,8 +315,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="College Type"
-              placeholder="Semi-Private"
+              helperText="College Type"
+             // placeholder="Semi-Private"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -325,8 +325,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Location"
-              placeholder="Urban"
+              helperText="Location"
+             // placeholder="Urban"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -335,8 +335,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="District"
-              placeholder="Bengaluru"
+              helperText="District"
+             // placeholder="Bengaluru"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -350,8 +350,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Address"
-              placeholder="V.V. Puram, Bengaluru."
+              helperText="Address"
+             // placeholder="V.V. Puram, Bengaluru."
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -360,8 +360,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="City"
-              placeholder="Bengaluru"
+              helperText="City"
+             // placeholder="Bengaluru"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -370,8 +370,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="State"
-              placeholder="Karnataka"
+              helperText="State"
+             // placeholder="Karnataka"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -380,8 +380,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="District"
-              placeholder="Bengaluru Urban"
+              helperText="District"
+             // placeholder="Bengaluru Urban"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -390,8 +390,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               height="100"
-              label="Pincode"
-              placeholder="56004"
+              helperText="Pincode"
+             // placeholder="56004"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />

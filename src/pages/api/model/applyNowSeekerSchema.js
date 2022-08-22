@@ -144,15 +144,15 @@ const applyNowSeekerSchema = new mongoose.Schema({
         //applied, rejected, accepted, amended
        },
         meetingDate:{
-          type:string,
+          type:String,
           required:false
         },
         meetingStartTime:{
-          type:string,
+          type:String,
           required:false
         },
         meetingEndTime:{
-          type:string,
+          type:String,
           required:false
         },
        schedledMeeting:{

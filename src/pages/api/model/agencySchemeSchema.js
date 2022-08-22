@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 // when agency wants to register a new scholarship
 const agencySchemeSchema = new mongoose.Schema({
-   agencyName:{
+   agencyEmail:{
          type:String,
          required:true
    },

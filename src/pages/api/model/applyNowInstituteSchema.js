@@ -46,6 +46,16 @@ const applyNowInstituteSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    status:{
+        type:String,
+        required:false
+        //applied, rejected, accepted, amended
+    },
+    schedledMeeting:{
+        type:String,
+        required:false
+        //meetlink
+    },
     proposalFile:{
         type:String,
         required:true

@@ -6,6 +6,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { createEvents } from "graph";
 import { useIsAuthenticated } from "@azure/msal-react";
 
+// ** Date Picker Imports
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+
 import {
   Box,
   Button,
@@ -22,7 +27,6 @@ import RadioGroup from "@mui/material/RadioGroup";
 import CloseIcon from "@mui/icons-material/Close";
 
 import Multiselect from "multiselect-react-dropdown";
-import DatePicker from "react-datepicker";
 
 import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
 
@@ -108,7 +112,9 @@ export default function CreateMeeting({
           account: accounts[0],
         })
         .then((response) => {
+          console.log(response);
           createEvents(response.accessToken, event).then((response) => {
+            console.log(response);
             console.log(startTimeDate, endTimeDate, email, name);
 
             setOpen(false);
@@ -279,17 +285,16 @@ export default function CreateMeeting({
             </Grid>
 
             <Grid item xs={12} sm={6} sx={{ margin: "5px 0" }}>
-              <DatePickerWrapper>
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DatePicker
-                  selected={date}
-                  showYearDropdown
-                  showMonthDropdown
-                  id="account-settings-date"
-                  placeholderText="MM-DD-YYYY"
-                  customInput={<CustomInput />}
-                  onChange={dateChangeHandler}
+                  label="Birth Date*"
+                  value={date}
+                  onChange={(newDate) => {
+                    setDate(newDate);
+                  }}
+                  renderInput={(params) => <TextField {...params} />}
                 />
-              </DatePickerWrapper>
+              </LocalizationProvider>
             </Grid>
             <Grid item xs={12} sm={6} sx={{ margin: "5px 0px" }}>
               <TextField

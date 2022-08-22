@@ -7,6 +7,8 @@ import {
   CalendarClock,
   PlaylistCheck,
 } from "mdi-material-ui";
+import { useEffect } from "react";
+import { getSession } from "next-auth/react";
 
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
@@ -173,11 +175,11 @@ const Navigation = () => {
       {
         sectionTitle: "Moderation",
       },
-      {
-        title: "Add Moderator",
-        icon: PersonAddOutlined,
-        path: "/moderator/addModerator", // to be updated
-      },
+      // {
+      //   title: "Add Moderator",
+      //   icon: PersonAddOutlined,
+      //   path: "/moderator/addModerator", // to be updated
+      // },
       {
         title: "All Users",
         icon: PeopleOutline,

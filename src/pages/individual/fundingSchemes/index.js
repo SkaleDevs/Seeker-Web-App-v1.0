@@ -36,7 +36,7 @@ const FundingSchemes = () => {
       startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       href={`/schemes/${p.data.id}`}
     >
-      View
+      Apply
     </Button>
   );
 
@@ -151,7 +151,12 @@ const FundingSchemes = () => {
       headerName: "Applicant Verification",
       width: 250,
     },
-    { field: "viewApplication", headerName: "View Application", width: 170, cellRenderer: viewButton },
+    {
+      field: "viewApplication",
+      headerName: "View Application",
+      width: 170,
+      cellRenderer: viewButton,
+    },
   ]);
 
   // ** For Tabs
@@ -234,7 +239,7 @@ const FundingSchemes = () => {
                 </Dropdown>
               </TabPanel>
               <TabPanel value="1">
-              <Dropdown authority="University Grants Commission - MHRD">
+                <Dropdown authority="University Grants Commission - MHRD">
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -257,7 +262,7 @@ const FundingSchemes = () => {
                 </Dropdown>
               </TabPanel>
               <TabPanel value="2">
-              <Dropdown authority="Karnataka">
+                <Dropdown authority="Karnataka">
                   <div
                     className="ag-theme-alpine"
                     style={{

@@ -56,7 +56,7 @@ const NewModerator = () => {
           },
         }}
       />
-      <Grid item xs={12} sm={12} sx={{ margin: "10px" }}>
+      <Grid item xs={12} sm={12} sx={{ margin: "20px" }}>
         <TextField
           fullWidth
           label="Email"
@@ -64,7 +64,7 @@ const NewModerator = () => {
           // inputProps={{ readOnly: true }}
         />
       </Grid>
-      <Grid item xs={12} sx={{ margin: "10px" }}>
+      <Grid item xs={12} sx={{ margin: "20px", marginTop: "105px" }}>
         <Button variant="contained" sx={{ marginRight: 3.5 }}>
           Create Account
         </Button>

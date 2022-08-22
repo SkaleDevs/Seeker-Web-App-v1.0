@@ -155,10 +155,8 @@ const TabInfo = () => {
                 }
               >
                 <MenuItem value="TISS">TISS</MenuItem>
-                <MenuItem value="TISS">TISS</MenuItem>
-                <MenuItem value="TISS">TISS</MenuItem>
-                <MenuItem value="TISS">TISS</MenuItem>
-               
+                <MenuItem value="Own Trust Name">Own Trust Name</MenuItem>
+                
               </Select>
             </FormControl>
           </Grid>

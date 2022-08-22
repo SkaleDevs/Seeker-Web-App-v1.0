@@ -160,16 +160,16 @@ const UserDropdown = () => {
           </Box>
         </MenuItem>
         <Divider />
-        {/* <MenuItem
-          sx={{ py: 2 }}
-          onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
-        > */}
         <MenuItem
+          sx={{ py: 2 }}
+          onClick={() => signOut({ callbackUrl: "http://localhost:3000/"|| "https://seeker-web-app-v1-0.vercel.app/" })}
+        >
+        {/* <MenuItem
           sx={{ py: 2 }}
           onClick={() =>
             signOut({ callbackUrl: "https://seeker-web-app-v1-0.vercel.app/" })
           }
-        >
+        > */}
           <LogoutVariant
             sx={{
               marginRight: 2,

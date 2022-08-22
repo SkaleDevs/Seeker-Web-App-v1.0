@@ -13,6 +13,7 @@ export default async function handler(req, res) {
     var {token} =  cookie.parse(req?.headers.cookie || "");
     // console.log(parsed.token);
     var decoded = jwt.verify(token, 'secret');
+    console.log(decoded)
         if(decoded.role!=="seeker"){
             return res.status(401).json({error: 'Unauthorized'});
         }

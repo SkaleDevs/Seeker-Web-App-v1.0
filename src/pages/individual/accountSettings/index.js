@@ -18,7 +18,9 @@ import InformationOutline from "mdi-material-ui/InformationOutline";
 import TabInfo from "src/views/account-settings/individual/TabInfo";
 import TabAccount from "src/views/account-settings/individual/TabAccount";
 import TabSecurity from "src/views/account-settings/individual/TabSecurity";
-
+import {getSession} from 'next-auth/react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -40,9 +42,21 @@ const TabName = styled("span")(({ theme }) => ({
   },
 }));
 
-const AccountSettings = () => {
-  // ** State
+const AccountSettings = ({sess}) => {
+
+  const rtr = useRouter();
+  useEffect(() => {
+    if(sess?.user?.role!=="individual") {
+      rtr.push(`/${sess?.user?.role}`);
+      
+    }
+
+  },[])
   const [value, setValue] = useState("account");
+  if (sess?.status=="loading") return <div>Loading...</div>;
+ 
+  // ** State
+  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -92,7 +106,7 @@ const AccountSettings = () => {
           <TabSecurity />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="info">
-          <TabInfo />
+          <TabInfo session={sess} />
         </TabPanel>
       </TabContext>
     </Card>
@@ -100,3 +114,12 @@ const AccountSettings = () => {
 };
 
 export default AccountSettings;
+
+export async function getServerSideProps(context) {
+  const sess= await getSession(context);
+  return {
+    props: {
+        sess:sess
+    },
+  };
+}

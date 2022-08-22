@@ -270,6 +270,9 @@ const IndivRegistration = () => {
     });
 
     window.alert(data.message);
+    if(data.message === "Successfully registered"){
+      window.location.href = "/login";
+    }
   };
 
   return (

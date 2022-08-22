@@ -14,6 +14,10 @@ const agencySchemeSchema = new mongoose.Schema({
     type:String,
     required:true
  },
+ schemeOrganisationType:{
+      type:String,
+      required:true
+ },
  agencyDescription:{
    type:String,
    required:true

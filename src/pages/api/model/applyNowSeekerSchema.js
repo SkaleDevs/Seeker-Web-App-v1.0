@@ -138,6 +138,28 @@ const applyNowSeekerSchema = new mongoose.Schema({
         type:String,
         required:true
        },
+       status:{
+        type:String,
+        required:false
+        //applied, rejected, accepted, amended
+       },
+        meetingDate:{
+          type:string,
+          required:false
+        },
+        meetingStartTime:{
+          type:string,
+          required:false
+        },
+        meetingEndTime:{
+          type:string,
+          required:false
+        },
+       schedledMeeting:{
+        type:String,
+        required:false
+        //meetlink
+       },
        othersFile:{
         type:Array,
         required:false

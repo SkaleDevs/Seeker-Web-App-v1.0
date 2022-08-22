@@ -32,6 +32,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard from "@mui/material/Card";
 import MuiFormControlLabel from "@mui/material/FormControlLabel";
+import { Autocomplete } from "@mui/material";
 
 const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
@@ -277,7 +278,7 @@ const HeiRegistration = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="Personal Information" />
+            <Chip label="College Representative Information" />
           </Divider>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -306,7 +307,7 @@ const HeiRegistration = () => {
             inputRef={lastnameRef}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
+        {/* <Grid item xs={12} sm={4}>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label="Birth Date*"
@@ -317,7 +318,7 @@ const HeiRegistration = () => {
               renderInput={(params) => <TextField {...params} />}
             />
           </LocalizationProvider>
-        </Grid>
+        </Grid> */}
         <Grid item xs={12}>
           <FormControl required>
             <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
@@ -343,7 +344,7 @@ const HeiRegistration = () => {
             </RadioGroup>
           </FormControl>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -351,6 +352,15 @@ const HeiRegistration = () => {
             label="Phone"
             placeholder="+91 1231231234"
             inputRef={phoneRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="Designation"
+            placeholder="Designation"
+            inputRef={designationRef}
           />
         </Grid>
         <Grid item xs={12}>
@@ -363,111 +373,7 @@ const HeiRegistration = () => {
             inputRef={emailRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            type="alphanumeric"
-            fullWidth
-            label="Aadhaar Number"
-            placeholder="xxxx-xxxx-xxxx"
-            inputProps={{ maxLength: 12 }}
-            inputRef={aadharNoRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            type="file"
-            fullWidth
-            helperText="Upload your Aadhaar Card*"
-            onChange={(e) => setAadharFile(e.target.files[0])}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            fullWidth
-            label="Pan Card"
-            placeholder="AAAAA1234A"
-            inputProps={{ maxLength: 10 }}
-            inputRef={panNoRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            type="file"
-            fullWidth
-            helperText="Upload your Pan Card*"
-            onChange={(e) => setPanFile(e.target.files[0])}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">Category*</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={category}
-              label="Category"
-              required
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <MenuItem value="general">General</MenuItem>
-              <MenuItem value="sc/st">SC/ST</MenuItem>
-              <MenuItem value="obc">OBC</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <FormControl fullWidth>
-            <InputLabel id="form-layouts-separator-multiple-select-label">
-              Language*
-            </InputLabel>
-            <Select
-              id="account-settings-multiple-select"
-              labelId="account-settings-multiple-select-label"
-              label="Language"
-              required
-              value={language}
-              onChange={(e) => setLanguage(e.target.value)}
-            >
-              <MenuItem value="english">English</MenuItem>
-              <MenuItem value="hindi">Hindi</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item xs={12}>
-          <Divider variant="middle" textAlign="left">
-            <Chip label="Guardian's Information" />
-          </Divider>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            label="First Name"
-            placeholder="First Name"
-            inputRef={guardianfirstnameRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            label="Middle Name"
-            placeholder="Middle Name"
-            inputRef={guardianmiddlenameRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            label="Last Name"
-            placeholder="Last Name"
-            inputRef={guardianlastnameRef}
-          />
-        </Grid>
+        
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
             <Chip label="Address" />
@@ -521,26 +427,35 @@ const HeiRegistration = () => {
         </Grid>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="Academics" />
+            <Chip label="College Details" />
           </Divider>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="College Name"
+            placeholder="College Name"
+            inputRef={collegeNameRef}
+          />
         </Grid>
         <Grid item xs={12} sm={12}>
           <FormControl fullWidth>
             <InputLabel id="form-layouts-separator-single-select-label">
-              Highest Qualification*
+              College Type*
             </InputLabel>
             <Select
               required
               id="account-settings-single-select"
               labelId="account-settings-single-select-label"
-              label="Highest Qualification"
-              value={highestQualification}
-              onChange={(e) => setHighestQualification(e.target.value)}
+              label="College Type"
+              value={collegeType}
+              onChange={(e) => setCollegeType(e.target.value)}
             >
-              <MenuItem value="matriculation">Matriculation</MenuItem>
-              <MenuItem value="intermediate">Intermediate</MenuItem>
-              <MenuItem value="undergraduate">Undergraduate</MenuItem>
-              <MenuItem value="postgraduate">Postgraduate</MenuItem>
+              <MenuItem value="central">Central</MenuItem>
+              <MenuItem value="state">State</MenuItem>
+              <MenuItem value="deemed">Deemed</MenuItem>
+              <MenuItem value="private">Private</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -548,12 +463,12 @@ const HeiRegistration = () => {
           <TextField
             fullWidth
             required
-            label="Highest Qualification Marks"
-            placeholder="99.9% or 9.9 CGPA"
-            inputRef={highestQualRef}
+            label="Management Type"
+            placeholder="Management Type"
+            inputRef={managementTypeRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        {/* <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -561,25 +476,32 @@ const HeiRegistration = () => {
             helperText="Upload marks card of your highest qualification*"
             onChange={(e) => sethighestQualFile(e.target.files[0])}
           />
-        </Grid>
+        </Grid> */}
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Intermediate (XII) Marks"
-            placeholder="99.9% or 9.9 CGPA"
-            inputRef={mark12Ref}
+            label="Accreditation Number"
+            placeholder="Accreditation Number"
+            inputRef={accreditationNumberRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            type="file"
-            helperText="Upload your Intermediate (XII) marks card*"
-            onChange={(e) => setmark12File(e.target.files[0])}
+          <Autocomplete
+            options={courses}
+            getOptionLabel={(option) => option.name}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Select Course"
+                placeholder="Select Course"
+                variant="outlined"
+                inputRef={courseRef}
+              />
+            )}
           />
         </Grid>
+        
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth

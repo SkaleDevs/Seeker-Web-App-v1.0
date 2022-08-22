@@ -177,29 +177,23 @@ const RegisterPage = () => {
                   value={role}
                   exclusive
                   onChange={handleChange}
-                  sx={{ height: "50px", marginBottom: "1.5rem" }}
+                  sx={{ height: "40px", marginBottom: "1.5rem" }}
                   aria-label="Platform"
                 >
                   <ToggleButton
                     value="individual"
-                    sx={{ width: { sm: "8rem" } }}
+                    sx={{ width: { sm: "10.5rem" } }}
                   >
                     Individual
                   </ToggleButton>
-                  <ToggleButton value="hei" sx={{ width: { sm: "8rem" } }}>
+                  <ToggleButton value="hei" sx={{ width: { sm: "10.5rem" } }}>
                     HEI
                   </ToggleButton>
                   <ToggleButton
                     value="fundingAgency"
-                    sx={{ width: { sm: "8rem" } }}
+                    sx={{ width: { sm: "10.5rem" } }}
                   >
                     Funding Agency
-                  </ToggleButton>
-                  <ToggleButton
-                    value="moderator"
-                    sx={{ width: { sm: "8rem" } }}
-                  >
-                    Moderator
                   </ToggleButton>
                 </ToggleButtonGroup>
                 <Box

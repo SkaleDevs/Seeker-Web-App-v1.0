@@ -112,7 +112,9 @@ export default function CreateMeeting({
           account: accounts[0],
         })
         .then((response) => {
+          console.log(response);
           createEvents(response.accessToken, event).then((response) => {
+            console.log(response);
             console.log(startTimeDate, endTimeDate, email, name);
 
             setOpen(false);

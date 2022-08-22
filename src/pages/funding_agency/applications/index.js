@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-
+import axios from 'axios'
 // ** MUI Imports
 import {
   Card,
@@ -52,12 +52,12 @@ const scholarship=async()=>{
 }
 
 //access applications within that scholarships
-const seekerapplications=async({id})=>{
-  allSeekerApplications=await axios.post(`/api/agency/getSeekerApplication`,{scholarshipID:id});
-}
-const insituteapplications=async({id})=>{
- allInstituteApplications= await axios.post(`/api/agency/getInstituteApplication`,{scholarshipID:id});
-}
+// const seekerapplications=async({id})=>{
+//   allSeekerApplications=await axios.post(`/api/agency/getSeekerApplication`,{scholarshipID:id});
+// }
+// const insituteapplications=async({id})=>{
+//  allInstituteApplications= await axios.post(`/api/agency/getInstituteApplication`,{scholarshipID:id});
+// }
 
 
 
@@ -92,9 +92,9 @@ const insituteapplications=async({id})=>{
 
   //useEffect
   useEffect(()=>{
-    scholarship();
-    seekerapplications();
-    insituteapplications();
+    // scholarship();
+    // seekerapplications();
+    // insituteapplications();
   },[])
 
 
@@ -266,7 +266,7 @@ const insituteapplications=async({id})=>{
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-             { allScholarships.map(item=>{
+             { allScholarships?.map(item=>{
                allScholarships.schemeType==="individual" && (<Dropdown authority={item.name}> {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
@@ -290,7 +290,7 @@ const insituteapplications=async({id})=>{
                 </Dropdown>)})}
               </TabPanel>
               <TabPanel value="1">
-              { allScholarships.map(item=>{
+              { allScholarships?.map(item=>{
                allScholarships.schemeType==="hei" && (
                 <Dropdown authority={item.name}>
                   <div

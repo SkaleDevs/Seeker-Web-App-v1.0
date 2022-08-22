@@ -8,10 +8,10 @@ export default async function handler(req,res){
     try{
         let data;
         const session = await getSession({req})
-        if (!session || session.user.role!=="institute" || session.user.role!=="agency") {
+        if (!session || session.user.role!=="hei" || session.user.role!=="funding_agency") {
         return res.status(401).json({error: 'Unauthorized'})
         }
-    if(session.user.role==="institute"){
+    if(session.user.role==="hei"){
         data=await ApplyInstitute.find({instituteID:session.user.id,email:session.user.email})
     }
     else{

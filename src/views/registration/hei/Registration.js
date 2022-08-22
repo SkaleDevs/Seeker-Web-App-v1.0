@@ -55,8 +55,9 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 let BUCKET_URL= "https://253762017528.signin.aws.amazon.com/console"
 
 const HeiRegistration = () => {
-  console.log("Bucket", BUCKET_URL);
+  const courses = [{courseName:"BE in Computer Science"}, {courseName:"BE in Information Science"}, {courseName:"BE in Electrical and Electronics"}, {courseName:"BCA"}, {courseName:"MCA"}, {courseName:"BSc"}];
   const theme = useTheme();
+
   // ** States-----------------------------------------------------------------------------------------------------------
   const [date, setDate] = useState(null);
   const [category, setCategory] = useState("general");
@@ -67,14 +68,15 @@ const HeiRegistration = () => {
   const [aadharFile, setAadharFile] = useState(null);
   const [panFile, setPanFile] = useState(null);
   const [language, setLanguage] = useState("english");
+  const [ collegeType, setCollegeType ] = useState("state");
   const [highestQualFile, sethighestQualFile] = useState(null);
   const [mark12File, setmark12File] = useState(null);
-  const [mark10File, setmark10File] = useState(null);
+  const [aisheCert, setAisheCert] = useState(null);
   const [uploadaadharFile, setuploadAadharFile] = useState(null);
   const [uploadpanFile, setuploadPanFile] = useState(null);
   const [uploadhighestQualFile, setuploadhighestQualFile] = useState(null);
   const [uploadmark12File, setuploadmark12File] = useState(null);
-  const [uploadmark10File, setuploadmark10File] = useState(null);
+  const [uploadAisheCert, setUploadAisheCert] = useState(null);
   const [ifsc, setifsc] = useState(null);
   const [pincode, setPincode] = useState(null);
   const [signUpAllowed, setSignUpAllowed] = useState(false);
@@ -86,19 +88,24 @@ const HeiRegistration = () => {
   const lastnameRef = useRef();
   const emailRef = useRef();
   const phoneRef = useRef();
-  const aadharNoRef = useRef();
-  const panNoRef = useRef();
-  const guardianfirstnameRef = useRef();
-  const guardianmiddlenameRef = useRef();
-  const guardianlastnameRef = useRef();
   const stateRef = useRef();
   const addressRef = useRef();
   const localityRef = useRef();
   const cityRef = useRef();
-  // const pincodeRef = useRef();
+  const designationRef = useRef();
+  const collegeNameRef = useRef();
+  const managementTypeRef = useRef();
+  const accrediationNumberRef = useRef();
+  const courseRef = useRef();
+  const aisheRef = useRef();
+  const affiliatedUniversityNameRef = useRef();
+  const affiliatedUniversityStateRef = useRef();
+  const earlierAffiliationRef = useRef()
+  const firstAdmissionYearRef = useRef();
+  
+
   const highestQualRef = useRef();
   const mark12Ref = useRef();
-  const mark10Ref = useRef();
   const bankNameRef = useRef();
   const accNoRef = useRef();
   const bankBranchRef = useRef();
@@ -209,24 +216,24 @@ const HeiRegistration = () => {
     setuploadmark12File(BUCKET_URL + mark12File?.name);
     setmark12File(null);
   };
-  const uploadmark10 = async () => {
+  const uploadAisheCertHandler = async () => {
     let { data } = await axios.post("/api/controller/upload", {
-      name: mark10File?.name,
-      type: mark10File?.type,
+      name: aisheCert?.name,
+      type: aisheCert?.type,
     });
 
     console.log(data);
 
     const url = data.url;
-    let { data: newData } = await axios.put(url, mark10File, {
+    let { data: newData } = await axios.put(url, aisheCert, {
       headers: {
-        "Content-type": mark10File?.type,
+        "Content-type": aisheCert?.type,
         "Access-Control-Allow-Origin": "*",
       },
     });
 
-    setuploadmark10File(BUCKET_URL + mark10File?.name);
-    setmark10File(null);
+    setUploadAisheCert(BUCKET_URL + aisheCert?.name);
+    setAisheCert(null);
   };
   const upload = async () => {
 
@@ -234,8 +241,8 @@ const HeiRegistration = () => {
     uploadpan();
     uploadhighestqual();
     uploadmark12();
-    uploadmark10();
-    console.log(uploadaadharFile, uploadpanFile, uploadhighestQualFile, uploadmark12File, uploadmark10File);
+    uploadAisheCertHandler();
+    console.log(uploadaadharFile, uploadpanFile, uploadhighestQualFile, uploadmark12File, uploadAisheCert);
     let { data } = await axios.post("/api/controller/registerSeeker", {
       email: emailRef?.current?.value,
       phNo: phoneRef?.current?.value,
@@ -252,8 +259,8 @@ const HeiRegistration = () => {
       sex: gender,
       marks12: mark12Ref?.current?.value,
       marks12File: uploadmark12File,
-      marks10: mark10Ref?.current?.value,
-      marks10File: uploadmark10File,
+      marks10: aisheRef?.current?.value,
+      marks10File: uploadAisheCert,
       highestQualification: highestQualification,
       highestQualificationmarks: highestQualRef?.current?.value,
       highestQualificationFile: uploadhighestQualFile,
@@ -281,7 +288,7 @@ const HeiRegistration = () => {
             <Chip label="College Representative Information" />
           </Divider>
         </Grid>
-        {/* <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
@@ -306,9 +313,9 @@ const HeiRegistration = () => {
             placeholder="Last Name"
             inputRef={lastnameRef}
           />
-        </Grid> */}
+        </Grid>
        
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <FormControl required>
             <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
             <RadioGroup
@@ -361,11 +368,11 @@ const HeiRegistration = () => {
             placeholder="johnDoe@example.com"
             inputRef={emailRef}
           />
-        </Grid> */}
+        </Grid>
         
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="Address" />
+            <Chip label="College Address" />
           </Divider>
         </Grid>
 
@@ -414,12 +421,12 @@ const HeiRegistration = () => {
             inputRef={stateRef}
           />
         </Grid>
-        {/* <Grid item xs={12}>
+        <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
             <Chip label="College Details" />
           </Divider>
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={8}>
           <TextField
             fullWidth
             required
@@ -428,7 +435,7 @@ const HeiRegistration = () => {
             inputRef={collegeNameRef}
           />
         </Grid>
-        <Grid item xs={12} sm={12}>
+        <Grid item xs={12} sm={4}>
           <FormControl fullWidth>
             <InputLabel id="form-layouts-separator-single-select-label">
               College Type*
@@ -456,48 +463,39 @@ const HeiRegistration = () => {
             placeholder="Management Type"
             inputRef={managementTypeRef}
           />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            type="file"
-            helperText="Upload marks card of your highest qualification*"
-            onChange={(e) => sethighestQualFile(e.target.files[0])}
-          />
-        </Grid> */}
-        {/* <Grid item xs={12} sm={6}>
+        </Grid>
+        <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
             label="Accreditation Number"
             placeholder="Accreditation Number"
-            inputRef={accreditationNumberRef}
+            inputRef={accrediationNumberRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <Autocomplete
             options={courses}
-            getOptionLabel={(option) => option.name}
+            getOptionLabel={(option) => option.courseName}
             renderInput={(params) => (
               <TextField
                 {...params}
-                label="Select Course"
+                label="Courses Offered"
                 placeholder="Select Course"
                 variant="outlined"
                 inputRef={courseRef}
               />
             )}
           />
-        </Grid> */}
+        </Grid>
         
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Matriculation (X) Marks"
-            placeholder="99.9% or 9.9 CGPA"
-            inputRef={mark10Ref}
+            label="AISHE Code"
+            placeholder="Enter the AISHE Code for your college"
+            inputRef={aisheRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -505,8 +503,8 @@ const HeiRegistration = () => {
             fullWidth
             required
             type="file"
-            helperText="Upload your Matriculation (X) marks card*"
-            onChange={(e) => setmark10File(e.target.files[0])}
+            helperText="Upload the AISHE Code Certificate*"
+            onChange={(e) => setAisheCert(e.target.files[0])}
           />
         </Grid>
 

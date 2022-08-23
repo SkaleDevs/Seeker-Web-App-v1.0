@@ -52,10 +52,17 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
     color: theme.palette.text.secondary,
   },
 }));
-let BUCKET_URL= "https://253762017528.signin.aws.amazon.com/console"
+let BUCKET_URL = "https://253762017528.signin.aws.amazon.com/console";
 
 const HeiRegistration = () => {
-  const courses = [{courseName:"BE in Computer Science"}, {courseName:"BE in Information Science"}, {courseName:"BE in Electrical and Electronics"}, {courseName:"BCA"}, {courseName:"MCA"}, {courseName:"BSc"}];
+  const courses = [
+    { courseName: "BE in Computer Science" },
+    { courseName: "BE in Information Science" },
+    { courseName: "BE in Electrical and Electronics" },
+    { courseName: "BCA" },
+    { courseName: "MCA" },
+    { courseName: "BSc" },
+  ];
   const theme = useTheme();
 
   // ** States-----------------------------------------------------------------------------------------------------------
@@ -68,7 +75,7 @@ const HeiRegistration = () => {
   const [aadharFile, setAadharFile] = useState(null);
   const [panFile, setPanFile] = useState(null);
   const [language, setLanguage] = useState("english");
-  const [ collegeType, setCollegeType ] = useState("state");
+  const [collegeType, setCollegeType] = useState("state");
   const [highestQualFile, sethighestQualFile] = useState(null);
   const [mark12File, setmark12File] = useState(null);
   const [aisheCert, setAisheCert] = useState(null);
@@ -80,6 +87,8 @@ const HeiRegistration = () => {
   const [ifsc, setifsc] = useState(null);
   const [pincode, setPincode] = useState(null);
   const [signUpAllowed, setSignUpAllowed] = useState(false);
+  const [proof, setProof] = useState(null);
+  const [pincodeCorrespondence, setPincodeCorrespondence] = useState(null);
 
   // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
@@ -100,9 +109,14 @@ const HeiRegistration = () => {
   const aisheRef = useRef();
   const affiliatedUniversityNameRef = useRef();
   const affiliatedUniversityStateRef = useRef();
-  const earlierAffiliationRef = useRef()
+  const earlierAffiliationRef = useRef();
   const firstAdmissionYearRef = useRef();
-  
+  const admissionCompletedRef = useRef();
+  const addressCorrespondenceRef = useRef();
+  const cityCorrespondenceRef = useRef();
+  const stateCorrespondenceRef = useRef();
+  const districtCorrespondenceRef = useRef();
+  // const pincodeCorrespondenceRef = useRef();
 
   const highestQualRef = useRef();
   const mark12Ref = useRef();
@@ -136,6 +150,22 @@ const HeiRegistration = () => {
       fetchData();
     }
   }, [pincode]);
+
+  useEffect(() => {
+    if (pincodeCorrespondence?.length === 6) {
+      const fetchData = async () => {
+        const res = await axios.get(
+          `https://api.postalpincode.in/pincode/${pincodeCorrespondence}`
+        );
+        console.log(res.data[0].PostOffice[0].Name);
+        stateCorrespondenceRef.current.value = res.data[0].PostOffice[0].State;
+        cityCorrespondenceRef.current.value =
+          res.data[0].PostOffice[0].District;
+        // districtCorrespondenceRef.current.value = res.data[0].PostOffice[0].District;
+      };
+      fetchData();
+    }
+  }, [pincodeCorrespondence]);
 
   // ** ---------------------------------------------------------------------------------------------------------------
 
@@ -236,13 +266,18 @@ const HeiRegistration = () => {
     setAisheCert(null);
   };
   const upload = async () => {
-
     uploadaadhar();
     uploadpan();
     uploadhighestqual();
     uploadmark12();
     uploadAisheCertHandler();
-    console.log(uploadaadharFile, uploadpanFile, uploadhighestQualFile, uploadmark12File, uploadAisheCert);
+    console.log(
+      uploadaadharFile,
+      uploadpanFile,
+      uploadhighestQualFile,
+      uploadmark12File,
+      uploadAisheCert
+    );
     let { data } = await axios.post("/api/controller/registerSeeker", {
       email: emailRef?.current?.value,
       phNo: phoneRef?.current?.value,
@@ -314,7 +349,6 @@ const HeiRegistration = () => {
             inputRef={lastnameRef}
           />
         </Grid>
-       
         <Grid item xs={12}>
           <FormControl required>
             <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
@@ -369,13 +403,11 @@ const HeiRegistration = () => {
             inputRef={emailRef}
           />
         </Grid>
-        
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
             <Chip label="College Address" />
           </Divider>
         </Grid>
-
         <Grid item xs={12} sm={4}>
           <TextField
             fullWidth
@@ -488,7 +520,6 @@ const HeiRegistration = () => {
             )}
           />
         </Grid>
-        
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
@@ -507,70 +538,109 @@ const HeiRegistration = () => {
             onChange={(e) => setAisheCert(e.target.files[0])}
           />
         </Grid>
-
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="Finance" />
+            <Chip label="Other Details" />
           </Divider>
         </Grid>
-
-        <Grid item xs={12} sm={6}>
-          <FormControl fullWidth>
-            <InputLabel id="form-layouts-separator-single-select-label">
-              Income
-            </InputLabel>
-            <Select
-              id="account-settings-single-select"
-              labelId="account-settings-single-select-label"
-              required
-              value={income}
-              onChange={(e) => setIncome(e.target.value)}
-              input={
-                <OutlinedInput label="Income" id="select-single-language" />
-              }
-            >
-              <MenuItem value="3.5lpa">Upto Rs 3.5 LPA</MenuItem>
-              <MenuItem value="3.5to7.5lpa">Rs 3.5 LPA - Rs 7.5 LPA</MenuItem>
-              <MenuItem value="above7.5lpa">Above Rs 7.5 LPA</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="IFSC Code"
-            placeholder="Jayanagar, Bengaluru"
-            onChange={(e) => setifsc(e.target.value)}
+            label="Affiliated University Name"
+            placeholder="Karnataka"
+            inputRef={affiliatedUniversityNameRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            helperText="Bank Name"
-            placeholder="Kotak Mahindra Bank"
-            inputRef={bankNameRef}
+            label="Affiliated University State"
+            placeholder="Karnataka"
+            inputRef={affiliatedUniversityStateRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Account Number"
-            placeholder="xxxxxxxxxxxxxxxx"
-            inputProps={{ maxLength: 16 }}
-            inputRef={accNoRef}
+            label="Earlier Affiliation"
+            placeholder="Karnataka"
+            inputRef={earlierAffiliationRef}
           />
         </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="First Admission Year"
+            placeholder="2017"
+            inputRef={firstAdmissionYearRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="Admission Completed"
+            placeholder="2017"
+            inputRef={admissionCompletedRef}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <TextField
+            fullWidth
+            required
+            type="file"
+            helperText="Upload proof"
+            onChange={(e) => setProof(e.target.value)}
+          />
+        </Grid>
+        {/* Confusion In this part */}
         <Grid item xs={12} sm={12}>
           <TextField
             fullWidth
             required
-            helperText="Branch Name"
-            placeholder="Jayanagar, Bengaluru"
-            inputRef={bankBranchRef}
-            // inputProps={{ readOnly: true }}
+            label="Correspondence Postal Code"
+            placeholder="Postal Code"
+            value={pincodeCorrespondence}
+            onChange={(e) => setPincodeCorrespondence(e.target.value)}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="Correspondence Address"
+            placeholder="X/Y Street Address"
+            inputRef={addressCorrespondenceRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            helperText="Correspondence City"
+            placeholder="Bengaluru"
+            inputRef={cityCorrespondenceRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            helperText="Correspondence State"
+            placeholder="Karnataka"
+            inputRef={stateCorrespondenceRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            helperText="Correspondence District"
+            placeholder="District Name"
+            inputRef={districtCorrespondenceRef}
           />
         </Grid>
       </Grid>
@@ -598,7 +668,6 @@ const HeiRegistration = () => {
       >
         Sign up
       </Button>
-
     </>
   );
 };

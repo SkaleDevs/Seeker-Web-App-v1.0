@@ -82,14 +82,14 @@ const LoginPage = () => {
 
     const role = checkData.data.role;
     
-    signIn("email", {
-      email: inputEmail,
-      callbackUrl:`http://localhost:3000/${role}`,
-    });
     // signIn("email", {
     //   email: inputEmail,
-    //   callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+    //   callbackUrl:`http://localhost:3000/${role}`,
     // });
+    signIn("email", {
+      email: inputEmail,
+      callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+    });
   };
 
   return (

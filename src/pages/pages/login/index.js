@@ -3,6 +3,7 @@ import { useRef } from "react";
 
 // ** Next Imports
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 
 // ** NExt-Auth Imports
@@ -11,12 +12,16 @@ import { useSession, signIn } from "next-auth/react";
 // ** MUI Components
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import CardContent from "@mui/material/CardContent";
 import { styled, useTheme } from "@mui/material/styles";
 import MuiCard from "@mui/material/Card";
 import axios from "axios";
+
+// ** SVG Imports
+import SignIn from "public/signIn.svg";
 
 // ** Configs
 import themeConfig from "src/configs/themeConfig";
@@ -29,7 +34,7 @@ import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
 import head from "next/head";
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
-  [theme.breakpoints.up("sm")]: { width: "28rem" },
+  [theme.breakpoints.up("sm")]: { width: "75rem" },
 }));
 
 const LinkStyled = styled("a")(({ theme }) => ({
@@ -77,19 +82,26 @@ const LoginPage = () => {
 
     const role = checkData.data.role;
     
-    // signIn("email", {
-    //   email: inputEmail,
-    //   callbackUrl:`http://localhost:3000/${role}`,
-    // });
     signIn("email", {
       email: inputEmail,
-      callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+      callbackUrl:`http://localhost:3000/${role}`,
     });
+    // signIn("email", {
+    //   email: inputEmail,
+    //   callbackUrl: `https://seeker-web-app-v1-0.vercel.app/${role}`,
+    // });
   };
 
   return (
     <Box className="content-center">
       <Card sx={{ zIndex: 1 }}>
+      <Grid container spacing={3}>
+      <Grid item xs={12} sm={6}>
+            <CardContent sx={{ display: { xs: "none", sm: "block" } }}>
+              <Image src={SignIn} alt="sign in svg" />
+            </CardContent>
+          </Grid>
+          <Grid item xs={12} sm={6}>
         <CardContent
           sx={{ padding: (theme) => `${theme.spacing(12, 9, 7)} !important` }}
         >
@@ -229,6 +241,8 @@ const LoginPage = () => {
             </Box>
           </form>
         </CardContent>
+        </Grid>
+        </Grid>
       </Card>
       <FooterIllustrationsV1 />
     </Box>

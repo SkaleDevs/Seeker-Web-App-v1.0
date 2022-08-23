@@ -228,6 +228,7 @@ const scholarship=async()=>{
 
   const defaultColDef = useMemo(
     () => ({
+      resizable: true,
       sortable: true,
       filter: true,
     }),

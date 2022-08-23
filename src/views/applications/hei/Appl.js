@@ -89,34 +89,6 @@ const Appl = ({ session }) => {
   };
   const [date, setDate] = useState();
   const [data, setdata] = useState(initialvalue);
-  const [coverLetterFile, setCoverLetterFile] = useState();
-  const [uploadCoverLetterFile, setUploadCoverLetterFile] = useState(null);
-
-  // ** Submission handling-------------------------------------------------------------------------------
-  const uploadCoverLetter = async () => {
-    try {
-      let { data} = await axios.post("/api/controller/upload", {
-        name: coverLetterFile?.name,
-        type: coverLetterFile?.type,
-      })
-      console.log(data);
-
-      const url = data.url;
-      let { data: newData } = await axios.put(url, coverLetterFile, {
-        headers: {
-          "Content-Type": coverLetterFile?.type,
-          "Access-Control-Allow-Origin": "*",
-          },
-      });
-
-      setUploadCoverLetterFile(BUCKET_URL + coverLetterFile?.name);
-      setCoverLetterFile(null);
-
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
 
   //  useEffect(() => {
   const fetch = async (e) => {
@@ -157,29 +129,28 @@ const Appl = ({ session }) => {
     <CardContent>
       <form>
         <Grid container spacing={7}>
-          <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               required
-              helperText="Scolarship ID"
+              helperText="Institute ID"
               //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
               name="sochlarshipID"
               // defaultValue="John"
-              S
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               required
-              helperText="Seeker ID"
+              helperText="Agency ID"
               //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
               name="seekerID"
               // defaultValue="John"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -191,7 +162,7 @@ const Appl = ({ session }) => {
               onChange={(e) => handlechange(e)}
               name="firstname"
               // defaultValue="John"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -201,7 +172,7 @@ const Appl = ({ session }) => {
               //placeholder="Middle Name"
               onChange={(e) => handlechange(e)}
               name="middleName"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -212,7 +183,7 @@ const Appl = ({ session }) => {
               //placeholder="Last Name"
               onChange={(e) => handlechange(e)}
               name="lastName"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -264,7 +235,7 @@ const Appl = ({ session }) => {
               required
               type="number"
               helperText="Phone"
-              // placeholder="+91 1231231234"
+             // placeholder="+91 1231231234"
               onChange={(e) => handlechange(e)}
               name="phNo"
             />
@@ -278,7 +249,8 @@ const Appl = ({ session }) => {
               //placeholder="johnDoe@example.com"
               onChange={(e) => handlechange(e)}
               name="email"
-              inputProps={{ readOnly: true }}
+
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -347,35 +319,8 @@ const Appl = ({ session }) => {
               </Select>
             </FormControl>
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              helperText="Guardian's First Name"
-              //placeholder="Guardian's First Name"
-              onChange={(e) => handlechange(e)}
-              name="guardianFirstName"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              helperText="Middle Name"
-              // placeholder="Middle Name"
-              onChange={(e) => handlechange(e)}
-              name="guardianMiddleirstName"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              helperText="Last Name"
-              // placeholder="Last Name"
-              onChange={(e) => handlechange(e)}
-              name="guardianLastName"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
+      
+          
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Address" />
@@ -385,196 +330,65 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="State"
-              // placeholder="New Delhi"
+             // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="state"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               helperText="Address"
-              // placeholder="B.H. Area"
+             // placeholder="B.H. Area"
               onChange={(e) => handlechange(e)}
               name="address"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
               helperText="Locality"
-              // placeholder="Kadma"
+             // placeholder="Kadma"
               onChange={(e) => handlechange(e)}
               name="locality"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
               helperText="Town"
-              // placeholder="New Delhi"
+             // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="town"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
               helperText="Pincode"
-              // placeholder="560004"
+             // placeholder="560004"
               onChange={(e) => handlechange(e)}
               name="pincode"
-              inputProps={{ readOnly: true }}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12}>
-            <Divider variant="middle" textAlign="left">
-              <Chip label="Academics" />
-            </Divider>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Highest Qualification Marks"
-              // placeholder="99.9% or 9.9 CGPA"
-              onChange={(e) => handlechange(e)}
-              name="marks"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Intermediate (XII) Marks"
-              // placeholder="99.9% or 9.9 CGPA"
-              onChange={(e) => handlechange(e)}
-              name="marks12"
-              // defaultValue="John"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Matriculation (X) Marks"
-              // placeholder="99.9% or 9.9 CGPA"
-              onChange={(e) => handlechange(e)}
-              name="marks10"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Highest Qualification
-              </InputLabel>
-              <Select
-                defaultValue={initialvalue.qualification}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput
-                    label="Highest Qualifications"
-                    id="select-multiple-language"
-                  />
-                }
-                onChange={(e) => handlechange(e)}
-                name="highestQualification"
-              >
-                <MenuItem value="Matriculation(X)">Matriculation</MenuItem>
-                <MenuItem value="Intermediate(XII)">Intermediate</MenuItem>
-                <MenuItem value="Undergraduate">Undergraduate</MenuItem>
-                <MenuItem value="Postgraduate">Postgraduate</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <Divider variant="middle" textAlign="left">
-              <Chip label="Finance" />
-            </Divider>
-          </Grid>
+          
+        
+          
+        
 
-          <Grid item xs={12} sm={3}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Income
-              </InputLabel>
-              <Select
-                defaultValue={initialvalue.income}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput label="Income" id="select-single-language" />
-                }
-                onChange={(e) => handlechange(e)}
-                name="income"
-              >
-                <MenuItem value="Upto Rs 3.5 LPA">Upto Rs 3.5 LPA</MenuItem>
-                <MenuItem value="Rs 3.5 LPA - Rs 7.5 LPA">
-                  Rs 3.5 LPA - Rs 7.5 LPA
-                </MenuItem>
-                <MenuItem value="Above Rs 7.5 LPA">Above Rs 7.5 LPA</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="IFSC Code"
-              // placeholder="Jayanagar, Bengaluru"
-              onChange={(e) => fetch(e)}
-              name="ifscCode"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Bank Name"
-              // placeholder="Kotak Mahindra Bank"
-              onChange={(e) => handlechange(e)}
-              name="banker"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Account Number"
-              // placeholder="xxxxxxxxxxxxxxxx"
-              inputProps={{ maxLength: 16, readOnly: true }}
-              onChange={(e) => handlechange(e)}
-              name="accountNo"
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Bank Branch Name"
-              // placeholder="Jayanagar, Bengaluru"
-              onChange={(e) => handlechange(e)}
-              name="bankBranch"
-              inputProps={{ readOnly: true }}
-            />
-          </Grid>
+        
+      
+         
+         
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Upload Documents" />
             </Divider>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              required
-              type="file"
-              helperText="Cover Letter"
-              onChange={(e) => setCoverletterFile(e)}
-              name="coverLetter"
-            />
           </Grid>
 
           <Grid item xs={12}>

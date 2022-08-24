@@ -7,11 +7,6 @@ import { createEvents } from "graph";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useRouter } from "next/router";
 
-// ** Date Picker Imports
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import {
   Box,
   Button,

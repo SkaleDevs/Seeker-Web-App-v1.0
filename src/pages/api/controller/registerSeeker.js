@@ -57,14 +57,7 @@ export default async function handler(req, res) {
       banned: "No",
     });
     details.save();
-<<<<<<< HEAD
-    const use = new users({
-      email: req.body.email,
-      role: req.body.role,
-      special: req.body.aadharNo,
-    });
-    use.save();
-=======
+
     const use=new users({
       email:req.body.email,
       role:req.body.role,
@@ -72,7 +65,7 @@ export default async function handler(req, res) {
       banned:"No"
   })
   use.save()
->>>>>>> bfcaab2940f9cbeb9476c0953a2a204edda2c37c
+
     res.send({ message: "Successfully registered" });
   } catch (err) {
     res.send({ message: err });

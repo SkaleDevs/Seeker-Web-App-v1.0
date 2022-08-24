@@ -35,7 +35,7 @@ const TabInfo = ({session}) => {
   useEffect(() => {
 
     const fetch= async () =>{
-      await axios.get(`https://localhost:3000/api/controller/seeker/getSeekerInfo`,{email:session.email}).then((res) => {
+      await axios.get(`https://localhost:3000/api/controller/seeker/getSeekerInfo`,{email:session?.email}).then((res) => {
         setUser(res.data);
         console.log(res.data);
         

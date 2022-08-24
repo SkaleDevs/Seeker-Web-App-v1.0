@@ -7,11 +7,7 @@ export default async function handler(req, res) {
   try {
     let check1 = await users.findOne({ email: req.body.email });
     if (check1) {
-<<<<<<< HEAD
-  return res.send({message:"A user with this email id already exists"});
-=======
-      return res.send({message:"A user with this email id already exists"});
->>>>>>> 8637c50a3f9e461a2435345ece3a99dd9b72841a
+        return res.send({message:"A user with this email id already exists"});
     }
     console.log(check1);
     console.log(req.body.aadharNo);

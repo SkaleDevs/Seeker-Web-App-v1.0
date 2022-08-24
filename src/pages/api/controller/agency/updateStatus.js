@@ -11,11 +11,11 @@ export default async function handler(req,res){
     }
     let {type,status,id}=req.body;
     let data;
-    if(type==="institute"){
+    if(type==="hei"){
          data=await ApplyInstitute.findOneAndUpdate({_id:id,agencyID:session.user.id},{status:status});
     }
     else{
-        data=await ApplySeeker.findOneAndUpdate({_id:id,agencyID:session.user.id},{status:status});
+        data=await ApplySeeker.findOneAndUpdate({_id:id,seekerID:session.user.id},{status:status});
     }
     if(data){
         return res.send({message:`${status}ed successfully`});

@@ -14,12 +14,14 @@ export default async function handler(req,res){
         // console.log(cookies);
         var {token} =  cookie.parse(req?.headers.cookie || "");
         var decoded = jwt.verify(token, 'secret');
-        if(decoded.role!=="seeker"){
-            return res.status(401).json({error: 'Unauthorized'});
+        if(decoded.role!=="individual"){
+            return res.status(401).json({message: 'Unauthorized'});
         }
-    
+       if(decoded.email!==req.body.email){
+        return res.status(401).json({message:'email does not match'})
+       }
   
-    let data =  await ApplySeeker.findOneAndUpdate({email:req.body.email, scholarshipID:req.body.scholarshipID,
+    let data =  await ApplySeeker.findOneAndUpdate({email:decoded.email, scholarshipID:req.body.scholarshipID,
         seekerID:req.body.seekerID,},req.body);
     if(data){
         return res.send(data);

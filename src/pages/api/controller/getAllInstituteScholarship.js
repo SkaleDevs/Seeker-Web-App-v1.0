@@ -5,7 +5,7 @@ connectDB();
 
 export default async function handler(req,res){
     try{
-    let data=await Scheme.find({schemeType:"institute"});
+    let data=await Scheme.find({schemeType:"hei"});
    res.status(200).send(data);}
    catch(error){
        res.status(500).send(error);

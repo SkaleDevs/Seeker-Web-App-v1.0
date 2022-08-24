@@ -55,10 +55,9 @@ const Appl = ({ session }) => {
     seekerID: user?.seekerID,
     email: user?.email,
     phNo: user?.phNo,
-    firstName: user?.firstName,
-    middleName: user?.middleName,
+    name: user?.name,
+    url: user?.url,
     aadharNo: user?.aadharNo,
-    lastName: user?.lastName,
     guardianFirstName: user?.guardianFirstName,
     guardianMiddleName: user?.guardianMiddleName,
     guardianLastName: user?.guardianLastName,
@@ -76,7 +75,7 @@ const Appl = ({ session }) => {
     state: user?.state,
     address: user?.address,
     locality: user?.locality,
-    town: user?.town,
+    city: user?.city,
     pincode: user?.pincode,
     resume: user?.resume,
     ifscCode: user?.ifscCode,
@@ -89,6 +88,34 @@ const Appl = ({ session }) => {
   };
   const [date, setDate] = useState();
   const [data, setdata] = useState(initialvalue);
+  const [propsalLetterFile, setProposalLetterFile] = useState();
+  const [uploadProposalLetterFile, setUploadPropsalLetterFile] = useState(null);
+  
+
+  // ** Submission handling-------------------------------------------------------------------------------
+  const uploadProposalLetter = async () => {
+    try {
+      let { data} = await axios.post("/api/controller/upload", {
+        name: ProposalLetterFile?.name,
+        type: ProposalLetterFile?.type,
+      })
+      console.log(data);
+
+      const url = data.url;
+      let { data: newData } = await axios.put(url, proposalLetterFile, {
+        headers: {
+          "Content-Type": proposalLetterFile?.type,
+          "Access-Control-Allow-Origin": "*",
+          },
+      });
+
+      setUploadProposalLetterFile(BUCKET_URL + proposalLetterFile?.name);
+      setProposalLetterFile(null);
+
+    } catch (e) {
+      console.log(e);
+    }
+  }
 
   //  useEffect(() => {
   const fetch = async (e) => {
@@ -122,6 +149,7 @@ const Appl = ({ session }) => {
     console.log(data);
   };
 
+
   return (
     //form validation needs to be done
     //AADHAAR AND PAN FILES TAB FOR UPLOAD NEEDS TO BE ADDED (MARKSHEETS TOO)
@@ -134,11 +162,9 @@ const Appl = ({ session }) => {
               fullWidth
               required
               helperText="Institute ID"
-              //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
               name="sochlarshipID"
-              // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -149,87 +175,21 @@ const Appl = ({ session }) => {
               //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
               name="seekerID"
-              // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               required
-              helperText="First Name"
+              helperText="Name"
               //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
-              name="firstname"
-              // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+              name="Name"
+              inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              helperText="Middle Name"
-              //placeholder="Middle Name"
-              onChange={(e) => handlechange(e)}
-              name="middleName"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <TextField
-              fullWidth
-              required
-              helperText="Last Name"
-              //placeholder="Last Name"
-              onChange={(e) => handlechange(e)}
-              name="lastName"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <DatePickerWrapper>
-              <DatePicker
-                required
-                selected={date}
-                showYearDropdown
-                showMonthDropdown
-                id="account-settings-date"
-                placeholderText="MM-DD-YYYY"
-                customInput={<CustomInput />}
-                onChange={(date) => setDate(date)}
-              />
-            </DatePickerWrapper>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl>
-              <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
-              <RadioGroup
-                row
-                defaultValue={initialvalue.sex}
-                aria-label="gender"
-                onChange={(e) => handlechange(e)}
-                name="sex"
-                // name="account-settings-info-radio"
-              >
-                <FormControlLabel
-                  value="male"
-                  label="Male"
-                  control={<Radio />}
-                />
-                <FormControlLabel
-                  value="female"
-                  label="Female"
-                  control={<Radio />}
-                />
-                <FormControlLabel
-                  value="other"
-                  label="Other"
-                  control={<Radio />}
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               required
@@ -238,9 +198,10 @@ const Appl = ({ session }) => {
              // placeholder="+91 1231231234"
               onChange={(e) => handlechange(e)}
               name="phNo"
+              inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
             <TextField
               required
               fullWidth
@@ -249,94 +210,26 @@ const Appl = ({ session }) => {
               //placeholder="johnDoe@example.com"
               onChange={(e) => handlechange(e)}
               name="email"
-
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={3}>
             <TextField
-              required
               fullWidth
-              helperText="Aadhaar Card"
-              //placeholder="xxxx-xxxx-xxxx"
-              inputProps={{ maxLength: 12 }}
+              required
+              helperText="url"
+              //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
-              name="aadharNo"
+              name="url"
+              //inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              fullWidth
-              helperText="Pan Card"
-              //placeholder="AAAAA1234A"
-              inputProps={{ maxLength: 10 }}
-              onChange={(e) => handlechange(e)}
-              name="panNo"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Category
-              </InputLabel>
-              <Select
-                required
-                defaultValue={initialvalue.category}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                onChange={(e) => handlechange(e)}
-                name="category"
-                input={
-                  <OutlinedInput label="Category" id="select-single-language" />
-                }
-              >
-                <MenuItem value="General">General</MenuItem>
-                <MenuItem value="OBC">OBC</MenuItem>
-                <MenuItem value="SC/ST">SC/ST </MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-multiple-select-label">
-                Languages
-              </InputLabel>
-              <Select
-                multiple
-                defaultValue={["English"]}
-                id="account-settings-multiple-select"
-                labelId="account-settings-multiple-select-label"
-                input={
-                  <OutlinedInput
-                    label="Languages"
-                    id="select-multiple-language"
-                  />
-                }
-              >
-                <MenuItem value="English">English</MenuItem>
-                <MenuItem value="Hindi">Hindi</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-      
-          
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Address" />
             </Divider>
           </Grid>
-          <Grid item xs={12} sm={2}>
-            <TextField
-              fullWidth
-              helperText="State"
-             // placeholder="New Delhi"
-              onChange={(e) => handlechange(e)}
-              name="state"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
+          <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               helperText="Address"
@@ -346,7 +239,18 @@ const Appl = ({ session }) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={2.5}>
+            <TextField
+              fullWidth
+              helperText="State"
+             // placeholder="New Delhi"
+              onChange={(e) => handlechange(e)}
+              name="state"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+         
+          {/* <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
               helperText="Locality"
@@ -355,18 +259,18 @@ const Appl = ({ session }) => {
               name="locality"
               // inputProps={{ readOnly: true }}
             />
-          </Grid>
-          <Grid item xs={12} sm={2}>
+          </Grid> */}
+          <Grid item xs={12} sm={2.5}>
             <TextField
               fullWidth
-              helperText="Town"
+              helperText="City"
              // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
-              name="town"
+              name="city"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={2}>
+          <Grid item xs={12} sm={2.5}>
             <TextField
               fullWidth
               helperText="Pincode"
@@ -376,6 +280,8 @@ const Appl = ({ session }) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
+
+
           
         
           
@@ -387,9 +293,30 @@ const Appl = ({ session }) => {
          
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
-              <Chip label="Upload Documents" />
+              <Chip label="Proposal"/>
             </Divider>
           </Grid>
+          <Grid item xs={12} sm={2.5}>
+            <TextField
+              fullWidth
+              helperText="Proposal"
+             // placeholder="560004"
+              onChange={(e) => handlechange(e)}
+              name="proposal"
+              // inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              required
+              type="file"
+              helperText="Proposal Letter"
+              onChange={(e) => setProposalletterFile(e)}
+              name="proposalLetter"
+            />
+          </Grid>
+
 
           <Grid item xs={12}>
             <Button variant="contained" sx={{ marginRight: 3.5 }}>

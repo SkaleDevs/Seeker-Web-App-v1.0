@@ -91,6 +91,7 @@ const Appl = ({ session }) => {
   const [data, setdata] = useState(initialvalue);
   const [coverLetterFile, setCoverLetterFile] = useState();
   const [uploadCoverLetterFile, setUploadCoverLetterFile] = useState(null);
+  
 
   // ** Submission handling-------------------------------------------------------------------------------
   const uploadCoverLetter = async () => {
@@ -162,11 +163,9 @@ const Appl = ({ session }) => {
               fullWidth
               required
               helperText="Scolarship ID"
-              //placeholder="Seeker's First Name"
+              
               onChange={(e) => handlechange(e)}
               name="sochlarshipID"
-              // defaultValue="John"
-              S
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -215,10 +214,21 @@ const Appl = ({ session }) => {
               inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
+              required
+              helperText="Birth Date"
+              
+              onChange={(e) => handlechange(e)}
+              name="birthDate"
+              inputProps={{ readOnly: true }}
+            />
+          </Grid>
+          {/* <Grid item xs={12} sm={6}>
             <DatePickerWrapper>
               <DatePicker
-                required
+                required 
                 selected={date}
                 showYearDropdown
                 showMonthDropdown
@@ -226,9 +236,10 @@ const Appl = ({ session }) => {
                 placeholderText="MM-DD-YYYY"
                 customInput={<CustomInput />}
                 onChange={(date) => setDate(date)}
+                
               />
             </DatePickerWrapper>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={6}>
             <FormControl>
               <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
@@ -267,6 +278,7 @@ const Appl = ({ session }) => {
               // placeholder="+91 1231231234"
               onChange={(e) => handlechange(e)}
               name="phNo"
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -287,9 +299,10 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Aadhaar Card"
               //placeholder="xxxx-xxxx-xxxx"
-              inputProps={{ maxLength: 12 }}
+              inputProps={{ maxLength: 12 , readOnly: true }}
               onChange={(e) => handlechange(e)}
               name="aadharNo"
+              
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -298,12 +311,23 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Pan Card"
               //placeholder="AAAAA1234A"
-              inputProps={{ maxLength: 10 }}
+              inputProps={{ maxLength: 10, readOnly: true }}
               onChange={(e) => handlechange(e)}
               name="panNo"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
+            <TextField
+              required
+              fullWidth
+              helperText="Category"
+              //placeholder="AAAAA1234A"
+              inputProps={{ maxLength: 10, readOnly: true }}
+              onChange={(e) => handlechange(e)}
+              name="category"
+            />
+          </Grid>
+          {/* <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-single-select-label">
                 Category
@@ -324,7 +348,7 @@ const Appl = ({ session }) => {
                 <MenuItem value="SC/ST">SC/ST </MenuItem>
               </Select>
             </FormControl>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-multiple-select-label">
@@ -354,6 +378,7 @@ const Appl = ({ session }) => {
               //placeholder="Guardian's First Name"
               onChange={(e) => handlechange(e)}
               name="guardianFirstName"
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -388,7 +413,7 @@ const Appl = ({ session }) => {
               // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="state"
-              inputProps={{ readOnly: true }}
+              //inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -398,7 +423,7 @@ const Appl = ({ session }) => {
               // placeholder="B.H. Area"
               onChange={(e) => handlechange(e)}
               name="address"
-              inputProps={{ readOnly: true }}
+              //inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -408,7 +433,7 @@ const Appl = ({ session }) => {
               // placeholder="Kadma"
               onChange={(e) => handlechange(e)}
               name="locality"
-              inputProps={{ readOnly: true }}
+              //inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -418,7 +443,7 @@ const Appl = ({ session }) => {
               // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="town"
-              inputProps={{ readOnly: true }}
+              //inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -428,23 +453,13 @@ const Appl = ({ session }) => {
               // placeholder="560004"
               onChange={(e) => handlechange(e)}
               name="pincode"
-              inputProps={{ readOnly: true }}
+              //inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Academics" />
             </Divider>
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              helperText="Highest Qualification Marks"
-              // placeholder="99.9% or 9.9 CGPA"
-              onChange={(e) => handlechange(e)}
-              name="marks"
-              inputProps={{ readOnly: true }}
-            />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
@@ -491,6 +506,16 @@ const Appl = ({ session }) => {
                 <MenuItem value="Postgraduate">Postgraduate</MenuItem>
               </Select>
             </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              helperText="Highest Qualification Marks"
+              // placeholder="99.9% or 9.9 CGPA"
+              onChange={(e) => handlechange(e)}
+              name="marks"
+              inputProps={{ readOnly: true }}
+            />
           </Grid>
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">

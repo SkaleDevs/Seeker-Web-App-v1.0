@@ -9,7 +9,7 @@ export default async function handler(req,res){
     if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
-    let data=await Agency.find({agencyID:session.user.id});
+    let data=await Agency.find({_id:session.user.id});
     res.send(data)
    }
     catch(error){

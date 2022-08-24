@@ -162,7 +162,7 @@ const NotificationDropdown = () => {
         <ScrollWrapper>
           <MenuItem onClick={handleDropdownClose}>
           { notifs &&
-            notifs.map((da) => {
+            notifs.map((da,key) => {
               console.log("hehhe")
               
               return (

@@ -174,7 +174,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
   );
 
   const rowData1 = [
-    allSeekerApplications.map(item=>{
+    allSeekerApplications.map((item,key)=>{
     return(
       {
       applicantName: `${item.name}`,
@@ -187,7 +187,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
     })})
   ];
   const rowData2 = [
-     allInstituteApplications.map(item=>{
+     allInstituteApplications.map((item,key)=>{
       return(
       {
         applicantName: `${item.name}`,
@@ -295,7 +295,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-             { allIndividualScholarships?.map(item=>{
+             { allIndividualScholarships?.map((item,key)=>{
               //  allScholarships.schemeType==="individual" && (
             
               return(
@@ -324,7 +324,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                 {/* )})} */}
               </TabPanel>
               <TabPanel value="1">
-              { allHeiScholarships?.map(item=>{
+              { allHeiScholarships?.map((item,key)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
                 <Dropdown authority={item.name}>

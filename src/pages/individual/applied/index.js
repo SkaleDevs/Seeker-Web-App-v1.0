@@ -30,7 +30,10 @@ const Applied = () => {
       color="success"
       size="small"
       startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
+      // href={`/schemes/${p.data.id}`}
+      onClick={() => {
+        console.log(p.value);
+      }}
     >
       View
     </Button>
@@ -43,7 +46,7 @@ const Applied = () => {
       applicationStatus: "Pending",
       schemeEndDate: "End Date 1",
       schemeDefectiveApplicationVerification: "Duration 1",
-      viewApplication: "Button", //pass the id of the application to the view application page
+      viewApplication: "Button Testing 1", //pass the id of the application to the view application page
     },
     {
       schemeName: "Scheme 2",
@@ -51,7 +54,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 2",
       schemeDefectiveApplicationVerification: "Duration 2",
-      viewApplication: "Button",
+      viewApplication: "Button 2",
     },
     {
       schemeName: "Scheme 3",
@@ -59,7 +62,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 3",
       schemeDefectiveApplicationVerification: "Duration 3",
-      viewApplication: "Button",
+      viewApplication: "Button 3",
     },
     {
       schemeName: "Scheme 4",
@@ -67,7 +70,7 @@ const Applied = () => {
       applicationStatus: "Pennding",
       schemeEndDate: "End Date 4",
       schemeDefectiveApplicationVerification: "Duration 4",
-      viewApplication: "Button",
+      viewApplication: "Button 4",
     },
     {
       schemeName: "Scheme 5",
@@ -75,7 +78,7 @@ const Applied = () => {
       applicationStatus: "Pending",
       schemeEndDate: "End Date 5",
       schemeDefectiveApplicationVerification: "Duration 5",
-      viewApplication: "Button",
+      viewApplication: "Button 5",
     },
     {
       schemeName: "Scheme 6",
@@ -83,7 +86,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 6",
       schemeDefectiveApplicationVerification: "Duration 6",
-      viewApplication: "Button",
+      viewApplication: "Button 6",
     },
     {
       schemeName: "Scheme 7",
@@ -91,7 +94,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 7",
       schemeDefectiveApplicationVerification: "Duration 7",
-      viewApplication: "Button",
+      viewApplication: "Button 7",
     },
     {
       schemeName: "Scheme 8",
@@ -99,7 +102,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 8",
       schemeDefectiveApplicationVerification: "Duration 8",
-      viewApplication: "Button",
+      viewApplication: "Button 8",
     },
     {
       schemeName: "Scheme 9",
@@ -107,7 +110,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 9",
       schemeDefectiveApplicationVerification: "Duration 9",
-      viewApplication: "Button",
+      viewApplication: "Button 9",
     },
     {
       schemeName: "Scheme 10",
@@ -115,7 +118,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 10",
       schemeDefectiveApplicationVerification: "Duration 10",
-      viewApplication: "Button",
+      viewApplication: "Button 10",
     },
     {
       schemeName: "Scheme 11",
@@ -123,7 +126,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 11",
       schemeDefectiveApplicationVerification: "Duration 11",
-      viewApplication: "Button",
+      viewApplication: "Button 11",
     },
     {
       schemeName: "Scheme 12",
@@ -131,7 +134,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 12",
       schemeDefectiveApplicationVerification: "Duration 12",
-      viewApplication: "Button",
+      viewApplication: "Button 12",
     },
     {
       schemeName: "Scheme 13",
@@ -139,7 +142,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 13",
       schemeDefectiveApplicationVerification: "Duration 13",
-      viewApplication: "Button",
+      viewApplication: "Button 13",
     },
   ];
 
@@ -189,6 +192,7 @@ const Applied = () => {
     () => ({
       sortable: true,
       filter: true,
+      resizable: true,
     }),
     []
   );

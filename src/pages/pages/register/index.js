@@ -182,7 +182,7 @@ const RegisterPage = () => {
                 >
                   <ToggleButton
                     value="individual"
-                    sx={{ width: { sm: "10.5rem" } }}
+                    sx={{ width: { sm: "10.5rem" }, borderRadius: "35rem" }}
                   >
                     Individual
                   </ToggleButton>
@@ -191,7 +191,7 @@ const RegisterPage = () => {
                   </ToggleButton>
                   <ToggleButton
                     value="fundingAgency"
-                    sx={{ width: { sm: "10.5rem" } }}
+                    sx={{ width: { sm: "10.5rem" },borderRadius: "35rem" }}
                   >
                     Funding Agency
                   </ToggleButton>

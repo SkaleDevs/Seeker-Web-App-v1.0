@@ -31,7 +31,7 @@ const Home = ({sess}) => {
       
     }
     
-  },[sess])
+  },[])
   // ** State
   const [value, setValue] = useState("account");
   const handleChange = (event, newValue) => {

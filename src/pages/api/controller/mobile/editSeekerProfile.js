@@ -11,12 +11,12 @@ export default async function handler(req,res){
         // console.log(cookies);
         var {token} =  cookie.parse(req?.headers.cookie || "");
         var decoded = jwt.verify(token, 'secret');
-        if(decoded.role!=="seeker"){
+        if(decoded.role!=="individual"){
             return res.status(401).json({error: 'Unauthorized'});
         }
 
 
-    let data=  await Seeker.findOneAndUpdate({email:req.body.email},req.body);
+    let data=  await Seeker.findOneAndUpdate({email:decoded.email},req.body);
     if(data){
         return res.send(data);
     }

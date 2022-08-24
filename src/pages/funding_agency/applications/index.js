@@ -27,9 +27,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import CreateMeeting from "../../../views/modal/CreateMeeting";
+import { SubscriptionsOutlined } from "@mui/icons-material";
 
-const AllApplications = ({ allScholarships,allSeekerApplications,allInstituteApplications}) => {
+const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeekerApplications,allInstituteApplications}) => {
+
+  
   // const [rowData, setRowData] = useState();
+
   // const viewButton = (
   //   <Button
   //     variant="contained"
@@ -42,31 +46,31 @@ const AllApplications = ({ allScholarships,allSeekerApplications,allInstituteApp
   // );
 
 //all variables
-let allScholarships;
-let allSeekerApplications;
-let allInstituteApplications;
+// let allScholarships;
+// let allSeekerApplications;
+// let allInstituteApplications;
 
-//access all my scholarships
-const scholarship=async()=>{
-  console.log("REW")
-  allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
-  console.log(allScholarships)
+// //access all my scholarships
+// const scholarship=async()=>{
+//   console.log("REW")
+//   allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
+//   console.log(allScholarships)
   
-}
+// }
 
-//access applications within that scholarships
-const seekerapplications=async()=>{
-  allScholarships.map(async(items)=>{
-    console.log(items)
-    allSeekerApplications=await axios.post(`/api/controller/agency/getSeekerApplication`,{scholarshipID:"62fb50073bba3442d1df88a8"});
-  })
+// //access applications within that scholarships
+// const seekerapplications=async()=>{
+//   allScholarships.map(async(items)=>{
+//     console.log(items)
+//     allSeekerApplications=await axios.post(`/api/controller/agency/getSeekerApplication`,{scholarshipID:"62fb50073bba3442d1df88a8"});
+//   })
   
-}
-const insituteapplications=async()=>{
-  allScholarships.map(async(items)=>{
- allInstituteApplications= await axios.post(`/api/controller/agency/getInstituteApplication`,{scholarshipID:items._id});
-  })
-}
+// }
+// const insituteapplications=async()=>{
+//   allScholarships.map(async(items)=>{
+//  allInstituteApplications= await axios.post(`/api/controller/agency/getInstituteApplication`,{scholarshipID:items._id});
+//   })
+// }
 
 
 
@@ -100,11 +104,11 @@ const insituteapplications=async()=>{
   }
 
   //useEffect
-  useEffect(()=>{
-    scholarship();
-    seekerapplications();
-    insituteapplications();
-  },[])
+  // useEffect(()=>{
+  //   scholarship();
+  //   seekerapplications();
+  //   insituteapplications();
+  // },[])
 
 
   const viewButton = (p) => (
@@ -171,27 +175,29 @@ const insituteapplications=async()=>{
 
   const rowData1 = [
     allSeekerApplications.map(item=>{
-    return({
+    return(
+      {
       applicantName: `${item.name}`,
       viewApplication: `${item.id}`,
       viewDocs: `${item.id}`,
       accept: `${item.id}`,
       reject: `${item.id}`,
       amend: `individual`,
-      scheduleMeeting: "Button",}
-    )})
+      scheduleMeeting: "Button",
+    })})
   ];
   const rowData2 = [
      allInstituteApplications.map(item=>{
-      return({
+      return(
+      {
         applicantName: `${item.name}`,
         viewApplication: `${item.id}`,
         viewDocs: `${item.id}`,
         accept: `${item.id}`,
         reject: `${item.id}`,
         amend: `hei`,
-        scheduleMeeting: "Button",}
-      )})
+        scheduleMeeting: "Button",})})
+      
   ];
 
   const [columnDefs, setColumnDefs] = useState([
@@ -289,8 +295,12 @@ const insituteapplications=async()=>{
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-             { allScholarships?.map(item=>{
-               allScholarships.schemeType==="individual" && (<Dropdown authority={item.name}> {/* Scheme name */}
+             { allIndividualScholarships?.map(item=>{
+              //  allScholarships.schemeType==="individual" && (
+            
+              return(
+               
+               <Dropdown authority={item.name}> {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -311,10 +321,12 @@ const insituteapplications=async()=>{
                     />
                   </div>
                 </Dropdown>)})}
+                {/* )})} */}
               </TabPanel>
               <TabPanel value="1">
-              { allScholarships?.map(item=>{
-               allScholarships.schemeType==="hei" && (
+              { allHeiScholarships?.map(item=>{
+              //  allScholarships.schemeType==="hei" && (
+                return(
                 <Dropdown authority={item.name}>
                   <div
                     className="ag-theme-alpine"
@@ -347,4 +359,49 @@ const insituteapplications=async()=>{
 
 export default AllApplications;
 
+export async function getServerSideProps(context) {
+  console.log("RFWfr")
+  const sess= await getSession(context);
+//access all my scholarships
+//let allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
+// let allScholarships;
+// let a =  await fetch(`http://localhost:3000/api/controller/agency/getScholarship`)
+// let j  = a.json()
+// console.log(j);
+const allIndividualScholarships = await fetch(`http://localhost:3000/api/controller/getAllSeekerScholarship`)
+.then(res => res.json())
 
+const allHeiScholarships = await fetch(`http://localhost:3000/api/controller/getAllInstituteScholarship`)
+.then(res => res.json())
+// .then(data => {
+//   console.log("1",data);
+//   return data;
+// }).catch(err => {
+//   console.log(err);
+// }
+// );
+
+//onsole.log("2",allScholarships)
+let allSeekerApplications=[];
+let allInstituteApplications=[];
+let c1=0,c2=0;
+//   access applications within that scholarships
+// allScholarships.map(async(items)=>{
+//     //console.log(items)
+//     allSeekerApplications[c1++]=await fetch(`http://localhost:3000/api/controller/agency/getSeekerApplication`,{method:'post'},{scholarshipID:items._id});
+//   })
+//   allScholarships.map(async(items)=>{
+//  allInstituteApplications[c2++]= await fetch(`http://localhost:3000/api/controller/agency/getInstituteApplication`,{method:'post'},{scholarshipID:items._id});
+//   })
+//   console.log(allSeekerApplications)
+//   console.log(allInstituteApplications)
+
+  return {
+    props: {
+        allIndividualScholarships,
+        allHeiScholarships,
+        allSeekerApplications,
+        allInstituteApplications
+    },
+  };
+}

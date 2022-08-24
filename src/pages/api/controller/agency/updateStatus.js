@@ -6,7 +6,7 @@ connectDB();
 export default async function handler(req,res){
     try{
     const session = await getSession({req})
-    if (!session || session.user.role!=="agency") {
+    if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
     let {type,status,id}=req.body;

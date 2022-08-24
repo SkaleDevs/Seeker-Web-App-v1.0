@@ -63,7 +63,7 @@ const LoginPage = () => {
     let checkData = await axios({
       method: "post",
       url: "https://seeker-web-app-v1-0.vercel.app/api/controller/checkUser",
-      // url:'http://localhost:3000/api/controller/checkUser',
+      // url: "http://localhost:3000/api/controller/checkUser",
       data: {
         email: inputEmail,
       },
@@ -84,7 +84,7 @@ const LoginPage = () => {
 
     // signIn("email", {
     //   email: inputEmail,
-    //   callbackUrl:`http://localhost:3000/${role}`,
+    //   callbackUrl: `http://localhost:3000/${role}`,
     // });
     signIn("email", {
       email: inputEmail,

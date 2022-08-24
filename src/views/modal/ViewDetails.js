@@ -28,8 +28,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubHeader";
-
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import CloseIcon from "@mui/icons-material/Close";
@@ -177,13 +175,13 @@ export default function CreateMeeting() {
 
             <Grid item xs={12} sm={12} sx={{ margin: "5px 0" }}>
               <List>
-                <ListSubheader
+                <Typography
                   variant="subtitle1"
                   component="h2"
                   sx={{ margin: "0", padding: "0" }}
                 >
                   Eligibility Criteria
-                </ListSubheader>
+                </Typography>
                 {generate(
                   <ListItem sx={{ margin: "0" }}>
                     <ListItemText primary="Single-line item" />
@@ -193,13 +191,13 @@ export default function CreateMeeting() {
             </Grid>
             <Grid item xs={12} sm={12} sx={{ margin: "5px 0" }}>
               <List>
-                <ListSubheader
+                <Typography
                   variant="subtitle1"
                   component="h2"
                   sx={{ margin: "0", padding: "0" }}
                 >
                   Eligibility Criteria
-                </ListSubheader>
+                </Typography>
                 {generate(
                   <ListItem sx={{ margin: "0" }}>
                     <ListItemText primary="Single-line item" />
@@ -209,13 +207,13 @@ export default function CreateMeeting() {
             </Grid>
             <Grid item xs={12} sm={12} sx={{ margin: "5px 0" }}>
               <List>
-                <ListSubheader
+                <Typography
                   variant="subtitle1"
                   component="h2"
                   sx={{ margin: "0", padding: "0" }}
                 >
                   Additional Information
-                </ListSubheader>
+                </Typography>
                 {generate(
                   <ListItem sx={{ margin: "0" }}>
                     <ListItemText primary="Single-line item" />

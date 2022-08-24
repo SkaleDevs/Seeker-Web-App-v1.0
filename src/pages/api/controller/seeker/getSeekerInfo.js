@@ -7,7 +7,7 @@ export default async function handler(req,res){
     if (!session || session.user.role!=="seeker") {
     return res.status(401).json({error: 'Unauthorized'})
     }
-    let data=  await Seeker.findOne({email:req.body.email});
+    let data=  await Seeker.findOne({email:session.user.email});
     if(data){
         return res.send(data);
     }

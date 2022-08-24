@@ -126,8 +126,8 @@ const CreateScheme = () => {
                       }
                       onChange={(e) => setType(e.target.value)}
                     >
-                      <MenuItem value="Institute">Institute</MenuItem>
-                      <MenuItem value="Student">Student</MenuItem>
+                      <MenuItem value="hei">Institute</MenuItem>
+                      <MenuItem value="individual">Student</MenuItem>
                     </Select>
                   </FormControl>
 

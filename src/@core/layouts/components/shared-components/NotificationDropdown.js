@@ -1,5 +1,7 @@
 // ** React Imports
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect } from "react";
+import axios from "axios";
+import { useSession } from "next-auth/react";
 
 // ** MUI Imports
 import Box from "@mui/material/Box";
@@ -80,6 +82,33 @@ const MenuItemSubtitle = styled(Typography)({
 });
 
 const NotificationDropdown = () => {
+  const [notifs, setnotifs] = useState([]);
+  let noti;
+  // console.log(session);
+  const { data: session, status } = useSession();
+  console.log(status);
+  const fetchNotifs = async () => {
+    // console.log(session.user.email);
+    const res = await axios.post("/api/controller/checkUser", {
+      email: session.user.email,
+    });
+    // setnotifs(res.data.data.notifs);
+
+    console.log(res.data.notif);
+    noti = res.data.notif;
+    setnotifs(res.data.notif);
+    console.log(notifs);
+    console.log(noti);
+  };
+  // if(session){
+  useEffect(() => {
+    if (session) {
+      fetchNotifs();
+    }
+  }, [session]);
+
+  // }de
+
   // ** States
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -111,6 +140,8 @@ const NotificationDropdown = () => {
       );
     }
   };
+
+  if (status === "loading") return <div>Loading...</div>;
 
   return (
     <Fragment>
@@ -154,70 +185,70 @@ const NotificationDropdown = () => {
         </MenuItem>
         <ScrollWrapper>
           <MenuItem onClick={handleDropdownClose}>
-            <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-              <Box
-                sx={{
-                  mx: 4,
-                  flex: "1 1",
-                  display: "flex",
-                  overflow: "hidden",
-                  flexDirection: "column",
-                }}
-              >
-                <MenuItemTitle>Congratulation Flora! 🎉</MenuItemTitle>
-                <MenuItemSubtitle variant="body2">
-                  Won the monthly best seller badge
-                </MenuItemSubtitle>
-              </Box>
-              <Typography variant="caption" sx={{ color: "text.disabled" }}>
-                Today
-              </Typography>
-            </Box>
-          </MenuItem>
-          <MenuItem onClick={handleDropdownClose}>
-            <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-              <Box
-                sx={{
-                  mx: 4,
-                  flex: "1 1",
-                  display: "flex",
-                  overflow: "hidden",
-                  flexDirection: "column",
-                }}
-              >
-                <MenuItemTitle>New user registered.</MenuItemTitle>
-                <MenuItemSubtitle variant="body2">5 hours ago</MenuItemSubtitle>
-              </Box>
-              <Typography variant="caption" sx={{ color: "text.disabled" }}>
-                Yesterday
-              </Typography>
-            </Box>
-          </MenuItem>
-          <MenuItem onClick={handleDropdownClose}>
-            <Box sx={{ width: "100%", display: "flex", alignItems: "center" }}>
-              <Box
-                sx={{
-                  mx: 4,
-                  flex: "1 1",
-                  display: "flex",
-                  overflow: "hidden",
-                  flexDirection: "column",
-                }}
-              >
-                <MenuItemTitle>New message received 👋🏻</MenuItemTitle>
-                <MenuItemSubtitle variant="body2">
-                  You have 10 unread messages
-                </MenuItemSubtitle>
-              </Box>
-              <Typography variant="caption" sx={{ color: "text.disabled" }}>
-                11 Aug
-              </Typography>
-            </Box>
+            {notifs &&
+              notifs.map((da, key) => {
+                console.log("hehhe");
+
+                return (
+                  <Box
+                    key={key}
+                    sx={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Avatar alt="Flora" src="/images/avatars/4.png" />
+                    <Box
+                      sx={{
+                        mx: 4,
+                        flex: "1 1",
+                        display: "flex",
+                        overflow: "hidden",
+                        flexDirection: "column",
+                      }}
+                    >
+                      <MenuItemTitle>Congratulation Flora! 🎉</MenuItemTitle>
+                      <MenuItemSubtitle variant="body2">
+                        Won the monthly best seller badge
+                      </MenuItemSubtitle>
+                    </Box>
+                    <Typography
+                      variant="caption"
+                      sx={{ color: "text.disabled" }}
+                    >
+                      Today
+                    </Typography>
+                  </Box>
+                );
+              })}
           </MenuItem>
         </ScrollWrapper>
+
+        <MenuItem
+          disableRipple
+          sx={{
+            py: 3.5,
+            borderBottom: 0,
+            borderTop: (theme) => `1px solid ${theme.palette.divider}`,
+          }}
+        >
+          <Button fullWidth variant="contained" onClick={handleDropdownClose}>
+            Read All Notifications
+          </Button>
+        </MenuItem>
       </Menu>
     </Fragment>
   );
 };
 
 export default NotificationDropdown;
+
+// export async function getServerSideProps(context) {
+//   const sess= await getSession(context);
+//   return {
+//     props: {
+//         sess:sess
+//     },
+//   };
+// }

@@ -57,6 +57,8 @@ const TabInfo = ({session}) => {
           firstName:user?.firstName,
           middleName:user?.middleName,
           aadharNo:user?.aadharNo,
+          category:user?.category,
+          birthDate:user?.birthDate,
           lastName:user?.lastName,
           guardianFirstName:user?.guardianFirstName,
           guardianMiddleName:user?.guardianMiddleName,
@@ -140,49 +142,47 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               required
-              label="First Name"
-              placeholder="Seeker's First Name"
+              helperText="First Name"
+              //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
               name="firstname"
               // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Middle Name"
-              placeholder="Middle Name"
+              helperText="Middle Name"
+              //placeholder="Middle Name"
               onChange={(e) => handlechange(e)}
               name="middleName"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
               required
-              label="Last Name"
-              placeholder="Last Name"
+              helperText="Last Name"
+              //placeholder="Last Name"
               onChange={(e) => handlechange(e)}
               name="lastName"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <DatePickerWrapper>
-              <DatePicker
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
               required
-                selected={date}
-                showYearDropdown
-                showMonthDropdown
-                id="account-settings-date"
-                placeholderText="MM-DD-YYYY"
-                customInput={<CustomInput />}
-                onChange={(date) => setDate(date)}
-              />
-            </DatePickerWrapper>
+              helperText="Birth Date"
+              //placeholder="Last Name"
+              onChange={(e) => handlechange(e)}
+              name="birthDate"
+               inputProps={{ readOnly: true }}
+            />
           </Grid>
+      
           <Grid item xs={12} sm={6}>
             <FormControl>
               <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
@@ -217,10 +217,11 @@ const TabInfo = ({session}) => {
               fullWidth
               required
               type="number"
-              label="Phone"
-              placeholder="+91 1231231234"
+              helperText="Phone"
+              //placeholder="+91 1231231234"
               onChange={(e) => handlechange(e)}
               name="phNo"
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -228,21 +229,21 @@ const TabInfo = ({session}) => {
               required
               fullWidth
               type="email"
-              label="Email"
-              placeholder="johnDoe@example.com"
+              helperText="Email"
+              //placeholder="johnDoe@example.com"
               onChange={(e) => handlechange(e)}
               name="email"
 
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               required
               fullWidth
-              label="Aadhaar Card"
-              placeholder="xxxx-xxxx-xxxx"
-              inputProps={{ maxLength: 12 }}
+              helperText="Aadhaar Card"
+              //placeholder="xxxx-xxxx-xxxx"
+              inputProps={{ maxLength: 12,readOnly: true }}
               onChange={(e) => handlechange(e)}
               name="aadharNo"
             />
@@ -251,35 +252,28 @@ const TabInfo = ({session}) => {
             <TextField
               required
               fullWidth
-              label="Pan Card"
-              placeholder="AAAAA1234A"
-              inputProps={{ maxLength: 10 }}
+              helperText="Pan Card"
+              //placeholder="AAAAA1234A"
+              inputProps={{ maxLength: 10,readOnly: true }}
               onChange={(e) => handlechange(e)}
               name="panNo"
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Category
-              </InputLabel>
-              <Select
-                required
-                defaultValue={initialvalue.category}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                onChange={(e) => handlechange(e)}
-                name="category"
-                input={
-                  <OutlinedInput label="Category" id="select-single-language" />
-                }
-              >
-                <MenuItem value="General">General</MenuItem>
-                <MenuItem value="OBC">OBC</MenuItem>
-                <MenuItem value="SC/ST">SC/ST </MenuItem>
-              </Select>
-            </FormControl>
+            <TextField
+              required
+              fullWidth
+              
+              helperText="Category"
+              //placeholder="johnDoe@example.com"
+              onChange={(e) => handlechange(e)}
+              name="category"
+
+
+              // inputProps={{ readOnly: true }}
+            />
           </Grid>
+         
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-multiple-select-label">
@@ -306,30 +300,32 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Guardian's First Name"
-              placeholder="Guardian's First Name"
+              helperText="Guardian's First Name"
+              //placeholder="Guardian's First Name"
               onChange={(e) => handlechange(e)}
               name="guardianFirstName"
+              inputProps={{ readOnly: true }}
+
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Middle Name"
-              placeholder="Middle Name"
+              helperText="Middle Name"
+              //placeholder="Middle Name"
               onChange={(e) => handlechange(e)}
               name="guardianMiddleirstName"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Last Name"
-              placeholder="Last Name"
+              helperText="Last Name"
+              //placeholder="Last Name"
               onChange={(e) => handlechange(e)}
               name="guardianLastName"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12}>
@@ -340,8 +336,8 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
-              label="State"
-              placeholder="New Delhi"
+              helperText="State"
+              //placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="state"
               // inputProps={{ readOnly: true }}
@@ -350,8 +346,8 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Address"
-              placeholder="B.H. Area"
+              helperText="Address"
+              //placeholder="B.H. Area"
               onChange={(e) => handlechange(e)}
               name="address"
               // inputProps={{ readOnly: true }}
@@ -360,8 +356,8 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
-              label="Locality"
-              placeholder="Kadma"
+              helperText="Locality"
+              //placeholder="Kadma"
               onChange={(e) => handlechange(e)}
               name="locality"
               // inputProps={{ readOnly: true }}
@@ -370,8 +366,8 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
-              label="Town"
-              placeholder="New Delhi"
+              helperText="Town"
+              //placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="town"
               // inputProps={{ readOnly: true }}
@@ -380,8 +376,8 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
-              label="Pincode"
-              placeholder="560004"
+              helperText="Pincode"
+              //placeholder="560004"
               onChange={(e) => handlechange(e)}
               name="pincode"
               // inputProps={{ readOnly: true }}
@@ -392,35 +388,26 @@ const TabInfo = ({session}) => {
               <Chip label="Academics" />
             </Divider>
           </Grid>
+          
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Highest Qualification Marks"
-              placeholder="99.9% or 9.9 CGPA"
-              onChange={(e) => handlechange(e)}
-              name="marks"
-              // inputProps={{ readOnly: true }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={3}>
-            <TextField
-              fullWidth
-              label="Intermediate (XII) Marks"
-              placeholder="99.9% or 9.9 CGPA"
+              helperText="Intermediate (XII) Marks"
+              //placeholder="99.9% or 9.9 CGPA"
               onChange={(e) => handlechange(e)}
               name="marks12"
               // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Matriculation (X) Marks"
-              placeholder="99.9% or 9.9 CGPA"
+              helperText="Matriculation (X) Marks"
+              //placeholder="99.9% or 9.9 CGPA"
               onChange={(e) => handlechange(e)}
               name="marks10"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -449,12 +436,22 @@ const TabInfo = ({session}) => {
               </Select>
             </FormControl>
           </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              helperText="Highest Qualification Marks"
+              //placeholder="99.9% or 9.9 CGPA"
+              onChange={(e) => handlechange(e)}
+              name="marks"
+               inputProps={{ readOnly: true }}
+            />
+          </Grid>
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Finance" />
             </Divider>
           </Grid>
-
+                
           <Grid item xs={12} sm={3}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-single-select-label">
@@ -484,42 +481,42 @@ const TabInfo = ({session}) => {
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="IFSC Code"
-              placeholder="Jayanagar, Bengaluru"
+              helperText="IFSC Code"
+              //placeholder="Jayanagar, Bengaluru"
               onChange={(e) => fetch(e)}
               name="ifscCode"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Bank Name"
-              placeholder="Kotak Mahindra Bank"
+              helperText="Bank Name"
+             // placeholder="Kotak Mahindra Bank"
               onChange={(e) => handlechange(e)}
               name="banker"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Account Number"
-              placeholder="xxxxxxxxxxxxxxxx"
+              helperText="Account Number"
+              //placeholder="xxxxxxxxxxxxxxxx"
               inputProps={{ maxLength: 16 }}
                onChange={(e) => handlechange(e)}
               name="accountNo"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              label="Bank Branch Name"
-              placeholder="Jayanagar, Bengaluru"
+              helperText="Bank Branch Name"
+              //placeholder="Jayanagar, Bengaluru"
               onChange={(e) => handlechange(e)}
               name="bankBranch"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           

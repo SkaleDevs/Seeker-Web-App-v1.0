@@ -175,11 +175,11 @@ const Navigation = () => {
       {
         sectionTitle: "Moderation",
       },
-      // {
-      //   title: "Add Moderator",
-      //   icon: PersonAddOutlined,
-      //   path: "/moderator/addModerator", // to be updated
-      // },
+      {
+        title: "Add Moderator",
+        icon: PersonAddOutlined,
+        path: "/moderator/addModerator", // to be updated
+      },
       {
         title: "All Users",
         icon: PeopleOutline,

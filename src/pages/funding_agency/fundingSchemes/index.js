@@ -30,6 +30,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import Graph from "../../../views/dashboard/funding_agency/schemeGraph";
 import Table from "../../../views/dashboard/funding_agency/schemeTable";
+import Pie from "../../../views/dashboard/funding_agency/schemePieChart";
 
 const AllSchemes = () => {
   const [value, setValue] = useState("0");
@@ -95,7 +96,7 @@ const AllSchemes = () => {
                         <Graph />
                       </Grid>
                       <Grid item xs={6}>
-                        <Graph />
+                        <Pie />
                       </Grid>
                       <Grid item xs={12}>
                         <Box

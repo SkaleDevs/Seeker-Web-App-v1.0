@@ -24,10 +24,11 @@ import themeConfig from "src/configs/themeConfig";
 // ** Layout Import
 import BlankLayout from "src/@core/layouts/BlankLayout";
 
-// ** Demo Imports
+// ** Registration Imports
 import FooterIllustrationsV1 from "src/views/pages/auth/FooterIllustration";
 import IndivRegistration from "src/views/registration/individual/Registration";
 import HeiRegistration from "src/views/registration/hei/Registration";
+import FundingAgencyRegistration from "src/views/registration/funding_agency/Registration";
 
 // ** Styled Components
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -208,12 +209,7 @@ const RegisterPage = () => {
                     <HeiRegistration />
                   )}
                   {role === "fundingAgency" && (
-                    // <FundingAgencyRegistration />
-                    <span>Funding Agency</span>
-                  )}
-                  {role === "moderator" && (
-                    // <ModeratorRegistration />
-                    <span>Moderator</span>
+                    <FundingAgencyRegistration />
                   )}
                 </Box>
               </form>

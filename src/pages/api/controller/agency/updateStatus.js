@@ -6,16 +6,16 @@ connectDB();
 export default async function handler(req,res){
     try{
     const session = await getSession({req})
-    if (!session || session.user.role!=="agency") {
+    if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
     let {type,status,id}=req.body;
     let data;
-    if(type==="institute"){
+    if(type==="hei"){
          data=await ApplyInstitute.findOneAndUpdate({_id:id,agencyID:session.user.id},{status:status});
     }
     else{
-        data=await ApplySeeker.findOneAndUpdate({_id:id,agencyID:session.user.id},{status:status});
+        data=await ApplySeeker.findOneAndUpdate({_id:id,seekerID:session.user.id},{status:status});
     }
     if(data){
         return res.send({message:`${status}ed successfully`});

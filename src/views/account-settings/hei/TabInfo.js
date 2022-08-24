@@ -18,6 +18,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
 import {useEffect} from "react";
+import { useSession } from "next-auth/react";
 // ** Third Party Imports
 import DatePicker from "react-datepicker";
 
@@ -29,13 +30,15 @@ const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
 
-const TabInfo = ({session}) => {
+const TabInfo = () => {
+  const {data: session} = useSession();
   // ** State
   const [user, setUser] = useState({});
+  console.log("sess:",session.user.email);
   useEffect(() => {
 
     const fetch= async () =>{
-      await axios.get(`https://localhost:3000/api/controller/seeker/getSeekerInfo`,{email:session.email}).then((res) => {
+      await axios.get(`https://localhost:3000/api/controller/institute/getInstituteInfo`,{email:session.user.email}).then((res) => {
         setUser(res.data);
         console.log(res.data);
         
@@ -94,7 +97,6 @@ const TabInfo = ({session}) => {
     <CardContent>
       <form>
         <Grid container spacing={7}>
-          \
           <Grid item xs={12} sm={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Institute Representative's Details" />
@@ -477,3 +479,13 @@ const TabInfo = ({session}) => {
 };
 
 export default TabInfo;
+
+
+// export async function getServerSideProps(context) {
+//   const sess= await getSession(context);
+//   return {
+//     props: {
+//         sess:sess
+//     },
+//   };
+// }

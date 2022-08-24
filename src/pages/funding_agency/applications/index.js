@@ -300,7 +300,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
             
               return(
                
-               <Dropdown authority={item.name}> {/* Scheme name */}
+               <Dropdown authority={item.name} key={key}> {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -327,7 +327,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
               { allHeiScholarships?.map((item,key)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
-                <Dropdown authority={item.name}>
+                <Dropdown authority={item.name} key={key}>
                   <div
                     className="ag-theme-alpine"
                     style={{

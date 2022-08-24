@@ -45,10 +45,26 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-const TabAccount = () => {
+const TabAccount = ({session}) => {
   // ** State
   const [openAlert, setOpenAlert] = useState(true);
   const [imgSrc, setImgSrc] = useState("/images/avatars/1.png");
+
+  const [user, setUser] = useState({});
+  useEffect(() => {
+
+    const fetch= async () =>{
+      await axios.get(`/api/controller/seeker/getSeekerInfo`,{email:session.email}).then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+        
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+    fetch();
+    
+  }, []);
 
   const onChange = (file) => {
     const reader = new FileReader();

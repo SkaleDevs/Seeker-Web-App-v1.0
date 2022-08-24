@@ -30,6 +30,7 @@ const CustomInput = forwardRef((props, ref) => {
 
 const TabInfo = () => {
   // ** State
+
   const [date, setDate] = useState(null);
   const [user, setUser] = useState({});
   useEffect(() => {

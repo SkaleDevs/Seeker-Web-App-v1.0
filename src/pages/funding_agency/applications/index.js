@@ -163,14 +163,9 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
   );
 
   const meetButton = () => (
-    <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-    >
+    
       <CreateMeeting />
-    </Button>
+    
   );
 
   const rowData1 = [

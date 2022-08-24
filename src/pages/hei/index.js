@@ -19,7 +19,7 @@ const Home_hei = ({sess}) => {
       
     }
     
-  },[sess])
+  },[])
   if (sess?.status=="loading") return <div>Loading...</div>;
   return (
     <ApexChartWrapper>

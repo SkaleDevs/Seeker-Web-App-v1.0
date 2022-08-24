@@ -110,7 +110,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 9",
       schemeDefectiveApplicationVerification: "Duration 9",
-      viewApplication: "Button",
+      viewApplication: "Button 9",
     },
     {
       schemeName: "Scheme 10",
@@ -118,7 +118,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 10",
       schemeDefectiveApplicationVerification: "Duration 10",
-      viewApplication: "Button",
+      viewApplication: "Button 10",
     },
     {
       schemeName: "Scheme 11",
@@ -126,7 +126,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 11",
       schemeDefectiveApplicationVerification: "Duration 11",
-      viewApplication: "Button",
+      viewApplication: "Button 11",
     },
     {
       schemeName: "Scheme 12",
@@ -134,7 +134,7 @@ const Applied = () => {
       applicationStatus: "Rejected",
       schemeEndDate: "End Date 12",
       schemeDefectiveApplicationVerification: "Duration 12",
-      viewApplication: "Button",
+      viewApplication: "Button 12",
     },
     {
       schemeName: "Scheme 13",
@@ -142,7 +142,7 @@ const Applied = () => {
       applicationStatus: "Accepted",
       schemeEndDate: "End Date 13",
       schemeDefectiveApplicationVerification: "Duration 13",
-      viewApplication: "Button",
+      viewApplication: "Button 13",
     },
   ];
 

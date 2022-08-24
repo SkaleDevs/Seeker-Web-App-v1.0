@@ -26,19 +26,11 @@ import Dropdown from "src/views/schemes/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+import ViewDetails from "../../../views/modal/ViewDetails";
+
 const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();
-  const viewButton = (p) => (
-    <Button
-      variant="contained"
-      color="success"
-      size="small"
-      startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
-    >
-      Apply
-    </Button>
-  );
+  const viewButton = (p) => <ViewDetails />;
 
   const rowData = [
     {
@@ -176,13 +168,6 @@ const FundingSchemes = () => {
     }),
     []
   );
-
-  //   // Example load data from sever
-  //   useEffect(() => {
-  //   fetch('https://www.ag-grid.com/example-assets/row-data.json')
-  //   .then(result => result.json())
-  //   .then(rowData => setRowData(rowData))
-  //   }, []);
 
   return (
     <Grid container spacing={3}>

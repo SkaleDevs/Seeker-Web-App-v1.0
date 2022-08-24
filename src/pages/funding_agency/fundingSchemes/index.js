@@ -48,6 +48,17 @@ const AllSchemes = () => {
     }),
     []
   );
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        "/api/funding_agency/controller/agency/getAllSchemes"
+      );
+      setData(result.data);
+    }
+
+  },[])
 
   return (
     <Grid container spacing={3}>

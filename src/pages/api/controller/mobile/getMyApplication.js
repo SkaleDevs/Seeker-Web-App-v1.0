@@ -12,7 +12,7 @@ export default async function handler(req,res){
         if(decoded.role!=="seeker"){
             return res.status(401).json({error: 'Unauthorized'});
         }
-    let data=  await ApplySeeker.find({seekerID:decoded.id});
+    let data=  await ApplySeeker.find({seekerID:decoded.id})
     if(data){
         return res.status(200).send(data);
     }

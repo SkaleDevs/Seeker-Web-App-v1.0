@@ -97,27 +97,27 @@ const TabAccount = () => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="First Name"
-              placeholder="John Doe"
-              defaultValue="John"
+              helperText="First Name"
+              // placeholder="John Doe"
+              // defaultValue="John"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Middle Name"
-              placeholder="John Doe"
-              defaultValue="Kuamr"
+              helperText="Middle Name"
+             // placeholder="John Doe"
+              //defaultValue="Kuamr"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Last Name"
-              placeholder="John Doe"
-              defaultValue="Doe"
+              helperText="Last Name"
+             // placeholder="John Doe"
+              //defaultValue="Doe"
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -125,9 +125,9 @@ const TabAccount = () => {
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Username"
-              placeholder="johnDoe"
-              defaultValue="johnDoe"
+              helperText="Username"
+              //placeholder="johnDoe"
+              //defaultValue="johnDoe"
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -135,9 +135,9 @@ const TabAccount = () => {
             <TextField
               fullWidth
               type="email"
-              label="Email"
-              placeholder="johnDoe@example.com"
-              defaultValue="johnDoe@example.com"
+              helperText="Email"
+             // placeholder="johnDoe@example.com"
+             //defaultValue="johnDoe@example.com"
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -145,18 +145,18 @@ const TabAccount = () => {
             <TextField
               fullWidth
               type="number"
-              label="Phone"
-              placeholder="1234567890"
-              defaultValue="7438748373"
+              helperText="Phone"
+              //placeholder="1234567890"
+              //defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
-              label="Birth Date"
-              placeholder="johnDoe"
-              defaultValue="13-12-2012"
+              helperText="Birth Date"
+              //placeholder="johnDoe"
+              //defaultValue="13-12-2012"
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -165,9 +165,9 @@ const TabAccount = () => {
             <TextField
               fullWidth
               type="string"
-              label="Address"
-              placeholder="johnDoe@example.com"
-              defaultValue="Bengakuru, Karnataka, India."
+              helperText="Address"
+             // placeholder="johnDoe@example.com"
+              //defaultValue="Bengakuru, Karnataka, India."
               inputProps={{ readOnly: true }}
             />
           </Grid>

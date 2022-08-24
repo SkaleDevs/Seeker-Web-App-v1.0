@@ -58,7 +58,6 @@ export default async function handler(req, res) {
     });
     details.save();
 
-
     const use=new users({
       email:req.body.email,
       role:req.body.role,

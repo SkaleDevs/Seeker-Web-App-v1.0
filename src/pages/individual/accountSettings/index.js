@@ -79,7 +79,7 @@ const AccountSettings = ({sess}) => {
               </Box>
             }
           />
-          <Tab
+          {/* <Tab
             value="security"
             label={
               <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -87,7 +87,7 @@ const AccountSettings = ({sess}) => {
                 <TabName>Security</TabName>
               </Box>
             }
-          />
+          /> */}
           <Tab
             value="info"
             label={

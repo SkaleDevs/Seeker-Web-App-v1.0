@@ -13,14 +13,14 @@ export default async function handler(req,res){
     // console.log(cookies);
     var {token} =  cookie.parse(req?.headers.cookie || "");
     var decoded = jwt.verify(token, 'secret');
-    if(decoded.role!=="seeker"){
+    if(decoded.role!=="individual"){
         return res.status(401).json({error: 'Unauthorized'});
     }
 
 
-   let data=await users.findOneAndDelete({email:req.body.email,role:"Seeker"});
+   let data=await users.findOneAndDelete({email:decoded.email,role:"individual",id:decoded.id});
   
-        das= await Seeker.findOneAndDelete({email:req.body.email}).then(()=>{
+        das= await Seeker.findOneAndDelete({email:decoded.email}).then(()=>{
             const msg = {
                 to: req.body.email, // Change to your recipient
                 from: 'harshme78@gmail.com', // Change to your verified sender

@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   try {
     let check1 = await users.findOne({ email: req.body.email });
     if (check1) {
-      return res.send({ message: "A user with this email id already exists" });
+        return res.send({message:"A user with this email id already exists"});
     }
     console.log(check1);
     console.log(req.body.aadharNo);
@@ -57,12 +57,15 @@ export default async function handler(req, res) {
       banned: "No",
     });
     details.save();
-    const use = new users({
-      email: req.body.email,
-      role: req.body.role,
-      special: req.body.aadharNo,
-    });
-    use.save();
+
+    const use=new users({
+      email:req.body.email,
+      role:req.body.role,
+      special:req.body.aadharNo,
+      banned:"No"
+  })
+  use.save()
+
     res.send({ message: "Successfully registered" });
   } catch (err) {
     res.send({ message: err });

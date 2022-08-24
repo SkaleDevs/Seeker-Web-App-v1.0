@@ -18,7 +18,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-
+import axios from "axios";
 // ** Custom Components Imports
 
 import Dropdown from "src/views/schemes/Dropdown";
@@ -39,6 +39,17 @@ const ScheduleInterviews = () => {
     </Button>
   );
 
+  const seekerapplications=async()=>{
+    allScholarships=await axios.get(`/api/controller/agency/getSeeerApplication`);
+  }
+  const instituteapplication=async()=>{
+    allScholarships=await axios.get(`/api/controller/agency/getInstituteApplication`);
+  }
+  useEffect(()=>{
+    seekerapplications();
+    instituteapplication();
+  },[])
+  
   const rowData = [
     {
       applicantName: "Rahul Gandhi",

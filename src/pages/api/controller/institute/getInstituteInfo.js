@@ -13,4 +13,3 @@ export default async function handler(req,res){
     }
     return res.send("No profile exists")
 }
- 

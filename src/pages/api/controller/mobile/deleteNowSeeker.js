@@ -10,10 +10,10 @@ export default async function handler(req,res){
     //   console.log(cookies);
       var {token} =  cookie.parse(req?.headers.cookie || "");
       var decoded = jwt.verify(token, 'secret');
-      if(decoded.role!=="seeker"){
+      if(decoded.role!=="individual"){
           return res.status(401).json({error: 'Unauthorized'});
       }
-   let details=await ApplySeeker.findOneAndDelete({email:req.body.email, seekerID:req.body.seekerID});
+   let details=await ApplySeeker.findOneAndDelete({email:decoded.email, seekerID:decoded.id,scholarshipID:req.body.scholarshipID});
     res.send(details)
     } catch (error) {
        res.status(500).send(error);

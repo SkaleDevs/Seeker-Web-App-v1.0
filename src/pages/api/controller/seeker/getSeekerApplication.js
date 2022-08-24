@@ -1,5 +1,5 @@
-import ApplySeeker from '../model/applyNowSeekerSchema';
-import connectDB from '../auth/lib/connectDB';
+import ApplySeeker from '../../model/applyNowSeekerSchema';
+import connectDB from '../../auth/lib/connectDB';
 import {getSession} from 'next-auth/react';
 connectDB();
 //does even the work of rejecting the verification stuff for agency account

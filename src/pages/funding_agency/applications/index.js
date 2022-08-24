@@ -18,7 +18,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-
+import { getSession } from "next-auth/react";
 // ** Custom Components Imports
 
 import Dropdown from "src/views/schemes/Dropdown";
@@ -27,9 +27,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import CreateMeeting from "../../../views/modal/CreateMeeting";
+import { SubscriptionsOutlined } from "@mui/icons-material";
 
-const AllApplications = () => {
+const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeekerApplications,allInstituteApplications}) => {
+
+  
   // const [rowData, setRowData] = useState();
+
   // const viewButton = (
   //   <Button
   //     variant="contained"
@@ -42,28 +46,37 @@ const AllApplications = () => {
   // );
 
 //all variables
-let allScholarships;
-let allSeekerApplications;
-let allInstituteApplications;
+// let allScholarships;
+// let allSeekerApplications;
+// let allInstituteApplications;
 
-//access all my scholarships
-const scholarship=async()=>{
-  allScholarships=await axios.get(`/api/agency/getScholarship`);
-}
-
-//access applications within that scholarships
-// const seekerapplications=async({id})=>{
-//   allSeekerApplications=await axios.post(`/api/agency/getSeekerApplication`,{scholarshipID:id});
+// //access all my scholarships
+// const scholarship=async()=>{
+//   console.log("REW")
+//   allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
+//   console.log(allScholarships)
+  
 // }
-// const insituteapplications=async({id})=>{
-//  allInstituteApplications= await axios.post(`/api/agency/getInstituteApplication`,{scholarshipID:id});
+
+// //access applications within that scholarships
+// const seekerapplications=async()=>{
+//   allScholarships.map(async(items)=>{
+//     console.log(items)
+//     allSeekerApplications=await axios.post(`/api/controller/agency/getSeekerApplication`,{scholarshipID:"62fb50073bba3442d1df88a8"});
+//   })
+  
+// }
+// const insituteapplications=async()=>{
+//   allScholarships.map(async(items)=>{
+//  allInstituteApplications= await axios.post(`/api/controller/agency/getInstituteApplication`,{scholarshipID:items._id});
+//   })
 // }
 
 
 
 //update status
-  const accept=async({type,id})=>{
-    await axios.post(`/api/agency/updateStatus`,{type:type,status:"accept",id:id}).then(data=>{
+  const accept=async(props)=>{
+    await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"accept",id:props.data.accept}).then(data=>{
       if(data){
         window.alert("Accepted")
       }
@@ -71,8 +84,8 @@ const scholarship=async()=>{
       window.alert("Error")
     })
   }
-  const reject=async({type,id})=>{
-    await axios.post(`/api/agency/updateStatus`,{type:type,status:"reject",id:id}).then(data=>{
+  const reject=async(props)=>{
+    await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"reject",id:props.data.accept}).then(data=>{
       if(data){
         window.alert("Rejected")
       }
@@ -80,8 +93,8 @@ const scholarship=async()=>{
       window.alert("Error")
     })
   }
-  const amend=async({type,id})=>{
-   await axios.post(`/api/agency/updateStatus`,{type:type,status:"amend",id:id}).then(data=>{
+  const amend=async(props)=>{
+   await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"amend",id:props.data.accept}).then(data=>{
       if(data){
         window.alert("Amended")
       }
@@ -91,11 +104,11 @@ const scholarship=async()=>{
   }
 
   //useEffect
-  useEffect(()=>{
-    // scholarship();
-    // seekerapplications();
-    // insituteapplications();
-  },[])
+  // useEffect(()=>{
+  //   scholarship();
+  //   seekerapplications();
+  //   insituteapplications();
+  // },[])
 
 
   const viewButton = (p) => (
@@ -110,46 +123,46 @@ const scholarship=async()=>{
     </Button>
   );
 
-  const acceptButton = (p) => (
+  const acceptButton = (props) => (
     <Button
       variant="contained"
       color="success"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={accept}
+      onClick={()=>accept(props)}
     >
       Accept
     </Button>
   );
 
-  const rejectButton = (p) => (
+  const rejectButton = (props) => (
     <Button
       variant="contained"
       color="error"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={reject}
+      onClick={()=>reject(props)}
     >
       Reject
     </Button>
   );
 
-  const amendButton = (p) => (
+  const amendButton = (props) => (
     <Button
       variant="contained"
       color="warning"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
      // href={`/schemes/${p.data.id}`}
-      onClick={amend}
+      onClick={()=>amend(props)}
     >
       Amend
     </Button>
   );
 
-  const meetButton = (p) => (
+  const meetButton = () => (
     <Button
       variant="contained"
       color="primary"
@@ -160,16 +173,31 @@ const scholarship=async()=>{
     </Button>
   );
 
-  const rowData = [
-    {
-      applicantName: "Rahul Gandhi",
-      viewApplication: "Button",
-      viewDocs: "Button",
-      accept: acceptButton("text"),
-      reject: "Button",
-      amend: "Button",
+  const rowData1 = [
+    allSeekerApplications.map(item=>{
+    return(
+      {
+      applicantName: `${item.name}`,
+      viewApplication: `${item.id}`,
+      viewDocs: `${item.id}`,
+      accept: `${item.id}`,
+      reject: `${item.id}`,
+      amend: `individual`,
       scheduleMeeting: "Button",
-    },
+    })})
+  ];
+  const rowData2 = [
+     allInstituteApplications.map(item=>{
+      return(
+      {
+        applicantName: `${item.name}`,
+        viewApplication: `${item.id}`,
+        viewDocs: `${item.id}`,
+        accept: `${item.id}`,
+        reject: `${item.id}`,
+        amend: `hei`,
+        scheduleMeeting: "Button",})})
+      
   ];
 
   const [columnDefs, setColumnDefs] = useState([
@@ -228,6 +256,7 @@ const scholarship=async()=>{
 
   const defaultColDef = useMemo(
     () => ({
+      resizable: true,
       sortable: true,
       filter: true,
     }),
@@ -266,8 +295,12 @@ const scholarship=async()=>{
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-             { allScholarships?.map(item=>{
-               allScholarships.schemeType==="individual" && (<Dropdown authority={item.name}> {/* Scheme name */}
+             { allIndividualScholarships?.map(item=>{
+              //  allScholarships.schemeType==="individual" && (
+            
+              return(
+               
+               <Dropdown authority={item.name}> {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -278,7 +311,7 @@ const scholarship=async()=>{
                     }}
                   >
                     <AgGridReact
-                      rowData={rowData} // Row Data for Rows
+                      rowData={rowData1} // Row Data for Rows
                       columnDefs={columnDefs} // Column Defs for Columns
                       defaultColDef={defaultColDef} // Default Column Properties
                       animateRows={true} // Optional - set to 'true' to have rows animate when sorted
@@ -288,10 +321,12 @@ const scholarship=async()=>{
                     />
                   </div>
                 </Dropdown>)})}
+                {/* )})} */}
               </TabPanel>
               <TabPanel value="1">
-              { allScholarships?.map(item=>{
-               allScholarships.schemeType==="hei" && (
+              { allHeiScholarships?.map(item=>{
+              //  allScholarships.schemeType==="hei" && (
+                return(
                 <Dropdown authority={item.name}>
                   <div
                     className="ag-theme-alpine"
@@ -303,7 +338,7 @@ const scholarship=async()=>{
                     }}
                   >
                     <AgGridReact
-                      rowData={rowData} // Row Data for Rows
+                      rowData={rowData2} // Row Data for Rows
                       columnDefs={columnDefs} // Column Defs for Columns
                       defaultColDef={defaultColDef} // Default Column Properties
                       animateRows={true} // Optional - set to 'true' to have rows animate when sorted
@@ -323,3 +358,50 @@ const scholarship=async()=>{
 };
 
 export default AllApplications;
+
+export async function getServerSideProps(context) {
+  console.log("RFWfr")
+  const sess= await getSession(context);
+//access all my scholarships
+//let allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
+// let allScholarships;
+// let a =  await fetch(`http://localhost:3000/api/controller/agency/getScholarship`)
+// let j  = a.json()
+// console.log(j);
+const allIndividualScholarships = await fetch(`http://localhost:3000/api/controller/getAllSeekerScholarship`)
+.then(res => res.json())
+
+const allHeiScholarships = await fetch(`http://localhost:3000/api/controller/getAllInstituteScholarship`)
+.then(res => res.json())
+// .then(data => {
+//   console.log("1",data);
+//   return data;
+// }).catch(err => {
+//   console.log(err);
+// }
+// );
+
+//onsole.log("2",allScholarships)
+let allSeekerApplications=[];
+let allInstituteApplications=[];
+let c1=0,c2=0;
+//   access applications within that scholarships
+// allScholarships.map(async(items)=>{
+//     //console.log(items)
+//     allSeekerApplications[c1++]=await fetch(`http://localhost:3000/api/controller/agency/getSeekerApplication`,{method:'post'},{scholarshipID:items._id});
+//   })
+//   allScholarships.map(async(items)=>{
+//  allInstituteApplications[c2++]= await fetch(`http://localhost:3000/api/controller/agency/getInstituteApplication`,{method:'post'},{scholarshipID:items._id});
+//   })
+//   console.log(allSeekerApplications)
+//   console.log(allInstituteApplications)
+
+  return {
+    props: {
+        allIndividualScholarships,
+        allHeiScholarships,
+        allSeekerApplications,
+        allInstituteApplications
+    },
+  };
+}

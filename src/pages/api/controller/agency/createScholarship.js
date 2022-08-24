@@ -5,7 +5,7 @@ connectDB();
 export default async function handler(req,res){
     const session = await getSession({req})
     console.log(session);
-    if (!session || session.user.role!=="agency") {
+    if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
     let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body);

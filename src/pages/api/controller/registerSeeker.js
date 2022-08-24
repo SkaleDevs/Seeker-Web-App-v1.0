@@ -59,6 +59,7 @@ export default async function handler(req, res) {
       email:req.body.email,
       role:req.body.role,
       special:req.body.aadharNo,
+      banned:"No"
   })
   use.save()
     res.send({ message: "Successfully registered" });

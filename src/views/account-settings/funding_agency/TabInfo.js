@@ -31,20 +31,60 @@ const CustomInput = forwardRef((props, ref) => {
 const TabInfo = () => {
   // ** State
   const [date, setDate] = useState(null);
+  const [user, setUser] = useState({});
+  useEffect(() => {
+
+    const fetch= async () =>{
+      await axios.get(`https://localhost:3000/api/controller/agency/getMyDetails`,{email:session.email}).then((res) => {
+        setUser(res.data);
+        console.log(res.data);
+        
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+    fetch();
+    
+  }, []);
+  let initialvalue={
+    email:user?.email,
+    typeEnitity:user?.typeEnitity,
+    name:user?.name,
+    discription:user?.discription,
+    typeOrganisation:user?.typeOrganisation,
+    trustType:user?.trustType,
+    trustName:user?.trustName,
+    address:user?.address,
+    pincode:user?.pincode,
+    city:user?.city,
+    state:user?.state,
+    url:user?.url,
+    regNo:user?.regNo,
+    panNo:user?.panNo,
+    ifsc:user?.ifsc,
+    bankName:user?.bankName,
+    branchName:user?.branchName,
+    bankAccountNo:user?.bankAccountNo,
+    nameAsPerBank:user?.nameAsPerBank,
+    entityLogo:user?.entityLogo,
+    schemeManaged:user?.schemeManaged,
+    panFile:user?.panFile,
+    identityProofFile:user?.identityProofFile,
+    phone:user?.phone
+ }
+ const [data,setdata]  = useState(initialvalue);
+
+ const handlechange = (e) => {
+      
+  setdata({ ...data, [e.target.name]: e.target.value });
+  console.log(data);
+};
+
 
   return (
 
-
-
-
-
     //form validation needs to be done
     //pan card upload file tab needs to be added (along with entity logo & identity proof file)
-
-
-
-
-
 
     <CardContent>
       <form>
@@ -55,6 +95,8 @@ const TabInfo = () => {
               required
               label="Name"
               placeholder="Agency's Name"
+              onChange={(e) => handlechange(e)}
+              name="name"
               // defaultValue="John"
               // inputProps={{ readOnly: true }}
             />
@@ -66,6 +108,8 @@ const TabInfo = () => {
               type="email"
               label="Email"
               placeholder="johnDoe@example.com"
+              onChange={(e) => handlechange(e)}
+              name="email"
 
               // inputProps={{ readOnly: true }}
             />
@@ -77,6 +121,8 @@ const TabInfo = () => {
               type="number"
               label="Phone"
               placeholder="+91 1231231234"
+              onChange={(e) => handlechange(e)}
+              name="phone"
             />
           </Grid>
           <Grid item xs={12} sm={2}>

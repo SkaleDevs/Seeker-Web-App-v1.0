@@ -1,15 +1,19 @@
+
 import Agency from '../../model/agencySchema';
 import connectDB from '../../auth/lib/connectDB';
 import {getSession} from 'next-auth/react';
 connectDB();
 export default async function handler(req,res){
+    try{
     const session = await getSession({req})
     if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
-    let data=  await Agency.findOneAndUpdate({email:req.body.email},req.body);
-    if(data){
-        return res.send(data);
+    let data=await Agency.find({agencyID:session.user.id});
+    res.send(data)
+   }
+    catch(error){
+        res.status(500).send(error);
     }
-    return res.send("No profile exists")
+    
 }

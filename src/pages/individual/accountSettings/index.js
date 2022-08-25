@@ -21,9 +21,8 @@ import TabSecurity from "src/views/account-settings/individual/TabSecurity";
 import {getSession} from 'next-auth/react';
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
 // ** Third Party Styles Imports
-// import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const Tab = styled(MuiTab)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
@@ -54,23 +53,6 @@ const AccountSettings = ({sess}) => {
 
   },[])
   const [value, setValue] = useState("account");
-  const [user, setUser] = useState({});
-  useEffect(() => {
-
-    const fetch= async () =>{
-      await axios.get(`/api/controller/seeker/getSeekerInfo`).then((res) => {
-        setUser(res.data);
-        // console.log(res.data);
-        
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    fetch();
-    
-  }, []);
-
-
   if (sess?.status=="loading") return <div>Loading...</div>;
  
   // ** State
@@ -118,13 +100,13 @@ const AccountSettings = ({sess}) => {
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value="account">
-          <TabAccount user={user} />
+          <TabAccount />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="security">
           <TabSecurity />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="info">
-          <TabInfo user={user} />
+          <TabInfo session={sess} />
         </TabPanel>
       </TabContext>
     </Card>

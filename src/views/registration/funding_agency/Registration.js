@@ -91,7 +91,7 @@ const FundingAgencyRegistration = () => {
   const cityRef = useRef();
   const trustNameRef = useRef();
   const urlRef = useRef();
-  const regNoRef= useRef();
+  const regNoRef = useRef();
   const panNoRef = useRef();
   const nameAsPerBankRef = useRef();
   const schemeManagedRef = useRef();
@@ -186,16 +186,12 @@ const FundingAgencyRegistration = () => {
     setuploadEntityLogoFile(BUCKET_URL + entityLogo?.name);
     setEntityLogo(null);
   };
-  
+
   const upload = async () => {
     uploadIdentity();
     uploadpan();
     uploadEntityLogo();
-    console.log(
-      uploadIdentity,
-      uploadpan,
-      uploadEntityLogo
-    );
+    console.log(uploadIdentity, uploadpan, uploadEntityLogo);
 
     let { data } = await axios.post("/api/controller/registerSeeker", {
       email: emailRef?.current?.value,
@@ -222,7 +218,7 @@ const FundingAgencyRegistration = () => {
       schemeManaged: schemeManagedRef?.current?.value,
       identityProofFile: identityFile,
       verfied: "No",
-      banned:"No",
+      banned: "No",
     });
 
     window.alert(data.message);
@@ -231,10 +227,33 @@ const FundingAgencyRegistration = () => {
   return (
     <>
       <Grid container spacing={3}>
-        
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="College Address" />
+            <Chip label="Agency Details" />
+          </Divider>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="Agency Name"
+            placeholder="Bharat Education Foundation"
+            inputRef={nameRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            multiline={true}
+            required
+            label="Description"
+            placeholder="Enter description"
+            inputRef={nameRef}
+          />
+        </Grid>
+        <Grid item xs={12}>
+          <Divider variant="middle" textAlign="left">
+            <Chip label="Agency Address" />
           </Divider>
         </Grid>
         <Grid item xs={12} sm={4}>

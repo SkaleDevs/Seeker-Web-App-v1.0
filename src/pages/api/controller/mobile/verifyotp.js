@@ -13,7 +13,8 @@ export default async function handler(req,res){
         console.log(decoded)
         if(decoded.role!=="individual"){
             return res.status(401).json({error: 'Unauthorized'});
-        } data= await users.findOne({email:decoded.email,role:"individual"});
+        }
+      data= await users.findOne({email:decoded.email,role:"individual"});
       console.log("otp",data.otp);
       console.log(req.body.otp);
       console.log(Date.now());

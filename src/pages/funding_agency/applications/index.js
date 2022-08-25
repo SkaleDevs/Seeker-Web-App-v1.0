@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-import axios from 'axios'
+import axios from "axios";
 // ** MUI Imports
 import {
   Card,
@@ -30,8 +30,74 @@ import CreateMeeting from "../../../views/modal/CreateMeeting";
 import { SubscriptionsOutlined } from "@mui/icons-material";
 
 const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeekerApplications,allInstituteApplications}) => {
-
-  
+  console.log(allSeekerApplications)
+  console.log(allInstituteApplications)
+//let allSeekerApplications=[]
+const [first,setfirst]=useState([])
+var ans={}
+  // useEffect(() => {
+  //   // const hey=async()=>{
+  //   // allIndividualScholarships.map(async(items,val)=>{
+  //   //   console.log(items._id)
+  //   //  // console.log(items)
+  //   //  let data=await fetch(`http://localhost:3000/api/controller/agency/getSeekerApplication`,{method:"POST",body:JSON.stringify({scholarshipID:items._id}),headers:{"Content-type":"application/json;charset=UTF-8"}}).then(res=>res.json());
+  //   //  console.log("Fs",data)
+  //   //   ans.val=data;
+  //   //  let data1=[]
+  //   // //  data.map(item=>{
+  //   // //   data1.push({
+  //   // //     applicantName: `${item._id}`,
+  //   // // viewApplication: `{item.id}`,
+  //   // // viewDocs: `{item.id}`,
+  //   // // accept: `{item.id}`,
+  //   // // reject: `{item.id}`,
+  //   // // amend: `hei`,
+  //   // // scheduleMeeting: "Button",
+  //   // //   })
+  //   // //  })
+  //   //  allSeekerApplications.push({val:data})
+  //   // data1=[]})}
+  //   //  hey()
+  //   console.log(ans)
+  //   // console.log("check",allSeekerApplications)
+  //  },[])
+   console.log("front",allSeekerApplications[0])
+  let a=[
+        [ {
+    applicantName: `{item.name}`,
+    viewApplication: `{item.id}`,
+    viewDocs: `{item.id}`,
+    accept: `{item.id}`,
+    reject: `{item.id}`,
+    amend: `hei`,
+    scheduleMeeting: "Button",},
+    {
+      applicantName: `$ame}`,
+      viewApplication: `$m.id}`,
+      viewDocs: `$id}`,
+      accept: `$.id}`,
+      reject: `$em.id}`,
+      amend: `hei`,
+      scheduleMeeting: "Button",}],
+      [{
+        applicantName: `$ame}`,
+        viewApplication: `$em.id}`,
+        viewDocs: `tem.id}`,
+        accept: `em.id}`,
+        reject: `$m.id}`,
+        amend: `hei`,
+        scheduleMeeting: "Button",}
+      ,
+      {
+        applicantName: `$em.name}`,
+        viewApplication: `$tem.id}`,
+        viewDocs: `$m.id}`,
+        accept: `item.id}`,
+        reject: `item.id}`,
+        amend: `hei`,
+        scheduleMeeting: "Button",}]]
+        console.log("See",a[0])
+      
   // const [rowData, setRowData] = useState();
 
   // const viewButton = (
@@ -76,7 +142,8 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
 
 //update status
   const accept=async(props)=>{
-    await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"accept",id:props.data.accept}).then(data=>{
+    console.log("known",props.data.accept)
+    await axios.post(`/api/controller/agency/updateStatus`,{type:props.data.amend,status:"accept",id:props.data.accept}).then(data=>{
       if(data){
         window.alert("Accepted")
       }
@@ -85,7 +152,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
     })
   }
   const reject=async(props)=>{
-    await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"reject",id:props.data.accept}).then(data=>{
+    await axios.post(`/api/controller/agency/updateStatus`,{type:props.data.amend,status:"reject",id:props.data.accept}).then(data=>{
       if(data){
         window.alert("Rejected")
       }
@@ -94,7 +161,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
     })
   }
   const amend=async(props)=>{
-   await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"amend",id:props.data.accept}).then(data=>{
+   await axios.post(`/api/controller/agency/updateStatus`,{type:props.data.amend,status:"amend",id:props.data.accept}).then(data=>{
       if(data){
         window.alert("Amended")
       }
@@ -110,14 +177,13 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
   //   insituteapplications();
   // },[])
 
-
   const viewButton = (p) => (
     <Button
       variant="contained"
       color="secondary"
       size="small"
       startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
+      //href={`/schemes/${p.data.id}`}
     >
       View
     </Button>
@@ -130,7 +196,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={()=>accept(props)}
+      onClick={() => accept(props)}
     >
       Accept
     </Button>
@@ -143,7 +209,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={()=>reject(props)}
+      onClick={() => reject(props)}
     >
       Reject
     </Button>
@@ -155,50 +221,83 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
       color="warning"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-     // href={`/schemes/${p.data.id}`}
-      onClick={()=>amend(props)}
+      // href={`/schemes/${p.data.id}`}
+      onClick={() => amend(props)}
     >
       Amend
     </Button>
   );
 
-  const meetButton = () => (
-    <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-    >
-      <CreateMeeting />
-    </Button>
-  );
+  const meetButton = () => <CreateMeeting />;
 
   const rowData1 = [
-    allSeekerApplications.map((item,key)=>{
-    return(
-      {
-      applicantName: `${item.name}`,
-      viewApplication: `${item.id}`,
-      viewDocs: `${item.id}`,
-      accept: `${item.id}`,
-      reject: `${item.id}`,
-      amend: `individual`,
-      scheduleMeeting: "Button",
-    })})
+    allSeekerApplications.map(item=>{
+      console.log("gh",item[0])
+      return(item.map(ans=>{
+        console.log("mija",ans.firstName)
+        return(
+          {
+          applicantName: `${ans.firstName} ${ans.lastName}`,
+          viewApplication: `${ans._id}`,
+          viewDocs: `${ans._id}`,
+          accept: `${ans._id}`,
+          reject: `${ans._id}`,
+          amend: `individual`,
+          scheduleMeeting: "Button",
+        })
+      }))
+    })
   ];
   const rowData2 = [
-     allInstituteApplications.map((item,key)=>{
-      return(
-      {
-        applicantName: `${item.name}`,
-        viewApplication: `${item.id}`,
-        viewDocs: `${item.id}`,
-        accept: `${item.id}`,
-        reject: `${item.id}`,
-        amend: `hei`,
-        scheduleMeeting: "Button",})})
-      
+    allInstituteApplications.map((item,key)=>{
+      console.log("gh",item[0])
+      return(item.map(ans=>{
+        console.log("mija",ans?.name)
+        return(
+          {
+          instituteName: `${ans?.name}`,
+          viewApplication: `${ans._id}`,
+          viewDocs: `${ans._id}`,
+          accept: `${ans._id}`,
+          reject: `${ans._id}`,
+          amend: `hei`,
+          scheduleMeeting: "Button",
+        })
+      }))
+    })
   ];
+
+  console.log("sahan",rowData1)
+  console.log("sahan1",a)
+  // const rowData2 = [
+  //    allInstituteApplications.map(item=>{
+  //     return(
+  //     {
+  //       applicantName: `${item.name}`,
+  //       viewApplication: `${item.id}`,
+  //       viewDocs: `${item.id}`,
+  //       accept: `${item.id}`,
+  //       reject: `${item.id}`,
+  //       amend: `hei`,
+  //       scheduleMeeting: "Button",})})
+      
+  // ];
+
+  console.log("sahan",rowData1)
+  console.log("sahan1",a)
+  // const rowData2 = [
+  //    allInstituteApplications.map(item=>{
+  //     return(
+  //     {
+  //       applicantName: `${item.name}`,
+  //       viewApplication: `${item.id}`,
+  //       viewDocs: `${item.id}`,
+  //       accept: `${item.id}`,
+  //       reject: `${item.id}`,
+  //       amend: `hei`,
+  //       scheduleMeeting: "Button",})})
+      
+  // ];
 
   const [columnDefs, setColumnDefs] = useState([
     {
@@ -295,9 +394,13 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-             { allIndividualScholarships?.map((item,key)=>{
-              //  allScholarships.schemeType==="individual" && (
-            
+             { allIndividualScholarships?.map((item,val)=>{
+              //  allScholarships.schemeType==="individual" && (  
+                allSeekerApplications=["RGs"]
+                console.log("2",typeof(allSeekerApplications[0]))
+                console.log("3",allSeekerApplications)
+              // console.log("1",allSeekerApplications[Object.keys(allSeekerApplications)[0]]);
+               
               return(
                
                <Dropdown authority={item.name} key={key}> {/* Scheme name */}
@@ -311,7 +414,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                     }}
                   >
                     <AgGridReact
-                      rowData={rowData1} // Row Data for Rows
+                      rowData={rowData1[0][val]} // Row Data for Rows
                       columnDefs={columnDefs} // Column Defs for Columns
                       defaultColDef={defaultColDef} // Default Column Properties
                       animateRows={true} // Optional - set to 'true' to have rows animate when sorted
@@ -324,7 +427,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                 {/* )})} */}
               </TabPanel>
               <TabPanel value="1">
-              { allHeiScholarships?.map((item,key)=>{
+              { allHeiScholarships?.map((item,val)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
                 <Dropdown authority={item.name} key={key}>
@@ -338,7 +441,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                     }}
                   >
                     <AgGridReact
-                      rowData={rowData2} // Row Data for Rows
+                      rowData={rowData2[0][val]} // Row Data for Rows
                       columnDefs={columnDefs} // Column Defs for Columns
                       defaultColDef={defaultColDef} // Default Column Properties
                       animateRows={true} // Optional - set to 'true' to have rows animate when sorted
@@ -362,46 +465,25 @@ export default AllApplications;
 export async function getServerSideProps(context) {
   console.log("RFWfr")
   const sess= await getSession(context);
-//access all my scholarships
-//let allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
-// let allScholarships;
-// let a =  await fetch(`http://localhost:3000/api/controller/agency/getScholarship`)
-// let j  = a.json()
-// console.log(j);
+
 const allIndividualScholarships = await fetch(`http://localhost:3000/api/controller/getAllSeekerScholarship`)
 .then(res => res.json())
 
 const allHeiScholarships = await fetch(`http://localhost:3000/api/controller/getAllInstituteScholarship`)
 .then(res => res.json())
 // .then(data => {
-//   console.log("1",data);
-//   return data;
-// }).catch(err => {
-//   console.log(err);
-// }
-// );
-
-//onsole.log("2",allScholarships)
-let allSeekerApplications=[];
-let allInstituteApplications=[];
-let c1=0,c2=0;
-//   access applications within that scholarships
-// allScholarships.map(async(items)=>{
-//     //console.log(items)
-//     allSeekerApplications[c1++]=await fetch(`http://localhost:3000/api/controller/agency/getSeekerApplication`,{method:'post'},{scholarshipID:items._id});
-//   })
-//   allScholarships.map(async(items)=>{
-//  allInstituteApplications[c2++]= await fetch(`http://localhost:3000/api/controller/agency/getInstituteApplication`,{method:'post'},{scholarshipID:items._id});
-//   })
-//   console.log(allSeekerApplications)
-//   console.log(allInstituteApplications)
-
+const allSeekerApplications = await fetch(`http://localhost:3000/api/controller/agency/getStructuredData`)
+.then(res => res.json())
+const allInstituteApplications = await fetch(`http://localhost:3000/api/controller/agency/getStructuredData1`)
+.then(res => res.json())
+  
+  console.log("ok",allSeekerApplications)
   return {
     props: {
-        allIndividualScholarships,
-        allHeiScholarships,
-        allSeekerApplications,
-        allInstituteApplications
+      allIndividualScholarships,
+      allHeiScholarships,
+      allSeekerApplications,
+      allInstituteApplications,
     },
   };
 }

@@ -140,7 +140,7 @@ const CustomInput = forwardRef((props, ref) => {
               required
               type="number"
               label="Phone"
-<<<<<<<<< Temporary merge branch 1
+
               onChange={(e) => handlechange(e)}
               name="phone"
              // placeholder="+91 1231231234"

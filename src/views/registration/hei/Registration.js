@@ -7,9 +7,7 @@ import axios from "axios";
 import Link from "next/link";
 
 // ** Date Picker Imports
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useRouter } from "next/router";
 
 // ** MUI Components
 import Box from "@mui/material/Box";
@@ -55,6 +53,8 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 let BUCKET_URL = "https://253762017528.signin.aws.amazon.com/console";
 
 const HeiRegistration = () => {
+  const router = useRouter();
+
   const courses = [
     { courseName: "BE in Computer Science" },
     { courseName: "BE in Information Science" },
@@ -313,6 +313,10 @@ const HeiRegistration = () => {
     });
 
     window.alert(data.message);
+    if(data.message === "Successfully registered"){
+      // window.location.href = "/login";
+      router.push("/login");
+    }
   };
 
   return (

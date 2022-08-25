@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-
+import {getSession} from 'next-auth/react';
 // ** MUI Imports
 import {
   Card,

@@ -184,11 +184,11 @@ const UserLayout = ({ children }) => {
           icon: HomeOutline,
           path: "/moderator",
         },
-        {
-          title: "Account Settings",
-          icon: AccountCogOutline,
-          path: "/moderator/accountSettings", // to be updated
-        },
+        // {
+        //   title: "Account Settings",
+        //   icon: AccountCogOutline,
+        //   path: "/moderator/accountSettings", // to be updated
+        // },
         {
           sectionTitle: "Registration Applications",
         },

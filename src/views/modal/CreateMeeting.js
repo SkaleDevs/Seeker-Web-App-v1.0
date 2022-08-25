@@ -324,6 +324,7 @@ export default function CreateMeeting({
                 variant="contained"
                 sx={{ marginRight: 3.5 }}
                 onClick={RequestCreate}
+                size="small"
               >
                 Send
               </Button>

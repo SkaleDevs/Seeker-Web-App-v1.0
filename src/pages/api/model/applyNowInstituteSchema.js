@@ -51,6 +51,18 @@ const applyNowInstituteSchema = new mongoose.Schema({
         required:false
         //applied, rejected, accepted, amended
     },
+    meetingDate:{
+        type:String,
+        required:false
+      },
+      meetingStartTime:{
+        type:String,
+        required:false
+      },
+      meetingEndTime:{
+        type:String,
+        required:false
+      },
     schedledMeeting:{
         type:String,
         required:false

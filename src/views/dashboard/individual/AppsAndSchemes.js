@@ -11,21 +11,22 @@ import MuiDivider from "@mui/material/Divider";
 
 const applications = [
   {
+    logoWidth: 38,
+    logoHeight: 38,
+    status: 'approved',
+    title: "The Prime Minister Narendra Modi Scholarship Scheme",
+    subtitle: "UGC",
+    logo: "/images/logos/mastercard-label.png",
+  },
+  {
     logoWidth: 28,
     logoHeight: 29,
-    status: 'approved',
+    status: 'pending',
     subtitle: "UGC/AICTE",
     title: "PG Indira Gandhi Scholarship for Single Girl Child",
     logo: "/images/logos/gumroad.png",
   },
-  {
-    logoWidth: 38,
-    logoHeight: 38,
-    status: 'pending',
-    title: "Mastercard",
-    subtitle: "Wallet deposit",
-    logo: "/images/logos/mastercard-label.png",
-  },
+
   {
     logoWidth: 20,
     logoHeight: 28,
@@ -48,7 +49,7 @@ const applications = [
     status: 'pending',
     title: "Bank Account",
     subtitle: "Wallet deposit",
-    logo: "/images/logos/citi-bank.png",
+    logo: "/images/logos/gumroad.png",
   },
 ];
 
@@ -59,14 +60,14 @@ const schemes = [
     amount: "",
     title: "Pre Matric Scholarships Scheme for Minorities",
     subtitle: "Central Govt",
-    logo: "/images/logos/google.png",
+    logo: "/images/logos/american-bank.png",
   },
   {
-    logoWidth: 34,
-    logoHeight: 34,
+    logoWidth: 40,
+    logoHeight: 38,
     amount: "-$1870",
     title: "Github Enterprise",
-    logo: "/images/logos/github.png",
+    logo: "/images/logos/scholarship.png",
     subtitle: "Security & compliance",
   },
   {
@@ -81,17 +82,17 @@ const schemes = [
     logoWidth: 30,
     logoHeight: 30,
     amount: "-$540",
-    title: "Digital Ocean",
-    subtitle: "Cloud Hosting",
+    title: "Sir Ratan Tata Trust & Navajbai Ratan Tata Trust Education Grants",
+    subtitle: " Masters, PhD, Conferences & Travel Grants",
     logo: "/images/logos/digital-ocean.png",
   },
   {
-    logoWidth: 36,
-    logoHeight: 21,
+    logoWidth: 20,
+    logoHeight:26,
     amount: "-$21",
-    title: "AWS Account",
-    logo: "/images/logos/aws.png",
-    subtitle: "Choosing a Cloud Platform",
+    title: "Sanskriti Foundation's Kalakriti Fellowship",
+    logo: "/images/logos/stripe.png",
+    subtitle: "Indian Classical Dance",
   },
 ];
 const statusObj = {
@@ -212,7 +213,7 @@ const AppsAndSchemes = () => {
 
       <Box sx={{ width: "100%" }}>
         <CardHeader
-          title="Top Schemes"
+          // title="Top Schemes"
           sx={{
             pt: 5.5,
             alignItems: "center",

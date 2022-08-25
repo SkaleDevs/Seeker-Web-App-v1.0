@@ -79,7 +79,7 @@ const Home = ({sess}) => {
 
     
     <ApexChartWrapper>
-      <Button variant="contained" color="primary" sx={{flexGrow: 1}} onClick= {clickHanlder} >
+      <Button variant="contained" color="primary" sx={{flexGrow: 1}} onClick= {clickHanlder}  >
               Send OTP
             </Button>
             <TextField

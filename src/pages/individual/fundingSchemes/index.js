@@ -27,6 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import ViewDetails from "../../../views/modal/ViewDetailsIndividual";
+import { getSession } from "next-auth/react";
 
 const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();
@@ -299,8 +300,8 @@ const allInstituteApplications = await fetch(`http://localhost:3000/api/controll
   console.log("ok",allSeekerApplications)
   return {
     props: {
-        allIndividualScholarships,
-        allHeiScholarships,
+        allUGCSch,
+        allCentralScheme,
         allSeekerApplications,
         allInstituteApplications
     },

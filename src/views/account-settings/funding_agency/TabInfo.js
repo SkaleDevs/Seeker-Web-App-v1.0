@@ -39,7 +39,7 @@ const CustomInput = forwardRef((props, ref) => {
     useEffect(() => {
   
       const fetch= async () =>{
-        await axios.get(`/api/controller/agency/getMyDetails`,{email:session.user.id}).then((res) => {
+        await axios.get(`/api/controller/agency/getMyDetails`,{email:session?.user?.id}).then((res) => {
           setUser(res.data);
           console.log(res);
           
@@ -91,65 +91,10 @@ const CustomInput = forwardRef((props, ref) => {
 
 
 
-    let initialvalue={
 
 
-      
-}
- 
-  const [date, setDate] = useState();
-  const [data,setdata]  = useState(initialvalue);
-
-  const handlechange = (e) => {
-      
-    setdata({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
-  };
->>>>>>> f5c948ebd1adab44770c88dcd46c58156714eb38
-
-  const [date, setDate] = useState(null);
-  const [user, setUser] = useState({});
-  useEffect(() => {
-
-    const fetch= async () =>{
-      await axios.get(`https://localhost:3000/api/controller/agency/getMyDetails`,{email:session.email}).then((res) => {
-        setUser(res.data);
-        console.log(res.data);
-        
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    fetch();
-    
-  }, []);
-  let initialvalue={
-    email:user?.email,
-    typeEnitity:user?.typeEnitity,
-    name:user?.name,
-    discription:user?.discription,
-    typeOrganisation:user?.typeOrganisation,
-    trustType:user?.trustType,
-    trustName:user?.trustName,
-    address:user?.address,
-    pincode:user?.pincode,
-    city:user?.city,
-    state:user?.state,
-    url:user?.url,
-    regNo:user?.regNo,
-    panNo:user?.panNo,
-    ifsc:user?.ifsc,
-    bankName:user?.bankName,
-    branchName:user?.branchName,
-    bankAccountNo:user?.bankAccountNo,
-    nameAsPerBank:user?.nameAsPerBank,
-    entityLogo:user?.entityLogo,
-    schemeManaged:user?.schemeManaged,
-    panFile:user?.panFile,
-    identityProofFile:user?.identityProofFile,
-    phone:user?.phone
- }
- const [data,setdata]  = useState(initialvalue);
+    //form validation needs to be done
+    //pan card upload file tab needs to be added (along with entity logo & identity proof file)
 
 
 

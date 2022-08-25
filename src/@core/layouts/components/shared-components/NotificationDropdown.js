@@ -88,17 +88,17 @@ const NotificationDropdown = () => {
   let noti;
   // console.log(session);
   const {data: session, status } = useSession();
-  console.log(status);
+  // console.log(status);
   const fetchNotifs = async () => {
     // console.log(session.user.email);
     const res  = await axios.post('/api/controller/checkUser',{email:session.user.email});
     // setnotifs(res.data.data.notifs);
     
-    console.log(res.data.notif);
+    // console.log(res.data.notif);
     noti  = res.data.notif;
     setnotifs(res.data.notif);
-    console.log(notifs);
-    console.log(noti);
+    // console.log(notifs);
+    // console.log(noti);
   }
   // if(session){
     useEffect(() => {

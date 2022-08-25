@@ -1,5 +1,5 @@
 // ** React Imports
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 // ** MUI Imports
 import Box from "@mui/material/Box";
@@ -17,7 +17,7 @@ import IconButton from "@mui/material/IconButton";
 import CardContent from "@mui/material/CardContent";
 import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
-
+import axios from "axios";
 // ** Icons Imports
 import Close from "mdi-material-ui/Close";
 
@@ -45,26 +45,13 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-const TabAccount = ({session}) => {
+const TabAccount = ({user}) => {
   // ** State
   const [openAlert, setOpenAlert] = useState(true);
   const [imgSrc, setImgSrc] = useState("/images/avatars/1.png");
 
-  const [user, setUser] = useState({});
-  useEffect(() => {
-
-    const fetch= async () =>{
-      await axios.get(`/api/controller/seeker/getSeekerInfo`,{email:session.email}).then((res) => {
-        setUser(res.data);
-        console.log(res.data);
-        
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    fetch();
-    
-  }, []);
+    console.log("user",user);
+ 
 
   const onChange = (file) => {
     const reader = new FileReader();
@@ -116,6 +103,7 @@ const TabAccount = ({session}) => {
               helperText="First Name"
               // placeholder="John Doe"
               // defaultValue="John"
+              value={user.firstName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -125,6 +113,7 @@ const TabAccount = ({session}) => {
               helperText="Middle Name"
              // placeholder="John Doe"
               //defaultValue="Kuamr"
+              value  = {user.middleName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -132,8 +121,8 @@ const TabAccount = ({session}) => {
             <TextField
               fullWidth
               helperText="Last Name"
-             // placeholder="John Doe"
-              //defaultValue="Doe"
+            //  placeholder={user.email}
+              value={user.lastName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -144,6 +133,7 @@ const TabAccount = ({session}) => {
               helperText="Username"
               //placeholder="johnDoe"
               //defaultValue="johnDoe"
+              value={user.username}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -154,6 +144,7 @@ const TabAccount = ({session}) => {
               helperText="Email"
              // placeholder="johnDoe@example.com"
              //defaultValue="johnDoe@example.com"
+             value  = {user.email}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -164,6 +155,7 @@ const TabAccount = ({session}) => {
               helperText="Phone"
               //placeholder="1234567890"
               //defaultValue="7438748373"
+              value  = {user.phNo}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -173,6 +165,7 @@ const TabAccount = ({session}) => {
               helperText="Birth Date"
               //placeholder="johnDoe"
               //defaultValue="13-12-2012"
+              value  = {user.dateOfBirth}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -182,6 +175,7 @@ const TabAccount = ({session}) => {
               fullWidth
               type="string"
               helperText="Address"
+              value={user.address}
              // placeholder="johnDoe@example.com"
               //defaultValue="Bengakuru, Karnataka, India."
               inputProps={{ readOnly: true }}

@@ -20,7 +20,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
         required:true
        },
        phNo:{
-        type:Number,
+        type:String,
         required:true
        },
        firstName:{
@@ -48,7 +48,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
         required:true
        },
        dateOfBirth:{
-        type:Date,
+        type:String,
         required:true
        },
        category:{
@@ -79,15 +79,15 @@ const applyNowSeekerSchema = new mongoose.Schema({
         type:String,
        },
        marks:{
-        type:Number,
+        type:String,
         required:true
        },
        income:{
-        type:Number,
+        type:String,
         required:true
        },
        panNo:{
-        type:Number,
+        type:String,
         required:false
        },
        state:{
@@ -107,7 +107,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
         required:true
        },
        pincode:{
-        type:Number,
+        type:String,
         required:true
        },
        resume:{

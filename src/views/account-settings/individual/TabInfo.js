@@ -1,5 +1,5 @@
 // ** React Imports
-import { forwardRef, useState } from "react";
+import { forwardRef, useState ,useEffect} from "react";
 
 // ** MUI Imports
 import Grid from "@mui/material/Grid";
@@ -17,7 +17,9 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Chip from "@mui/material/Chip";
 import axios from "axios";
-import {useEffect} from "react";
+import { useSession } from "next-auth/react";
+
+
 
 // ** Third Party Imports
 import DatePicker from "react-datepicker";
@@ -30,27 +32,15 @@ const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
 
-const TabInfo = ({session}) => {
-  // ** State
-  const [user, setUser] = useState({});
-  useEffect(() => {
+const TabInfo = ({user}) => {
+  // const {data: session} = useSession();
 
-    const fetch= async () =>{
-      await axios.get(`/api/controller/seeker/getSeekerInfo`,{email:session.email}).then((res) => {
-        setUser(res.data);
-        console.log(res.data);
-        
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    fetch();
-    
-  }, []);
+  // ** State
+ 
 
 
   let initialvalue={
-    scholarshipID:user?.scholarshipID,
+  
           seekerID:user?.seekerID,
           email:user?.email,
           phNo:user?.phNo,
@@ -118,6 +108,20 @@ const TabInfo = ({session}) => {
       setdata({ ...data, [e.target.name]: e.target.value });
       console.log(data);
     };
+
+    const update  = async (e) => {
+      e.preventDefault();
+      // window.alert("hello");
+      console.log("hello");
+      try{
+
+          let res = await axios.post("/api/controller/seeker/editSeekerProfile", data);
+        console.log(res);
+      }catch(err){
+        console.log(err);
+      }
+      // window.alert(res.data);
+    };
   
   return (
 
@@ -141,9 +145,10 @@ const TabInfo = ({session}) => {
               fullWidth
               required
               label="First Name"
-              placeholder="Seeker's First Name"
+              // placeholder={initialvalue.email}
+              defaultvalue  = {user.firstName}
               onChange={(e) => handlechange(e)}
-              name="firstname"
+              name="firstName"
               // defaultValue="John"
               // inputProps={{ readOnly: true }}
             />
@@ -152,7 +157,10 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Middle Name"
-              placeholder="Middle Name"
+              // placeholder="Middle Name"
+              defaultvalue  = {data.middleName}
+              value = {data.middleName}
+              // value = "a"
               onChange={(e) => handlechange(e)}
               name="middleName"
               // inputProps={{ readOnly: true }}
@@ -163,7 +171,8 @@ const TabInfo = ({session}) => {
               fullWidth
               required
               label="Last Name"
-              placeholder="Last Name"
+              // placeholder="Last Name"
+              value = {user.lastName}
               onChange={(e) => handlechange(e)}
               name="lastName"
               // inputProps={{ readOnly: true }}
@@ -177,7 +186,8 @@ const TabInfo = ({session}) => {
                 showYearDropdown
                 showMonthDropdown
                 id="account-settings-date"
-                placeholderText="MM-DD-YYYY"
+                // placeholderText="MM-DD-YYYY"
+                value = {user.dateOfBirth}
                 customInput={<CustomInput />}
                 onChange={(date) => setDate(date)}
               />
@@ -188,10 +198,11 @@ const TabInfo = ({session}) => {
               <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
               <RadioGroup
                 row
-                defaultValue={initialvalue.sex}
+                
                 aria-label="gender"
                 onChange={(e) => handlechange(e)}
                 name="sex"
+                value  = {user.sex}
                 // name="account-settings-info-radio"
               >
                 <FormControlLabel
@@ -218,7 +229,8 @@ const TabInfo = ({session}) => {
               required
               type="number"
               label="Phone"
-              placeholder="+91 1231231234"
+              // placeholder="+91 1231231234"
+              value = {user.phNo}
               onChange={(e) => handlechange(e)}
               name="phNo"
             />
@@ -229,7 +241,8 @@ const TabInfo = ({session}) => {
               fullWidth
               type="email"
               label="Email"
-              placeholder="johnDoe@example.com"
+              // placeholder="johnDoe@example.com"
+              value  = {user.email}
               onChange={(e) => handlechange(e)}
               name="email"
 
@@ -241,7 +254,8 @@ const TabInfo = ({session}) => {
               required
               fullWidth
               label="Aadhaar Card"
-              placeholder="xxxx-xxxx-xxxx"
+              // placeholder="xxxx-xxxx-xxxx"
+              value = {user.aadhaarNo}
               inputProps={{ maxLength: 12 }}
               onChange={(e) => handlechange(e)}
               name="aadharNo"
@@ -252,7 +266,8 @@ const TabInfo = ({session}) => {
               required
               fullWidth
               label="Pan Card"
-              placeholder="AAAAA1234A"
+              value={user.panNo}
+              // placeholder="AAAAA1234A"
               inputProps={{ maxLength: 10 }}
               onChange={(e) => handlechange(e)}
               name="panNo"
@@ -265,7 +280,8 @@ const TabInfo = ({session}) => {
               </InputLabel>
               <Select
                 required
-                defaultValue={initialvalue.category}
+                // defaultValue={initialvalue.category}
+                value  = {user.category}
                 id="account-settings-single-select"
                 labelId="account-settings-single-select-label"
                 onChange={(e) => handlechange(e)}
@@ -274,9 +290,9 @@ const TabInfo = ({session}) => {
                   <OutlinedInput label="Category" id="select-single-language" />
                 }
               >
-                <MenuItem value="General">General</MenuItem>
-                <MenuItem value="OBC">OBC</MenuItem>
-                <MenuItem value="SC/ST">SC/ST </MenuItem>
+                <MenuItem value="general">General</MenuItem>
+                <MenuItem value="obc">OBC</MenuItem>
+                <MenuItem value="sc/st">SC/ST </MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -307,7 +323,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Guardian's First Name"
-              placeholder="Guardian's First Name"
+              // placeholder="Guardian's First Name"
+              value = {user.guardianFirstName}
               onChange={(e) => handlechange(e)}
               name="guardianFirstName"
             />
@@ -316,9 +333,10 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Middle Name"
-              placeholder="Middle Name"
+              // placeholder="Middle Name"
               onChange={(e) => handlechange(e)}
-              name="guardianMiddleirstName"
+              name="guardianMiddletName"
+              value = {user.guardianMiddleName}
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -326,9 +344,10 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Last Name"
-              placeholder="Last Name"
+              // placeholder="Last Name"
               onChange={(e) => handlechange(e)}
               name="guardianLastName"
+              value  = {user.guardianLastName}
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -341,7 +360,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="State"
-              placeholder="New Delhi"
+              // placeholder="New Delhi"
+              value = {user.state}
               onChange={(e) => handlechange(e)}
               name="state"
               // inputProps={{ readOnly: true }}
@@ -351,7 +371,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Address"
-              placeholder="B.H. Area"
+              // placeholder="B.H. Area"
+              value = {user.address}
               onChange={(e) => handlechange(e)}
               name="address"
               // inputProps={{ readOnly: true }}
@@ -361,7 +382,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Locality"
-              placeholder="Kadma"
+              // placeholder="Kadma"
+              value = {user.locality}
               onChange={(e) => handlechange(e)}
               name="locality"
               // inputProps={{ readOnly: true }}
@@ -371,7 +393,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Town"
-              placeholder="New Delhi"
+              // placeholder="New Delhi"
+              value = {user.town}
               onChange={(e) => handlechange(e)}
               name="town"
               // inputProps={{ readOnly: true }}
@@ -381,7 +404,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Pincode"
-              placeholder="560004"
+              // placeholder="560004"
+              value = {user.pincode}
               onChange={(e) => handlechange(e)}
               name="pincode"
               // inputProps={{ readOnly: true }}
@@ -396,9 +420,10 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Highest Qualification Marks"
-              placeholder="99.9% or 9.9 CGPA"
+              // placeholder="99.9% or 9.9 CGPA"
+              value = {user.highestQualificationMarks}
               onChange={(e) => handlechange(e)}
-              name="marks"
+              name="highestQualificationMarks"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -406,7 +431,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Intermediate (XII) Marks"
-              placeholder="99.9% or 9.9 CGPA"
+              // placeholder="99.9% or 9.9 CGPA"
+              value = {user.marks12}
               onChange={(e) => handlechange(e)}
               name="marks12"
               // defaultValue="John"
@@ -417,9 +443,10 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Matriculation (X) Marks"
-              placeholder="99.9% or 9.9 CGPA"
+              // placeholder="99.9% or 9.9 CGPA"
               onChange={(e) => handlechange(e)}
               name="marks10"
+              value = {user.marks10}
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -429,7 +456,7 @@ const TabInfo = ({session}) => {
                 Highest Qualification
               </InputLabel>
               <Select
-                defaultValue={initialvalue.qualification}
+                // defaultValue={initialvalue.qualification}
                 id="account-settings-single-select"
                 labelId="account-settings-single-select-label"
                 input={
@@ -440,12 +467,13 @@ const TabInfo = ({session}) => {
                   
                 }
                 onChange={(e) => handlechange(e)}
+                value = {user.highestQualification}
               name="highestQualification"
               >
-                <MenuItem value="Matriculation(X)">Matriculation</MenuItem>
-                <MenuItem value="Intermediate(XII)">Intermediate</MenuItem>
-                <MenuItem value="Undergraduate">Undergraduate</MenuItem>
-                <MenuItem value="Postgraduate">Postgraduate</MenuItem>
+                <MenuItem value="matriculation">Matriculation</MenuItem>
+                <MenuItem value="intermediate">Intermediate</MenuItem>
+                <MenuItem value="undergraduate">Undergraduate</MenuItem>
+                <MenuItem value="postgraduate">Postgraduate</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -461,7 +489,7 @@ const TabInfo = ({session}) => {
                 Income
               </InputLabel>
               <Select
-                defaultValue={initialvalue.income}
+                value  ={user.income}
                 id="account-settings-single-select"
                 labelId="account-settings-single-select-label"
                 input={
@@ -473,11 +501,11 @@ const TabInfo = ({session}) => {
                 onChange={(e) => handlechange(e)}
               name="income"
               >
-                <MenuItem value="Upto Rs 3.5 LPA">Upto Rs 3.5 LPA</MenuItem>
-                <MenuItem value="Rs 3.5 LPA - Rs 7.5 LPA">
+                <MenuItem value="3.5lpa">Upto Rs 3.5 LPA</MenuItem>
+                <MenuItem value="3.5to7.5lpa">
                   Rs 3.5 LPA - Rs 7.5 LPA
                 </MenuItem>
-                <MenuItem value="Above Rs 7.5 LPA">Above Rs 7.5 LPA</MenuItem>
+                <MenuItem value="above7.5lpa">Above Rs 7.5 LPA</MenuItem>
               </Select>
             </FormControl>
           </Grid>
@@ -485,7 +513,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="IFSC Code"
-              placeholder="Jayanagar, Bengaluru"
+              // placeholder="Jayanagar, Bengaluru"
+              value = {user.ifscCode}
               onChange={(e) => fetch(e)}
               name="ifscCode"
               // inputProps={{ readOnly: true }}
@@ -495,9 +524,10 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Bank Name"
-              placeholder="Kotak Mahindra Bank"
+              // placeholder="Kotak Mahindra Bank"
               onChange={(e) => handlechange(e)}
               name="banker"
+              value={user.banker}
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -505,7 +535,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Account Number"
-              placeholder="xxxxxxxxxxxxxxxx"
+              value={user.accountNo}
+              // placeholder="xxxxxxxxxxxxxxxx"
               inputProps={{ maxLength: 16 }}
                onChange={(e) => handlechange(e)}
               name="accountNo"
@@ -516,7 +547,8 @@ const TabInfo = ({session}) => {
             <TextField
               fullWidth
               label="Bank Branch Name"
-              placeholder="Jayanagar, Bengaluru"
+              value={user.bankBranch}
+              // placeholder="Jayanagar, Bengaluru"
               onChange={(e) => handlechange(e)}
               name="bankBranch"
               // inputProps={{ readOnly: true }}
@@ -525,7 +557,7 @@ const TabInfo = ({session}) => {
           
 
           <Grid item xs={12}>
-            <Button variant="contained" sx={{ marginRight: 3.5 }}>
+            <Button variant="contained" type="button" onClick ={update} sx={{ marginRight: 3.5 }}>
               Save Changes
             </Button>
           

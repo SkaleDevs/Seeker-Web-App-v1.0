@@ -15,7 +15,7 @@ const instituteFormSchema = new mongoose.Schema({
       required:true
    },
    dateOfApplication:{
-      type:Date,
+      type:String,
       required:true
    },
   

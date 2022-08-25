@@ -44,6 +44,8 @@ const TreeIllustration = styled('img')(({ theme }) => ({
 }))
 
 const Error404 = () => {
+  let a=([["a",1]])
+console.log(a["a"])
   return (
     <Box className='content-center'>
       <Box sx={{ p: 5, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>

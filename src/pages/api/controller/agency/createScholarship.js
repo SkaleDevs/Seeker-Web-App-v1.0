@@ -8,7 +8,7 @@ export default async function handler(req,res){
     if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
-    let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body);
+    let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body,{new:true});
     if(data){
         return res.send(data);
     }
@@ -23,6 +23,7 @@ export default async function handler(req,res){
         documentsRequired:req.body.documentsRequired,
         schemeOrganisationType:req.body.schemeOrganisationType,
         noOfApplications:0,
+        interest:req.body.interest
         
     })
     details.save()

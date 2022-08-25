@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-
+import { getSession } from "next-auth/react";
 // ** MUI Imports
 import {
   Card,
@@ -22,7 +22,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
-const ScheduledInterviews = () => {
+const ScheduledInterviews = ({getCentralSchemes,getUGCSchemes,getStateSchemes}) => {
   // const [rowData, setRowData] = useState();
   const viewButton = (p) => (
     <Button
@@ -211,3 +211,26 @@ const ScheduledInterviews = () => {
 };
 
 export default ScheduledInterviews;
+
+export async function getServerSideProps(context) {
+  
+  const sess= await getSession(context);
+
+const getCentralSchemes = await fetch(`http://localhost:3000/api/controller/getCentralApplication`)
+.then(res => res.json())
+
+const getUGCSchemes = await fetch(`http://localhost:3000/api/controller/getUGCApplication`)
+.then(res => res.json())
+// .then(data => {
+const getStateSchemes = await fetch(`http://localhost:3000/api/controller/getStateApplication`)
+.then(res => res.json())
+
+  console.log("ok1",getCentralSchemes)
+  console.log("ok2",getUGCSchemes)
+  console.log("ok3",getStateSchemes)
+  return {
+    props: {
+      getCentralSchemes,getUGCSchemes,getStateSchemes
+    },
+  };
+}

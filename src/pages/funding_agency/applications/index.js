@@ -262,7 +262,7 @@ var ans={}
     })
   ];
   const rowData2 = [
-    allInstituteApplications.map(item=>{
+    allInstituteApplications.map((item,key)=>{
       console.log("gh",item[0])
       return(item.map(ans=>{
         console.log("mija",ans?.name)
@@ -279,6 +279,22 @@ var ans={}
       }))
     })
   ];
+
+  console.log("sahan",rowData1)
+  console.log("sahan1",a)
+  // const rowData2 = [
+  //    allInstituteApplications.map(item=>{
+  //     return(
+  //     {
+  //       applicantName: `${item.name}`,
+  //       viewApplication: `${item.id}`,
+  //       viewDocs: `${item.id}`,
+  //       accept: `${item.id}`,
+  //       reject: `${item.id}`,
+  //       amend: `hei`,
+  //       scheduleMeeting: "Button",})})
+      
+  // ];
 
   console.log("sahan",rowData1)
   console.log("sahan1",a)
@@ -400,7 +416,7 @@ var ans={}
                
               return(
                
-               <Dropdown authority={item.name}> {/* Scheme name */}
+               <Dropdown authority={item.name} key={key}> {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -427,7 +443,7 @@ var ans={}
               { allHeiScholarships?.map((item,val)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
-                <Dropdown authority={item.name}>
+                <Dropdown authority={item.name} key={key}>
                   <div
                     className="ag-theme-alpine"
                     style={{

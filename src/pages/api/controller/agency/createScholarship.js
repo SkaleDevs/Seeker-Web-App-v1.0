@@ -20,8 +20,10 @@ export default async function handler(req,res){
          eligibility:req.body.eligibility,
         deadline:req.body.deadline,
         maxAmount:req.body.maxAmount,
-        extraDetailFile:req.body.extraDetailFile,
+        documentsRequired:req.body.documentsRequired,
+        schemeOrganisationType:req.body.schemeOrganisationType,
         noOfApplications:0,
+        
     })
     details.save()
     res.send(details)

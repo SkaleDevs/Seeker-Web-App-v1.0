@@ -15,10 +15,10 @@ import LockOpenOutline from "mdi-material-ui/LockOpenOutline";
 import InformationOutline from "mdi-material-ui/InformationOutline";
 
 // ** Demo Tabs Imports
-import TabInfo from "src/views/account-settings/hei/TabInfo";
-import TabAccount from "src/views/account-settings/hei/TabAccount";
-import TabSecurity from "src/views/account-settings/hei/TabSecurity";
-
+import Appl from "src/views/applications/individual/Appl";
+import {getSession} from 'next-auth/react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -40,9 +40,21 @@ const TabName = styled("span")(({ theme }) => ({
   },
 }));
 
-const AccountSettings = () => {
+const Application = ({sess}) => {
+
+  const rtr = useRouter();
+  useEffect(() => {
+    if(sess?.user?.role!=="individual") {
+      rtr.push(`/${sess?.user?.role}`);
+      
+    }
+
+  },[])
+  const [value, setValue] = useState("apply");
+  if (sess?.status=="loading") return <div>Loading...</div>;
+ 
   // ** State
-  const [value, setValue] = useState("account");
+  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -53,50 +65,36 @@ const AccountSettings = () => {
       <TabContext value={value}>
         <TabList
           onChange={handleChange}
-          aria-label="account-settings tabs"
+          aria-label="apply tabs"
           sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
+         
+         
           <Tab
-            value="account"
-            label={
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <AccountOutline />
-                <TabName>Account</TabName>
-              </Box>
-            }
-          />
-          {/* <Tab
-            value="security"
-            label={
-              <Box sx={{ display: "flex", alignItems: "center" }}>
-                <LockOpenOutline />
-                <TabName>Security</TabName>
-              </Box>
-            }
-          /> */}
-          <Tab
-            value="info"
+            value="apply"
             label={
               <Box sx={{ display: "flex", alignItems: "center" }}>
                 <InformationOutline />
-                <TabName>Info</TabName>
+                <TabName>Application</TabName>
               </Box>
             }
           />
         </TabList>
-
-        <TabPanel sx={{ p: 0 }} value="account">
-          <TabAccount />
-        </TabPanel>
-        <TabPanel sx={{ p: 0 }} value="security">
-          <TabSecurity />
-        </TabPanel>
-        <TabPanel sx={{ p: 0 }} value="info">
-          <TabInfo />
+        <TabPanel sx={{ p: 0 }} value="apply">
+          <Appl session={sess} />
         </TabPanel>
       </TabContext>
     </Card>
   );
 };
 
-export default AccountSettings;
+export default Application;
+
+export async function getServerSideProps(context) {
+  const sess= await getSession(context);
+  return {
+    props: {
+        sess:sess
+    },
+  };
+}

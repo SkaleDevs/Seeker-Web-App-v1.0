@@ -28,11 +28,11 @@ const agencySchemeSchema = new mongoose.Schema({
    required:true
  },
 deadline:{
-   type:Date,
+   type:String,
    required:true
 },
 maxAmount:{
-   type:Number,
+   type:String,
    required:true
 },
 documentsRequired:{

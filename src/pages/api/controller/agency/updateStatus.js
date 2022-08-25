@@ -18,8 +18,7 @@ export default async function handler(req,res){
          
     }
     else{
-        data=await ApplySeeker.findOneAndUpdate({_id:id},{status:status},{new:true});
-        
+        data=await ApplySeeker.findOneAndUpdate({_id:id,seekerID:session.user.id},{status:status});
     }
     console.log("data",data)
     if(data){

@@ -101,8 +101,8 @@ const TabAccount = () => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Name"
-              placeholder="Agency's Name"
+              helperText="Name"
+              // placeholder="Agency's Name"
               // defaultValue="John"
               inputProps={{ readOnly: true }}
             />
@@ -111,8 +111,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               type="email"
-              label="Email"
-              placeholder="johnDoe@example.com"
+              helperText="Email"
+              // placeholder="johnDoe@example.com"
               // defaultValue="johnDoe@example.com"
               inputProps={{ readOnly: true }}
             />
@@ -122,8 +122,8 @@ const TabAccount = () => {
               fullWidth
               height="100"
               type="number"
-              label="Phone"
-              placeholder="1234567890"
+              helperText="Phone"
+              // placeholder="1234567890"
               // defaultValue="7438748373"
               inputProps={{ readOnly: true }}
             />
@@ -133,8 +133,8 @@ const TabAccount = () => {
               fullWidth
               multiline
               rows={2}
-              label="Description"
-              placeholder="A Funding Agency is any external organization, public or private, which undertakes a contractual agreement with the University to sponsor research or an entrepreneurial activity."
+              helperText="Description"
+              // placeholder="A Funding Agency is any external organization, public or private, which undertakes a contractual agreement with the University to sponsor research or an entrepreneurial activity."
               // defaultValue=""
               inputProps={{ readOnly: true }}
             />
@@ -142,16 +142,16 @@ const TabAccount = () => {
           <Grid item xs={12} sm={4}>  
             <TextField
               fullWidth
-              label="Entity Type"
-              placeholder="Education Fund Provider"
+              helperText="Entity Type"
+              // placeholder="Education Fund Provider"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Organisation Type"
-              placeholder="TISS"
+              helperText="Organisation Type"
+              // placeholder="TISS"
               // defaultValue="John"
               inputProps={{ readOnly: true }}
             />
@@ -159,8 +159,8 @@ const TabAccount = () => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
-              label="Trust Type"
-              placeholder="Living"
+              helperText="Trust Type"
+              // placeholder="Living"
               // defaultValue="John"
               inputProps={{ readOnly: true }}
             />
@@ -173,8 +173,8 @@ const TabAccount = () => {
             <TextField
               fullWidth
               type="string"
-              label="Address"
-              placeholder="Bengakuru, Karnataka, India."
+              helperText="Address"
+              // placeholder="Bengakuru, Karnataka, India."
               // defaultValue="Bengakuru, Karnataka, India."
               inputProps={{ readOnly: true }}
             />

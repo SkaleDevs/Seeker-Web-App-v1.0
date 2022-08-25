@@ -7,11 +7,6 @@ import { createEvents } from "graph";
 import { useIsAuthenticated } from "@azure/msal-react";
 import { useRouter } from "next/router";
 
-// ** Date Picker Imports
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-
 import {
   Box,
   Button,
@@ -58,55 +53,12 @@ const style = {
 
 export default function CreateMeeting() {
   const router = useRouter();
-
-  const isAuthenticated = useIsAuthenticated();
-  const { instance, accounts } = useMsal();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [date, setDate] = useState();
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
-  const [startTimeDate, setStartTimeDate] = useState("");
-  const [endTimeDate, setEndTimeDate] = useState("");
-  const [ht, setHt] = useState("");
-  const [domain, setDomain] = useState([]);
-  const [role, setRole] = useState([]);
-  const event = {
-    subject: subject,
-    body: {
-      contentType: "HTML",
-      content: `<h1>u have a meet<h1>`,
-    },
-    start: {
-      dateTime: startTimeDate,
-      timeZone: "India Standard Time",
-    },
-    end: {
-      dateTime: endTimeDate,
-      timeZone: "India Standard Time",
-    },
-    location: {
-      displayName: "Online meeting",
-    },
-    attendees: [
-      {
-        emailAddress: {
-          address: email,
-          name: name,
-        },
-        type: "required",
-      },
-    ],
-    isOnlineMeeting: true,
-  };
-
   const applyHandler = () => {
-    return router.push("/individual/application");
+    return router.push("/hei/application");
   };
 
   function generate(element) {

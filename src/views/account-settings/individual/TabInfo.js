@@ -47,6 +47,8 @@ const TabInfo = ({user}) => {
           firstName:user?.firstName,
           middleName:user?.middleName,
           aadharNo:user?.aadharNo,
+          category:user?.category,
+          birthDate:user?.birthDate,
           lastName:user?.lastName,
           guardianFirstName:user?.guardianFirstName,
           guardianMiddleName:user?.guardianMiddleName,
@@ -150,7 +152,7 @@ const TabInfo = ({user}) => {
               onChange={(e) => handlechange(e)}
               name="firstName"
               // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -163,7 +165,7 @@ const TabInfo = ({user}) => {
               // value = "a"
               onChange={(e) => handlechange(e)}
               name="middleName"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -175,12 +177,12 @@ const TabInfo = ({user}) => {
               value = {user.lastName}
               onChange={(e) => handlechange(e)}
               name="lastName"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
-          <Grid item xs={12} sm={6}>
-            <DatePickerWrapper>
-              <DatePicker
+          <Grid item xs={12} sm={4}>
+            <TextField
+              fullWidth
               required
                 selected={date}
                 showYearDropdown
@@ -193,6 +195,7 @@ const TabInfo = ({user}) => {
               />
             </DatePickerWrapper>
           </Grid>
+      
           <Grid item xs={12} sm={6}>
             <FormControl>
               <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
@@ -233,6 +236,7 @@ const TabInfo = ({user}) => {
               value = {user.phNo}
               onChange={(e) => handlechange(e)}
               name="phNo"
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -246,7 +250,7 @@ const TabInfo = ({user}) => {
               onChange={(e) => handlechange(e)}
               name="email"
 
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -296,6 +300,7 @@ const TabInfo = ({user}) => {
               </Select>
             </FormControl>
           </Grid>
+         
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-multiple-select-label">
@@ -327,6 +332,8 @@ const TabInfo = ({user}) => {
               value = {user.guardianFirstName}
               onChange={(e) => handlechange(e)}
               name="guardianFirstName"
+              inputProps={{ readOnly: true }}
+
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -416,6 +423,7 @@ const TabInfo = ({user}) => {
               <Chip label="Academics" />
             </Divider>
           </Grid>
+          
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
@@ -436,7 +444,7 @@ const TabInfo = ({user}) => {
               onChange={(e) => handlechange(e)}
               name="marks12"
               // defaultValue="John"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -477,12 +485,22 @@ const TabInfo = ({user}) => {
               </Select>
             </FormControl>
           </Grid>
+          <Grid item xs={12} sm={3}>
+            <TextField
+              fullWidth
+              helperText="Highest Qualification Marks"
+              //placeholder="99.9% or 9.9 CGPA"
+              onChange={(e) => handlechange(e)}
+              name="marks"
+               inputProps={{ readOnly: true }}
+            />
+          </Grid>
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Finance" />
             </Divider>
           </Grid>
-
+                
           <Grid item xs={12} sm={3}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-single-select-label">
@@ -517,7 +535,7 @@ const TabInfo = ({user}) => {
               value = {user.ifscCode}
               onChange={(e) => fetch(e)}
               name="ifscCode"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -540,7 +558,7 @@ const TabInfo = ({user}) => {
               inputProps={{ maxLength: 16 }}
                onChange={(e) => handlechange(e)}
               name="accountNo"
-              // inputProps={{ readOnly: true }}
+              inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
@@ -551,7 +569,7 @@ const TabInfo = ({user}) => {
               // placeholder="Jayanagar, Bengaluru"
               onChange={(e) => handlechange(e)}
               name="bankBranch"
-              // inputProps={{ readOnly: true }}
+               inputProps={{ readOnly: true }}
             />
           </Grid>
           

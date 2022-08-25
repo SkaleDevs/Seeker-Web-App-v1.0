@@ -15,9 +15,9 @@ import LockOpenOutline from "mdi-material-ui/LockOpenOutline";
 import InformationOutline from "mdi-material-ui/InformationOutline";
 
 // ** Demo Tabs Imports
-import TabInfo from "src/views/account-settings/individual/TabInfo";
-import TabAccount from "src/views/account-settings/individual/TabAccount";
-import TabSecurity from "src/views/account-settings/individual/TabSecurity";
+import TabInfo from "src/views/account-settings/moderator/TabInfo";
+import TabAccount from "src/views/account-settings/moderator/TabAccount";
+// import TabSecurity from "src/views/account-settings/individual/TabSecurity";
 
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
@@ -88,9 +88,9 @@ const AccountSettings = () => {
         <TabPanel sx={{ p: 0 }} value="account">
           <TabAccount />
         </TabPanel>
-        <TabPanel sx={{ p: 0 }} value="security">
+        {/* <TabPanel sx={{ p: 0 }} value="security">
           <TabSecurity />
-        </TabPanel>
+        </TabPanel> */}
         <TabPanel sx={{ p: 0 }} value="info">
           <TabInfo />
         </TabPanel>

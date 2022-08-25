@@ -77,7 +77,7 @@ export default NextAuth({
             console.log("session:");
           session.user.role = data[0].role;
           session.user.id = data[0]._id;
-
+          session.user.banned = data[0].banned;
           console.log(session);
           // session.user.role = "admin";
           // console.log(session);

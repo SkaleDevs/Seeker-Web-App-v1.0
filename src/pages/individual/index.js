@@ -1,4 +1,5 @@
 // ** React Imports
+import React from 'react';
 import { useState, useRef } from "react";
 
 // ** MUI Imports
@@ -11,13 +12,15 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import { Divider } from "@mui/material";
+import Slide from "@mui/material/Slide";
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Demo Components Imports
 import IndividualStats from "src/views/dashboard/individual/IndividualStats";
-import IndividStatsChart from "src/views/dashboard/individual/IndividualStatGraph";
+import IndividStatsChart from "src/views/dashboard/individual/IndividualStatGraph"; 
 import ScheduledInterviews from "src/views/dashboard/individual/ScheduledInterviews";
 import AppsAndSchemes from "src/views/dashboard/individual/AppsAndSchemes";
 
@@ -32,13 +35,15 @@ import "react-datepicker/dist/react-datepicker.css";
 const Home = ({ sess }) => {
   const [open, setOpen] = useState(false);
 
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
   const handleClose = () => {
     setOpen(false);
   };
+
+  // ** Modal Transition
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
+
   const phoneRef = useRef();
   const clickHanlder = async () => {
     try {
@@ -89,11 +94,15 @@ const Home = ({ sess }) => {
 
   return (
     <ApexChartWrapper>
+
+      {/* -----------------------------Modal Popup----------------------------------------------------------- */}
+
       <div>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Subscribe</DialogTitle>
+        <Dialog open={open} onClose={handleClose} TransitionComponent={Transition} fullWidth= "30%" >
+          <DialogTitle>Select your fields of interest</DialogTitle>
+          <Divider />
           <DialogContent>
-            <DialogContentText>Select your interests</DialogContentText>
+            <DialogContentText>Min. 3 interests</DialogContentText>
             <TextField
               autoFocus
               margin="dense"
@@ -106,10 +115,12 @@ const Home = ({ sess }) => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Subscribe</Button>
+            <Button onClick={handleClose}>Done</Button>
           </DialogActions>
         </Dialog>
       </div>
+
+      {/* -----------------------------/Modal Popup----------------------------------------------------------- */}
       <Button
         variant="contained"
         color="primary"

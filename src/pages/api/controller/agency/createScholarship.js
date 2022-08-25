@@ -1,5 +1,6 @@
 import Scheme from '../../model/agencySchemeSchema';
 import connectDB from '../../auth/lib/connectDB';
+import users from '../../model/userSchema';
 import {getSession} from 'next-auth/react';
 connectDB();
 export default async function handler(req,res){
@@ -8,7 +9,7 @@ export default async function handler(req,res){
     if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
-    let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body);
+    let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body,{new:true});
     if(data){
         return res.send(data);
     }
@@ -23,8 +24,12 @@ export default async function handler(req,res){
         documentsRequired:req.body.documentsRequired,
         schemeOrganisationType:req.body.schemeOrganisationType,
         noOfApplications:0,
+        interest:req.body.interest
         
     })
     details.save()
+
+    let data1=await users.find()
+
     res.send(details)
 }

@@ -30,7 +30,7 @@ const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
 
-const Appl = ({ session }) => {
+const appl = ({ session }) => {
   // ** State
   const [user, setUser] = useState({});
   useEffect(() => {
@@ -90,15 +90,14 @@ const Appl = ({ session }) => {
   const [data, setdata] = useState(initialvalue);
   const [propsalLetterFile, setProposalLetterFile] = useState();
   const [uploadProposalLetterFile, setUploadPropsalLetterFile] = useState(null);
-  
 
   // ** Submission handling-------------------------------------------------------------------------------
   const uploadProposalLetter = async () => {
     try {
-      let { data} = await axios.post("/api/controller/upload", {
+      let { data } = await axios.post("/api/controller/upload", {
         name: ProposalLetterFile?.name,
         type: ProposalLetterFile?.type,
-      })
+      });
       console.log(data);
 
       const url = data.url;
@@ -106,16 +105,15 @@ const Appl = ({ session }) => {
         headers: {
           "Content-Type": proposalLetterFile?.type,
           "Access-Control-Allow-Origin": "*",
-          },
+        },
       });
 
       setUploadProposalLetterFile(BUCKET_URL + proposalLetterFile?.name);
       setProposalLetterFile(null);
-
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   //  useEffect(() => {
   const fetch = async (e) => {
@@ -149,7 +147,6 @@ const Appl = ({ session }) => {
     console.log(data);
   };
 
-
   return (
     //form validation needs to be done
     //AADHAAR AND PAN FILES TAB FOR UPLOAD NEEDS TO BE ADDED (MARKSHEETS TOO)
@@ -157,7 +154,7 @@ const Appl = ({ session }) => {
     <CardContent>
       <form>
         <Grid container spacing={7}>
-        <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
               required
@@ -195,7 +192,7 @@ const Appl = ({ session }) => {
               required
               type="number"
               helperText="Phone"
-             // placeholder="+91 1231231234"
+              // placeholder="+91 1231231234"
               onChange={(e) => handlechange(e)}
               name="phNo"
               inputProps={{ readOnly: true }}
@@ -233,7 +230,7 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="Address"
-             // placeholder="B.H. Area"
+              // placeholder="B.H. Area"
               onChange={(e) => handlechange(e)}
               name="address"
               // inputProps={{ readOnly: true }}
@@ -243,13 +240,13 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="State"
-             // placeholder="New Delhi"
+              // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="state"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-         
+
           {/* <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
@@ -264,7 +261,7 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="City"
-             // placeholder="New Delhi"
+              // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="city"
               // inputProps={{ readOnly: true }}
@@ -274,33 +271,23 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="Pincode"
-             // placeholder="560004"
+              // placeholder="560004"
               onChange={(e) => handlechange(e)}
               name="pincode"
               // inputProps={{ readOnly: true }}
             />
           </Grid>
 
-
-          
-        
-          
-        
-
-        
-      
-         
-         
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
-              <Chip label="Proposal"/>
+              <Chip label="Proposal" />
             </Divider>
           </Grid>
           <Grid item xs={12} sm={2.5}>
             <TextField
               fullWidth
               helperText="Proposal"
-             // placeholder="560004"
+              // placeholder="560004"
               onChange={(e) => handlechange(e)}
               name="proposal"
               // inputProps={{ readOnly: true }}
@@ -317,16 +304,15 @@ const Appl = ({ session }) => {
             />
           </Grid>
 
-
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <Button variant="contained" sx={{ marginRight: 3.5 }}>
               Apply
             </Button>
-          </Grid>
+          </Grid> */}
         </Grid>
       </form>
     </CardContent>
   );
 };
 
-export default Appl;
+export default appl;

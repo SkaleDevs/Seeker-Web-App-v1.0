@@ -38,64 +38,6 @@ const PieChart = () => {
   // ** Hook
   const theme = useTheme();
 
-  //   const options = {
-  //     chart: {
-  //       parentHeightOffset: 0,
-  //       toolbar: { show: true },
-  //     },
-  //     plotOptions: {
-  //       bar: {
-  //         borderRadius: 9,
-  //         distributed: true,
-  //         columnWidth: "20%",
-  //         endingShape: "rounded",
-  //         startingShape: "rounded",
-  //       },
-  //     },
-  //     stroke: {
-  //       width: 2,
-  //       colors: [theme.palette.background.paper],
-  //     },
-  //     legend: { show: false },
-  //     grid: {
-  //       strokeDashArray: 7,
-  //       padding: {
-  //         top: -1,
-  //         right: 0,
-  //         left: -12,
-  //         bottom: 5,
-  //       },
-  //     },
-  //     dataLabels: { enabled: false },
-  //     colors: ["#3AB4F2", "#7DCE13", "#FFC54D", "#EB4747"],
-  //     states: {
-  //       hover: {
-  //         filter: { type: "none" },
-  //       },
-  //       active: {
-  //         filter: { type: "none" },
-  //       },
-  //     },
-  //     xaxis: {
-  //       categories: ["Applied", "Accepted", "Pending", "Rejected"],
-  //       tickPlacement: "on",
-  //       labels: { show: false },
-  //       axisTicks: { show: false },
-  //       axisBorder: { show: false },
-  //       labels: {
-  //         show: true,
-  //       },
-  //     },
-  //     yaxis: {
-  //       show: true,
-  //       tickAmount: 5,
-  //       labels: {
-  //         offsetX: -17,
-  //         // formatter: value => `${value > 999 ? `${(value / 1000).toFixed(0)}` : value}k`
-  //       },
-  //     },
-  //   };
-
   const options = {
     series: [2, 4, 6],
     label: ["Apple", "Banana", "Grapes"],
@@ -133,7 +75,7 @@ const PieChart = () => {
         sx={{ "& .apexcharts-xcrosshairs.apexcharts-active": { opacity: 0 } }}
       >
         <Chart
-          type="donut"
+          type="polarArea"
           //   width={400}
           height={220}
           series={series}

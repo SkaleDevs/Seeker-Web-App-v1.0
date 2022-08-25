@@ -27,11 +27,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { useRef } from "react";
 // ** Third Party Imports
-import DatePicker from "react-datepicker";
 import axios from "axios";
 
-// ** Styled Components
-import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
+// ** Date Picker Imports
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const CustomInput = forwardRef((props, ref) => {
   return (
@@ -131,7 +132,7 @@ const CreateScheme = () => {
                     </Select>
                   </FormControl>
 
-                  <FormControl fullWidth sx={{ marginTop: "10px" }}>
+                  <FormControl fullWidth sx={{ marginTop: "20px" }}>
                     <InputLabel id="form-layouts-separator-single-select-label">
                       SchemeOrgansisationType
                     </InputLabel>
@@ -153,7 +154,7 @@ const CreateScheme = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <DatePickerWrapper>
+                  {/* <DatePickerWrapper>
                     <DatePicker
                       selected={date}
                       showYearDropdown
@@ -163,7 +164,17 @@ const CreateScheme = () => {
                       customInput={<CustomInput />}
                       onChange={(date) => setDate(date)}
                     />
-                  </DatePickerWrapper>
+                  </DatePickerWrapper> */}
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
+                    <DatePicker
+                      label="Deadline Date*"
+                      value={date}
+                      onChange={(newDate) => {
+                        setDate(newDate);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <TextField
@@ -187,23 +198,64 @@ const CreateScheme = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12}>
+                  <Typography>Eligibility Criteria</Typography>
                   <TextField
                     fullWidth
-                    multiline
-                    rows={5}
                     label="Eligibility Criteria"
                     placeholder="Lorem Ipsum"
-
+                    sx={{ marginTop: "20px" }}
+                    // inputProps={{ readOnly: true }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Eligibility Criteria"
+                    placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
+                    // inputProps={{ readOnly: true }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Eligibility Criteria"
+                    placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
+                    // inputProps={{ readOnly: true }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Eligibility Criteria"
+                    placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
                     // inputProps={{ readOnly: true }}
                   />
                 </Grid>
                 <Grid item xs={12} sm={12}>
+                  <Typography>Eligibility Criteria</Typography>
                   <TextField
                     fullWidth
-                    multiline
-                    rows={5}
                     label="Additional Information"
                     placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
+                    // inputProps={{ readOnly: true }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Additional Information"
+                    placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
+                    // inputProps={{ readOnly: true }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Additional Information"
+                    placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
+                    // inputProps={{ readOnly: true }}
+                  />
+                  <TextField
+                    fullWidth
+                    label="Additional Information"
+                    placeholder="Lorem Ipsum"
+                    sx={{ marginTop: "20px" }}
                     // inputProps={{ readOnly: true }}
                   />
                 </Grid>

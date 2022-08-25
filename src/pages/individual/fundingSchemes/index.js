@@ -278,3 +278,31 @@ const FundingSchemes = () => {
 };
 
 export default FundingSchemes;
+
+export async function getServerSideProps(context) {
+  console.log("RFWfr")
+  const sess= await getSession(context);
+
+const allCentralScheme = await fetch(`http://localhost:3000/api/controller/getAllSeekerScholarship`)
+.then(res => res.json())
+
+const allUGCSch = await fetch(`http://localhost:3000/api/controller/getAllInstituteScholarship`)
+.then(res => res.json())
+// .then(data => {
+const allSeekerApplications = await fetch(`http://localhost:3000/api/controller/agency/getStructuredData`)
+.then(res => res.json())
+const allInstituteApplications = await fetch(`http://localhost:3000/api/controller/agency/getStructuredData1`)
+.then(res => res.json())
+
+
+  
+  console.log("ok",allSeekerApplications)
+  return {
+    props: {
+        allIndividualScholarships,
+        allHeiScholarships,
+        allSeekerApplications,
+        allInstituteApplications
+    },
+  };
+}

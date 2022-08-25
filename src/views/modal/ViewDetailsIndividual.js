@@ -51,7 +51,8 @@ const style = {
   p: 4,
 };
 
-export default function CreateMeeting() {
+export default function CreateMeeting(p) {
+  console.log(p);
   const router = useRouter();
 
   const isAuthenticated = useIsAuthenticated();
@@ -63,42 +64,11 @@ export default function CreateMeeting() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
-  const [date, setDate] = useState();
-  const [startTime, setStartTime] = useState();
-  const [endTime, setEndTime] = useState();
+  
   const [startTimeDate, setStartTimeDate] = useState("");
   const [endTimeDate, setEndTimeDate] = useState("");
-  const [ht, setHt] = useState("");
-  const [domain, setDomain] = useState([]);
-  const [role, setRole] = useState([]);
-  const event = {
-    subject: subject,
-    body: {
-      contentType: "HTML",
-      content: `<h1>u have a meet<h1>`,
-    },
-    start: {
-      dateTime: startTimeDate,
-      timeZone: "India Standard Time",
-    },
-    end: {
-      dateTime: endTimeDate,
-      timeZone: "India Standard Time",
-    },
-    location: {
-      displayName: "Online meeting",
-    },
-    attendees: [
-      {
-        emailAddress: {
-          address: email,
-          name: name,
-        },
-        type: "required",
-      },
-    ],
-    isOnlineMeeting: true,
-  };
+ 
+  
 
   const applyHandler = () => {
     return router.push("/individual/application");

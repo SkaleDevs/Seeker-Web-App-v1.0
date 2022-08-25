@@ -148,11 +148,11 @@ const TabInfo = ({user}) => {
               required
               label="First Name"
               // placeholder={initialvalue.email}
-              defaultvalue  = {user.firstName}
+              value={user.firstName}
               onChange={(e) => handlechange(e)}
               name="firstName"
               // defaultValue="John"
-               inputProps={{ readOnly: true }}
+              //  inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={4}>
@@ -193,7 +193,7 @@ const TabInfo = ({user}) => {
                 customInput={<CustomInput />}
                 onChange={(date) => setDate(date)}
               />
-            </DatePickerWrapper>
+            
           </Grid>
       
           <Grid item xs={12} sm={6}>
@@ -259,7 +259,7 @@ const TabInfo = ({user}) => {
               fullWidth
               label="Aadhaar Card"
               // placeholder="xxxx-xxxx-xxxx"
-              value = {user.aadhaarNo}
+              value = {user.aadharNo}
               inputProps={{ maxLength: 12 }}
               onChange={(e) => handlechange(e)}
               name="aadharNo"
@@ -555,10 +555,10 @@ const TabInfo = ({user}) => {
               label="Account Number"
               value={user.accountNo}
               // placeholder="xxxxxxxxxxxxxxxx"
-              inputProps={{ maxLength: 16 }}
+              inputProps={{ maxLength: 16 , readOnly: true }}
                onChange={(e) => handlechange(e)}
               name="accountNo"
-              inputProps={{ readOnly: true }}
+              
             />
           </Grid>
           <Grid item xs={12} sm={3}>

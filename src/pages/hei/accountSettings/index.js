@@ -1,4 +1,3 @@
-// ** React Imports
 import { useState } from "react";
 // ** MUI Imports
 import Box from "@mui/material/Box";
@@ -18,6 +17,10 @@ import InformationOutline from "mdi-material-ui/InformationOutline";
 import TabInfo from "src/views/account-settings/hei/TabInfo";
 import TabAccount from "src/views/account-settings/hei/TabAccount";
 import TabSecurity from "src/views/account-settings/hei/TabSecurity";
+import {getSession} from 'next-auth/react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
@@ -55,7 +58,7 @@ const TabName = styled("span")(({ theme }) => ({
     useEffect(() => {
   
       const fetch= async () =>{
-        await axios.get(`/api/controller/seeker/getInstituteInfo`).then((res) => {
+        await axios.get(`/api/controller/institute/getInstituteInfo`).then((res) => {
           setUser(res.data);
           // console.log(res.data);
           

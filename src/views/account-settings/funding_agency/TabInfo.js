@@ -17,7 +17,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Chip from "@mui/material/Chip";
 import { useSession } from "next-auth/react";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 // ** Third Party Imports
@@ -101,6 +101,11 @@ const CustomInput = forwardRef((props, ref) => {
 
 
 
+
+
+
+
+
     <CardContent>
       <form>
         <Grid container spacing={7}>
@@ -128,13 +133,14 @@ const CustomInput = forwardRef((props, ref) => {
 
               // inputProps={{ readOnly: true }}
             />
-            </Grid>
-            <Grid item xs={12} sm={3}>
+          </Grid>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               required
               type="number"
               label="Phone"
+<<<<<<<<< Temporary merge branch 1
               onChange={(e) => handlechange(e)}
               name="phone"
              // placeholder="+91 1231231234"
@@ -150,7 +156,7 @@ const CustomInput = forwardRef((props, ref) => {
               name="url"
             />
           </Grid>
-         
+
           <Grid item xs={12} sm={12}>
             <TextField
               fullWidth
@@ -164,7 +170,7 @@ const CustomInput = forwardRef((props, ref) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          
+
           <Grid item xs={12} sm={4}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-single-select-label">
@@ -219,14 +225,12 @@ const CustomInput = forwardRef((props, ref) => {
                     label="Organisation Type"
                     id="select-single-language"
                   />
-                  
                 }
                 onChange={(e) => handlechange(e)}
-                  name="organisationType"
+                name="organisationType"
               >
                 <MenuItem value="TISS">TISS</MenuItem>
                 <MenuItem value="Own Trust Name">Own Trust Name</MenuItem>
-                
               </Select>
             </FormControl>
           </Grid>
@@ -253,7 +257,6 @@ const CustomInput = forwardRef((props, ref) => {
                 <MenuItem value="Testamentary">Testamentary</MenuItem>
                 <MenuItem value="Revocable">Revocable</MenuItem>
                 <MenuItem value="Irrevocable">Irrevocable</MenuItem>
-               
               </Select>
             </FormControl>
           </Grid>
@@ -338,9 +341,7 @@ const CustomInput = forwardRef((props, ref) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-         
-         
-                
+
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Finance" />
@@ -409,13 +410,11 @@ const CustomInput = forwardRef((props, ref) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          
 
           <Grid item xs={12}>
             <Button variant="contained" sx={{ marginRight: 3.5 }}>
               Save Changes
             </Button>
-          
           </Grid>
         </Grid>
       </form>

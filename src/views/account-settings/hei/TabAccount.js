@@ -1,3 +1,4 @@
+//tab account
 // ** React Imports
 import { useState } from "react";
 
@@ -48,11 +49,11 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-const TabAccount = () => {
+const TabAccount = ({user}) => {
   // ** State
   const [openAlert, setOpenAlert] = useState(true);
   const [imgSrc, setImgSrc] = useState("/images/avatars/1.png");
-
+  console.log(user)
   const onChange = (file) => {
     const reader = new FileReader();
     const { files } = file.target;

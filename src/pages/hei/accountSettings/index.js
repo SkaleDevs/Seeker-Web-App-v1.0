@@ -60,7 +60,7 @@ const TabName = styled("span")(({ theme }) => ({
       const fetch= async () =>{
         await axios.get(`/api/controller/institute/getInstituteInfo`).then((res) => {
           setUser(res.data);
-          // console.log(res.data);
+          console.log(res.data);
           
         }).catch((err) => {
           console.log(err);

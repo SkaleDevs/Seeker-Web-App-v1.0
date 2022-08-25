@@ -61,6 +61,7 @@ const TabAccount = ({user}) => {
       reader.readAsDataURL(files[0]);
     }
   };
+  console.log(user);
 
   return (
     <CardContent>

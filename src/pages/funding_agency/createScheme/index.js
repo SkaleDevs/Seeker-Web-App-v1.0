@@ -25,7 +25,7 @@ import FormControl from "@mui/material/FormControl";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
-import {useRef} from 'react';
+import { useRef } from "react";
 // ** Third Party Imports
 import DatePicker from "react-datepicker";
 import axios from "axios";
@@ -55,7 +55,7 @@ const CreateScheme = () => {
     }),
     []
   );
-    // let eleg  = 
+  // let eleg  =
   const name = useRef();
   const [type, setType] = useState(null);
   const [orgType, setOrgType] = useState(null);
@@ -64,10 +64,9 @@ const CreateScheme = () => {
   const [date, setDate] = useState(null);
   const [extraDocsFile, setExtraDocsFile] = useState(["Bonafide", "Passport"]);
   const maxAmount = useRef();
-  
 
-  const submit  = async()=>{
-    try{
+  const submit = async () => {
+    try {
       console.log(name.current.value);
       console.log(type);
       console.log(agencyDescription.current.value);
@@ -75,27 +74,24 @@ const CreateScheme = () => {
       console.log(date);
       console.log(extraDocsFile);
       console.log(maxAmount.current.value);
-      const data = await axios.post("/api/controller/agency/createScholarship",
-      {name:name.current.value,
-      schemeType:type,
-      schemeOrganisationType:orgType,
-      agencyDescription:agencyDescription.current.value,
-      eligibility:eligibility,
-      deadline:date,
-      documentsRequired:extraDocsFile,
-      maxAmount:maxAmount.current.value
-    }).then(res=>{
-      console.log(res);
-    })
-    }catch(e){
+      const data = await axios
+        .post("/api/controller/agency/createScholarship", {
+          name: name.current.value,
+          schemeType: type,
+          schemeOrganisationType: orgType,
+          agencyDescription: agencyDescription.current.value,
+          eligibility: eligibility,
+          deadline: date,
+          documentsRequired: extraDocsFile,
+          maxAmount: maxAmount.current.value,
+        })
+        .then((res) => {
+          console.log(res);
+        });
+    } catch (e) {
       console.log(e);
     }
-  }
-
-
-
-
-
+  };
 
   return (
     <Grid container spacing={3}>
@@ -135,7 +131,7 @@ const CreateScheme = () => {
                     </Select>
                   </FormControl>
 
-                  <FormControl fullWidth>
+                  <FormControl fullWidth sx={{ marginTop: "10px" }}>
                     <InputLabel id="form-layouts-separator-single-select-label">
                       SchemeOrgansisationType
                     </InputLabel>
@@ -144,7 +140,7 @@ const CreateScheme = () => {
                       labelId="account-settings-single-select-label"
                       input={
                         <OutlinedInput
-                          label="Type"
+                          label="Scheme Organisation Type"
                           id="select-single-language"
                         />
                       }
@@ -175,7 +171,7 @@ const CreateScheme = () => {
                     required
                     type="number"
                     label="Maximum Amount"
-                    inputRef={maxAmount}  
+                    inputRef={maxAmount}
                     placeholder="+91 1231231234"
                   />
                 </Grid>
@@ -186,7 +182,7 @@ const CreateScheme = () => {
                     rows={5}
                     label="Scheme Description"
                     placeholder="Lorem Ipsum"
-                    inputRef={agencyDescription} 
+                    inputRef={agencyDescription}
                     // inputProps={{ readOnly: true }}
                   />
                 </Grid>
@@ -197,7 +193,7 @@ const CreateScheme = () => {
                     rows={5}
                     label="Eligibility Criteria"
                     placeholder="Lorem Ipsum"
-                    
+
                     // inputProps={{ readOnly: true }}
                   />
                 </Grid>
@@ -212,7 +208,11 @@ const CreateScheme = () => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <Button variant="contained" onClick={submit} sx={{ marginRight: 3.5 }}>
+                  <Button
+                    variant="contained"
+                    onClick={submit}
+                    sx={{ marginRight: 3.5 }}
+                  >
                     Save Changes
                   </Button>
                   <Button

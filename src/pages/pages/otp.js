@@ -32,7 +32,7 @@ const Home = () => {
   const clickHanlder = async() =>{
     try{
       console.log(phoneRef.current.value)
-    await axios.post("http://localhost:3000/api/controller/sendotp",{phoneNo:phoneRef.current.value}).then((res)=>{
+    await axios.post("/api/controller/sendotp",{phoneNo:phoneRef.current.value}).then((res)=>{
       window.alert("otp sent")})
     }
   

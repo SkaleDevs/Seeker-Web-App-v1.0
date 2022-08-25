@@ -9,14 +9,19 @@ export default async function handler(req,res){
     if (!session || session.user.role!=="funding_agency") {
     return res.status(401).json({error: 'Unauthorized'})
     }
+    
     let {type,status,id}=req.body;
+    
     let data;
     if(type==="institute"){
-         data=await ApplyInstitute.findOneAndUpdate({_id:id,agencyID:session.user.id},{status:status});
+         data=await ApplyInstitute.findOneAndUpdate({_id:id},{status:status},{new:true});
+         
     }
     else{
-        data=await ApplySeeker.findOneAndUpdate({_id:id,agencyID:session.user.id},{status:status});
+        data=await ApplySeeker.findOneAndUpdate({_id:id},{status:status},{new:true});
+        
     }
+    console.log("data",data)
     if(data){
         return res.send({message:`${status}ed successfully`});
     }

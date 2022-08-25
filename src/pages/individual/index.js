@@ -49,7 +49,7 @@ const Home = ({ sess }) => {
   const handleSave = () => {
     if (formats.length > 2) {
       setOpen(false);
-      console.log("formats: " + formats[0]);
+      console.log("formats: " + formats);
     } else {
       alert("Please select atleast 3 interests");
     }

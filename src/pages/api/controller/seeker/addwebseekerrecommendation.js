@@ -1,6 +1,6 @@
 
 import connectDB from '../../auth/lib/connectDB';
-import users from '../model/users';
+import users from '../../model/userSchema';
 import {getSession} from 'next-auth/react';
 connectDB();
 //does even the work of rejecting the verification stuff for agency account

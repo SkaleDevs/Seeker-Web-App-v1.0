@@ -1,6 +1,6 @@
 import Scheme from '../../model/agencySchemeSchema';
 import connectDB from '../../auth/lib/connectDB';
-import users from '../../model/users';
+import users from '../../model/userSchema';
 import {getSession} from 'next-auth/react';
 connectDB();
 export default async function handler(req,res){
@@ -30,6 +30,6 @@ export default async function handler(req,res){
     details.save()
 
     let data1=await users.find()
-    
+
     res.send(details)
 }

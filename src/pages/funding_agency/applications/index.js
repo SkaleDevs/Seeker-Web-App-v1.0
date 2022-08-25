@@ -403,7 +403,7 @@ var ans={}
                
               return(
                
-               <Dropdown authority={item.name} > {/* Scheme name */}
+               <Dropdown authority={item.name} key={key} > {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -430,7 +430,7 @@ var ans={}
               { allHeiScholarships?.map((item,val)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
-                <Dropdown authority={item.name} >
+                <Dropdown authority={item.name} key={key}>
                   <div
                     className="ag-theme-alpine"
                     style={{

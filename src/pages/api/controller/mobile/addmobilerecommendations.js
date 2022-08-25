@@ -1,6 +1,6 @@
 
 import connectDB from '../../auth/lib/connectDB';
-import users from '../model/users';
+import users from '../../model/userSchema';
 import cookie from 'cookie';
 import jwt from "jsonwebtoken"
 

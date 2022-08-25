@@ -1,6 +1,6 @@
 
 import connectDB from '../../auth/lib/connectDB';
-import users from '../model/users';
+import users from '../../model/userSchema';
 import Scheme from '../../model/agencySchemeSchema';
 import {getSession} from 'next-auth/react';
 connectDB();

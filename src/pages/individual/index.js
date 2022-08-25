@@ -13,6 +13,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Divider } from "@mui/material";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
@@ -37,10 +39,86 @@ const Home = ({ sess }) => {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const handleReset = () => {
+    setOpen(false);
+    setFormats([]);
+  };
   const handleOpen = () => {
     setOpen(true);
   };
+  const handleSave = () => {
+    if (formats.length > 2) {
+      setOpen(false);
+      console.log("formats: " + formats[0]);
+    } else {
+      alert("Please select atleast 3 interests");
+    }
+  };
+
+  // ** Toggle Button Data
+
+  const tog = [
+    {
+      name: "MBA",
+    },
+    {
+      name: "Phd",
+    },
+    {
+      name: "Science",
+    },
+    {
+      name: "Management",
+    },
+    {
+      name: "Engineering",
+    },
+    {
+      name: "Medical",
+    },
+    {
+      name: "Arts",
+    },
+    {
+      name: "Commerce",
+    },
+    {
+      name: "Physics",
+    },
+    {
+      name: "Chemistry",
+    },
+    {
+      name: "Biology",
+    },
+    {
+      name: "Mathematics",
+    },
+    {
+      name: "English",
+    },
+    {
+      name: "Hindi",
+    },
+    {
+      name: "Marathi",
+    },
+    {
+      name: "Kannada",
+    },
+    {
+      name: "Girl",
+    },
+    {
+      name: "Disable",
+    },
+    {
+      name: "OBC",
+    },
+    {
+      name: "SC/ST",
+    },
+  ];
 
   // ** Modal Transition
 
@@ -79,6 +157,13 @@ const Home = ({ sess }) => {
     setTimeout(handleOpen, 3000);
   }, []);
 
+  // ** Toggle Button Handlers
+  const [formats, setFormats] = useState(() => []);
+
+  const handleFormat = (event, newFormats) => {
+    setFormats(newFormats);
+  };
+
   const rtr = useRouter();
   useEffect(() => {
     if (sess?.user?.role !== "individual") {
@@ -97,28 +182,39 @@ const Home = ({ sess }) => {
       {/* -----------------------------Modal Popup----------------------------------------------------------- */}
 
       <div>
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          fullWidth="30%"
-        >
+        <Dialog open={open} onClose={handleClose} fullWidth="30%">
           <DialogTitle>Select your fields of interest</DialogTitle>
           <Divider />
           <DialogContent>
             <DialogContentText>Min. 3 interests</DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="standard"
-            />
+            <ToggleButtonGroup
+              value={formats}
+              onChange={handleFormat}
+              aria-label="text formatting"
+            >
+              {/* <Grid container spacing={2}> */}
+              {tog.map(function (item) {
+                return (
+                  // <Grid item key={item.name}>
+                  <ToggleButton
+                    color="primary"
+                    variant="outlined"
+                    sx={{ margin: "8px" }}
+                    value={item.name}
+                    aria-label={item.name}
+                    key={item.name}
+                  >
+                    {item.name}
+                  </ToggleButton>
+                  // </Grid>
+                );
+              })}
+              {/* </Grid> */}
+            </ToggleButtonGroup>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleClose}>Done</Button>
+            <Button onClick={handleReset}>Cancel</Button>
+            <Button onClick={handleSave}>Save</Button>
           </DialogActions>
         </Dialog>
       </div>

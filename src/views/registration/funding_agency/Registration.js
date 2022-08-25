@@ -5,11 +5,7 @@ import { useState, Fragment, forwardRef, useRef, useEffect } from "react";
 import axios from "axios";
 // ** Next Imports
 import Link from "next/link";
-
-// ** Date Picker Imports
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useRouter } from "next/router";
 
 // ** MUI Components
 import Box from "@mui/material/Box";
@@ -55,6 +51,8 @@ const FormControlLabel = styled(MuiFormControlLabel)(({ theme }) => ({
 let BUCKET_URL = "https://253762017528.signin.aws.amazon.com/console";
 
 const FundingAgencyRegistration = () => {
+  const router = useRouter();
+
   const courses = [
     { courseName: "BE in Computer Science" },
     { courseName: "BE in Information Science" },
@@ -78,14 +76,13 @@ const FundingAgencyRegistration = () => {
   const [proof, setProof] = useState(null);
   const [pincodeCorrespondence, setPincodeCorrespondence] = useState(null);
   const [trustType, setTrustType] = useState(null);
+  const [organizationType, setOrganizationType] = useState("state");
 
   // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
-  const organizationTypeRef = useRef(null);
   const entityTypeRef = useRef(null);
   const nameRef = useRef(null);
   const emailRef = useRef();
-  const phoneRef = useRef();
   const stateRef = useRef();
   const addressRef = useRef();
   const cityRef = useRef();
@@ -207,8 +204,8 @@ const FundingAgencyRegistration = () => {
       bankAccountNo: accNoRef?.current?.value,
       typeEntity: entityTypeRef?.current?.value,
       name: nameRef?.current?.value,
-      description: descriptionRef?.current?.value,
-      typeOrganisation: organizationTypeRef?.current?.value,
+      discription: descriptionRef?.current?.value,
+      typeOrganisation: organizationType,
       trustType: trustType,
       trustName: trustNameRef?.current?.value,
       url: urlRef?.current?.value,
@@ -222,6 +219,10 @@ const FundingAgencyRegistration = () => {
     });
 
     window.alert(data.message);
+    if(data.message === "Successfully registered"){
+      // window.location.href = "/login";
+      router.push("/login");
+    }
   };
 
   return (
@@ -229,7 +230,7 @@ const FundingAgencyRegistration = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="Agency Details" />
+            <Chip label="Agency Info" />
           </Divider>
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -244,11 +245,93 @@ const FundingAgencyRegistration = () => {
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
+            required
+            label="Agency Email Address"
+            placeholder="Enter Agency Email Address"
+            inputRef={emailRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
             multiline={true}
             required
             label="Description"
             placeholder="Enter description"
-            inputRef={nameRef}
+            inputRef={descriptionRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            label="Type of Entity"
+            placeholder="Enter the type of entity"
+            inputRef={entityTypeRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <FormControl fullWidth>
+            <InputLabel id="form-layouts-separator-single-select-label">
+              Type of Organization*
+            </InputLabel>
+            <Select
+              required
+              id="account-settings-single-select"
+              labelId="account-settings-single-select-label"
+              label="Organistation Type"
+              value={organizationType}
+              onChange={(e) => setOrganizationType(e.target.value)}
+            >
+              <MenuItem value="central">Central</MenuItem>
+              <MenuItem value="state">State</MenuItem>
+              <MenuItem value="ugc/aicte">UGC/AICTE</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            required
+            label="Name of the Trust"
+            placeholder=""
+            inputRef={trustNameRef}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <FormControl fullWidth>
+            <InputLabel id="form-layouts-separator-single-select-label">
+              Type of Trust*
+            </InputLabel>
+            <Select
+              required
+              id="account-settings-single-select"
+              labelId="account-settings-single-select-label"
+              label="Trust Type"
+              value={trustType}
+              onChange={(e) => setTrustType(e.target.value)}
+            >
+              <MenuItem value="central">Central</MenuItem>
+              <MenuItem value="state">State</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            type="file"
+            helperText="Upload Logo*"
+            onChange={(e) => setEntityLogo(e.target.files[0])}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <TextField
+            fullWidth
+            required
+            label="Scheme Managed"
+            placeholder=""
+            inputRef={schemeManagedRef}
           />
         </Grid>
         <Grid item xs={12}>
@@ -275,14 +358,6 @@ const FundingAgencyRegistration = () => {
             inputRef={addressRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            helperText="Locality"
-            placeholder="Kadma"
-            inputRef={localityRef}
-          />
-        </Grid>
         <Grid item xs={12} sm={3}>
           <TextField
             fullWidth
@@ -303,78 +378,45 @@ const FundingAgencyRegistration = () => {
         </Grid>
         <Grid item xs={12}>
           <Divider variant="middle" textAlign="left">
-            <Chip label="College Details" />
+            <Chip label="Agency Details" />
           </Divider>
         </Grid>
-        <Grid item xs={12} sm={8}>
-          <TextField
-            fullWidth
-            required
-            label="College Name"
-            placeholder="College Name"
-            inputRef={collegeNameRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <FormControl fullWidth>
-            <InputLabel id="form-layouts-separator-single-select-label">
-              College Type*
-            </InputLabel>
-            <Select
-              required
-              id="account-settings-single-select"
-              labelId="account-settings-single-select-label"
-              label="College Type"
-              value={collegeType}
-              onChange={(e) => setCollegeType(e.target.value)}
-            >
-              <MenuItem value="central">Central</MenuItem>
-              <MenuItem value="state">State</MenuItem>
-              <MenuItem value="deemed">Deemed</MenuItem>
-              <MenuItem value="private">Private</MenuItem>
-            </Select>
-          </FormControl>
-        </Grid>
+
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Management Type"
-            placeholder="Management Type"
-            inputRef={managementTypeRef}
+            label="Agency Website Link"
+            placeholder="www.agency.org"
+            inputRef={urlRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Accreditation Number"
-            placeholder="Accreditation Number"
-            inputRef={accrediationNumberRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Autocomplete
-            options={courses}
-            getOptionLabel={(option) => option.courseName}
-            renderInput={(params) => (
-              <TextField
-                {...params}
-                label="Courses Offered"
-                placeholder="Select Course"
-                variant="outlined"
-                inputRef={courseRef}
-              />
-            )}
+            label="Registration Number"
+            placeholder="XXXXXXXXXXXXXXXX"
+            inputRef={regNoRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="AISHE Code"
-            placeholder="Enter the AISHE Code for your college"
-            inputRef={aisheRef}
+            label="Pan Number"
+            placeholder="XXXXXXXXXXXXXXXX"
+            inputRef={panNoRef}
+          />
+        </Grid>
+        
+        <Grid item xs={12} sm={6}>
+          <TextField
+            fullWidth
+            required
+            type="file"
+            helperText="Upload the Pan No.*"
+            onChange={(e) => setPanFile(e.target.files[0])}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -382,113 +424,56 @@ const FundingAgencyRegistration = () => {
             fullWidth
             required
             type="file"
-            helperText="Upload the AISHE Code Certificate*"
-            onChange={(e) => setAisheCert(e.target.files[0])}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Divider variant="middle" textAlign="left">
-            <Chip label="Other Details" />
-          </Divider>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            label="Affiliated University Name"
-            placeholder="Karnataka"
-            inputRef={affiliatedUniversityNameRef}
+            helperText="Upload an Identity proof*"
+            onChange={(e) => setIdentityFile(e.target.files[0])}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Affiliated University State"
-            placeholder="Karnataka"
-            inputRef={affiliatedUniversityStateRef}
+            label="IFSC Code"
+            placeholder="Jayanagar, Bengaluru"
+            onChange={(e) => setifsc(e.target.value)}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="Earlier Affiliation"
-            placeholder="Karnataka"
-            inputRef={earlierAffiliationRef}
+            helperText="Bank Name"
+            placeholder="Kotak Mahindra Bank"
+            inputRef={bankNameRef}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             fullWidth
             required
-            label="First Admission Year"
-            placeholder="2017"
-            inputRef={firstAdmissionYearRef}
+            label="Account Number"
+            placeholder="xxxxxxxxxxxxxxxx"
+            inputProps={{ maxLength: 16 }}
+            inputRef={accNoRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            label="Admission Completed"
-            placeholder="2017"
-            inputRef={admissionCompletedRef}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            required
-            type="file"
-            helperText="Upload proof"
-            onChange={(e) => setProof(e.target.value)}
-          />
-        </Grid>
-        {/* Confusion In this part */}
         <Grid item xs={12} sm={12}>
           <TextField
             fullWidth
             required
-            label="Correspondence Postal Code"
-            placeholder="Postal Code"
-            value={pincodeCorrespondence}
-            onChange={(e) => setPincodeCorrespondence(e.target.value)}
+            helperText="Branch Name"
+            placeholder="Jayanagar, Bengaluru"
+            inputRef={bankBranchRef}
+            // inputProps={{ readOnly: true }}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={12}>
           <TextField
             fullWidth
             required
-            label="Correspondence Address"
-            placeholder="X/Y Street Address"
-            inputRef={addressCorrespondenceRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            helperText="Correspondence City"
-            placeholder="Bengaluru"
-            inputRef={cityCorrespondenceRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            required
-            helperText="Correspondence State"
-            placeholder="Karnataka"
-            inputRef={stateCorrespondenceRef}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            fullWidth
-            helperText="Correspondence District"
-            placeholder="District Name"
-            inputRef={districtCorrespondenceRef}
+            helperText="Name as per Bank"
+            placeholder="John Doe"
+            inputRef={nameAsPerBankRef}
+            // inputProps={{ readOnly: true }}
           />
         </Grid>
       </Grid>

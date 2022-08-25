@@ -110,17 +110,19 @@ const TabAccount = ({user}) => {
               helperText="Representative's Name"
               //placeholder=" Name"
               // defaultValue="John"
+              value={user.headName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              height="100"
-              type="number"
+              
+             
               helperText="Designation"
               //placeholder="Dean of Academics"
               // defaultValue="7438748373"
+              value={user.designation}
               inputProps={{ readOnly: true }}
             />
           </Grid>

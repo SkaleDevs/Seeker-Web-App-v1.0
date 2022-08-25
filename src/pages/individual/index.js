@@ -55,7 +55,7 @@ const Home = ({ sess }) => {
           interest: formats,
         })
         .then((res) => {
-          alert(res);
+          alert(res.data);
         });
     } else {
       alert("Please select atleast 3 interests");

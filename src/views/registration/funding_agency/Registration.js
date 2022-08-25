@@ -66,42 +66,39 @@ const FundingAgencyRegistration = () => {
   const theme = useTheme();
 
   // ** States-----------------------------------------------------------------------------------------------------------
-  const [date, setDate] = useState(null);
-  const [category, setCategory] = useState("general");
-  const [gender, setGender] = useState("male");
-  const [highestQualification, setHighestQualification] =
-    useState("intermediate");
-  const [income, setIncome] = useState("3.5lpa");
-  const [aadharFile, setAadharFile] = useState(null);
+  const [identityFile, setIdentityFile] = useState(null);
   const [panFile, setPanFile] = useState(null);
-  const [language, setLanguage] = useState("english");
-  const [collegeType, setCollegeType] = useState("state");
-  const [highestQualFile, sethighestQualFile] = useState(null);
-  const [mark12File, setmark12File] = useState(null);
-  const [aisheCert, setAisheCert] = useState(null);
-  const [uploadaadharFile, setuploadAadharFile] = useState(null);
   const [uploadpanFile, setuploadPanFile] = useState(null);
-  const [uploadhighestQualFile, setuploadhighestQualFile] = useState(null);
-  const [uploadmark12File, setuploadmark12File] = useState(null);
-  const [uploadAisheCert, setUploadAisheCert] = useState(null);
+  const [uploadidentityFile, setuploadidentityFile] = useState(null);
+  const [uploadEntityLogoFile, setuploadEntityLogoFile] = useState(null);
+  const [entityLogo, setEntityLogo] = useState(null);
   const [ifsc, setifsc] = useState(null);
   const [pincode, setPincode] = useState(null);
   const [signUpAllowed, setSignUpAllowed] = useState(false);
   const [proof, setProof] = useState(null);
   const [pincodeCorrespondence, setPincodeCorrespondence] = useState(null);
+  const [trustType, setTrustType] = useState(null);
 
   // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
+  const organizationTypeRef = useRef(null);
+  const entityTypeRef = useRef(null);
+  const nameRef = useRef(null);
   const emailRef = useRef();
   const phoneRef = useRef();
   const stateRef = useRef();
   const addressRef = useRef();
-  const localityRef = useRef();
   const cityRef = useRef();
-  const collegeNameRef = useRef();
+  const trustNameRef = useRef();
+  const urlRef = useRef();
+  const regNoRef= useRef();
+  const panNoRef = useRef();
+  const nameAsPerBankRef = useRef();
+  const schemeManagedRef = useRef();
   const bankNameRef = useRef();
   const accNoRef = useRef();
   const bankBranchRef = useRef();
+  const descriptionRef = useRef();
   // ** ---------------------------------------------------------------------------------------------------------------
 
   // ** API Calls-------------------------------------------------------------------------------------------------------
@@ -124,49 +121,32 @@ const FundingAgencyRegistration = () => {
         console.log(res.data[0].PostOffice[0].Name);
         stateRef.current.value = res.data[0].PostOffice[0].State;
         cityRef.current.value = res.data[0].PostOffice[0].District;
-        localityRef.current.value = res.data[0].PostOffice[0].Name;
       };
       fetchData();
     }
   }, [pincode]);
 
-  useEffect(() => {
-    if (pincodeCorrespondence?.length === 6) {
-      const fetchData = async () => {
-        const res = await axios.get(
-          `https://api.postalpincode.in/pincode/${pincodeCorrespondence}`
-        );
-        console.log(res.data[0].PostOffice[0].Name);
-        stateCorrespondenceRef.current.value = res.data[0].PostOffice[0].State;
-        cityCorrespondenceRef.current.value =
-          res.data[0].PostOffice[0].District;
-        // districtCorrespondenceRef.current.value = res.data[0].PostOffice[0].District;
-      };
-      fetchData();
-    }
-  }, [pincodeCorrespondence]);
-
   // ** ---------------------------------------------------------------------------------------------------------------
 
   // ** Submission handling--------------------------------------------------------------------------------------------
-  const uploadaadhar = async () => {
+  const uploadIdentity = async () => {
     let { data } = await axios.post("/api/controller/upload", {
-      name: aadharFile?.name,
-      type: aadharFile?.type,
+      name: identityFile?.name,
+      type: identityFile?.type,
     });
 
     console.log(data);
 
     const url = data.url;
-    let { data: newData } = await axios.put(url, aadharFile, {
+    let { data: newData } = await axios.put(url, identityFile, {
       headers: {
-        "Content-type": aadharFile?.type,
+        "Content-type": identityFile?.type,
         "Access-Control-Allow-Origin": "*",
       },
     });
 
-    setuploadAadharFile(BUCKET_URL + aadharFile?.name);
-    setAadharFile(null);
+    setuploadidentityFile(BUCKET_URL + identityFile?.name);
+    setIdentityFile(null);
   };
   const uploadpan = async () => {
     let { data } = await axios.post("/api/controller/upload", {
@@ -187,108 +167,62 @@ const FundingAgencyRegistration = () => {
     setuploadPanFile(BUCKET_URL + panFile?.name);
     setPanFile(null);
   };
-  const uploadhighestqual = async () => {
+  const uploadEntityLogo = async () => {
     let { data } = await axios.post("/api/controller/upload", {
-      name: highestQualFile?.name,
-      type: highestQualFile?.type,
+      name: entityLogo?.name,
+      type: entityLogo?.type,
     });
 
     console.log(data);
 
     const url = data.url;
-    let { data: newData } = await axios.put(url, highestQualFile, {
+    let { data: newData } = await axios.put(url, entityLogo, {
       headers: {
-        "Content-type": highestQualFile?.type,
+        "Content-type": entityLogo?.type,
         "Access-Control-Allow-Origin": "*",
       },
     });
 
-    setuploadhighestQualFile(BUCKET_URL + highestQualFile?.name);
-    sethighestQualFile(null);
+    setuploadEntityLogoFile(BUCKET_URL + entityLogo?.name);
+    setEntityLogo(null);
   };
-  const uploadmark12 = async () => {
-    let { data } = await axios.post("/api/controller/upload", {
-      name: mark12File?.name,
-      type: mark12File?.type,
-    });
-
-    console.log(data);
-
-    const url = data.url;
-    let { data: newData } = await axios.put(url, mark12File, {
-      headers: {
-        "Content-type": mark12File?.type,
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-
-    setuploadmark12File(BUCKET_URL + mark12File?.name);
-    setmark12File(null);
-  };
-  const uploadAisheCertHandler = async () => {
-    let { data } = await axios.post("/api/controller/upload", {
-      name: aisheCert?.name,
-      type: aisheCert?.type,
-    });
-
-    console.log(data);
-
-    const url = data.url;
-    let { data: newData } = await axios.put(url, aisheCert, {
-      headers: {
-        "Content-type": aisheCert?.type,
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-
-    setUploadAisheCert(BUCKET_URL + aisheCert?.name);
-    setAisheCert(null);
-  };
+  
   const upload = async () => {
-    uploadaadhar();
+    uploadIdentity();
     uploadpan();
-    uploadhighestqual();
-    uploadmark12();
-    uploadAisheCertHandler();
+    uploadEntityLogo();
     console.log(
-      uploadaadharFile,
-      uploadpanFile,
-      uploadhighestQualFile,
-      uploadmark12File,
-      uploadAisheCert
+      uploadIdentity,
+      uploadpan,
+      uploadEntityLogo
     );
+
     let { data } = await axios.post("/api/controller/registerSeeker", {
       email: emailRef?.current?.value,
-      phNo: phoneRef?.current?.value,
-      firstName: firstnameRef?.current?.value,
-      middleName: middlenameRef?.current?.value,
-      lastName: lastnameRef?.current?.value,
-      aadharNo: aadharNoRef?.current?.value,
-      aadharFile: uploadaadharFile,
-      guardianFirstName: guardianfirstnameRef?.current?.value,
-      guardianMiddleName: guardianmiddlenameRef?.current?.value,
-      guardianLastName: guardianlastnameRef?.current?.value,
-      dateOfBirth: date,
-      category: category,
-      sex: gender,
-      marks12: mark12Ref?.current?.value,
-      marks12File: uploadmark12File,
-      marks10: aisheRef?.current?.value,
-      marks10File: uploadAisheCert,
-      highestQualification: highestQualification,
-      highestQualificationmarks: highestQualRef?.current?.value,
-      highestQualificationFile: uploadhighestQualFile,
-      income: income,
       panNo: panNoRef?.current?.value,
       panFile: uploadpanFile,
       state: stateRef?.current?.value,
       address: addressRef?.current?.value,
-      locality: localityRef?.current?.value,
+      city: cityRef?.current?.value,
       pincode: pincode,
-      ifscCode: ifsc,
-      banker: bankNameRef?.current?.value,
-      bankBranch: bankBranchRef?.current?.value,
-      accountNo: accNoRef?.current?.value,
+      ifsc: ifsc,
+      bankeName: bankNameRef?.current?.value,
+      branchName: bankBranchRef?.current?.value,
+      bankAccountNo: accNoRef?.current?.value,
+      typeEntity: entityTypeRef?.current?.value,
+      name: nameRef?.current?.value,
+      description: descriptionRef?.current?.value,
+      typeOrganisation: organizationTypeRef?.current?.value,
+      trustType: trustType,
+      trustName: trustNameRef?.current?.value,
+      url: urlRef?.current?.value,
+      regNo: regNoRef?.current?.value,
+      nameAsPerBank: nameAsPerBankRef?.current?.value,
+      entityLogo: entityLogo,
+      schemeManaged: schemeManagedRef?.current?.value,
+      identityProofFile: identityFile,
+      verfied: "No",
+      banned:"No",
     });
 
     window.alert(data.message);

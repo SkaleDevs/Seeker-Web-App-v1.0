@@ -103,7 +103,7 @@ const TabAccount = ({user}) => {
               helperText="First Name"
               // placeholder="John Doe"
               // defaultValue="John"
-              value={user.firstName}
+              value={user?.firstName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -113,7 +113,7 @@ const TabAccount = ({user}) => {
               helperText="Middle Name"
              // placeholder="John Doe"
               //defaultValue="Kuamr"
-              value  = {user.middleName}
+              value  = {user?.middleName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -121,8 +121,8 @@ const TabAccount = ({user}) => {
             <TextField
               fullWidth
               helperText="Last Name"
-            //  placeholder={user.email}
-              value={user.lastName}
+            //  placeholder={user?.email}
+              value={user?.lastName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -133,7 +133,7 @@ const TabAccount = ({user}) => {
               helperText="Username"
               //placeholder="johnDoe"
               //defaultValue="johnDoe"
-              value={user.username}
+              value={user?.username}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -144,7 +144,7 @@ const TabAccount = ({user}) => {
               helperText="Email"
              // placeholder="johnDoe@example.com"
              //defaultValue="johnDoe@example.com"
-             value  = {user.email}
+             value  = {user?.email}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -155,7 +155,7 @@ const TabAccount = ({user}) => {
               helperText="Phone"
               //placeholder="1234567890"
               //defaultValue="7438748373"
-              value  = {user.phNo}
+              value  = {user?.phNo}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -165,7 +165,7 @@ const TabAccount = ({user}) => {
               helperText="Birth Date"
               //placeholder="johnDoe"
               //defaultValue="13-12-2012"
-              value  = {user.dateOfBirth}
+              value  = {user?.dateOfBirth}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -175,7 +175,7 @@ const TabAccount = ({user}) => {
               fullWidth
               type="string"
               helperText="Address"
-              value={user.address}
+              value={user?.address}
              // placeholder="johnDoe@example.com"
               //defaultValue="Bengakuru, Karnataka, India."
               inputProps={{ readOnly: true }}

@@ -17,7 +17,7 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Chip from "@mui/material/Chip";
 import { useSession } from "next-auth/react";
-import {useEffect} from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 // ** Third Party Imports
@@ -31,75 +31,53 @@ const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
 
-  const TabInfo = () => {
-    const {data: session} = useSession();
-    // ** State
-    const [user, setUser] = useState({});
-    console.log("sess:",session.user.email);
-    useEffect(() => {
-  
-      const fetch= async () =>{
-        await axios.get(`/api/controller/agency/getMyDetails`,{email:session.user.id}).then((res) => {
+const TabInfo = () => {
+  const { data: session } = useSession();
+  // ** State
+  const [user, setUser] = useState({});
+  console.log("sess:", session.user.email);
+  useEffect(() => {
+    const fetch = async () => {
+      await axios
+        .get(`/api/controller/agency/getMyDetails`, { email: session.user.id })
+        .then((res) => {
           setUser(res.data);
           console.log(res);
-          
-        }).catch((err) => {
-          console.log(err);
         })
-      }
-      fetch();
-      
-    }, []);
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    fetch();
+  }, []);
 
-    let initialvalue={
-    
-      name:user?.name,
-      email:user?.email,
-      phone:user?.phone,
-      url:user?.url,
-      description:user?.description,
-      entityType:user?.entityType,
-      organisationType:user?.organisationType,
-      trustType:user?.trustType,
-      trustName:user?.trustName,
-      registrationNumber:user?.registrationNumber,
-      address:user?.address,
-      state:user?.state,
-      locality:user?.locality,
-      town:user?.town,
-      pincode:user?.pincode,
-      panCard:user?.panCard,
-      nameAsPerBank:user?.nameAsPerBank,
-      ifscCode:user?.ifscCode,
-      bankName:user?.bankName,
-      accountNumber:user?.accountNumber,
-      bankBranchName:user?.bankBranchName,
-    
-      
-}
- 
-  const [date, setDate] = useState();
-  const [data,setdata]  = useState(initialvalue);
-
-  const handlechange = (e) => {
-      
-    setdata({ ...data, [e.target.name]: e.target.value });
-    console.log(data);
+  let initialvalue = {
+    name: user?.name,
+    email: user?.email,
+    phone: user?.phone,
+    url: user?.url,
+    description: user?.description,
+    entityType: user?.entityType,
+    organisationType: user?.organisationType,
+    trustType: user?.trustType,
+    trustName: user?.trustName,
+    registrationNumber: user?.registrationNumber,
+    address: user?.address,
+    state: user?.state,
+    locality: user?.locality,
+    town: user?.town,
+    pincode: user?.pincode,
+    panCard: user?.panCard,
+    nameAsPerBank: user?.nameAsPerBank,
+    ifscCode: user?.ifscCode,
+    bankName: user?.bankName,
+    accountNumber: user?.accountNumber,
+    bankBranchName: user?.bankBranchName,
   };
 
   return (
-
-
-
-
-
     //form validation needs to be done
     //pan card upload file tab needs to be added (along with entity logo & identity proof file)
-
-
-
-
-
 
     <CardContent>
       <form>
@@ -125,11 +103,10 @@ const CustomInput = forwardRef((props, ref) => {
               onChange={(e) => handlechange(e)}
               name="email"
               //placeholder="johnDoe@example.com"
-
               // inputProps={{ readOnly: true }}
             />
-            </Grid>
-            <Grid item xs={12} sm={3}>
+          </Grid>
+          <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               required
@@ -137,7 +114,7 @@ const CustomInput = forwardRef((props, ref) => {
               label="Phone"
               onChange={(e) => handlechange(e)}
               name="phone"
-             // placeholder="+91 1231231234"
+              // placeholder="+91 1231231234"
             />
           </Grid>
           <Grid item xs={12} sm={2}>
@@ -150,7 +127,7 @@ const CustomInput = forwardRef((props, ref) => {
               name="url"
             />
           </Grid>
-         
+
           <Grid item xs={12} sm={12}>
             <TextField
               fullWidth
@@ -164,7 +141,7 @@ const CustomInput = forwardRef((props, ref) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          
+
           <Grid item xs={12} sm={4}>
             <FormControl fullWidth>
               <InputLabel id="form-layouts-separator-single-select-label">
@@ -219,14 +196,12 @@ const CustomInput = forwardRef((props, ref) => {
                     label="Organisation Type"
                     id="select-single-language"
                   />
-                  
                 }
                 onChange={(e) => handlechange(e)}
-                  name="organisationType"
+                name="organisationType"
               >
                 <MenuItem value="TISS">TISS</MenuItem>
                 <MenuItem value="Own Trust Name">Own Trust Name</MenuItem>
-                
               </Select>
             </FormControl>
           </Grid>
@@ -253,7 +228,6 @@ const CustomInput = forwardRef((props, ref) => {
                 <MenuItem value="Testamentary">Testamentary</MenuItem>
                 <MenuItem value="Revocable">Revocable</MenuItem>
                 <MenuItem value="Irrevocable">Irrevocable</MenuItem>
-               
               </Select>
             </FormControl>
           </Grid>
@@ -338,9 +312,7 @@ const CustomInput = forwardRef((props, ref) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-         
-         
-                
+
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Finance" />
@@ -409,13 +381,11 @@ const CustomInput = forwardRef((props, ref) => {
               // inputProps={{ readOnly: true }}
             />
           </Grid>
-          
 
           <Grid item xs={12}>
             <Button variant="contained" sx={{ marginRight: 3.5 }}>
               Save Changes
             </Button>
-          
           </Grid>
         </Grid>
       </form>

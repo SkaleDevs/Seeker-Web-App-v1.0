@@ -503,10 +503,10 @@ const TabInfo = ({session}) => {
               fullWidth
               helperText="Account Number"
               //placeholder="xxxxxxxxxxxxxxxx"
-              inputProps={{ maxLength: 16 }}
+              inputProps={{ maxLength: 16,readOnly: true }}
                onChange={(e) => handlechange(e)}
               name="accountNo"
-              inputProps={{ readOnly: true }}
+             
             />
           </Grid>
           <Grid item xs={12} sm={3}>

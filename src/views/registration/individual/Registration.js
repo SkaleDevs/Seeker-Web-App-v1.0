@@ -5,6 +5,7 @@ import { useState, Fragment, forwardRef, useRef, useEffect } from "react";
 import axios from "axios";
 // ** Next Imports
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 // ** Date Picker Imports
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -77,6 +78,9 @@ const IndivRegistration = () => {
   const [ifsc, setifsc] = useState(null);
   const [pincode, setPincode] = useState(null);
   const [signUpAllowed, setSignUpAllowed] = useState(false);
+
+  const router = useRouter();
+
 
   // **--------------------------------------------------------------------------------------------------------------
   // ** Refs
@@ -271,7 +275,8 @@ const IndivRegistration = () => {
 
     window.alert(data.message);
     if(data.message === "Successfully registered"){
-      window.location.href = "/login";
+      // window.location.href = "/login";
+      router.push("/login");
     }
   };
 

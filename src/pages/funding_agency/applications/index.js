@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-import axios from 'axios'
+import axios from "axios";
 // ** MUI Imports
 import {
   Card,
@@ -98,9 +98,6 @@ var ans={}
         scheduleMeeting: "Button",}]]
         console.log("See",a[0])
       
-
-      
-  
   // const [rowData, setRowData] = useState();
 
   // const viewButton = (
@@ -180,7 +177,6 @@ var ans={}
   //   insituteapplications();
   // },[])
 
-
   const viewButton = (p) => (
     <Button
       variant="contained"
@@ -200,7 +196,7 @@ var ans={}
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={()=>accept(props)}
+      onClick={() => accept(props)}
     >
       Accept
     </Button>
@@ -213,7 +209,7 @@ var ans={}
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={()=>reject(props)}
+      onClick={() => reject(props)}
     >
       Reject
     </Button>
@@ -225,23 +221,14 @@ var ans={}
       color="warning"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-     // href={`/schemes/${p.data.id}`}
-      onClick={()=>amend(props)}
+      // href={`/schemes/${p.data.id}`}
+      onClick={() => amend(props)}
     >
       Amend
     </Button>
   );
 
-  const meetButton = () => (
-    <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-    >
-      <CreateMeeting />
-    </Button>
-  );
+  const meetButton = () => <CreateMeeting />;
 
   const rowData1 = [
     allSeekerApplications.map(item=>{
@@ -489,16 +476,14 @@ const allSeekerApplications = await fetch(`http://localhost:3000/api/controller/
 .then(res => res.json())
 const allInstituteApplications = await fetch(`http://localhost:3000/api/controller/agency/getStructuredData1`)
 .then(res => res.json())
-
-
   
   console.log("ok",allSeekerApplications)
   return {
     props: {
-        allIndividualScholarships,
-        allHeiScholarships,
-        allSeekerApplications,
-        allInstituteApplications
+      allIndividualScholarships,
+      allHeiScholarships,
+      allSeekerApplications,
+      allInstituteApplications,
     },
   };
 }

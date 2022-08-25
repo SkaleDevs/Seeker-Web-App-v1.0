@@ -26,29 +26,10 @@ import Dropdown from "src/views/schemes/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
+import ViewDetails from "../../../views/modal/ViewDetailsHei";
+
 const FundingSchemes = () => {
-  // const [rowData, setRowData] = useState();
-  // const viewButton = (
-  //   <Button
-  //     variant="contained"
-  //     color="primary"
-  //     size="small"
-  //     startIcon={<FontAwesomeIcon icon={faEye} />}
-  //   >
-  //     View
-  //   </Button>
-  // );
-  const viewButton = (p) => (
-    <Button
-      variant="contained"
-      color="success"
-      size="small"
-      startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-      href={`/schemes/${p.data.id}`}
-    >
-      View
-    </Button>
-  );
+  const viewButton = (p) => <ViewDetails />;
 
   const rowData = [
     {
@@ -161,7 +142,12 @@ const FundingSchemes = () => {
       headerName: "Applicant Verification",
       width: 250,
     },
-    { field: "viewApplication", headerName: "View Application", width: 170, cellRenderer: viewButton },
+    {
+      field: "viewApplication",
+      headerName: "View Application",
+      width: 170,
+      cellRenderer: viewButton,
+    },
   ]);
 
   // ** For Tabs
@@ -244,7 +230,7 @@ const FundingSchemes = () => {
                 </Dropdown>
               </TabPanel>
               <TabPanel value="1">
-              <Dropdown authority="University Grants Commission - MHRD">
+                <Dropdown authority="University Grants Commission - MHRD">
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -267,7 +253,7 @@ const FundingSchemes = () => {
                 </Dropdown>
               </TabPanel>
               <TabPanel value="2">
-              <Dropdown authority="Karnataka">
+                <Dropdown authority="Karnataka">
                   <div
                     className="ag-theme-alpine"
                     style={{

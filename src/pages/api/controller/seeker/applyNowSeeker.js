@@ -1,4 +1,5 @@
 import ApplySeeker from '../../model/applyNowSeekerSchema';
+import Scheme from '../../model/agencySchemeSchema';
 import connectDB from '../../auth/lib/connectDB';
 import {getSession} from 'next-auth/react'
 connectDB();
@@ -12,6 +13,12 @@ export default async function handler(req,res){
     if(data){
         return res.send(data);
     }
+    let sch  = await Scheme.find({scholarshipID:req.body.scholarshipID});
+    sch.noOfApplications = sch.noOfApplications+1;
+    let da =  await users.findOneAndUpdate({email:session.user.email},sch,{new:true});
+
+    
+
     const details=new ApplySeeker({
            scholarshipID:req.body.scholarshipID,
            seekerID:req.body.seekerID,

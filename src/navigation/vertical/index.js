@@ -160,11 +160,6 @@ const Navigation = () => {
         path: "/moderator",
       },
       {
-        title: "Account Settings",
-        icon: AccountCogOutline,
-        path: "/moderato/accountSettings", // to be updated
-      },
-      {
         sectionTitle: "Registration Applications",
       },
       {

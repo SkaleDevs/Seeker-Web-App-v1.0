@@ -1,4 +1,3 @@
-// ** React Imports
 import { useState } from "react";
 // ** MUI Imports
 import Box from "@mui/material/Box";
@@ -18,6 +17,10 @@ import InformationOutline from "mdi-material-ui/InformationOutline";
 import TabInfo from "src/views/account-settings/hei/TabInfo";
 import TabAccount from "src/views/account-settings/hei/TabAccount";
 import TabSecurity from "src/views/account-settings/hei/TabSecurity";
+import {getSession} from 'next-auth/react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
@@ -40,13 +43,40 @@ const TabName = styled("span")(({ theme }) => ({
   },
 }));
 
-const AccountSettings = () => {
-  // ** State
-  const [value, setValue] = useState("account");
+  const AccountSettings = ({sess}) => {
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    const rtr = useRouter();
+    useEffect(() => {
+      if(sess?.user?.role!=="hei") {
+        rtr.push(`/${sess?.user?.role}`);
+        
+      }
+  
+    },[])
+    const [value, setValue] = useState("account");
+    const [user, setUser] = useState({});
+    useEffect(() => {
+  
+      const fetch= async () =>{
+        await axios.get(`/api/controller/institute/getInstituteInfo`).then((res) => {
+          setUser(res.data);
+          console.log(res.data);
+          
+        }).catch((err) => {
+          console.log(err);
+        })
+      }
+      fetch();
+      
+    }, []);
+    if (sess?.status=="loading") return <div>Loading...</div>;
+ 
+    // ** State
+    
+  
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
 
   return (
     <Card>
@@ -86,13 +116,13 @@ const AccountSettings = () => {
         </TabList>
 
         <TabPanel sx={{ p: 0 }} value="account">
-          <TabAccount />
+          <TabAccount user={user} />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="security">
           <TabSecurity />
         </TabPanel>
         <TabPanel sx={{ p: 0 }} value="info">
-          <TabInfo />
+          <TabInfo  user={user}/>
         </TabPanel>
       </TabContext>
     </Card>
@@ -100,3 +130,12 @@ const AccountSettings = () => {
 };
 
 export default AccountSettings;
+
+export async function getServerSideProps(context) {
+  const sess= await getSession(context);
+  return {
+    props: {
+        sess:sess
+    },
+  };
+}

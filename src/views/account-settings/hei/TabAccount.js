@@ -1,3 +1,4 @@
+//tab account
 // ** React Imports
 import { useState } from "react";
 
@@ -48,11 +49,11 @@ const ResetButtonStyled = styled(Button)(({ theme }) => ({
   },
 }));
 
-const TabAccount = () => {
+const TabAccount = ({user}) => {
   // ** State
   const [openAlert, setOpenAlert] = useState(true);
   const [imgSrc, setImgSrc] = useState("/images/avatars/1.png");
-
+  console.log(user)
   const onChange = (file) => {
     const reader = new FileReader();
     const { files } = file.target;
@@ -109,17 +110,19 @@ const TabAccount = () => {
               helperText="Representative's Name"
               //placeholder=" Name"
               // defaultValue="John"
+              value={user.headName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              height="100"
-              type="number"
+              
+             
               helperText="Designation"
               //placeholder="Dean of Academics"
               // defaultValue="7438748373"
+              value={user.designation}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -422,14 +425,7 @@ const TabAccount = () => {
             </Grid>
           ) : null}
 
-          <Grid item xs={12}>
-            <Button variant="contained" sx={{ marginRight: 3.5 }}>
-              Save Changes
-            </Button>
-            <Button type="reset" variant="outlined" color="secondary">
-              Reset
-            </Button>
-          </Grid>
+          
         </Grid>
       </form>
     </CardContent>

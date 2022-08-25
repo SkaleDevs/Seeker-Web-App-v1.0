@@ -4,14 +4,10 @@ import {getSession} from 'next-auth/react';
 connectDB();
 export default async function handler(req,res){
     const session = await getSession({req})
-    console.log(req.body);
-    // console.log(req);
-    if (!session || session.user.role!=="individual") {
-        return res.status(401).json({error: 'Unauthorized'})
+    if (!session || session.user.role!=="seeker") {
+    return res.status(401).json({error: 'Unauthorized'})
     }
-
-    console.log(req.body.email);
-    let data=  await Seeker.findOneAndUpdate({email:req.body.email},req.body,{ new: true });
+    let data=  await Seeker.findOne({email:session.user.email});
     if(data){
         return res.send(data);
     }

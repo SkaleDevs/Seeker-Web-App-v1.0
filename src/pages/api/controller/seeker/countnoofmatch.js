@@ -14,25 +14,21 @@ export default async function handler(req,res){
             }
            let data1=await users.findOne({email:session.user.email})
            let data2=await Scheme.findOne({_id:req.body.scholarshipID})
-           let y=["MBA","Phd","Science","Management","Engineering","Medical","Arts","Commerce","Physics","Chemistry","Biology","Mathematics","English","Hindi","Marathi","Kannada","Girl","Disable","OBC","SC/ST"]
-           let x=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,]
-            y.map((item1,val)=>{
-            data1.interest.map(item2=>{
-                if(item1===item2){
-                    x[val]=1
-                }
-            })    
-            })
-            let c=0;
-            y.map((item1,val)=>{
-                data2.interest.map(item2=>{
-                    if(item1===item2){
-                        if(x[val]==1){
-                            c++
-                        }
-                    }
-                })
-            })
+
+           const x=new Map();
+           
+           
+           const z=data1.interest.map(async(item1)=>{
+               x.set(item1,1)
+           })
+           let c=0;
+          const y= data2.interest.map(async(item2)=>{
+            if(x.get(item2)){
+                   c++;
+            }
+           })
+           const results1=await Promise.all(y)
+           const results2=await Promise.all(z)
             res.status(200).send({message:c})
 
     }

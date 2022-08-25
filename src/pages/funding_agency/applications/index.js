@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-import axios from 'axios'
+import axios from "axios";
 // ** MUI Imports
 import {
   Card,
@@ -29,9 +29,12 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import CreateMeeting from "../../../views/modal/CreateMeeting";
 import { SubscriptionsOutlined } from "@mui/icons-material";
 
-const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeekerApplications,allInstituteApplications}) => {
-
-  
+const AllApplications = ({
+  allIndividualScholarships,
+  allHeiScholarships,
+  allSeekerApplications,
+  allInstituteApplications,
+}) => {
   // const [rowData, setRowData] = useState();
 
   // const viewButton = (
@@ -45,63 +48,82 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
   //   </Button>
   // );
 
-//all variables
-// let allScholarships;
-// let allSeekerApplications;
-// let allInstituteApplications;
+  //all variables
+  // let allScholarships;
+  // let allSeekerApplications;
+  // let allInstituteApplications;
 
-// //access all my scholarships
-// const scholarship=async()=>{
-//   console.log("REW")
-//   allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
-//   console.log(allScholarships)
-  
-// }
+  // //access all my scholarships
+  // const scholarship=async()=>{
+  //   console.log("REW")
+  //   allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
+  //   console.log(allScholarships)
 
-// //access applications within that scholarships
-// const seekerapplications=async()=>{
-//   allScholarships.map(async(items)=>{
-//     console.log(items)
-//     allSeekerApplications=await axios.post(`/api/controller/agency/getSeekerApplication`,{scholarshipID:"62fb50073bba3442d1df88a8"});
-//   })
-  
-// }
-// const insituteapplications=async()=>{
-//   allScholarships.map(async(items)=>{
-//  allInstituteApplications= await axios.post(`/api/controller/agency/getInstituteApplication`,{scholarshipID:items._id});
-//   })
-// }
+  // }
 
+  // //access applications within that scholarships
+  // const seekerapplications=async()=>{
+  //   allScholarships.map(async(items)=>{
+  //     console.log(items)
+  //     allSeekerApplications=await axios.post(`/api/controller/agency/getSeekerApplication`,{scholarshipID:"62fb50073bba3442d1df88a8"});
+  //   })
 
+  // }
+  // const insituteapplications=async()=>{
+  //   allScholarships.map(async(items)=>{
+  //  allInstituteApplications= await axios.post(`/api/controller/agency/getInstituteApplication`,{scholarshipID:items._id});
+  //   })
+  // }
 
-//update status
-  const accept=async(props)=>{
-    await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"accept",id:props.data.accept}).then(data=>{
-      if(data){
-        window.alert("Accepted")
-      }
-    }).catch(err=>{
-      window.alert("Error")
-    })
-  }
-  const reject=async(props)=>{
-    await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"reject",id:props.data.accept}).then(data=>{
-      if(data){
-        window.alert("Rejected")
-      }
-    }).catch(err=>{
-      window.alert("Error")
-    })
-  }
-  const amend=async(props)=>{
-   await axios.post(`/api/agency/updateStatus`,{type:props.data.amend,status:"amend",id:props.data.accept}).then(data=>{
-      if(data){
-        window.alert("Amended")
-      }
-    }).catch(err=>{
-      window.alert("Error")
-    })
-  }
+  //update status
+  const accept = async (props) => {
+    await axios
+      .post(`/api/agency/updateStatus`, {
+        type: props.data.amend,
+        status: "accept",
+        id: props.data.accept,
+      })
+      .then((data) => {
+        if (data) {
+          window.alert("Accepted");
+        }
+      })
+      .catch((err) => {
+        window.alert("Error");
+      });
+  };
+  const reject = async (props) => {
+    await axios
+      .post(`/api/agency/updateStatus`, {
+        type: props.data.amend,
+        status: "reject",
+        id: props.data.accept,
+      })
+      .then((data) => {
+        if (data) {
+          window.alert("Rejected");
+        }
+      })
+      .catch((err) => {
+        window.alert("Error");
+      });
+  };
+  const amend = async (props) => {
+    await axios
+      .post(`/api/agency/updateStatus`, {
+        type: props.data.amend,
+        status: "amend",
+        id: props.data.accept,
+      })
+      .then((data) => {
+        if (data) {
+          window.alert("Amended");
+        }
+      })
+      .catch((err) => {
+        window.alert("Error");
+      });
+  };
 
   //useEffect
   // useEffect(()=>{
@@ -109,7 +131,6 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
   //   seekerapplications();
   //   insituteapplications();
   // },[])
-
 
   const viewButton = (p) => (
     <Button
@@ -130,7 +151,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={()=>accept(props)}
+      onClick={() => accept(props)}
     >
       Accept
     </Button>
@@ -143,7 +164,7 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
       //href={`/schemes/${p.data.id}`}
-      onClick={()=>reject(props)}
+      onClick={() => reject(props)}
     >
       Reject
     </Button>
@@ -155,49 +176,40 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
       color="warning"
       size="small"
       // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-     // href={`/schemes/${p.data.id}`}
-      onClick={()=>amend(props)}
+      // href={`/schemes/${p.data.id}`}
+      onClick={() => amend(props)}
     >
       Amend
     </Button>
   );
 
-  const meetButton = () => (
-    <Button
-      variant="contained"
-      color="primary"
-      size="small"
-      // startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
-    >
-      <CreateMeeting />
-    </Button>
-  );
+  const meetButton = () => <CreateMeeting />;
 
   const rowData1 = [
-    allSeekerApplications.map((item,key)=>{
-    return(
-      {
-      applicantName: `${item.name}`,
-      viewApplication: `${item.id}`,
-      viewDocs: `${item.id}`,
-      accept: `${item.id}`,
-      reject: `${item.id}`,
-      amend: `individual`,
-      scheduleMeeting: "Button",
-    })})
+    allSeekerApplications.map((item, key) => {
+      return {
+        applicantName: `${item.name}`,
+        viewApplication: `${item.id}`,
+        viewDocs: `${item.id}`,
+        accept: `${item.id}`,
+        reject: `${item.id}`,
+        amend: `individual`,
+        scheduleMeeting: "Button",
+      };
+    }),
   ];
   const rowData2 = [
-     allInstituteApplications.map((item,key)=>{
-      return(
-      {
+    allInstituteApplications.map((item, key) => {
+      return {
         applicantName: `${item.name}`,
         viewApplication: `${item.id}`,
         viewDocs: `${item.id}`,
         accept: `${item.id}`,
         reject: `${item.id}`,
         amend: `hei`,
-        scheduleMeeting: "Button",})})
-      
+        scheduleMeeting: "Button",
+      };
+    }),
   ];
 
   const [columnDefs, setColumnDefs] = useState([
@@ -295,59 +307,64 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
                 </TabList>
               </Box>
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
-             { allIndividualScholarships?.map((item,key)=>{
-              //  allScholarships.schemeType==="individual" && (
-            
-              return(
-               
-               <Dropdown authority={item.name} key={key}> {/* Scheme name */}
-                  <div
-                    className="ag-theme-alpine"
-                    style={{
-                      width: "69.8rem",
-                      height: "35rem",
-                      marginTop: "1rem",
-                      overflow: "auto",
-                    }}
-                  >
-                    <AgGridReact
-                      rowData={rowData1} // Row Data for Rows
-                      columnDefs={columnDefs} // Column Defs for Columns
-                      defaultColDef={defaultColDef} // Default Column Properties
-                      animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-                      rowSelection="multiple" // Options - allows click selection of rows
-                      pagination={true}
-                      paginationPageSize={10} // Pagination Page Size
-                    />
-                  </div>
-                </Dropdown>)})}
+                {allIndividualScholarships?.map((item, key) => {
+                  //  allScholarships.schemeType==="individual" && (
+
+                  return (
+                    <Dropdown authority={item.name} key={key}>
+                      {" "}
+                      {/* Scheme name */}
+                      <div
+                        className="ag-theme-alpine"
+                        style={{
+                          width: "69.8rem",
+                          height: "35rem",
+                          marginTop: "1rem",
+                          overflow: "auto",
+                        }}
+                      >
+                        <AgGridReact
+                          rowData={rowData1} // Row Data for Rows
+                          columnDefs={columnDefs} // Column Defs for Columns
+                          defaultColDef={defaultColDef} // Default Column Properties
+                          animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                          rowSelection="multiple" // Options - allows click selection of rows
+                          pagination={true}
+                          paginationPageSize={10} // Pagination Page Size
+                        />
+                      </div>
+                    </Dropdown>
+                  );
+                })}
                 {/* )})} */}
               </TabPanel>
               <TabPanel value="1">
-              { allHeiScholarships?.map((item,key)=>{
-              //  allScholarships.schemeType==="hei" && (
-                return(
-                <Dropdown authority={item.name} key={key}>
-                  <div
-                    className="ag-theme-alpine"
-                    style={{
-                      width: "69.8rem",
-                      height: "35rem",
-                      marginTop: "1rem",
-                      overflow: "auto",
-                    }}
-                  >
-                    <AgGridReact
-                      rowData={rowData2} // Row Data for Rows
-                      columnDefs={columnDefs} // Column Defs for Columns
-                      defaultColDef={defaultColDef} // Default Column Properties
-                      animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-                      rowSelection="multiple" // Options - allows click selection of rows
-                      pagination={true}
-                      paginationPageSize={10} // Pagination Page Size
-                    />
-                  </div>
-                </Dropdown>)})}
+                {allHeiScholarships?.map((item, key) => {
+                  //  allScholarships.schemeType==="hei" && (
+                  return (
+                    <Dropdown authority={item.name} key={key}>
+                      <div
+                        className="ag-theme-alpine"
+                        style={{
+                          width: "69.8rem",
+                          height: "35rem",
+                          marginTop: "1rem",
+                          overflow: "auto",
+                        }}
+                      >
+                        <AgGridReact
+                          rowData={rowData2} // Row Data for Rows
+                          columnDefs={columnDefs} // Column Defs for Columns
+                          defaultColDef={defaultColDef} // Default Column Properties
+                          animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                          rowSelection="multiple" // Options - allows click selection of rows
+                          pagination={true}
+                          paginationPageSize={10} // Pagination Page Size
+                        />
+                      </div>
+                    </Dropdown>
+                  );
+                })}
               </TabPanel>
             </TabContext>
           </CardContent>
@@ -360,48 +377,51 @@ const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeeke
 export default AllApplications;
 
 export async function getServerSideProps(context) {
-  console.log("RFWfr")
-  const sess= await getSession(context);
-//access all my scholarships
-//let allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
-// let allScholarships;
-// let a =  await fetch(`http://localhost:3000/api/controller/agency/getScholarship`)
-// let j  = a.json()
-// console.log(j);
-const allIndividualScholarships = await fetch(`http://localhost:3000/api/controller/getAllSeekerScholarship`)
-.then(res => res.json())
+  console.log("RFWfr");
+  const sess = await getSession(context);
+  //access all my scholarships
+  //let allScholarships=await axios.get(`/api/controller/agency/getScholarship`);
+  // let allScholarships;
+  // let a =  await fetch(`http://localhost:3000/api/controller/agency/getScholarship`)
+  // let j  = a.json()
+  // console.log(j);
+  const allIndividualScholarships = await fetch(
+    `http://localhost:3000/api/controller/getAllSeekerScholarship`
+  ).then((res) => res.json());
 
-const allHeiScholarships = await fetch(`http://localhost:3000/api/controller/getAllInstituteScholarship`)
-.then(res => res.json())
-// .then(data => {
-//   console.log("1",data);
-//   return data;
-// }).catch(err => {
-//   console.log(err);
-// }
-// );
+  const allHeiScholarships = await fetch(
+    `http://localhost:3000/api/controller/getAllInstituteScholarship`
+  ).then((res) => res.json());
+  // .then(data => {
+  //   console.log("1",data);
+  //   return data;
+  // }).catch(err => {
+  //   console.log(err);
+  // }
+  // );
 
-//onsole.log("2",allScholarships)
-let allSeekerApplications=[];
-let allInstituteApplications=[];
-let c1=0,c2=0;
-//   access applications within that scholarships
-// allScholarships.map(async(items)=>{
-//     //console.log(items)
-//     allSeekerApplications[c1++]=await fetch(`http://localhost:3000/api/controller/agency/getSeekerApplication`,{method:'post'},{scholarshipID:items._id});
-//   })
-//   allScholarships.map(async(items)=>{
-//  allInstituteApplications[c2++]= await fetch(`http://localhost:3000/api/controller/agency/getInstituteApplication`,{method:'post'},{scholarshipID:items._id});
-//   })
-//   console.log(allSeekerApplications)
-//   console.log(allInstituteApplications)
+  //onsole.log("2",allScholarships)
+  let allSeekerApplications = [];
+  let allInstituteApplications = [];
+  let c1 = 0,
+    c2 = 0;
+  //   access applications within that scholarships
+  // allScholarships.map(async(items)=>{
+  //     //console.log(items)
+  //     allSeekerApplications[c1++]=await fetch(`http://localhost:3000/api/controller/agency/getSeekerApplication`,{method:'post'},{scholarshipID:items._id});
+  //   })
+  //   allScholarships.map(async(items)=>{
+  //  allInstituteApplications[c2++]= await fetch(`http://localhost:3000/api/controller/agency/getInstituteApplication`,{method:'post'},{scholarshipID:items._id});
+  //   })
+  //   console.log(allSeekerApplications)
+  //   console.log(allInstituteApplications)
 
   return {
     props: {
-        allIndividualScholarships,
-        allHeiScholarships,
-        allSeekerApplications,
-        allInstituteApplications
+      allIndividualScholarships,
+      allHeiScholarships,
+      allSeekerApplications,
+      allInstituteApplications,
     },
   };
 }

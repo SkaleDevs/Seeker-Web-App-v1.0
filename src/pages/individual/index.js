@@ -1,5 +1,5 @@
 // ** React Imports
-import React from 'react';
+import React from "react";
 import { useState, useRef } from "react";
 
 // ** MUI Imports
@@ -13,14 +13,13 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import { Divider } from "@mui/material";
-import Slide from "@mui/material/Slide";
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
 
 // ** Demo Components Imports
 import IndividualStats from "src/views/dashboard/individual/IndividualStats";
-import IndividStatsChart from "src/views/dashboard/individual/IndividualStatGraph"; 
+import IndividStatsChart from "src/views/dashboard/individual/IndividualStatGraph";
 import ScheduledInterviews from "src/views/dashboard/individual/ScheduledInterviews";
 import AppsAndSchemes from "src/views/dashboard/individual/AppsAndSchemes";
 
@@ -39,10 +38,11 @@ const Home = ({ sess }) => {
     setOpen(false);
   };
 
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   // ** Modal Transition
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
 
   const phoneRef = useRef();
   const clickHanlder = async () => {
@@ -76,7 +76,7 @@ const Home = ({ sess }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => setOpen(true), 3000);
+    setTimeout(handleOpen, 3000);
   }, []);
 
   const rtr = useRouter();
@@ -94,11 +94,14 @@ const Home = ({ sess }) => {
 
   return (
     <ApexChartWrapper>
-
       {/* -----------------------------Modal Popup----------------------------------------------------------- */}
 
       <div>
-        <Dialog open={open} onClose={handleClose} TransitionComponent={Transition} fullWidth= "30%" >
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          fullWidth="30%"
+        >
           <DialogTitle>Select your fields of interest</DialogTitle>
           <Divider />
           <DialogContent>

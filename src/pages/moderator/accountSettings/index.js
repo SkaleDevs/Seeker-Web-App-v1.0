@@ -17,6 +17,10 @@ import InformationOutline from "mdi-material-ui/InformationOutline";
 // ** Demo Tabs Imports
 import TabInfo from "src/views/account-settings/moderator/TabInfo";
 import TabAccount from "src/views/account-settings/moderator/TabAccount";
+import {getSession} from 'next-auth/react';
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import axios from "axios";
 // import TabSecurity from "src/views/account-settings/individual/TabSecurity";
 
 // ** Third Party Styles Imports
@@ -40,13 +44,40 @@ const TabName = styled("span")(({ theme }) => ({
   },
 }));
 
-const AccountSettings = () => {
-  // ** State
+const AccountSettings = ({sess}) => {
+
+  const rtr = useRouter();
+  useEffect(() => {
+    if(sess?.user?.role!=="individual") {
+      rtr.push(`/${sess?.user?.role}`);
+      
+    }
+
+  },[])
   const [value, setValue] = useState("account");
+  const [user, setUser] = useState({});
+  useEffect(() => {
+
+    const fetch= async () =>{
+      await axios.get(`/api/controller/moderator/getModeratorInfo`).then((res) => {
+        setUser(res.data);
+        // console.log(res.data);
+      }).catch((err) => {
+        console.log(err);
+      })
+    }
+    fetch();
+    
+  }, []);
+  if (sess?.status=="loading") return <div>Loading...</div>;
+ 
+  // ** State
+  
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
 
   return (
     <Card>
@@ -85,15 +116,15 @@ const AccountSettings = () => {
           />
         </TabList>
 
-        <TabPanel sx={{ p: 0 }} value="account">
+        {/* <TabPanel sx={{ p: 0 }} value="account">
           <TabAccount />
-        </TabPanel>
+        </TabPanel> */}
         {/* <TabPanel sx={{ p: 0 }} value="security">
           <TabSecurity />
         </TabPanel> */}
-        <TabPanel sx={{ p: 0 }} value="info">
+        {/* <TabPanel sx={{ p: 0 }} value="info">
           <TabInfo />
-        </TabPanel>
+        </TabPanel> */}
       </TabContext>
     </Card>
   );

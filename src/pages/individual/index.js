@@ -46,10 +46,17 @@ const Home = ({ sess }) => {
   const handleOpen = () => {
     setOpen(true);
   };
-  const handleSave = () => {
+  const handleSave = async () => {
     if (formats.length > 2) {
       setOpen(false);
       console.log("formats: " + formats);
+      let data = await axios
+        .post("/api/controller/seeker/addwebseekerrecommendation", {
+          interest: formats,
+        })
+        .then((res) => {
+          alert(res);
+        });
     } else {
       alert("Please select atleast 3 interests");
     }

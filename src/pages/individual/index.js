@@ -1,9 +1,16 @@
 // ** React Imports
 import { useState, useRef } from "react";
 
+// ** MUI Imports
+
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 
 // ** Styled Component Import
 import ApexChartWrapper from "src/@core/styles/libs/react-apexcharts";
@@ -23,6 +30,15 @@ import { useRouter } from "next/router";
 import "react-datepicker/dist/react-datepicker.css";
 
 const Home = ({ sess }) => {
+  const [open, setOpen] = useState(false);
+
+  // const handleClickOpen = () => {
+  //   setOpen(true);
+  // };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const phoneRef = useRef();
   const clickHanlder = async () => {
     try {
@@ -54,6 +70,10 @@ const Home = ({ sess }) => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(() => setOpen(true), 3000);
+  }, []);
+
   const rtr = useRouter();
   useEffect(() => {
     if (sess?.user?.role !== "individual") {
@@ -69,6 +89,27 @@ const Home = ({ sess }) => {
 
   return (
     <ApexChartWrapper>
+      <div>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Subscribe</DialogTitle>
+          <DialogContent>
+            <DialogContentText>Select your interests</DialogContentText>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+              variant="standard"
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleClose}>Subscribe</Button>
+          </DialogActions>
+        </Dialog>
+      </div>
       <Button
         variant="contained"
         color="primary"

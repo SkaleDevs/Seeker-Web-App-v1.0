@@ -182,6 +182,14 @@ const UserLayout = ({ children }) => {
           icon: CalendarClock,
           path: "/funding_agency/scheduledInterviews",
         },
+        {
+          sectionTitle: "Fund Requests",
+        },
+        {
+          title: "Fund Requests",
+          icon: CurrencyBitcoin,
+          path: "/funding_agency/fundRequests",
+        }
       ];
     } else if (role === "moderator") {
       return [

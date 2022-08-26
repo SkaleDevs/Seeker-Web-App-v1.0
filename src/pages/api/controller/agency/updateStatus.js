@@ -28,7 +28,8 @@ export default async function handler(req,res){
             to: data.email, // Change to your recipient
             from: 'harshme78@gmail.com', // Change to your verified sender
             subject: `Application status`,
-            text:`Your application status has been changed to ${status}ed !`,
+            text:`Dear Applicant,
+            Your application status has been changed to ${status}ed !`,
           }
           sgMail.send(msg)
             .then(() => {

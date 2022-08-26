@@ -4,19 +4,19 @@ import users from '../../model/userSchema';
 import {getSession} from 'next-auth/react';
 connectDB();
 export default async function handler(req,res){
-    // const session = await getSession({req})
-    // console.log(session);
-    // if (!session || session.user.role!=="funding_agency") {
-    // return res.status(401).json({error: 'Unauthorized'})
-    // }
-    // let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body,{new:true});
-    // if(data){
-    //     return res.send(data);
-    // }
+    const session = await getSession({req})
+    console.log(session);
+    if (!session || session.user.role!=="funding_agency") {
+    return res.status(401).json({error: 'Unauthorized'})
+    }
+    let data =  await Scheme.findOneAndUpdate({name:req.body.name,agencyEmail:session.user.email},req.body,{new:true});
+    if(data){
+        return res.send(data);
+    }
     try{
 
         const details=new Scheme({
-            agencyEmail:req.body.agencyEmail,
+            agencyEmail:session.user.email,
             name:req.body.name,
             schemeType:req.body.schemeType,
             agencyDescription:req.body.agencyDescription,

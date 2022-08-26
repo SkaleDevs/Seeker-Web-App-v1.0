@@ -297,13 +297,12 @@ export default FundingSchemes;
 
 
   
-  console.log("ok",allSeekerApplications)
-  return {
-    props: {
-      allCentralScheme,
-      allUGCSch,
-      allSeekerApplications,
-      allInstituteApplications
-    },
-  };
-}
+  // console.log("ok",allSeekerApplications)
+  // return {
+  //   props: {
+  //     allCentralScheme,
+  //     allUGCSch,
+  //     allSeekerApplications,
+  //     allInstituteApplications
+  //   },
+  // };

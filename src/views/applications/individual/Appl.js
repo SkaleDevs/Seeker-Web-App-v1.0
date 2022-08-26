@@ -480,7 +480,7 @@ let initialvalue;
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              helperText="Intermediate (XII) Marks"
+              helperText="Intermediate (XII) Roll Number"
               // placeholder="99.9% or 9.9 CGPA"
               value={user?.marks12}
               onChange={(e) => handlechange(e)}
@@ -492,7 +492,7 @@ let initialvalue;
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
-              helperText="Matriculation (X) Marks"
+              helperText="Matriculation (X) Roll Number"
               // placeholder="99.9% or 9.9 CGPA"
               value={user?.marks10}
               onChange={(e) => handlechange(e)}

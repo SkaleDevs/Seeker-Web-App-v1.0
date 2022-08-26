@@ -574,8 +574,8 @@ const IndivRegistration = () => {
           <TextField
             fullWidth
             required
-            label="Intermediate (XII) Marks"
-            placeholder="99.9% or 9.9 CGPA"
+            label="Intermediate (XII) Roll Number"
+            placeholder="98765412"
             inputRef={mark12Ref}
           />
         </Grid>
@@ -592,8 +592,8 @@ const IndivRegistration = () => {
           <TextField
             fullWidth
             required
-            label="Matriculation (X) Marks"
-            placeholder="99.9% or 9.9 CGPA"
+            label="Matriculation (X) Roll Number"
+            placeholder="5649873215"
             inputRef={mark10Ref}
           />
         </Grid>

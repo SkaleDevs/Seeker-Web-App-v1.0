@@ -29,6 +29,10 @@ const UserSchema = new mongoose.Schema({
   expire:{
     type:Number,
     required:false,
+  },
+  interest:{
+    type:Array,
+    required:false
   }
 
 });

@@ -28,6 +28,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import ViewDetails from "../../../views/modal/ViewDetailsIndividual";
 
+
 const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();
   const viewButton = (p) => <ViewDetails />;

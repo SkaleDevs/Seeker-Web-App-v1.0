@@ -47,6 +47,10 @@ extraDetailFile:{
 noOfApplications:{
    type:Number,
    required:true
+},
+interest:{
+   type:Array,
+   required:false
 }
 });
 

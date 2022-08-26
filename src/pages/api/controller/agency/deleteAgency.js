@@ -8,13 +8,13 @@ connectDB();
 
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 export default async function handler(req,res){
-  const session = await getSession({req})
-    if (!session || session.user.role!=="funding_agency") {
-    return res.status(401).json({error: 'Unauthorized'})
-    }
-   let data=await users.findOneAndDelete({email:req.body.email,role:"Agency"});
-   let das= await Agency.findOneAndDelete({email:req.body.email})
-   .then(()=>{
+  // const session = await getSession({req})
+  //   if (!session || session.user.role!=="funding_agency") {
+  //   return res.status(401).json({error: 'Unauthorized'})
+  //   }
+  //  let data=await users.findOneAndDelete({email:req.body.email,role:"Agency"});
+  //  let das= await Agency.findOneAndDelete({email:req.body.email})
+  //  .then(()=>{
     const msg = {
         to: req.body.email, // Change to your recipient
         from: 'harshme78@gmail.com', // Change to your verified sender
@@ -25,7 +25,7 @@ export default async function handler(req,res){
         .then(() => {
           console.log('Email sent')
         })
-  })
+ // }//)
     
     res.send(das,data)
 }

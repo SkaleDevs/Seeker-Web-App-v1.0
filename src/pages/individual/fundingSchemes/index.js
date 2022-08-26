@@ -27,7 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import ViewDetails from "../../../views/modal/ViewDetailsIndividual";
-import { getSession } from "next-auth/react";
+
 
 const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();

@@ -3,10 +3,10 @@ const {ObjectId}=mongoose.Schema.Types;
 // when agency wants to register a new scholarship
 const applyNowSeekerSchema = new mongoose.Schema({
     // Corresponding to agencySchemeSchema objectID so that on clicking apply now it creates an empty application form in apply now collection
-      agencyID:{
-        type:ObjectId,
-        ref:'Agency'
-       },
+      // agencyID:{
+      //   type:ObjectId,
+      //   ref:'Agency'
+      //  },
        seekerID:{
         type:ObjectId,
         ref:'Seeker'
@@ -112,7 +112,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
        },
        resume:{
         type:String,
-        required:true
+        required:false
        },
        ifscCode:{
         type:String,
@@ -128,7 +128,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
        },
        accountType:{
         type:String,
-        required:true
+        required:false
        },
        accountNo:{
         type:String,

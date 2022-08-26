@@ -5,21 +5,22 @@ import {getSession} from 'next-auth/react'
 connectDB();
 export default async function handler(req,res){
     const session = await getSession({req})
-  if (!session || session.user.role!=="seeker") {
+  if (!session || session.user.role!=="individual") {
   return res.status(401).json({error: 'Unauthorized'})
   }
     let data =  await ApplySeeker.findOneAndUpdate({email:req.body.email, scholarshipID:req.body.scholarshipID,
-        seekerID:req.body.seekerID,},req.body);
+        seekerID:req.body.seekerID},req.body,{new:true});
     if(data){
         return res.send(data);
     }
     let sch  = await Scheme.find({scholarshipID:req.body.scholarshipID});
-    sch.noOfApplications = sch.noOfApplications+1;
-    let da =  await users.findOneAndUpdate({email:session.user.email},sch,{new:true});
-
+    // sch.noOfApplications = sch.noOfApplications+1;
+    // let da =  await users.findOneAndUpdate({email:session.user.email},sch,{new:true});
+        console.log(req.body);
     
 
     const details=new ApplySeeker({
+           agencyID:sch[0].agencyID,
            scholarshipID:req.body.scholarshipID,
            seekerID:req.body.seekerID,
            email:req.body.email,
@@ -53,6 +54,7 @@ export default async function handler(req,res){
            accountType:req.body.accountType,
            accountNo:req.body.accountNo,
            proposal:req.body.proposal,
+           status:"applied",
            othersFile:req.body.othersFile
  })
     details.save()

@@ -299,10 +299,10 @@ const allInstituteApplications = await fetch(`http://localhost:3000/api/controll
   console.log("ok",allSeekerApplications)
   return {
     props: {
-        allIndividualScholarships,
-        allHeiScholarships,
-        allSeekerApplications,
-        allInstituteApplications
+      allCentralScheme,
+      allUGCSch,
+      allSeekerApplications,
+      allInstituteApplications
     },
   };
 }

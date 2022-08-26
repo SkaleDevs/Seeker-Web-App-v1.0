@@ -132,13 +132,13 @@ const Home = ({ sess }) => {
   const phoneRef = useRef();
   const clickHanlder = async () => {
     try {
-      console.log("hello");
+      console.log("123");
       await axios.post("/api/controller/seeker/sendotp").then((res) => {
         console.log(res.data);
         if (res.data.message === "yes") {
-          window.alert("yessss");
+          window.alert("OTP sent");
         } else {
-          window.alert("no");
+          window.alert("Invalid OTP.");
         }
       });
     } catch (error) {
@@ -153,7 +153,7 @@ const Home = ({ sess }) => {
           phoneNo: phoneRef.current.value,
         })
         .then((res) => {
-          window.alert("otp sent");
+          window.alert("OTP Verified");
         });
     } catch (error) {
       console.log(error);

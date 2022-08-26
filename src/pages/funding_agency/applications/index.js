@@ -403,7 +403,7 @@ var ans={}
                
               return(
                
-               <Dropdown authority={item.name} key={key}> {/* Scheme name */}
+               <Dropdown authority={item.name} key={key} > {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{

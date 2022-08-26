@@ -17,26 +17,26 @@ const data = [
     imgHeight: 20,
     title: "PG Indira Gandhi Scholarship for Single Girl Child",
     color: "primary",
-    amount: "DEC 06, 04:30 PM",
+    // amount: "DEC 06, 04:30 PM",
     subtitle: "UGC/AICTE",
-    imgSrc: "/images/cards/logo-zipcar.png",
+    imgSrc: "/images/logos/scholarship.png",
   },
   {
     progress: 50,
     color: "info",
     imgHeight: 27,
-    title: "Bitbank",
-    amount: "$8,650.20",
-    subtitle: "Sketch, Figma & XD",
-    imgSrc: "/images/cards/logo-bitbank.png",
+    title: "Pre Matric Scholarships Scheme for Minorities",
+    // amount: "Nov 25, 07:30 PM",
+    subtitle: "Central Govt.",
+    imgSrc: "/images/logos/scholarship.png",
   },
   {
     progress: 20,
     imgHeight: 20,
-    title: "Aviato",
+    title: "The Prime Minister Narendra Modi Scholarship Scheme",
     color: "secondary",
-    amount: "$1,245.80",
-    subtitle: "HTML & Angular",
+    // amount: "NOV 31, 8:00 PM", 
+    subtitle: "UGC/AICTE",
     imgSrc: "/images/cards/logo-aviato.png",
   },
 ];
@@ -45,7 +45,7 @@ const ScheduledInterviews = () => {
   return (
     <Card sx={{ height: "19.5rem", overflow: "auto" }}>
       <CardHeader
-        title="Scheduled Interviews"
+        title="Schemes Relevant to You"
         titleTypographyProps={{
           sx: {
             lineHeight: "1.6 !important",

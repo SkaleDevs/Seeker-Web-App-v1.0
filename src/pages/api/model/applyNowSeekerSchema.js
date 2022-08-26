@@ -141,7 +141,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
        status:{
         type:String,
         required:false
-        //applied, rejected, accepted, amended
+        //applied, rejected, accepted, amended,meet
        },
         meetingDate:{
           type:String,

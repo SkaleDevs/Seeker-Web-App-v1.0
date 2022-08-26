@@ -33,7 +33,11 @@ const UserSchema = new mongoose.Schema({
   interest:{
     type:Array,
     required:false
-  }
+  },
+  contractID:{
+    type:String,
+    required:false
+  },
 
 });
 

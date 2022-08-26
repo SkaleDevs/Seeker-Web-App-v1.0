@@ -28,6 +28,7 @@ import {
 
 import WebIcon from "@mui/icons-material/Web";
 import { PersonAddOutlined, PeopleOutline } from "@mui/icons-material";
+import { CurrencyBitcoin } from '@mui/icons-material'
 
 
 
@@ -84,6 +85,14 @@ const UserLayout = ({ children }) => {
           icon: CalendarClock,
           path: "/individual/scheduledInterviews",
         },
+        {
+          sectionTitle: "Create Funding Request",
+        },
+        {
+          title: "Create Request",
+          path: "/individual/createFundingRequest",
+          icon: CurrencyBitcoin,
+        }
 
         // **-----------------------------/Individual Navs------------------------------**
       ];

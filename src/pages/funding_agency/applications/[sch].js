@@ -47,7 +47,7 @@ const Application = ({sess}) => {
 
 
   useEffect(() => {
-    if(sess?.user?.role!=="individual" && sess?.user?.role!=="funding_agency") {
+    if(sess?.user?.role!=="funding_agency") {
       rtr.push(`/${sess?.user?.role}`);
     }
     const fetch =async()=>{

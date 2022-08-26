@@ -64,6 +64,7 @@ const CreateScheme = () => {
   const [date, setDate] = useState(null);
   const [extraDocsFile, setExtraDocsFile] = useState(["Bonafide", "Passport"]);
   const maxAmount = useRef();
+  const [interest, setInterest] = useState(null);
 
   const submit = async () => {
     try {
@@ -84,9 +85,11 @@ const CreateScheme = () => {
           deadline: date,
           documentsRequired: extraDocsFile,
           maxAmount: maxAmount.current.value,
+          interest:interest
         })
         .then((res) => {
           console.log(res);
+
         });
     } catch (e) {
       console.log(e);

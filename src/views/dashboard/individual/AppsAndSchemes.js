@@ -65,7 +65,7 @@ const schemes = [
   {
     logoWidth: 40,
     logoHeight: 38,
-    amount: "-$1870",
+    amount: "",
     title: "Github Enterprise",
     logo: "/images/logos/scholarship.png",
     subtitle: "Security & compliance",
@@ -73,7 +73,7 @@ const schemes = [
   {
     logoWidth: 30,
     logoHeight: 30,
-    amount: "-$450",
+    amount: "",
     title: "Upgrade Slack Plan",
     subtitle: "Debit card deposit",
     logo: "/images/logos/slack.png",
@@ -81,7 +81,7 @@ const schemes = [
   {
     logoWidth: 30,
     logoHeight: 30,
-    amount: "-$540",
+    amount: "",
     title: "Sir Ratan Tata Trust & Navajbai Ratan Tata Trust Education Grants",
     subtitle: " Masters, PhD, Conferences & Travel Grants",
     logo: "/images/logos/digital-ocean.png",
@@ -89,7 +89,7 @@ const schemes = [
   {
     logoWidth: 20,
     logoHeight:26,
-    amount: "-$21",
+    amount: "",
     title: "Sanskriti Foundation's Kalakriti Fellowship",
     logo: "/images/logos/stripe.png",
     subtitle: "Indian Classical Dance",

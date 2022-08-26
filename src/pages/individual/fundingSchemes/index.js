@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-
+import { getSession } from "next-auth/react";
 // ** MUI Imports
 import {
   Card,
@@ -27,7 +27,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 import ViewDetails from "../../../views/modal/ViewDetailsIndividual";
-import { getSession } from "next-auth/react";
+
 
 const FundingSchemes = () => {
   // const [rowData, setRowData] = useState();

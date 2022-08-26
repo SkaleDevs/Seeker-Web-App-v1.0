@@ -31,53 +31,80 @@ const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
 
-const TabInfo = () => {
-  const { data: session } = useSession();
-  // ** State
-  const [user, setUser] = useState({});
-  console.log("sess:", session.user.email);
-  useEffect(() => {
-    const fetch = async () => {
-      await axios
-        .get(`/api/controller/agency/getMyDetails`, { email: session.user.id })
-        .then((res) => {
+  const TabInfo = () => {
+    const {data: session} = useSession();
+    // ** State
+    const [user, setUser] = useState({});
+    console.log("sess:",session.user.email);
+    useEffect(() => {
+  
+      const fetch= async () =>{
+        await axios.get(`/api/controller/agency/getMyDetails`,{email:session?.user?.id}).then((res) => {
           setUser(res.data);
           console.log(res);
-        })
-        .catch((err) => {
+          
+        }).catch((err) => {
           console.log(err);
-        });
-    };
-    fetch();
-  }, []);
+        })
+      }
+      fetch();
+      
+    }, []);
 
-  let initialvalue = {
-    name: user?.name,
-    email: user?.email,
-    phone: user?.phone,
-    url: user?.url,
-    description: user?.description,
-    entityType: user?.entityType,
-    organisationType: user?.organisationType,
-    trustType: user?.trustType,
-    trustName: user?.trustName,
-    registrationNumber: user?.registrationNumber,
-    address: user?.address,
-    state: user?.state,
-    locality: user?.locality,
-    town: user?.town,
-    pincode: user?.pincode,
-    panCard: user?.panCard,
-    nameAsPerBank: user?.nameAsPerBank,
-    ifscCode: user?.ifscCode,
-    bankName: user?.bankName,
-    accountNumber: user?.accountNumber,
-    bankBranchName: user?.bankBranchName,
+    let initialvalue={
+    
+      name:user?.name,
+      email:user?.email,
+      phone:user?.phone,
+      url:user?.url,
+      description:user?.description,
+      entityType:user?.entityType,
+      organisationType:user?.organisationType,
+      trustType:user?.trustType,
+      trustName:user?.trustName,
+      registrationNumber:user?.registrationNumber,
+      address:user?.address,
+      state:user?.state,
+      locality:user?.locality,
+      town:user?.town,
+      pincode:user?.pincode,
+      panCard:user?.panCard,
+      nameAsPerBank:user?.nameAsPerBank,
+      ifscCode:user?.ifscCode,
+      bankName:user?.bankName,
+      accountNumber:user?.accountNumber,
+      bankBranchName:user?.bankBranchName,
+    
+      
+}
+ 
+  const [date, setDate] = useState();
+  const [data,setdata]  = useState(initialvalue);
+
+  const handlechange = (e) => {
+      
+    setdata({ ...data, [e.target.name]: e.target.value });
+    console.log(data);
   };
 
   return (
+
+
+
+
+
     //form validation needs to be done
     //pan card upload file tab needs to be added (along with entity logo & identity proof file)
+
+
+
+
+
+
+
+
+
+
 
     <CardContent>
       <form>
@@ -103,6 +130,7 @@ const TabInfo = () => {
               onChange={(e) => handlechange(e)}
               name="email"
               //placeholder="johnDoe@example.com"
+
               // inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -112,9 +140,10 @@ const TabInfo = () => {
               required
               type="number"
               label="Phone"
+
               onChange={(e) => handlechange(e)}
               name="phone"
-              // placeholder="+91 1231231234"
+             // placeholder="+91 1231231234"
             />
           </Grid>
           <Grid item xs={12} sm={2}>

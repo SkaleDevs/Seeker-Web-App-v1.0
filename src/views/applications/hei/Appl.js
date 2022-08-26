@@ -36,7 +36,7 @@ const Appl = ({ session }) => {
   useEffect(() => {
     const fetch = async () => {
       await axios
-        .get(`https://localhost:3000/api/controller/seeker/getSeekerInfo`, {
+        .get(`/api/controller/institute/getInstituteInfo`, {
           email: session.email,
         })
         .then((res) => {

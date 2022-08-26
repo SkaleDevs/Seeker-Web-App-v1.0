@@ -279,32 +279,6 @@ const Home = ({ sess }) => {
       </div>
 
       {/* -----------------------------/Modal Popup----------------------------------------------------------- */}
-      {/* <Button
-        variant="contained"
-        color="primary"
-        sx={{ flexGrow: 1 }}
-        onClick={clickHanlder}
-      >
-        Send OTP
-      </Button>
-      <TextField
-        autoFocus
-        fullWidth
-        id="email"
-        label="Enter Number"
-        sx={{ marginBottom: 4 }}
-        inputRef={phoneRef}
-        // value={email}
-        type="Number"
-      />
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ flexGrow: 1 }}
-        onClick={clickHanlder1}
-      >
-        verify
-      </Button> */}
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <IndividualStats />

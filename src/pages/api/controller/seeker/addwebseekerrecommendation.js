@@ -12,6 +12,7 @@ export default async function handler(req,res){
             return res.status(401).json({error: 'Unauthorized'})
             }
             let data1=await users.findOneAndUpdate({_id:session.user.id},{interest:req.body.interest},{new:true});
+            console.log(data1)
             if(data1){
                return res.status(200).send({message:"Recommendation added successfully"});
             }

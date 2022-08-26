@@ -15,6 +15,9 @@ const applyNowSeekerSchema = new mongoose.Schema({
         type:ObjectId,
         ref:'Scholarship'
        },
+       scholarshipName:{
+        type:String,
+       },
        email:{
         type:String,
         required:true
@@ -141,7 +144,7 @@ const applyNowSeekerSchema = new mongoose.Schema({
        status:{
         type:String,
         required:false
-        //applied, rejected, accepted, amended
+        //applied, rejected, accepted, amended,meet
        },
         meetingDate:{
           type:String,

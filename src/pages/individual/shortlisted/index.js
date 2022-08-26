@@ -11,6 +11,7 @@ import {
   Box,
   Tab,
   Button,
+  CardActions,
 } from "@mui/material";
 
 // ** AG Grid Imports
@@ -25,7 +26,7 @@ import Dropdown from "src/views/schemes/Dropdown";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-
+import axios from "axios"
 const Shortlisted = () => {
   // const [rowData, setRowData] = useState();
   // const viewButton = (
@@ -125,13 +126,29 @@ const Shortlisted = () => {
       width: 350,
     },
     { field: "schemeEndDate", headerName: "Scheme Closing Date", width: 350 },
-    { field: "viewApplication", headerName: "View Application", width: 300, cellRenderer: viewButton },
+    {
+      field: "viewApplication",
+      headerName: "View Application",
+      width: 300,
+      cellRenderer: viewButton,
+    },
   ]);
 
   // ** For Tabs
 
   const [value, setValue] = useState("0");
+  const [short,setShort]  = useState();
 
+  useEffect(() => {
+    const fetch= async()=>{
+      let {data}  = await axios.post('http://localhost:3000/api/controller/seeker/getScheduledmeet');
+      setShort(data);
+      console.log(data);
+    }
+    fetch();
+
+
+  },[])
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -195,7 +212,7 @@ const Shortlisted = () => {
                       overflow: "auto",
                     }}
                   >
-                    <AgGridReact
+                    {/* <AgGridReact
                       rowData={rowData} // Row Data for Rows
                       columnDefs={columnDefs} // Column Defs for Columns
                       defaultColDef={defaultColDef} // Default Column Properties
@@ -203,7 +220,74 @@ const Shortlisted = () => {
                       rowSelection="multiple" // Options - allows click selection of rows
                       pagination={true}
                       paginationPageSize={10} // Pagination Page Size
-                    />
+                    /> */}
+                    
+
+                        <Card elevation={12}>
+                      <Grid container spacing={5}>
+                        <Grid item xs={12} sm={4}>
+                          <CardContent>
+                            <Typography variant="h6">Scheme Name</Typography>
+                          </CardContent>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <CardContent>
+                            <Typography variant="h6">
+                              Scheme Closing Date
+                            </Typography>
+                          </CardContent>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <CardContent>
+                            <Typography variant="h6">
+                              View Application
+                            </Typography>
+                          </CardContent>
+                        </Grid>
+                      </Grid>
+                    </Card>
+  
+
+{
+
+      short?.map((it,key) =>{
+        return(
+                    <Box mt={3}>
+                    <Card elevation={12} marginTop="10px" >
+                      <Grid container spacing={5}>
+                        <Grid item xs={12} sm={4}>
+                          <CardContent>
+                            <Typography fontSize={15}>{it.scholarshipID}</Typography>
+                          </CardContent>
+                        </Grid>
+                        <Grid item xs={12} sm={4}>
+                          <CardContent>
+                            <Typography fontSize={15}>
+                              {it.meetingDate}
+                            </Typography>
+                          </CardContent>
+                        </Grid>
+
+                        <Grid item xs={8} sm={2}>
+                          <CardActions>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              size="small"
+                              onClick={()=>{window.location.assign(it.scheduledMeeting)}}
+                              startIcon={<FontAwesomeIcon icon={faEye} />}
+                            >
+                              View
+                            </Button>
+                          </CardActions>
+                        </Grid>
+                      </Grid>
+                    </Card>
+                    </Box>
+        )})
+
+      }
+
                   </div>
                 </Dropdown>
               </TabPanel>

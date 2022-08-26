@@ -12,7 +12,7 @@ import {
   Tab,
   Button,
 } from "@mui/material";
-
+import {useRouter} from 'next/router'
 // ** AG Grid Imports
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
@@ -32,6 +32,10 @@ import { SubscriptionsOutlined } from "@mui/icons-material";
 const AllApplications = ({ allIndividualScholarships,allHeiScholarships,allSeekerApplications,allInstituteApplications}) => {
   console.log(allSeekerApplications)
   console.log(allInstituteApplications)
+  const rtr= useRouter()
+  const feth=async(props)=>{
+    rtr.push(`/individual/application/${props.data.accept}`)
+  }
 //let allSeekerApplications=[]
 const [first,setfirst]=useState([])
 var ans={}
@@ -177,12 +181,13 @@ var ans={}
   //   insituteapplications();
   // },[])
 
-  const viewButton = (p) => (
+  const viewButton = (props) => (
     <Button
       variant="contained"
       color="secondary"
       size="small"
       startIcon={<FontAwesomeIcon icon={faEye} size="xs" />}
+      onClick={()=>feth(props)}
       //href={`/schemes/${p.data.id}`}
     >
       View
@@ -239,7 +244,6 @@ var ans={}
           {
           applicantName: `${ans.firstName} ${ans.lastName}`,
           viewApplication: `${ans._id}`,
-          viewDocs: `${ans._id}`,
           accept: `${ans._id}`,
           reject: `${ans._id}`,
           amend: `individual`,
@@ -249,7 +253,7 @@ var ans={}
     })
   ];
   const rowData2 = [
-    allInstituteApplications.map((item,key)=>{
+    allInstituteApplications.map((item,)=>{
       console.log("gh",item[0])
       return(item.map(ans=>{
         console.log("mija",ans?.name)
@@ -257,7 +261,6 @@ var ans={}
           {
           instituteName: `${ans?.name}`,
           viewApplication: `${ans._id}`,
-          viewDocs: `${ans._id}`,
           accept: `${ans._id}`,
           reject: `${ans._id}`,
           amend: `hei`,
@@ -308,31 +311,25 @@ var ans={}
     {
       field: "viewApplication",
       headerName: "View Application",
-      width: 170,
-      cellRenderer: viewButton,
-    },
-    {
-      field: "otherDocs",
-      headerName: "Other Documents",
-      width: 170,
+      width: 200,
       cellRenderer: viewButton,
     },
     {
       field: "accept",
       headerName: "",
-      width: 125,
+      width: 130,
       cellRenderer: acceptButton,
     },
     {
       field: "reject",
       headerName: "Actions",
-      width: 125,
+      width: 130,
       cellRenderer: rejectButton,
     },
     {
       field: "amend",
       headerName: "",
-      width: 125,
+      width: 130,
       cellRenderer: amendButton,
     },
     {
@@ -399,11 +396,11 @@ var ans={}
                 allSeekerApplications=["RGs"]
                 console.log("2",typeof(allSeekerApplications[0]))
                 console.log("3",allSeekerApplications)
-              // console.log("1",allSeekerApplications[Object.keys(allSeekerApplications)[0]]);
+              // console.log("1",allSeekerApplications[Object.s(allSeekerApplications)[0]]);
                
               return(
                
-               <Dropdown authority={item.name} key={key} > {/* Scheme name */}
+               <Dropdown authority={item.name} > {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -430,7 +427,7 @@ var ans={}
               { allHeiScholarships?.map((item,val)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
-                <Dropdown authority={item.name} key={key}>
+                <Dropdown authority={item.name} >
                   <div
                     className="ag-theme-alpine"
                     style={{

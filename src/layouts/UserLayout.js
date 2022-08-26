@@ -201,11 +201,6 @@ const UserLayout = ({ children }) => {
           sectionTitle: "Moderation",
         },
         {
-          title: "Add Moderator",
-          icon: PersonAddOutlined,
-          path: "/moderator/addModerator", // to be updated
-        },
-        {
           title: "All Users",
           icon: PeopleOutline,
           path: "/moderator/allUsers", // to be updated

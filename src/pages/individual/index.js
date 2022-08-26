@@ -12,7 +12,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Divider } from "@mui/material";
+import { Box, Divider } from "@mui/material";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
@@ -186,6 +186,55 @@ const Home = ({ sess }) => {
 
   return (
     <ApexChartWrapper>
+      <Box display="flex" align="center">
+        <Grid item xs={12} sm={6}>
+          <TextField
+            autoFocus
+            required
+            // fullWidth
+            
+            label="Enter the OTP password"
+            sx={{ marginBottom: 4 }}
+            inputRef={phoneRef}
+            inputProps={{ maxLength: 6}}
+            // value={email}
+            type="number"
+          />
+        </Grid>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ flexGrow: 1 }}
+          onClick={clickHanlder}
+          style={{
+            maxWidth: "124px",
+            maxHeight: "42px",
+            minWidth: "30px",
+            minHeight: "30px",
+            marginLeft: "20px",
+            marginRight: "20px",
+            marginTop: "6px",
+          }}
+        >
+          Send OTP
+        </Button>
+        <Button
+          variant="contained"
+          color="success"
+          sx={{ flexGrow: 1 }}
+          onClick={clickHanlder1}
+          style={{
+            maxWidth: "124px",
+            maxHeight: "42px",
+            minWidth: "30px",
+            minHeight: "30px",
+            marginTop: "6px",
+          }}
+        >
+          Verify
+        </Button>
+      </Box>
+
       {/* -----------------------------Modal Popup----------------------------------------------------------- */}
 
       <div>
@@ -227,7 +276,7 @@ const Home = ({ sess }) => {
       </div>
 
       {/* -----------------------------/Modal Popup----------------------------------------------------------- */}
-      <Button
+      {/* <Button
         variant="contained"
         color="primary"
         sx={{ flexGrow: 1 }}
@@ -252,7 +301,7 @@ const Home = ({ sess }) => {
         onClick={clickHanlder1}
       >
         verify
-      </Button>
+      </Button> */}
       <Grid container spacing={6}>
         <Grid item xs={12}>
           <IndividualStats />

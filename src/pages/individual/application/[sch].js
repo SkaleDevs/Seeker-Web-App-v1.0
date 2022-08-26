@@ -1,4 +1,3 @@
-// ** React Imports
 import { useState } from "react";
 // ** MUI Imports
 import Box from "@mui/material/Box";
@@ -19,6 +18,7 @@ import Appl from "src/views/applications/individual/Appl";
 import {getSession} from 'next-auth/react';
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 // ** Third Party Styles Imports
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -41,14 +41,23 @@ const TabName = styled("span")(({ theme }) => ({
 }));
 
 const Application = ({sess}) => {
-
+  const [data, setData] = useState();
   const rtr = useRouter();
+  const { sch } = rtr.query
+
+
   useEffect(() => {
     if(sess?.user?.role!=="individual") {
       rtr.push(`/${sess?.user?.role}`);
-      
     }
+    const fetch =async()=>{
 
+      let r  =await axios.post(`/api/controller/seeker/getSeekerInfo`)
+      console.log(r)
+      setData(r.data);
+    }
+    fetch();
+    
   },[])
   const [value, setValue] = useState("apply");
   if (sess?.status=="loading") return <div>Loading...</div>;
@@ -81,7 +90,7 @@ const Application = ({sess}) => {
           />
         </TabList>
         <TabPanel sx={{ p: 0 }} value="apply">
-          <Appl session={sess} />
+          <Appl session={sess} user= {data} scholarshipID= {sch} />
         </TabPanel>
       </TabContext>
     </Card>

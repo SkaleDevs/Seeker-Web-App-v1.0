@@ -190,7 +190,7 @@ const FundingAgencyRegistration = () => {
     uploadEntityLogo();
     console.log(uploadIdentity, uploadpan, uploadEntityLogo);
 
-    let { data } = await axios.post("/api/controller/registerSeeker", {
+    let { data } = await axios.post("/api/controller/registerAgency", {
       email: emailRef?.current?.value,
       panNo: panNoRef?.current?.value,
       panFile: uploadpanFile,
@@ -221,7 +221,7 @@ const FundingAgencyRegistration = () => {
     window.alert(data.message);
     if(data.message === "Successfully registered"){
       // window.location.href = "/login";
-      router.push("/login");
+      router.push("/pages/login");
     }
   };
 
@@ -251,7 +251,7 @@ const FundingAgencyRegistration = () => {
             inputRef={emailRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={8}>
           <TextField
             fullWidth
             multiline={true}
@@ -261,7 +261,7 @@ const FundingAgencyRegistration = () => {
             inputRef={descriptionRef}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12} sm={4}>
           <TextField
             fullWidth
             required

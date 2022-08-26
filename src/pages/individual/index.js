@@ -52,7 +52,7 @@ const Home = ({ sess }) => {
       console.log("formats: " + formats);
       let data = await axios
         .post("/api/controller/seeker/addwebseekerrecommendation", {
-          interest: formats,
+          interest: [formats],
         })
         .then((res) => {
           console.log(res);

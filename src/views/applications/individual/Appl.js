@@ -588,11 +588,14 @@ let initialvalue;
               inputProps={{ readOnly: true }}
             />
           </Grid>
+          {session?.user?.role=="individual" && 
+            <>
           <Grid item xs={12}>
             <Divider variant="middle" textAlign="left">
               <Chip label="Upload Documents" />
             </Divider>
           </Grid>
+          
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
@@ -608,7 +611,7 @@ let initialvalue;
             <Button variant="contained" onClick={handleClick} sx={{ marginRight: 3.5 }}>
               Apply
             </Button>
-          </Grid>
+          </Grid></>}
         </Grid>
       </form>
     </CardContent>

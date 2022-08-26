@@ -9,20 +9,22 @@ connectDB();
 export default async function handler(req,res){
     try{
         const session = await getSession({req})
-        if (!session || session.user.role!=="individual") {
-            return res.status(401).json({error: 'Unauthorized'})
-            }
+        // if (!session || session.user.role!=="individual") {
+        //     return res.status(401).json({error: 'Unauthorized'})
+        //     }
            //let data1=await users.findOne({email:session.user.email})
            let data2=await Scheme.find()
-             
-           const x=[];
+             console.log(data2)
+           
            const a=new Map()
+           console.log(a)
            const y=data2.map(async(item1)=>{
-               const ans=await fetch("/api/controller/seeker/countnoofmatch",{method:"POST",body:JSON.stringify({scholarshipID:item1._id}),headers:{"Content-type":"application/json;charset=UTF-8"}}).then(res=>res.json())
-               a.set(ans,item1._id)
+               const ans=await fetch("http://localhost:3000/api/controller/seeker/countnoofmatch",{method:"POST",body:JSON.stringify({scholarshipID:item1._id}),headers:{"Content-type":"application/json;charset=UTF-8"}}).then(res=>res.json())
+               a.set(ans.message,item1._id)
            })
+           console.log(a)
            a=new Map([...a.entries()].sort())
-           const results1=await Promise.all(y)
+          // const results1=await Promise.all(y)
            //const results2=await Promise.all(z)
             res.status(200).send({message:c})
 

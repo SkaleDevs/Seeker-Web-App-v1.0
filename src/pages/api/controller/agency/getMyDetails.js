@@ -1,3 +1,4 @@
+
 import Agency from '../../model/agencySchema';
 import connectDB from '../../auth/lib/connectDB';
 import {getSession} from 'next-auth/react';
@@ -14,4 +15,5 @@ export default async function handler(req,res){
     catch(error){
         res.status(500).send(error);
     }
+    
 }

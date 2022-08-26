@@ -26,32 +26,21 @@ import DatePicker from "react-datepicker";
 import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
 import Divider from "@mui/material/Divider";
 
+
+let BUCKET_URL= "https://253762017528.signin.aws.amazon.com/console"
 const CustomInput = forwardRef((props, ref) => {
   return <TextField inputRef={ref} label="Birth Date" fullWidth {...props} />;
 });
 
-const Appl = ({ session }) => {
+const Appl = ({user, session,scholarshipID }) => {
   // ** State
-  const [user, setUser] = useState({});
-  useEffect(() => {
-    const fetch = async () => {
-      await axios
-        .get(`https://localhost:3000/api/controller/seeker/getSeekerInfo`, {
-          email: session.email,
-        })
-        .then((res) => {
-          setUser(res.data);
-          console.log(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    fetch();
-  }, []);
+  // const [user, setUser] = useState({});
+  // console.log("user",user);
+let initialvalue;
+ useEffect(() => {
 
-  let initialvalue = {
-    scholarshipID: user?.scholarshipID,
+   initialvalue = {
+     scholarshipID: scholarshipID,
     seekerID: user?.seekerID,
     email: user?.email,
     phNo: user?.phNo,
@@ -70,7 +59,7 @@ const Appl = ({ session }) => {
     marks10: user?.marks10,
     marks10File: user?.marks10File,
     highestQualification: user?.highestQualification,
-    marks: user?.marks,
+    marks: user?.highestQualificationmarks,
     income: user?.income,
     panNo: user?.panNo,
     state: user?.state,
@@ -84,9 +73,11 @@ const Appl = ({ session }) => {
     bankBranch: user?.bankBranch,
     accountType: user?.accountType,
     accountNo: user?.accountNo,
-    proposal: user?.proposal,
     othersFile: user?.othersFile,
+    proposal:"NA",
   };
+  setdata(initialvalue)
+},[user])
   const [date, setDate] = useState();
   const [data, setdata] = useState(initialvalue);
   const [coverLetterFile, setCoverLetterFile] = useState();
@@ -96,6 +87,7 @@ const Appl = ({ session }) => {
   // ** Submission handling-------------------------------------------------------------------------------
   const uploadCoverLetter = async () => {
     try {
+      console.log(coverLetterFile)
       let { data} = await axios.post("/api/controller/upload", {
         name: coverLetterFile?.name,
         type: coverLetterFile?.type,
@@ -111,7 +103,7 @@ const Appl = ({ session }) => {
       });
 
       setUploadCoverLetterFile(BUCKET_URL + coverLetterFile?.name);
-      setCoverLetterFile(null);
+      // setCoverLetterFile(null);
 
     } catch (e) {
       console.log(e);
@@ -143,6 +135,27 @@ const Appl = ({ session }) => {
       });
   };
 
+  const handleClick = async()=>{
+    try{
+      uploadCoverLetter();
+      // console.log(uploadCoverLetterFile);
+      let cov  = BUCKET_URL+ coverLetterFile?.name;
+      setdata({ ...data, proposal: cov });
+     
+      // setdata({
+      //   ...data,
+      //   proposal: uploadCoverLetterFile,
+      // });
+      console.log("data inside post",data);
+      let da = await axios.post("/api/controller/seeker/applyNowSeeker",data )
+      window.alert(da?.message);
+    }catch(e){
+      console.log(e);
+    }
+
+      
+  }
+
   // fetch();
   // }, [data.ifscCode]);
 
@@ -150,6 +163,7 @@ const Appl = ({ session }) => {
     setdata({ ...data, [e.target.name]: e.target.value });
     console.log(data);
   };
+  console.log(data);
 
   return (
     //form validation needs to be done
@@ -166,7 +180,8 @@ const Appl = ({ session }) => {
               
               onChange={(e) => handlechange(e)}
               name="sochlarshipID"
-              inputProps={{ readOnly: true }}
+              // value={scholarshipID}
+              // inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -174,6 +189,7 @@ const Appl = ({ session }) => {
               fullWidth
               required
               helperText="Seeker ID"
+              value={user?._id}
               //placeholder="Seeker's First Name"
               onChange={(e) => handlechange(e)}
               name="seekerID"
@@ -190,6 +206,7 @@ const Appl = ({ session }) => {
               onChange={(e) => handlechange(e)}
               name="firstname"
               // defaultValue="John"
+              value={user?.firstName}
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -198,6 +215,7 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Middle Name"
               //placeholder="Middle Name"
+              value={user?.middleName}
               onChange={(e) => handlechange(e)}
               name="middleName"
               inputProps={{ readOnly: true }}
@@ -208,6 +226,7 @@ const Appl = ({ session }) => {
               fullWidth
               required
               helperText="Last Name"
+              value={user?.lastName}
               //placeholder="Last Name"
               onChange={(e) => handlechange(e)}
               name="lastName"
@@ -219,7 +238,7 @@ const Appl = ({ session }) => {
               fullWidth
               required
               helperText="Birth Date"
-              
+              value={user?.dateOfBirth}
               onChange={(e) => handlechange(e)}
               name="birthDate"
               inputProps={{ readOnly: true }}
@@ -240,34 +259,18 @@ const Appl = ({ session }) => {
               />
             </DatePickerWrapper>
           </Grid> */}
-          <Grid item xs={12} sm={6}>
-            <FormControl>
-              <FormLabel sx={{ fontSize: "0.875rem" }}>Gender</FormLabel>
-              <RadioGroup
-                row
-                defaultValue={initialvalue.sex}
-                aria-label="gender"
-                onChange={(e) => handlechange(e)}
-                name="sex"
-                // name="account-settings-info-radio"
-              >
-                <FormControlLabel
-                  value="male"
-                  label="Male"
-                  control={<Radio />}
-                />
-                <FormControlLabel
-                  value="female"
-                  label="Female"
-                  control={<Radio />}
-                />
-                <FormControlLabel
-                  value="other"
-                  label="Other"
-                  control={<Radio />}
-                />
-              </RadioGroup>
-            </FormControl>
+             <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              required
+              // type="number"
+              helperText="Gender"
+              value={user?.sex}
+              // placeholder="+91 1231231234"
+              onChange={(e) => handlechange(e)}
+              name="sex"
+              inputProps={{ readOnly: true }}
+            />
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -275,6 +278,7 @@ const Appl = ({ session }) => {
               required
               type="number"
               helperText="Phone"
+              value={user?.phNo}
               // placeholder="+91 1231231234"
               onChange={(e) => handlechange(e)}
               name="phNo"
@@ -285,6 +289,7 @@ const Appl = ({ session }) => {
             <TextField
               required
               fullWidth
+              value={user?.email}
               type="email"
               helperText="Email"
               //placeholder="johnDoe@example.com"
@@ -298,6 +303,7 @@ const Appl = ({ session }) => {
               required
               fullWidth
               helperText="Aadhaar Card"
+              value={user?.aadharNo}
               //placeholder="xxxx-xxxx-xxxx"
               inputProps={{ maxLength: 12 , readOnly: true }}
               onChange={(e) => handlechange(e)}
@@ -310,6 +316,7 @@ const Appl = ({ session }) => {
               required
               fullWidth
               helperText="Pan Card"
+              value={user?.panNo}
               //placeholder="AAAAA1234A"
               inputProps={{ maxLength: 10, readOnly: true }}
               onChange={(e) => handlechange(e)}
@@ -321,6 +328,7 @@ const Appl = ({ session }) => {
               required
               fullWidth
               helperText="Category"
+              value={user?.category}
               //placeholder="AAAAA1234A"
               inputProps={{ maxLength: 10, readOnly: true }}
               onChange={(e) => handlechange(e)}
@@ -374,6 +382,7 @@ const Appl = ({ session }) => {
           <Grid item xs={12} sm={4}>
             <TextField
               fullWidth
+              value={user?.guardianFirstName}
               helperText="Guardian's First Name"
               //placeholder="Guardian's First Name"
               onChange={(e) => handlechange(e)}
@@ -386,6 +395,7 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Middle Name"
               // placeholder="Middle Name"
+              value={user?.guardianMiddleName}
               onChange={(e) => handlechange(e)}
               name="guardianMiddleirstName"
               inputProps={{ readOnly: true }}
@@ -396,6 +406,7 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Last Name"
               // placeholder="Last Name"
+              value={user?.guardianLastName}
               onChange={(e) => handlechange(e)}
               name="guardianLastName"
               inputProps={{ readOnly: true }}
@@ -409,6 +420,7 @@ const Appl = ({ session }) => {
           <Grid item xs={12} sm={2}>
             <TextField
               fullWidth
+              value={user?.state}
               helperText="State"
               // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
@@ -419,6 +431,7 @@ const Appl = ({ session }) => {
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
+              value={user?.address}
               helperText="Address"
               // placeholder="B.H. Area"
               onChange={(e) => handlechange(e)}
@@ -430,6 +443,7 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="Locality"
+              value={user?.locality}
               // placeholder="Kadma"
               onChange={(e) => handlechange(e)}
               name="locality"
@@ -440,6 +454,7 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="Town"
+              value={user?.town}
               // placeholder="New Delhi"
               onChange={(e) => handlechange(e)}
               name="town"
@@ -451,6 +466,7 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Pincode"
               // placeholder="560004"
+              value={user?.pincode}
               onChange={(e) => handlechange(e)}
               name="pincode"
               //inputProps={{ readOnly: true }}
@@ -466,6 +482,7 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Intermediate (XII) Marks"
               // placeholder="99.9% or 9.9 CGPA"
+              value={user?.marks12}
               onChange={(e) => handlechange(e)}
               name="marks12"
               // defaultValue="John"
@@ -477,35 +494,22 @@ const Appl = ({ session }) => {
               fullWidth
               helperText="Matriculation (X) Marks"
               // placeholder="99.9% or 9.9 CGPA"
+              value={user?.marks10}
               onChange={(e) => handlechange(e)}
               name="marks10"
               inputProps={{ readOnly: true }}
             />
           </Grid>
           <Grid item xs={12} sm={3}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Highest Qualification
-              </InputLabel>
-              <Select
-                defaultValue={initialvalue.qualification}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput
-                    label="Highest Qualifications"
-                    id="select-multiple-language"
-                  />
-                }
-                onChange={(e) => handlechange(e)}
-                name="highestQualification"
-              >
-                <MenuItem value="Matriculation(X)">Matriculation</MenuItem>
-                <MenuItem value="Intermediate(XII)">Intermediate</MenuItem>
-                <MenuItem value="Undergraduate">Undergraduate</MenuItem>
-                <MenuItem value="Postgraduate">Postgraduate</MenuItem>
-              </Select>
-            </FormControl>
+            <TextField
+              fullWidth
+              helperText="Highest Qualification "
+              // placeholder="99.9% or 9.9 CGPA"
+              value={user?.highestQualification}
+              onChange={(e) => handlechange(e)}
+              name="highestQualification"
+              inputProps={{ readOnly: true }}
+            />
           </Grid>
           <Grid item xs={12} sm={3}>
             <TextField
@@ -513,7 +517,8 @@ const Appl = ({ session }) => {
               helperText="Highest Qualification Marks"
               // placeholder="99.9% or 9.9 CGPA"
               onChange={(e) => handlechange(e)}
-              name="marks"
+              value={user?.highestQualificationmarks}
+              name="highestQualificationmarks"
               inputProps={{ readOnly: true }}
             />
           </Grid>
@@ -523,34 +528,26 @@ const Appl = ({ session }) => {
             </Divider>
           </Grid>
 
+         
           <Grid item xs={12} sm={3}>
-            <FormControl fullWidth>
-              <InputLabel id="form-layouts-separator-single-select-label">
-                Income
-              </InputLabel>
-              <Select
-                defaultValue={initialvalue.income}
-                id="account-settings-single-select"
-                labelId="account-settings-single-select-label"
-                input={
-                  <OutlinedInput label="Income" id="select-single-language" />
-                }
-                onChange={(e) => handlechange(e)}
-                name="income"
-              >
-                <MenuItem value="Upto Rs 3.5 LPA">Upto Rs 3.5 LPA</MenuItem>
-                <MenuItem value="Rs 3.5 LPA - Rs 7.5 LPA">
-                  Rs 3.5 LPA - Rs 7.5 LPA
-                </MenuItem>
-                <MenuItem value="Above Rs 7.5 LPA">Above Rs 7.5 LPA</MenuItem>
-              </Select>
-            </FormControl>
+            <TextField
+              fullWidth
+              helperText="Income"
+              // placeholder="Jayanagar, Bengaluru"
+              value={user?.income}
+              onChange={(e) => fetch(e)}
+              name="income"
+              inputProps={{ readOnly: true }}
+            />
           </Grid>
+
+
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
               helperText="IFSC Code"
               // placeholder="Jayanagar, Bengaluru"
+              value={user?.ifscCode}
               onChange={(e) => fetch(e)}
               name="ifscCode"
               inputProps={{ readOnly: true }}
@@ -559,7 +556,9 @@ const Appl = ({ session }) => {
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
+              value={user?.banker}
               helperText="Bank Name"
+
               // placeholder="Kotak Mahindra Bank"
               onChange={(e) => handlechange(e)}
               name="banker"
@@ -569,7 +568,9 @@ const Appl = ({ session }) => {
           <Grid item xs={12} sm={3}>
             <TextField
               fullWidth
+
               helperText="Account Number"
+              value={user?.accountNo}
               // placeholder="xxxxxxxxxxxxxxxx"
               inputProps={{ maxLength: 16, readOnly: true }}
               onChange={(e) => handlechange(e)}
@@ -580,6 +581,7 @@ const Appl = ({ session }) => {
             <TextField
               fullWidth
               helperText="Bank Branch Name"
+              value={user?.bankBranch}
               // placeholder="Jayanagar, Bengaluru"
               onChange={(e) => handlechange(e)}
               name="bankBranch"
@@ -597,13 +599,13 @@ const Appl = ({ session }) => {
               required
               type="file"
               helperText="Cover Letter"
-              onChange={(e) => setCoverletterFile(e)}
+              onChange={(e) => setCoverLetterFile(e)}
               name="coverLetter"
             />
           </Grid>
 
           <Grid item xs={12}>
-            <Button variant="contained" sx={{ marginRight: 3.5 }}>
+            <Button variant="contained" onClick={handleClick} sx={{ marginRight: 3.5 }}>
               Apply
             </Button>
           </Grid>

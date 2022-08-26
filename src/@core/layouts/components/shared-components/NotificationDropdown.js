@@ -93,13 +93,13 @@ const NotificationDropdown = () => {
       email: session.user.email,
     });
     // setnotifs(res.data.data.notifs);
-
-    console.log(res.data.notif);
-    noti = res.data.notif;
+    
+    // console.log(res.data.notif);
+    noti  = res.data.notif;
     setnotifs(res.data.notif);
-    console.log(notifs);
-    console.log(noti);
-  };
+    // console.log(notifs);
+    // console.log(noti);
+  }
   // if(session){
   useEffect(() => {
     if (session) {

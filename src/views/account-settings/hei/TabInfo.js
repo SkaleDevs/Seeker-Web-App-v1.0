@@ -39,8 +39,8 @@ const TabInfo = () => {
 
     const fetch= async () =>{
       await axios.get(`https://localhost:3000/api/controller/institute/getInstituteInfo`,{email:session.user.email}).then((res) => {
-      setUser(res.data);
-      console.log(res.data);
+        setUser(res.data);
+        console.log(res.data);
         
       }).catch((err) => {
         console.log(err);

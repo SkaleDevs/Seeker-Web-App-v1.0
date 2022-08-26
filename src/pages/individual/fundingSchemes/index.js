@@ -1,6 +1,6 @@
 // **React Imports
 import React, { useState, useEffect, useMemo } from "react";
-import { getSession } from "next-auth/react";
+import {getSession} from 'next-auth/react';
 // ** MUI Imports
 import {
   Card,
@@ -300,10 +300,10 @@ const allInstituteApplications = await fetch(`http://localhost:3000/api/controll
   console.log("ok",allSeekerApplications)
   return {
     props: {
-        allUGCSch,
-        allCentralScheme,
-        allSeekerApplications,
-        allInstituteApplications
+      allCentralScheme,
+      allUGCSch,
+      allSeekerApplications,
+      allInstituteApplications
     },
   };
 }

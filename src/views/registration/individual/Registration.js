@@ -276,7 +276,7 @@ const IndivRegistration = () => {
     window.alert(data.message);
     if(data.message === "Successfully registered"){
       // window.location.href = "/login";
-      router.push("/login");
+      router.push("/pages/login");
     }
   };
 

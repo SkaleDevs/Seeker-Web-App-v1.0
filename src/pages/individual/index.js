@@ -186,8 +186,9 @@ const Home = ({ sess }) => {
 
   return (
     <ApexChartWrapper>
-      <Box display="flex" align="center">
+      {sess.user?.banned=="Yes" && sess.user?.role=="individual" && <Box display="flex" align="center">
         <Grid item xs={12} sm={6}>
+
           <TextField
             autoFocus
             required
@@ -234,6 +235,8 @@ const Home = ({ sess }) => {
           Verify
         </Button>
       </Box>
+      
+      }
 
       {/* -----------------------------Modal Popup----------------------------------------------------------- */}
 

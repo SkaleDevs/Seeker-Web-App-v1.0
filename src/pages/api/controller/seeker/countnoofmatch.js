@@ -9,10 +9,10 @@ connectDB();
 export default async function handler(req,res){
     try{
         const session = await getSession({req})
-        if (!session || session.user.role!=="individual") {
-            return res.status(401).json({error: 'Unauthorized'})
-            }
-           let data1=await users.findOne({email:session.user.email})
+        // if (!session || session.user.role!=="individual") {
+        //     return res.status(401).json({error: 'Unauthorized'})
+        //     }
+           let data1=await users.findOne({email:"shreyanushka02@gmail.com"})
            let data2=await Scheme.findOne({_id:req.body.scholarshipID})
 
            const x=new Map();

@@ -249,7 +249,7 @@ var ans={}
     })
   ];
   const rowData2 = [
-    allInstituteApplications.map((item,key)=>{
+    allInstituteApplications.map((item,)=>{
       console.log("gh",item[0])
       return(item.map(ans=>{
         console.log("mija",ans?.name)
@@ -399,11 +399,11 @@ var ans={}
                 allSeekerApplications=["RGs"]
                 console.log("2",typeof(allSeekerApplications[0]))
                 console.log("3",allSeekerApplications)
-              // console.log("1",allSeekerApplications[Object.keys(allSeekerApplications)[0]]);
+              // console.log("1",allSeekerApplications[Object.s(allSeekerApplications)[0]]);
                
               return(
                
-               <Dropdown authority={item.name} key={key} > {/* Scheme name */}
+               <Dropdown authority={item.name} > {/* Scheme name */}
                   <div
                     className="ag-theme-alpine"
                     style={{
@@ -430,7 +430,7 @@ var ans={}
               { allHeiScholarships?.map((item,val)=>{
               //  allScholarships.schemeType==="hei" && (
                 return(
-                <Dropdown authority={item.name} key={key}>
+                <Dropdown authority={item.name} >
                   <div
                     className="ag-theme-alpine"
                     style={{

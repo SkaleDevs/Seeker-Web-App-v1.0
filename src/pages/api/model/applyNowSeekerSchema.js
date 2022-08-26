@@ -15,6 +15,9 @@ const applyNowSeekerSchema = new mongoose.Schema({
         type:ObjectId,
         ref:'Scholarship'
        },
+       scholarshipName:{
+        type:String,
+       },
        email:{
         type:String,
         required:true

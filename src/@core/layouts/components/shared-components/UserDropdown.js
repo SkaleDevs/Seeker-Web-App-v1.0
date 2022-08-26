@@ -18,7 +18,8 @@ import Typography from "@mui/material/Typography";
 
 // ** Icons Imports
 import CogOutline from "mdi-material-ui/CogOutline";
-import CurrencyUsd from "mdi-material-ui/CurrencyUsd";
+import Book from "mdi-material-ui/Book";
+import BookIcon from "@mui/icons-material/Book";
 import EmailOutline from "mdi-material-ui/EmailOutline";
 import LogoutVariant from "mdi-material-ui/LogoutVariant";
 import AccountOutline from "mdi-material-ui/AccountOutline";
@@ -136,10 +137,11 @@ const UserDropdown = () => {
         </MenuItem>
         <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
           <Box sx={styles}>
-            <MessageOutline sx={{ marginRight: 2 }} />
-            Chat
+            <Book sx={{ marginRight: 2 }} />
+            Scholarships
           </Box>
         </MenuItem>
+      
         <Divider />
         <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
           <Box sx={styles}>
@@ -149,22 +151,23 @@ const UserDropdown = () => {
         </MenuItem>
         <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
           <Box sx={styles}>
-            <CurrencyUsd sx={{ marginRight: 2 }} />
-            Pricing
+            <MessageOutline sx={{ marginRight: 2 }} />
+            Chat
           </Box>
         </MenuItem>
-        <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
+
+        {/* <MenuItem sx={{ p: 0 }} onClick={() => handleDropdownClose()}>
           <Box sx={styles}>
             <HelpCircleOutline sx={{ marginRight: 2 }} />
             FAQ
           </Box>
-        </MenuItem>
+        </MenuItem> */}
         <Divider />
         <MenuItem
           sx={{ py: 2 }}
-          onClick={() => signOut({ callbackUrl:"http://localhost:3000/" })}
+          onClick={() => signOut({ callbackUrl: "http://localhost:3000/" })}
         >
-        {/* <MenuItem
+          {/* <MenuItem
           sx={{ py: 2 }}
           onClick={() =>
             signOut({ callbackUrl: "https://seeker-web-app-v1-0.vercel.app/" })

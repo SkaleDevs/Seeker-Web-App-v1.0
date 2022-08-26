@@ -13,6 +13,11 @@ import {
   Button,
 } from "@mui/material";
 
+import FormGroup from "@mui/material/FormGroup";
+import Checkbox from "@mui/material/Checkbox";
+import ToggleButton from "@mui/material/ToggleButton";
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
+
 // ** MUI Imports
 import Radio from "@mui/material/Radio";
 import Select from "@mui/material/Select";
@@ -27,11 +32,12 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import TextareaAutosize from "@mui/material/TextareaAutosize";
 import { useRef } from "react";
 // ** Third Party Imports
-import DatePicker from "react-datepicker";
 import axios from "axios";
 
-// ** Styled Components
-import DatePickerWrapper from "src/@core/styles/libs/react-datepicker";
+// ** Date Picker Imports
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const CustomInput = forwardRef((props, ref) => {
   return (
@@ -46,7 +52,77 @@ const CreateScheme = () => {
     setValue(newValue);
   };
 
+  const checkbox = [
+    {
+      name: "MBA",
+    },
+    {
+      name: "Phd",
+    },
+    {
+      name: "Science",
+    },
+    {
+      name: "Management",
+    },
+    {
+      name: "Engineering",
+    },
+    {
+      name: "Medical",
+    },
+    {
+      name: "Arts",
+    },
+    {
+      name: "Commerce",
+    },
+    {
+      name: "Physics",
+    },
+    {
+      name: "Chemistry",
+    },
+    {
+      name: "Biology",
+    },
+    {
+      name: "Mathematics",
+    },
+    {
+      name: "English",
+    },
+    {
+      name: "Hindi",
+    },
+    {
+      name: "Marathi",
+    },
+    {
+      name: "Kannada",
+    },
+    {
+      name: "Girl",
+    },
+    {
+      name: "Disable",
+    },
+    {
+      name: "OBC",
+    },
+    {
+      name: "SC/ST",
+    },
+  ];
+
   // ** For Tabs End
+
+  // ** Toggle Button Handlers
+  const [formats, setFormats] = useState(() => []);
+
+  const handleFormat = (event, newFormats) => {
+    setFormats(newFormats);
+  };
 
   const defaultColDef = useMemo(
     () => ({
@@ -60,18 +136,16 @@ const CreateScheme = () => {
   const [type, setType] = useState(null);
   const [orgType, setOrgType] = useState(null);
   const agencyDescription = useRef();
-  const [eligibility, setEligibility] = useState(["graduate", "undergraduate"]);
   const [date, setDate] = useState(null);
   const [extraDocsFile, setExtraDocsFile] = useState(["Bonafide", "Passport"]);
   const maxAmount = useRef();
-  const [interest, setInterest] = useState(null);
-
+  const [eligibility1, setEligibility1] = useState(null);
+  
   const submit = async () => {
     try {
       console.log(name.current.value);
       console.log(type);
       console.log(agencyDescription.current.value);
-      console.log(eligibility);
       console.log(date);
       console.log(extraDocsFile);
       console.log(maxAmount.current.value);
@@ -81,15 +155,23 @@ const CreateScheme = () => {
           schemeType: type,
           schemeOrganisationType: orgType,
           agencyDescription: agencyDescription.current.value,
-          eligibility: eligibility,
+          eligibility: "gdf",
           deadline: date,
           documentsRequired: extraDocsFile,
           maxAmount: maxAmount.current.value,
-          interest:interest
+          interest: formats,
         })
-        .then((res) => {
+        .then(async(res) => {
+          const da=await axios.post("/api/controller/sendmultiplemail",{interest:formats,name:name.current.value}).then(
+            as=>{
+              if(as){
+                window.alert("Successfully Created");
+              }
+            }
+          )
+          console.log(formats)
           console.log(res);
-
+          
         });
     } catch (e) {
       console.log(e);
@@ -134,7 +216,7 @@ const CreateScheme = () => {
                     </Select>
                   </FormControl>
 
-                  <FormControl fullWidth sx={{ marginTop: "10px" }}>
+                  <FormControl fullWidth sx={{ marginTop: "20px" }}>
                     <InputLabel id="form-layouts-separator-single-select-label">
                       SchemeOrgansisationType
                     </InputLabel>
@@ -156,17 +238,16 @@ const CreateScheme = () => {
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={4}>
-                  <DatePickerWrapper>
+                  <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
-                      selected={date}
-                      showYearDropdown
-                      showMonthDropdown
-                      id="account-settings-date"
-                      placeholderText="MM-DD-YYYY"
-                      customInput={<CustomInput />}
-                      onChange={(date) => setDate(date)}
+                      label="Deadline Date*"
+                      value={date}
+                      onChange={(newDate) => {
+                        setDate(newDate);
+                      }}
+                      renderInput={(params) => <TextField {...params} />}
                     />
-                  </DatePickerWrapper>
+                  </LocalizationProvider>
                 </Grid>
                 <Grid item xs={12} sm={4}>
                   <TextField
@@ -190,25 +271,49 @@ const CreateScheme = () => {
                   />
                 </Grid>
                 <Grid item xs={12} sm={12}>
+                  <Typography>Eligibility Criteria</Typography>
                   <TextField
                     fullWidth
                     multiline
                     rows={5}
                     label="Eligibility Criteria"
                     placeholder="Lorem Ipsum"
-
+                    sx={{ marginTop: "20px" }}
+                    onChange={(newDate) => {
+                      setEligibility1(newDate);
+                    }}
                     // inputProps={{ readOnly: true }}
                   />
+                 
                 </Grid>
+                
                 <Grid item xs={12} sm={12}>
-                  <TextField
-                    fullWidth
-                    multiline
-                    rows={5}
-                    label="Additional Information"
-                    placeholder="Lorem Ipsum"
-                    // inputProps={{ readOnly: true }}
-                  />
+                  <Typography>Scope of Scheme</Typography>
+                  <>
+                    <ToggleButtonGroup
+                      value={formats}
+                      onChange={handleFormat}
+                      aria-label="text formatting"
+                      sx={{ display: "flex", flexDirection: "column" }}
+                    >
+                      {checkbox.map(function (item) {
+                        return (
+                          // <Grid item key={item.name}>
+                          <ToggleButton
+                            color="primary"
+                            variant="outlined"
+                            sx={{ margin: "8px" }}
+                            value={item.name}
+                            aria-label={item.name}
+                            key={item.name}
+                          >
+                            {item.name}
+                          </ToggleButton>
+                          // </Grid>
+                        );
+                      })}
+                    </ToggleButtonGroup>
+                  </>
                 </Grid>
                 <Grid item xs={12}>
                   <Button
@@ -216,7 +321,7 @@ const CreateScheme = () => {
                     onClick={submit}
                     sx={{ marginRight: 3.5 }}
                   >
-                    Save Changes
+                    Post Scheme
                   </Button>
                   <Button
                     type="reset"

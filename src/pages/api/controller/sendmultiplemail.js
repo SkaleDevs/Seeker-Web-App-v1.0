@@ -2,24 +2,25 @@ import Seeker from "../model/seekerSchema";
 import connectDB from "../auth/lib/connectDB";
 import users from "../model/userSchema";
 import sgMail from '@sendgrid/mail';
+import news from "../model/newSchema";
 connectDB();
 sgMail.setApiKey(process.env.EMAIL_SERVER_PASSWORD);
 export default async function handler(req, res) {
   try {
-    //console.log(req.body.email)
+   
+   
    sgMail.sendMultiple({
-                            to: req.body.email, // Change to your recipient
+                            to: ['shreyanushka02@gmail.com','sudhanshuvshekhar@gmail.com','pixelsspeaking@gmail.com'], // Change to your recipient
                             from: 'harshme78@gmail.com', // Change to your verified sender
-                            subject: 'Placement Offer',
+                            subject: 'Scheme Suggestion',
                             html:`<h3>
-                                  This is to inform you that you are eligible to apply</h3>`
+                                  As per your field of interest, You have been suggested to apply for this Scheme that is just posted now!</h3>`
                                 
                               }).then(()=>{
-                                  res.json({message:"Email Sent!"})
-                              }).catch(err=>{
-                                  console.log(err)})
-    res.send({ message: "Successfully registered" });
+                                  return res.json({message:"Email Sent!"})})
+                              
+   //return res.send({ message: "Successfully registered" });
   } catch (err) {
-    res.send({ message: err });
+    res.send({ err });
   }
 }

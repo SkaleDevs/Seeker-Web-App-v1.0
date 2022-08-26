@@ -22,7 +22,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine.css";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 
-const ScheduledInterviews = ({getCentralSchemes,getUGCSchemes,getStateSchemes}) => {
+const ScheduledInterviews = ({getCentralSchemes}) => {
   // const [rowData, setRowData] = useState();
   const viewButton = (p) => (
     <Button
@@ -48,6 +48,21 @@ const ScheduledInterviews = ({getCentralSchemes,getUGCSchemes,getStateSchemes}) 
     </Button>
   );
 
+  // const rowData=[
+  //   getCentralSchemes.map(item=>{
+  //     item.map(ans=>{
+  //       return(
+  //         {
+  //           schemeName: `${ans.scholarshipName}`,
+  //           interviewDate: `${ans.meetingDate}`,
+  //           interviewTime: `${ans.meetingStartTime}`,
+  //           interviewLink: `${ans.scheduledMeeting}`,
+  //           viewApplication: "Button",
+  //         }
+  //       )
+  //     })
+  //   })
+  // ]
   const rowData = [
     {
       schemeName: "Scheme 1",
@@ -174,11 +189,11 @@ const ScheduledInterviews = ({getCentralSchemes,getUGCSchemes,getStateSchemes}) 
                   variant="scrollable"
                   allowScrollButtonsMobile
                 >
-                  <Tab label="Central Schemes" value="0" />
-                  <Tab label="UGC/AICTE Schemes" value="1" />
-                  <Tab label="State Schemes" value="2" />
+                  <Tab label="My Applied Schemes" value="0" />
+                 
                 </TabList>
               </Box>
+            {/* {// getCentralSchemes.map(item=>{ */}
               <TabPanel value="0" sx={{ overflow: "auto", width: "100%" }}>
                 <div
                   className="ag-theme-alpine"
@@ -200,8 +215,9 @@ const ScheduledInterviews = ({getCentralSchemes,getUGCSchemes,getStateSchemes}) 
                   />
                 </div>
               </TabPanel>
-              <TabPanel value="1">Panel 2</TabPanel>
-              <TabPanel value="2">Panel 3</TabPanel>
+            {/* //})} */}
+              
+              
             </TabContext>
           </CardContent>
         </Card>
@@ -216,21 +232,16 @@ export async function getServerSideProps(context) {
   
   const sess= await getSession(context);
 
-const getCentralSchemes = await fetch(`http://localhost:3000/api/controller/getCentralApplication`)
+const getCentralSchemes = await fetch(`http://localhost:3000/api/controller/seeker/a`)
 .then(res => res.json())
 
-const getUGCSchemes = await fetch(`http://localhost:3000/api/controller/getUGCApplication`)
-.then(res => res.json())
-// .then(data => {
-const getStateSchemes = await fetch(`http://localhost:3000/api/controller/getStateApplication`)
-.then(res => res.json())
+console.log(getCentralSchemes)
 
-  console.log("ok1",getCentralSchemes)
-  console.log("ok2",getUGCSchemes)
-  console.log("ok3",getStateSchemes)
+
+ 
   return {
     props: {
-      getCentralSchemes,getUGCSchemes,getStateSchemes
+      getCentralSchemes
     },
   };
 }
